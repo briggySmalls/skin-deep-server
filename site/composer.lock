@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ae57d1173b1c7d35d71925128af1c30",
+    "content-hash": "8991de6c4fff0dc5160b608df80a7467",
     "packages": [
         {
             "name": "composer/installers",
@@ -297,6 +297,51 @@
             "time": "2017-07-17T20:41:59+00:00"
         },
         {
+            "name": "roots/soil",
+            "version": "3.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/roots/soil.git",
+                "reference": "d0e409e70dafff4ceeaa8ef941ee319e350317dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/roots/soil/zipball/d0e409e70dafff4ceeaa8ef941ee319e350317dd",
+                "reference": "d0e409e70dafff4ceeaa8ef941ee319e350317dd",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^2.5.1"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Scott Walkinshaw",
+                    "email": "scott.walkinshaw@gmail.com",
+                    "homepage": "https://github.com/swalkinshaw"
+                },
+                {
+                    "name": "Ben Word",
+                    "email": "ben@benword.com",
+                    "homepage": "https://github.com/retlehs"
+                }
+            ],
+            "description": "A WordPress plugin which contains a collection of modules to apply theme-agnostic front-end modifications",
+            "homepage": "https://roots.io/plugins/soil/",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2017-08-14T01:36:41+00:00"
+        },
+        {
             "name": "roots/wp-password-bcrypt",
             "version": "1.0.0",
             "source": {
@@ -354,6 +399,50 @@
             "time": "2016-03-01T16:27:06+00:00"
         },
         {
+            "name": "solarissmoke/disable-comments-mu",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/solarissmoke/disable-comments-mu.git",
+                "reference": "b1709cf560dabec19844bcc94e0b353ac6949273"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/solarissmoke/disable-comments-mu/zipball/b1709cf560dabec19844bcc94e0b353ac6949273",
+                "reference": "b1709cf560dabec19844bcc94e0b353ac6949273",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "brain/monkey": "1.4.2"
+            },
+            "type": "wordpress-muplugin",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Samir Shah",
+                    "email": "samir@rayofsolaris.net",
+                    "homepage": "https://github.com/solarissmoke"
+                }
+            ],
+            "description": "This is the must-use version of the Disable Comments WordPress plugin. Copy the contents of this directory into your mu-plugins directory in order to disable comments on the entire site/network, without any configuration. You should delete all existing comments from the WordPress database before activating this plugin. If you want to be able to configure the plugin's behaviour, then use the normal version.",
+            "homepage": "https://github.com/solarissmoke/disable-comments-mu",
+            "keywords": [
+                "comments",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/solarissmoke/disable-comments-mu/issues",
+                "source": "https://github.com/solarissmoke/disable-comments-mu/tree/v1.2"
+            },
+            "time": "2017-07-08T04:22:16+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.4.0",
             "source": {
@@ -407,16 +496,16 @@
     "packages-dev": [
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.2.3",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27"
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4842476c434e375f9d3182ff7b89059583aa8b27",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
                 "shasum": ""
             },
             "require": {
@@ -454,7 +543,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-02-20T21:35:23+00:00"
+            "time": "2018-06-06T23:58:19+00:00"
         }
     ],
     "aliases": [],
