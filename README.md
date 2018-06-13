@@ -10,6 +10,8 @@ The entire server for the Skin Deep website.
 
 ## Updates
 
+Updates to Trellis, Bedrock and Sage are managed following the process outlined by [hooverlunch](https://discourse.roots.io/t/best-practices-to-update-trellis/5386/32).
+
 Trellis, Bedrock and Sage were all created as subtrees with a command like the following:
 ```
 git subtree add --prefix=trellis trellis master --squash
@@ -25,3 +27,4 @@ And brought in with:
 ```
 git subtree pull --prefix=trellis trellis master --squash
 ```
+
