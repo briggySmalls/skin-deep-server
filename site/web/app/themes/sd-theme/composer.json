@@ -1,31 +1,17 @@
 {
-  "name": "roots/sage",
+  "name": "skin-deep/theme",
   "type": "wordpress-theme",
   "license": "MIT",
-  "description": "WordPress starter theme with a modern development workflow",
-  "homepage": "https://roots.io/sage/",
+  "description": "Custom theme for the Skin Deep magazine website",
+  "homepage": "https://skindeepmag.com/",
   "authors": [
     {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
-    },
-    {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
-    },
-    {
-      "name": "QWp6t",
-      "email": "hi@qwp6t.me",
-      "homepage": "https://github.com/qwp6t"
+      "name": "Sam Briggs",
+      "email": "briggySmalls90@gmail.com",
+      "homepage": "https://github.com/briggySmalls"
     }
   ],
   "keywords": ["wordpress"],
-  "support": {
-    "issues": "https://github.com/roots/sage/issues",
-    "forum": "https://discourse.roots.io/"
-  },
   "autoload": {
     "psr-4": {
       "App\\": "app/"
