@@ -49,6 +49,12 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('post-thumbnails');
 
+    // Set theme image sizes
+    set_post_thumbnail_size(240, 135, true);
+    update_option( 'large_size_w', 1200 );
+    update_option( 'large_size_h', 675 );
+    update_option( 'large_crop', 1 );
+
     /**
      * Enable HTML5 markup support
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
@@ -66,6 +72,11 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
+
+    /**
+     * Enable post formats
+     */
+    add_theme_support( 'post-formats', array( 'video' ) );
 }, 20);
 
 /**

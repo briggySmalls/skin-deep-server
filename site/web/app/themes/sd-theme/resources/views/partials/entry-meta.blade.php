@@ -1,6 +1,10 @@
 <time class="updated" datetime="{{ get_post_time('c', true) }}">{{ get_the_date() }}</time>
-<p class="byline author vcard">
-  {{ __('By', 'sage') }} <a href="{{ get_author_posts_url(get_the_author_meta('ID')) }}" rel="author" class="fn">
-    {{ get_the_author() }}
-  </a>
-</p>
+@php $terms = wp_get_post_terms($post->ID, 'sd-author'); @endphp
+@if (count($terms))
+  <p class="byline author vcard">
+    {{ __('By', 'sage') }}
+    @foreach ($terms as $term)
+      <a href="{{ get_term_link($term) }}" rel="author">{{ $term->name }}</a>{{ !$loop->last ? ", " : "" }}
+    @endforeach
+  </p>
+@endif
