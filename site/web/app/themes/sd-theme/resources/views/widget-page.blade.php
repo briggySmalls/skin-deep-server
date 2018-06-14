@@ -1,5 +1,5 @@
 {{--
-  Template Name: Front Page
+  Template Name: Widget Page
 --}}
 
 @extends('layouts.app')
@@ -8,6 +8,6 @@
   @while(have_posts()) @php the_post() @endphp
     @include('partials.page-header')
     @include('partials.content-page')
-    @include('partials.sidebar')
   @endwhile
+  @php dynamic_sidebar('sidebar-focus') @endphp
 @endsection

@@ -97,6 +97,10 @@ add_action('widgets_init', function () {
         'name'          => __('Footer', 'sage'),
         'id'            => 'sidebar-footer'
     ] + $config);
+    register_sidebar([
+        'name'          => __('Focus', 'sage'),
+        'id'            => 'sidebar-focus'
+    ] + $config);
 });
 
 /**
