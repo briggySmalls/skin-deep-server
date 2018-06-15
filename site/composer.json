@@ -44,7 +44,8 @@
     "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "roots/soil": "^3.7.3",
-    "solarissmoke/disable-comments-mu": "^1.2"
+    "solarissmoke/disable-comments-mu": "^1.2",
+    "wpackagist-plugin/advanced-custom-fields":"5.6.10"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2"
@@ -53,7 +54,8 @@
     "installer-paths": {
       "web/app/mu-plugins/{$name}/": [
         "type:wordpress-muplugin",
-        "roots/soil"
+        "roots/soil",
+        "wpackagist-plugin/advanced-custom-fields"
       ],
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
