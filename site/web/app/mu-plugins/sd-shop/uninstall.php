@@ -22,7 +22,7 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
+ * @package    SD_Shop
  */
 
 // If uninstall not called from WordPress, then exit.
