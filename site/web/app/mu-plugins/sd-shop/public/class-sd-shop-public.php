@@ -38,7 +38,23 @@ class SD_Shop_Public {
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
-	private $version;
+    private $version;
+
+    /**
+     * API key for Snipcart
+     */
+    protected const SNIPCART_KEY = 'ZTdjY2E5YjAtOTRlOC00ODhhLTk1NmMtOWRjNDBiZDIwMjNlNjM2NjQxMzkxOTI2MTUxOTcw'; 
+
+
+    public const SNIPCART_SCRIPT = [
+        'handle' => 'snipcart-script',
+        'src' => 'https://cdn.snipcart.com/scripts/2.0/snipcart.js',
+    ];
+
+    public const SNIPCART_STYLE = [
+        'handle' => 'snipcart-style',
+        'src' => 'https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css'
+    ];
 
 	/**
 	 * Initialize the class and set its properties.
@@ -74,6 +90,7 @@ class SD_Shop_Public {
 		 */
 
         wp_enqueue_style( $this->sd_shop, plugin_dir_url( __FILE__ ) . 'css/sd-shop-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( self::SNIPCART_STYLE['handle'], self::SNIPCART_STYLE['src'], array(), Null, 'all' );
 
 	}
 
@@ -97,7 +114,14 @@ class SD_Shop_Public {
 		 */
 
         wp_enqueue_script( $this->sd_shop, plugin_dir_url( __FILE__ ) . 'js/sd-shop-public.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], array( 'jquery' ), Null, false );
 
 	}
 
+    public function fixup_script_tags($tag, $handle, $src) {
+        if ( SD_Shop_Public::SNIPCART_SCRIPT['handle'] === $handle ) {
+            $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . self::SNIPCART_KEY . '"></script>';
+        }
+        return $tag;
+    }
 }

@@ -173,6 +173,8 @@ class SD_Shop {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+        $this->loader->add_filter( 'script_loader_tag', $plugin_public, 'fixup_script_tags', 10, 3);
+
 	}
 
 	/**
