@@ -1,0 +1,32 @@
+{
+  "name": "sd-shop",
+  "type": "wordpress-plugin",
+  "license": "proprietary",
+  "description": "e-commerce for the Skin Deep website",
+  "authors": [
+    {
+      "name": "Sam Briggs",
+      "email": "briggySmalls90@gmail.com",
+      "homepage": "https://github.com/briggySmalls"
+    }
+  ],
+  "keywords": ["wordpress"],
+  "autoload": {
+    "psr-4": {
+      "SD_Shop\\": "app/"
+    },
+    "files": [
+      "app/setup.php"
+    ]
+  },
+  "require": {
+    "php": ">=7.1",
+    ""
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^2.8.0"
+  },
+  "scripts": {
+    "test": ["phpcs"]
+  }
+}
