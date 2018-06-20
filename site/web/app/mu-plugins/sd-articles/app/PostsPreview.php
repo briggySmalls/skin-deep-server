@@ -64,9 +64,6 @@ class PostsPreview extends \WP_Widget {
         add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
         add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
         add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
-
-        // Register widget fields in admin
-        self::register_fields();
     } // end constructor
 
     /*--------------------------------------------------*/
@@ -166,105 +163,6 @@ class PostsPreview extends \WP_Widget {
         load_plugin_textdomain( self::WIDGET_SLUG , false, ResourceManager::lang_dir());
 
     } // end widget_textdomain
-
-    /**
-     * @brief      Register widget fields using ACF
-     * @return     None
-     */
-    private static function register_fields() {
-        // TODO: Move this outside of the class...
-        if( function_exists('acf_add_local_field_group') ) {
-            acf_add_local_field_group( [
-                'key' => 'group_5b14788dad192',
-                'title' => 'Preview options',
-                'fields' => [
-                    [
-                        'key' => 'field_5b14795f2eb5b',
-                        'label' => 'Title',
-                        'name' => 'sd_widget_preview_title',
-                        'type' => 'text',
-                        'value' => NULL,
-                        'instructions' => 'Title to display for the preview section',
-                        'required' => 1,
-                        'conditional_logic' => 0,
-                        'wrapper' => [
-                            'width' => '',
-                            'class' => '',
-                            'id' => '',
-                        ],
-                        'default_value' => '',
-                        'placeholder' => '',
-                        'prepend' => '',
-                        'append' => '',
-                        'maxlength' => '',
-                    ],
-                    [
-                        'key' => 'field_5b1478a42eb59',
-                        'label' => 'Category',
-                        'name' => 'sd_widget_preview_category',
-                        'type' => 'taxonomy',
-                        'value' => NULL,
-                        'instructions' => 'Filter posts by a given category',
-                        'required' => 0,
-                        'conditional_logic' => 0,
-                        'wrapper' => [
-                            'width' => '',
-                            'class' => '',
-                            'id' => '',
-                        ],
-                        'taxonomy' => 'category',
-                        'field_type' => 'select',
-                        'allow_null' => 1,
-                        'add_term' => 0,
-                        'save_terms' => 0,
-                        'load_terms' => 0,
-                        'return_format' => 'id',
-                        'multiple' => 0,
-                    ],
-                    [
-                        'key' => 'field_5b1478f22eb5a',
-                        'label' => 'Format',
-                        'name' => 'sd_widget_preview_format',
-                        'type' => 'taxonomy',
-                        'value' => NULL,
-                        'instructions' => '',
-                        'required' => 0,
-                        'conditional_logic' => 0,
-                        'wrapper' => [
-                            'width' => '',
-                            'class' => '',
-                            'id' => '',
-                        ],
-                        'taxonomy' => 'post_format',
-                        'field_type' => 'select',
-                        'allow_null' => 1,
-                        'add_term' => 0,
-                        'save_terms' => 0,
-                        'load_terms' => 0,
-                        'return_format' => 'id',
-                        'multiple' => 0,
-                    ],
-                ],
-                'location' => [
-                    [
-                        [
-                            'param' => 'widget',
-                            'operator' => '==',
-                            'value' => 'widget-name',
-                        ],
-                    ],
-                ],
-                'menu_order' => 0,
-                'position' => 'normal',
-                'style' => 'default',
-                'label_placement' => 'top',
-                'instruction_placement' => 'label',
-                'hide_on_screen' => '',
-                'active' => 1,
-                'description' => '',
-            ]);
-        }
-    }
 
     /**
      * Fired when the plugin is activated.

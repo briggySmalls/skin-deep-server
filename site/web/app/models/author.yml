@@ -1,0 +1,14 @@
+---
+type: tax
+name: sd-author
+links:
+- post
+labels:
+  has_one: Author
+  has_many: Authors
+  text_domain: sd-articles
+config:
+  public: true
+  hierarchical: false
+  rewrite:
+    slug: author
