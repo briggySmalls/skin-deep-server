@@ -1,0 +1,26 @@
+---
+active: true
+type: cpt
+name: sd-product
+supports:
+- title
+- editor
+- revisions
+- excerpt
+- thumbnail
+- custom-fields
+labels:
+  has_one: Product
+  has_many: Products
+  text_domain: sd-shop
+config:
+  public: true
+  menu_icon: dashicons-cart
+  query_var: true
+  has_archive: true
+  hierarchical: false
+  menu_position: 5
+  can_export: true
+  capability_type: post
+  rewrite:
+    slug: product
