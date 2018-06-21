@@ -9,7 +9,6 @@ namespace SD_Shop;
  * @since      1.0.0
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/includes
  */
 
 /**
@@ -20,7 +19,6 @@ namespace SD_Shop;
  * run function to execute the list of actions and filters.
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/includes
  * @author     Your Name <email@example.com>
  */
 class Loader {

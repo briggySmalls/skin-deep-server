@@ -12,7 +12,6 @@ namespace SD_Shop;
  * @since      1.0.0
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/includes
  */
 
 /**
@@ -26,7 +25,6 @@ namespace SD_Shop;
  *
  * @since      1.0.0
  * @package    SD_Shop
- * @subpackage SD_Shop/includes
  * @author     Your Name <email@example.com>
  */
 class Shop {
@@ -37,7 +35,7 @@ class Shop {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      SD_Shop_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -75,8 +73,8 @@ class Shop {
 			$this->version = '1.0.0';
 		}
 		$this->sd_shop = 'sd-shop';
+        $this->loader = new Loader();
 
-		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
@@ -84,54 +82,9 @@ class Shop {
 	}
 
 	/**
-	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - SD_Shop_Loader. Orchestrates the hooks of the plugin.
-	 * - SD_Shop_i18n. Defines internationalization functionality.
-	 * - SD_Shop_Admin. Defines all hooks for the admin area.
-	 * - SD_Shop_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function load_dependencies() {
-
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sd-shop-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sd-shop-i18n.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sd-shop-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sd-shop-public.php';
-
-		$this->loader = new SD_Shop_Loader();
-
-	}
-
-	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the SD_Shop_i18n class in order to set the domain and to register the hook
+	 * Uses the i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -139,7 +92,7 @@ class Shop {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new SD_Shop_i18n();
+		$plugin_i18n = new I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -154,7 +107,7 @@ class Shop {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new SD_Shop_Admin( $this->get_sd_shop(), $this->get_version() );
+		$plugin_admin = new Admin( $this->get_sd_shop(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -170,7 +123,7 @@ class Shop {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new SD_Shop_Public( $this->get_sd_shop(), $this->get_version() );
+		$plugin_public = new Public( $this->get_sd_shop(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -207,7 +160,7 @@ class Shop {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    SD_Shop_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

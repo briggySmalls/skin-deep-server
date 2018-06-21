@@ -9,7 +9,6 @@ namespace SD_Shop;
  * @since      1.0.0
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/public
  */
 
 /**
@@ -19,7 +18,6 @@ namespace SD_Shop;
  * enqueue the public-facing stylesheet and JavaScript.
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/public
  * @author     Your Name <email@example.com>
  */
 class Public {

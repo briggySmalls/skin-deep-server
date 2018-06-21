@@ -46,28 +46,17 @@ require __DIR__ . '/../vendor/autoload.php';
  * The code that runs during plugin activation.
  * This action is documented in includes/class-sd-shop-activator.php
  */
-function activate_sd_shop() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sd-shop-activator.php';
-	SD_Shop_Activator::activate();
-}
+register_activation_hook( __FILE__, function() {
+    Activator::activate();
+});
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-sd-shop-deactivator.php
  */
-function deactivate_sd_shop() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sd-shop-deactivator.php';
-	SD_Shop_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_sd_shop' );
-register_deactivation_hook( __FILE__, 'deactivate_sd_shop' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-sd-shop.php';
+register_deactivation_hook( __FILE__, function() {
+    Deactivator::deactivate();
+});
 
 /**
  * Begins execution of the plugin.
@@ -79,9 +68,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-sd-shop.php';
  * @since    1.0.0
  */
 function run_sd_shop() {
-
-	$plugin = new SD_Shop();
+	$plugin = new Shop();
 	$plugin->run();
-
 }
 run_sd_shop();

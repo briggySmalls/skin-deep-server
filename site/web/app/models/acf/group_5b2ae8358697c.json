@@ -1,0 +1,117 @@
+{
+    "key": "group_5b2ae8358697c",
+    "title": "Product options",
+    "fields": [
+        {
+            "key": "field_5b2ae8729134c",
+            "label": "Price",
+            "name": "sd-product-price",
+            "type": "number",
+            "instructions": "The cost of the product",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "0.00",
+            "max": "",
+            "step": "0.01"
+        },
+        {
+            "key": "field_5b2ae8bb9134d",
+            "label": "Description",
+            "name": "sd-product-description",
+            "type": "text",
+            "instructions": "Short description to display in the cart",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5b2aef619134e",
+            "label": "Subscription",
+            "name": "sd-product-subscription",
+            "type": "true_false",
+            "instructions": "Set whether this product is a subscription or not",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5b2af3219134f",
+            "label": "Frequency",
+            "name": "sd-product-frequency",
+            "type": "radio",
+            "instructions": "Frequency for the subscription",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b2aef619134e",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Day": "Day",
+                "Week": "Week",
+                "Month": "Month",
+                "Year": "Year"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "sd-product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Set of options defining a product",
+    "modified": 1529543516
+}

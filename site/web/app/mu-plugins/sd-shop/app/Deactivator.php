@@ -7,7 +7,6 @@
  * @since      1.0.0
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/includes
  */
 
 /**
@@ -17,10 +16,9 @@
  *
  * @since      1.0.0
  * @package    SD_Shop
- * @subpackage SD_Shop/includes
  * @author     Your Name <email@example.com>
  */
-class SD_Shop_Deactivator {
+class Deactivator {
 
 	/**
 	 * Short Description. (use period)
