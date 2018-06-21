@@ -23,7 +23,7 @@
     can_export: true
     capability_type: post
     rewrite:
-      slug: product
+      slug: products
 - type: tax
   active: true
   name: sd-product-cat
@@ -39,5 +39,5 @@
     show_in_quick_edit: true
     show_admin_column: true
     rewrite:
-      slug: product-category
+      slug: product-categories
       hierarchical: true

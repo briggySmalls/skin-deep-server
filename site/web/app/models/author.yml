@@ -11,4 +11,4 @@ config:
   public: true
   hierarchical: false
   rewrite:
-    slug: author
+    slug: authors
