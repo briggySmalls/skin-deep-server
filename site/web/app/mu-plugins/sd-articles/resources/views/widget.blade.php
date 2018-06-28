@@ -10,22 +10,14 @@
     <div class="row">
       @foreach ($context->posts as $article)
         <div class="col-md-4">
+          {{-- Wrap the entire card in a link --}}
           <a href={{ get_permalink($article) }}>
             <div class="card">
-              {{-- Feature video takes precedence --}}
-              @if (get_field( 'sd_featured_video', $article->ID ))
-                <div class="embed-responsive embed-responsive-16by9">
-                  {!! get_field('sd_featured_video', $article->ID) !!}
-                </div>
-              {{-- Otherwise display the featured image --}}
-              @elseif (has_post_thumbnail( $article->ID ) )
-                {!! get_the_post_thumbnail(
-                  $article->ID,
-                  'post-thumbnail',
-                  ['class' => 'card-img-top img-fluid']) !!}
-              @endif
+              {{-- Display featured image/video --}}
+              @include('partials.featured-media')
               <div class="card-body">
-                <h4 class="card-title">{{ $article->post_title }}</h4>
+                {{-- Insert main body --}}
+                @include('partials.body')
               </div>
             </div>
           </a>
