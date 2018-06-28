@@ -235,7 +235,7 @@ class WidgetArgs {
 
         // Query for posts filtered by widget parameters
         $query_args = [
-            'posts_per_page' => POSTS_PER_PAGE // TODO: Make this a plugin option
+            'posts_per_page' => get_field('sd_widget_preview_columns', 'widget_' . $args['widget_id'])
         ];
 
         // Filter posts to a particular category (if specified)
