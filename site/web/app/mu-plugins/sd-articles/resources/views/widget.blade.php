@@ -2,11 +2,13 @@
   Widget output template
   --}}
 @php
-$column_count = get_field('sd_widget_preview_columns', 'widget_' . $context->args['widget_id']);
+$column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
 @endphp
 <section>
   {{-- Display the category title --}}
-  <h3>{{ get_field( 'sd_widget_preview_title', 'widget_' . $context->args['widget_id'] ) }}</h3>
+  <a href={{ $context->url }}>
+    <h3>{{ $context->get_acf_field( 'sd_widget_preview_title' ) }}</h3>
+  </a>
   {{-- Create grid of posts --}}
   <div class="container-fluid">
     <div class="row">

@@ -236,18 +236,22 @@ class WidgetArgs {
         switch ($filter_group['sd_widget_preview_filter_type']) {
             # Filter articles to the specified category
             case "category":
-                $query_args['cat'] = $filter_group['sd_widget_preview_category'];
+                $category = $filter_group['sd_widget_preview_category'];
+                $query_args['cat'] = $category;
+                $this->url = get_term_link( $category );
                 break;
 
             # Filter articles to the specified format
             case "format":
+                $format = $filter_group['sd_widget_preview_format'];
                 $query_args['tax_query'] = [
                     [
                         'taxonomy' => 'post_format',
                         'field' => 'term_id',
-                        'terms' => $filter_group['sd_widget_preview_format'],
+                        'terms' => $format->term_id,
                     ]
                 ];
+                $this->url = get_post_format_link( $format->name );
                 break;
         }
 
@@ -258,7 +262,7 @@ class WidgetArgs {
     /**
      * Helper function to get an ACF field for the given widget
      */
-    private function get_acf_field( $field ) {
+    public function get_acf_field( $field ) {
         return get_field( $field , 'widget_' . $this->args['widget_id'] );
     }
 }
