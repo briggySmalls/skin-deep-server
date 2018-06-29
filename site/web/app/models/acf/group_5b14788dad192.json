@@ -22,32 +22,10 @@
             "maxlength": ""
         },
         {
-            "key": "field_5b1478a42eb59",
-            "label": "Category",
-            "name": "sd_widget_preview_category",
-            "type": "taxonomy",
-            "instructions": "Filter posts by a given category",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "taxonomy": "category",
-            "field_type": "select",
-            "allow_null": 1,
-            "add_term": 0,
-            "save_terms": 0,
-            "load_terms": 0,
-            "return_format": "id",
-            "multiple": 0
-        },
-        {
-            "key": "field_5b1478f22eb5a",
-            "label": "Format",
-            "name": "sd_widget_preview_format",
-            "type": "taxonomy",
+            "key": "field_5b35735273ab3",
+            "label": "Posts filtering",
+            "name": "sd_widget_preview_filter_group",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -56,14 +34,95 @@
                 "class": "",
                 "id": ""
             },
-            "taxonomy": "post_format",
-            "field_type": "select",
-            "allow_null": 1,
-            "add_term": 0,
-            "save_terms": 0,
-            "load_terms": 0,
-            "return_format": "id",
-            "multiple": 0
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5b3573fc73ab6",
+                    "label": "Type",
+                    "name": "sd_widget_preview_filter_type",
+                    "type": "select",
+                    "instructions": "Type of filtering to apply to obtain posts to display",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "category": "Article category",
+                        "format": "Article format",
+                        "all": "All"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5b1478a42eb59",
+                    "label": "Category",
+                    "name": "sd_widget_preview_category",
+                    "type": "taxonomy",
+                    "instructions": "Filter posts by a given category",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5b3573fc73ab6",
+                                "operator": "==",
+                                "value": "category"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "taxonomy": "category",
+                    "field_type": "select",
+                    "allow_null": 0,
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "multiple": 0
+                },
+                {
+                    "key": "field_5b1478f22eb5a",
+                    "label": "Format",
+                    "name": "sd_widget_preview_format",
+                    "type": "taxonomy",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5b3573fc73ab6",
+                                "operator": "==",
+                                "value": "format"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "taxonomy": "post_format",
+                    "field_type": "select",
+                    "allow_null": 0,
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "multiple": 0
+                }
+            ]
         },
         {
             "key": "field_5b317fba7ce75",
@@ -95,6 +154,27 @@
             "ajax": 0,
             "return_format": "value",
             "placeholder": ""
+        },
+        {
+            "key": "field_5b3575ce73ab7",
+            "label": "Count",
+            "name": "sd_widget_preview_count",
+            "type": "number",
+            "instructions": "Number of posts to attempt to retrieve",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 1,
+            "max": "",
+            "step": 1
         }
     ],
     "location": [
@@ -114,5 +194,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1530228840
+    "modified": 1530256126
 }

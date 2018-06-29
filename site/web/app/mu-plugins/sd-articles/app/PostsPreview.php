@@ -90,9 +90,7 @@ class PostsPreview extends \WP_Widget {
             return print $cache[ $args['widget_id'] ];
 
         // go on with your widget logic, put everything into a string and …
-
         extract( $args, EXTR_SKIP );
-
         $widget_string = $before_widget;
 
         // Get the context for the template
@@ -216,11 +214,10 @@ class WidgetArgs {
 
     public $args = null;
     public $posts = null;
-    public const POSTS_PER_ROW = 3; // TODO: Make this a plugin option? A widget option?
 
     public function __construct($args) {
         $this->args = $args;
-        $this->posts = self::get_preview_posts($args);
+        $this->posts = $this->get_preview_posts($args);
     }
 
     /**
@@ -228,31 +225,41 @@ class WidgetArgs {
      * @param      $args  The widget output arguments.
      * @return     The posts.
      */
-    private static function get_preview_posts($args) {
-        // Get widget values
-        $category = get_field( 'sd_widget_preview_category', 'widget_' . $args['widget_id'] );
-        $format = get_field( 'sd_widget_preview_format', 'widget_' . $args['widget_id'] );
-
-        // Query for posts filtered by widget parameters
+    private function get_preview_posts() {
+        // Limit query to specified number of posts
         $query_args = [
-            'posts_per_page' => get_field('sd_widget_preview_columns', 'widget_' . $args['widget_id'])
+            'posts_per_page' => (int)$this->get_acf_field( 'sd_widget_preview_count' ),
         ];
 
-        // Filter posts to a particular category (if specified)
-        if ($category) {
-          $query_args['cat'] = $category;
+        // Determine what type of filtering we're applying
+        $filter_group = $this->get_acf_field( 'sd_widget_preview_filter_group' );
+        switch ($filter_group['sd_widget_preview_filter_type']) {
+            # Filter articles to the specified category
+            case "category":
+                $query_args['cat'] = $filter_group['sd_widget_preview_category'];
+                break;
+
+            # Filter articles to the specified format
+            case "format":
+                $query_args['tax_query'] = [
+                    [
+                        'taxonomy' => 'post_format',
+                        'field' => 'term_id',
+                        'terms' => $filter_group['sd_widget_preview_format'],
+                    ]
+                ];
+                break;
         }
-        // Filter posts to a particular format (if specified)
-        if ($format) {
-          $query_args['tax_query'] = [
-            [
-              'taxonomy' => 'post_format',
-              'field' => 'term_id',
-              'terms' => $format,
-            ]
-          ];
-        }
+
+        // Execute the query
         return get_posts( $query_args );
+    }
+
+    /**
+     * Helper function to get an ACF field for the given widget
+     */
+    private function get_acf_field( $field ) {
+        return get_field( $field , 'widget_' . $this->args['widget_id'] );
     }
 }
 
