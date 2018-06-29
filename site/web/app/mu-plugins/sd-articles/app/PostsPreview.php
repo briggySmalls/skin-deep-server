@@ -253,6 +253,15 @@ class WidgetArgs {
                 ];
                 $this->url = get_post_format_link( $format->name );
                 break;
+
+            case "all":
+                // Set URL as posts archive
+                $this->url = get_post_type_archive_link('post');
+                break;
+
+            default:
+                assert("Unexpected default");
+                break;
         }
 
         // Execute the query
