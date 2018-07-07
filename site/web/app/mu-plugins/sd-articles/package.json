@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --progress --config resources/assets/build/webpack.config.js",
+    "start": "webpack --hide-modules --watch --config resources/assets/build/webpack.config.js"
   },
   "dependencies": {
     "eslint": "^5.0.1",

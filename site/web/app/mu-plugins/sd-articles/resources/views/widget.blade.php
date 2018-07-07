@@ -2,6 +2,7 @@
   Widget output template
   --}}
 @php
+// Get widget settings
 $column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
 @endphp
 {{-- Display the category title --}}
@@ -14,7 +15,7 @@ $column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
 <div class="container-fluid">
   <div class="row">
     @foreach ($context->posts as $article)
-  <div class="col-md-{{ 12 / $column_count }}">
+      <div class="col-md-{{ 12 / $column_count }}">
         {{-- Wrap the entire card in a link --}}
         <a href={{ get_permalink($article) }}>
           <div class="card">
@@ -34,4 +35,4 @@ $column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
     @endforeach
   </div>
 </div>
-<div class="widget-preview-more"><a href="{{ $context->url }}">See more</a></div>
+<div class="widget-preview-more"><a href="{{ $context->url }}">See more articles</a></div>
