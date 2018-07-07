@@ -7,13 +7,13 @@
 # Uncomment the lines below and replace `sage` with your theme folder
 #
 # ---
-- name: Install npm dependencies
+- name: Install theme npm dependencies
   command: yarn
   connection: local
   args:
     chdir: "{{ project_local_path }}/web/app/themes/sd-theme"
 
-- name: Install Composer dependencies
+- name: Install theme Composer dependencies
   command: composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
   args:
     chdir: "{{ deploy_helper.new_release_path }}/web/app/themes/sd-theme"
@@ -32,7 +32,27 @@
     owner: no
     rsync_opts: --chmod=Du=rwx,--chmod=Dg=rx,--chmod=Do=rx,--chmod=Fu=rw,--chmod=Fg=r,--chmod=Fo=r
 
+- name: Install plugin npm dependencies
+  command: yarn
+  connection: local
+  args:
+    chdir: "{{ project_local_path }}/web/app/mu-plugins/sd-articles"
+
 - name: Install plugin Composer dependencies
   command: composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
   args:
     chdir: "{{ deploy_helper.new_release_path }}/web/app/mu-plugins/sd-articles"
+
+- name: Compile plugin assets for production
+  command: yarn build:production
+  connection: local
+  args:
+    chdir: "{{ project_local_path }}/web/app/mu-plugins/sd-articles"
+
+- name: Copy plugin production assets
+  synchronize:
+    src: "{{ project_local_path }}/web/app/mu-plugins/sd-articles/dist"
+    dest: "{{ deploy_helper.new_release_path }}/web/app/mu-plugins/sd-articles"
+    group: no
+    owner: no
+    rsync_opts: --chmod=Du=rwx,--chmod=Dg=rx,--chmod=Do=rx,--chmod=Fu=rw,--chmod=Fg=r,--chmod=Fo=r
