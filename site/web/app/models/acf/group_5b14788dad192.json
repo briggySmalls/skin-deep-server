@@ -182,7 +182,7 @@
             {
                 "param": "widget",
                 "operator": "==",
-                "value": "widget-name"
+                "value": "widget-preview"
             }
         ]
     ],

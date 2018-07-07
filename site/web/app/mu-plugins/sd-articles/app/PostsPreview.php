@@ -25,7 +25,7 @@ class PostsPreview extends \WP_Widget {
      *
      * @var      string
      */
-    protected const WIDGET_SLUG = 'widget-name';
+    protected const WIDGET_SLUG = 'widget-preview';
     protected $blade;
 
     /*--------------------------------------------------*/
@@ -184,28 +184,28 @@ class PostsPreview extends \WP_Widget {
      * Registers and enqueues admin-specific styles.
      */
     public function register_admin_styles() {
-        wp_enqueue_style( self::WIDGET_SLUG . '-admin-styles', ResourceManager::asset_url( 'styles/admin.css' ) );
+        wp_enqueue_style( self::WIDGET_SLUG . '-admin-styles', ResourceManager::dist_url( 'admin.css' ) );
     }
 
     /**
      * Registers and enqueues admin-specific JavaScript.
      */
     public function register_admin_scripts() {
-        wp_enqueue_script( self::WIDGET_SLUG . '-admin-script', ResourceManager::asset_url( 'scripts/admin.js' ) );
+        wp_enqueue_script( self::WIDGET_SLUG . '-admin-script', ResourceManager::dist_url() . 'admin.js' );
     }
 
     /**
      * Registers and enqueues widget-specific styles.
      */
     public function register_widget_styles() {
-        wp_enqueue_style( self::WIDGET_SLUG . '-widget-styles', ResourceManager::asset_url( 'styles/widget.css' ) );
+        wp_enqueue_style( self::WIDGET_SLUG . '-widget-styles', ResourceManager::dist_url() . 'widget.css' );
     }
 
     /**
      * Registers and enqueues widget-specific scripts.
      */
     public function register_widget_scripts() {
-        wp_enqueue_script( self::WIDGET_SLUG . '-script', ResourceManager::asset_url( 'scripts/widget.js' ) );
+        wp_enqueue_script( self::WIDGET_SLUG . '-script', ResourceManager::dist_url() . 'widget.js' );
     }
 
 } // end class

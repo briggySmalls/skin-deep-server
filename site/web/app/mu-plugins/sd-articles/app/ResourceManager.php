@@ -3,6 +3,15 @@
 namespace App;
 
 class ResourceManager {
+    static function root_dir ( $is_relative=False ) {
+        $file_directory = $is_relative ? plugin_basename( __DIR__ ) : __DIR__;
+        return $file_directory . '/../';
+    }
+
+    static function root_url () {
+        return plugins_url( '/' , __DIR__);
+    }
+
     static function view_dir () {
         return self::resources_dir() . 'views/';
     }
@@ -19,16 +28,15 @@ class ResourceManager {
         return self::resources_dir() . 'cache/';
     }
 
-    static function view_file ( $filename ) {
-        return self::resources_dir() . 'views/' . $filename;
-    }
-
-    static function asset_url ( $filename ) {
-        return plugins_url( self::assets_dir( $is_relative = True ) . $filename );
+    static function dist_url () {
+        return self::root_url() . 'dist/';
     }
 
     static function resources_dir ( $is_relative=False ) {
-        $file_directory = $is_relative ? plugin_basename( __DIR__ ) : __DIR__;
-        return $file_directory . '/../resources/';
+        return self::root_dir( $is_relative ) . 'resources/';
+    }
+
+    static function dist_dir ( ) {
+        return self::root_dir( ) . 'dist/';
     }
 }
