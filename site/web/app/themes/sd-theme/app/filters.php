@@ -68,3 +68,21 @@ add_filter('comments_template', function ($comments_template) {
     );
     return template_path(locate_template(["views/{$comments_template}", $comments_template]) ?: $comments_template);
 }, 100);
+
+/**
+ * Add bootstrap class to navbar items
+ */
+add_filter('nav_menu_css_class', function ($classes, $item) {
+    if (! in_array( 'nav-item', $classes )) {
+        $classes[] = 'nav-item';
+    }
+    return $classes;
+}, 10, 4);
+
+/**
+ * Add bootstrap clss to navbar anchors
+ */
+add_filter( 'nav_menu_link_attributes', function ( $atts, $item, $args ) {
+    $atts['class'] = "nav-link";
+    return $atts;
+}, 10, 3 );
