@@ -11,9 +11,16 @@
 
 .search-form .search-field {
   @extend .form-control;
+  @extend .mr-sm-2;
 }
 
 .search-form .search-submit {
   @extend .btn;
-  @extend .btn-secondary;
+  @extend .btn-light;
+  @extend .my-2;
+  @extend .my-sm-0;
+}
+
+input {
+  @extend .form-control;
 }

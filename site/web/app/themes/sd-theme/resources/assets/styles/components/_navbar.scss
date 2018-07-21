@@ -1,0 +1,27 @@
+#main-header {
+  @extend .sticky-top;
+}
+
+#main-header nav.navbar {
+  // Add bootstrap navbar styling
+  @extend .navbar-expand-lg;
+  @extend .navbar-light;
+  @extend .bg-light;
+}
+
+// Menu in main header
+#main-header ul[id^=menu-] {
+  @extend .navbar-nav;
+}
+
+.navbar .menu-item {
+  @extend .nav-item;
+}
+
+.navbar .menu-item a {
+  @extend .nav-link;
+}
+
+.navbar form {
+  @extend .form-inline;
+}
