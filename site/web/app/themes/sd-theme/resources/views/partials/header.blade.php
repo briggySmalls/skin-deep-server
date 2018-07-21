@@ -7,15 +7,16 @@
     <div id="navbarNavDropdown" class="collapse navbar-collapse">
       @if (has_nav_menu('primary_navigation'))
         {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'navbar-nav']) !!}
-    </div>
-    @endif
-    <div class="snipcart-summary">
-      <a href="#" class="snipcart-user-profile">
-        <span class="snipcart-user-email">Login</span>
-      </a>
-      <a href="#" class="snipcart-user-logout">
-        Logout
-      </a>
+      @endif
+      <div class="snipcart-summary">
+        <a href="#" class="snipcart-user-profile nav-link">
+          <span class="snipcart-user-email">Login</span>
+        </a>
+        <a href="#" class="snipcart-user-logout nav-link">
+          Logout
+        </a>
+      </div>
+      {!! get_search_form() !!}
     </div>
   </div>
 </header>
