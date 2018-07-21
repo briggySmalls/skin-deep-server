@@ -1,6 +1,12 @@
 <header id="main-header" class="banner">
   <nav class="navbar">
-    <a class="navbar-brand" href="{{ home_url('/') }}">{{ get_bloginfo('name', 'display') }}</a>
+    <a class="navbar-brand" href="{{ home_url('/') }}">
+      @if (has_custom_logo())
+        {!! get_custom_logo() !!}
+      @else
+        {{ get_bloginfo('name', 'display') }}
+      @endif
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

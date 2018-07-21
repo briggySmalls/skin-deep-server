@@ -77,6 +77,11 @@ add_action('after_setup_theme', function () {
      * Enable post formats
      */
     add_theme_support( 'post-formats', array( 'video' ) );
+
+    /**
+     * Enable site logo
+     */
+    add_theme_support( 'custom-logo' );
 }, 20);
 
 /**
