@@ -24,6 +24,7 @@
     capability_type: post
     rewrite:
       slug: products
+      with_front: false
 - type: tax
   active: true
   name: sd-product-cat
