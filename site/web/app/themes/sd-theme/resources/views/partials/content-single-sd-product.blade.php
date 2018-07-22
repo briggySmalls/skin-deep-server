@@ -12,11 +12,11 @@
   <div>
     <button
       class="snipcart-add-item"
-      data-item-id="{{ get_the_ID() }}"
-      data-item-name="{{ get_the_title() }}"
-      data-item-price="{{ get_field('sd-product-price') }}"
-      data-item-url="{{ get_permalink() }}"
-      data-item-description="{{ get_field('sd-product-description') }}">
+      data-item-id="{{ SingleSdProduct::id() }}"
+      data-item-name="{{ SingleSdProduct::name() }}"
+      data-item-price="{{ SingleSdProduct::price() }}"
+      data-item-url="{{ SingleSdProduct::url() }}"
+      data-item-description="{{ SingleSdProduct::description()}}">
           Buy
     </button>
   </div>

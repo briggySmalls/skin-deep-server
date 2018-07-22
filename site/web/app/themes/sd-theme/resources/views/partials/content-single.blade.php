@@ -1,10 +1,10 @@
 <article @php post_class() @endphp>
   <header>
     <figure>
-      @if (get_field( 'sd_featured_video', $post->ID ))
+      @if (SinglePost::has_featured_video())
       {{-- Feature video takes precedence --}}
       @include('partials/video-header')
-      @elseif (has_post_thumbnail( $post->ID ) )
+      @elseif (SinglePost::has_featured_image())
       {{-- Otherwise display the featured image --}}
       @include('partials/image-header')
       @endif
@@ -12,12 +12,11 @@
     @include('partials/entry-meta')
     <h1 class="entry-title">{{ get_the_title() }}</h1>
     {{-- Display author(s) --}}
-    @php $terms = wp_get_post_terms($post->ID, 'sd-author'); @endphp
-    @if (count($terms))
+    @if (count(SinglePost::authors()))
       <p class="byline author vcard">
         {{ __('Written by', 'sage') }}
-        @foreach ($terms as $term)
-          <a href="{{ get_term_link($term) }}" rel="author">{{ $term->name }}</a>{{ !$loop->last ? ", " : "" }}
+        @foreach (SinglePost::authors() as $author)
+          <a href="{{ get_term_link($author) }}" rel="author">{{ $author->name }}</a>{{ !$loop->last ? ", " : "" }}
         @endforeach
       </p>
     @endif
