@@ -1,0 +1,5 @@
+.card > img {
+  &:first-child {
+    @extend .card-img-top;
+  }
+}
