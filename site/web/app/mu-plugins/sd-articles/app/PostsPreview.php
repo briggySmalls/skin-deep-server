@@ -3,16 +3,14 @@
 namespace App;
 
 use App\ResourceManager;
+use App\Widget;
 use Philo\Blade\Blade;
 
-// TODO: make these plugin options
-const POSTS_PER_PAGE = 6;
-
 /**
- * WordPress Widget Boilerplate
- *
+ * Posts preview widget
+ * Displays selection of posts in a taxonomy, format, etc
  */
-class PostsPreview extends \WP_Widget {
+class PostsPreview extends Widget {
 
     /**
      * Unique identifier for the widget.
@@ -26,7 +24,6 @@ class PostsPreview extends \WP_Widget {
      * @var      string
      */
     protected const WIDGET_SLUG = 'widget-preview';
-    protected $blade;
 
     /*--------------------------------------------------*/
     /* Constructor
@@ -37,81 +34,17 @@ class PostsPreview extends \WP_Widget {
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
     public function __construct() {
+        parent::__construct(
+            __( 'Posts Preview', self::WIDGET_SLUG ),
+            __( 'Preview of posts in a configured group.', self::WIDGET_SLUG ));
 
         // load plugin text domain
         add_action( 'init', array( $this, 'widget_textdomain' ) );
-
-        // TODO: update description
-        parent::__construct(
-            self::WIDGET_SLUG ,
-            __( 'Posts Preview', self::WIDGET_SLUG ),
-            [
-                'classname'  => self::WIDGET_SLUG . '-class',
-                'description' => __( 'Preview of posts in a configured group.', self::WIDGET_SLUG )
-            ]
-        );
-
-        // Create Laravel Blade handler
-        $this->blade = new Blade(ResourceManager::view_dir(), ResourceManager::cache_dir());
-
-        // Register admin styles and scripts
-        add_action( 'admin_print_styles', [ $this, 'register_admin_styles' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_scripts' ] );
-        // Register site styles and scripts
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
-        // Refreshing the widget's cached output with each new post
-        add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
-        add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
-        add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
     } // end constructor
 
     /*--------------------------------------------------*/
     /* Widget API Functions
     /*--------------------------------------------------*/
-
-    /**
-     * Outputs the content of the widget.
-     *
-     * @param array args  The array of form elements
-     * @param array instance The current instance of the widget
-     */
-    public function widget( $args, $instance ) {
-        // Check if there is a cached output
-        $cache = wp_cache_get( self::WIDGET_SLUG , 'widget' );
-
-        if ( !is_array( $cache ) )
-            $cache = array();
-
-        if ( ! isset ( $args['widget_id'] ) )
-            $args['widget_id'] = $this->id;
-
-        if ( isset ( $cache[ $args['widget_id'] ] ) )
-            return print $cache[ $args['widget_id'] ];
-
-        // go on with your widget logic, put everything into a string and …
-        extract( $args, EXTR_SKIP );
-        $widget_string = $before_widget;
-
-        // Get the context for the template
-        $context = new WidgetArgs($args);
-
-        // Generate the widget content from the Blade template
-        $widget_string .= $this->blade->view()->make('widget', ['context' => $context])->render();
-        $widget_string .= $after_widget;
-
-        $cache[ $args['widget_id'] ] = $widget_string;
-
-        wp_cache_set( self::WIDGET_SLUG , $cache, 'widget' );
-
-        print $widget_string;
-
-    } // end widget
-
-    public function flush_widget_cache()
-    {
-        wp_cache_delete( self::WIDGET_SLUG , 'widget' );
-    }
 
     /**
      * Processes the widget's options to be saved.
@@ -144,73 +77,30 @@ class PostsPreview extends \WP_Widget {
         // TODO: Store the values of the widget in their own variable
 
         // Display the admin form
-        echo $this->blade->view()->make('admin')->render();
+        echo $this->blade->view()->make( self::WIDGET_SLUG . 'admin' )->render();
 
     } // end form
 
     /*--------------------------------------------------*/
-    /* Public Functions
+    /* Protected Functions
     /*--------------------------------------------------*/
 
     /**
-     * Loads the Widget's text domain for localization and translation.
+     * @brief      Factory method for creating args for the widget
+     * @param      $args  The arguments
+     * @return     { description_of_the_return_value }
      */
-    public function widget_textdomain() {
-
-        // TODO be sure to change 'widget-name' to the name of *your* plugin
-        load_plugin_textdomain( self::WIDGET_SLUG , false, ResourceManager::lang_dir());
-
-    } // end widget_textdomain
-
-    /**
-     * Fired when the plugin is activated.
-     *
-     * @param  boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
-     */
-    public static function activate( $network_wide ) {
-        // TODO define activation functionality here
-    } // end activate
-
-    /**
-     * Fired when the plugin is deactivated.
-     *
-     * @param boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog
-     */
-    public static function deactivate( $network_wide ) {
-        // TODO define deactivation functionality here
-    } // end deactivate
-
-    /**
-     * Registers and enqueues admin-specific styles.
-     */
-    public function register_admin_styles() {
-        wp_enqueue_style( self::WIDGET_SLUG . '-admin-styles', ResourceManager::dist_url( 'admin.css' ) );
+    protected function create_args( $args ) {
+        return new PostsPreviewArgs($args);
     }
 
-    /**
-     * Registers and enqueues admin-specific JavaScript.
-     */
-    public function register_admin_scripts() {
-        wp_enqueue_script( self::WIDGET_SLUG . '-admin-script', ResourceManager::dist_url() . 'admin.js' );
-    }
-
-    /**
-     * Registers and enqueues widget-specific styles.
-     */
-    public function register_widget_styles() {
-        wp_enqueue_style( self::WIDGET_SLUG . '-widget-styles', ResourceManager::dist_url() . 'widget.css' );
-    }
-
-    /**
-     * Registers and enqueues widget-specific scripts.
-     */
-    public function register_widget_scripts() {
-        wp_enqueue_script( self::WIDGET_SLUG . '-script', ResourceManager::dist_url() . 'widget.js' );
+    protected function widget_slug() {
+        return self::WIDGET_SLUG;
     }
 
 } // end class
 
-class WidgetArgs {
+class PostsPreviewArgs {
 
     public $args = null;
     public $posts = null;
@@ -279,7 +169,6 @@ class WidgetArgs {
 add_action( 'widgets_init', function () {
     register_widget( 'App\PostsPreview' );
 });
-
 // Hooks fired when the Widget is activated and deactivated
 register_activation_hook( __FILE__, ['App\PostsPreview', 'activate' ] );
 register_deactivation_hook( __FILE__, ['App\PostsPreview', 'deactivate' ] );
