@@ -20,10 +20,10 @@ $column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
         <a href={{ get_permalink($article) }}>
           <div class="card">
             {{-- Display featured image/video --}}
-            @include('partials.featured-media')
+            @include('widget-preview.partials.featured-media')
             <div class="card-body">
               {{-- Insert main body --}}
-              @include('partials.body')
+              @include('widget-preview.partials.body')
             </div>
           </div>
         </a>

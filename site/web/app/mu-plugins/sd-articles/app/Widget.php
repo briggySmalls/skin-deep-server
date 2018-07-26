@@ -38,23 +38,13 @@ abstract class Widget extends \WP_Widget {
         // Create Laravel Blade handler
         $this->blade = new Blade(ResourceManager::view_dir(), ResourceManager::cache_dir());
 
-        // Register admin styles and scripts
-        add_action( 'admin_print_styles', [ $this, 'register_admin_styles' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_scripts' ] );
-        // Register site styles and scripts
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
         // Refreshing the widget's cached output with each new post
         add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
         add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
         add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
-        // Register the widget
-        // add_action( 'widgets_init', function () {
-        //     register_widget( 'App\\' . get_class() );
-        // });
-        // // Hooks fired when the Widget is activated and deactivated
-        // register_activation_hook( __FILE__, ['App\\' . get_class(), 'activate' ] );
-        // register_deactivation_hook( __FILE__, ['App\\' . get_class(), 'deactivate' ] );
+        // Hooks fired when the Widget is activated and deactivated
+        register_activation_hook( __FILE__, ['App\\' . get_class(), 'activate' ] );
+        register_deactivation_hook( __FILE__, ['App\\' . get_class(), 'deactivate' ] );
     } // end constructor
 
     /*--------------------------------------------------*/
@@ -80,6 +70,10 @@ abstract class Widget extends \WP_Widget {
         if ( isset ( $cache[ $args['widget_id'] ] ) )
             return print $cache[ $args['widget_id'] ];
 
+        // Register site styles and scripts (only register when showing the widget)
+        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
+
         // go on with your widget logic, put everything into a string and …
         extract( $args, EXTR_SKIP );
         $widget_string = $before_widget;
@@ -88,7 +82,7 @@ abstract class Widget extends \WP_Widget {
         $context = $this->create_args($args);
 
         // Generate the widget content from the Blade template
-        $widget_string .= $this->blade->view()->make('widget', ['context' => $context])->render();
+        $widget_string .= $this->blade->view()->make($this->widget_slug() . '.widget', ['context' => $context])->render();
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;
@@ -103,6 +97,45 @@ abstract class Widget extends \WP_Widget {
     {
         wp_cache_delete( $this->widget_slug() , 'widget' );
     }
+
+    /**
+     * Processes the widget's options to be saved.
+     *
+     * @param array new_instance The new instance of values to be generated via the update.
+     * @param array old_instance The previous instance of values before the update.
+     */
+    public function update( $new_instance, $old_instance ) {
+
+        $instance = $old_instance;
+
+        // TODO: Here is where you update your widget's old values with the new, incoming values
+
+        return $instance;
+
+    } // end update
+
+    /**
+     * Generates the administration form for the widget.
+     *
+     * @param array instance The array of keys and values for the widget.
+     */
+    public function form( $instance ) {
+
+        // Register admin styles and scripts (only register when showing admin)
+        add_action( 'admin_print_styles', [ $this, 'register_admin_styles' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_scripts' ] );
+
+        // TODO: Define default values for your variables
+        $instance = wp_parse_args(
+            (array) $instance
+        );
+
+        // TODO: Store the values of the widget in their own variable
+
+        // Display the admin form
+        echo $this->blade->view()->make('admin')->render();
+
+    } // end form
 
     /*--------------------------------------------------*/
     /* Public Functions
@@ -140,28 +173,36 @@ abstract class Widget extends \WP_Widget {
      * Registers and enqueues admin-specific styles.
      */
     public function register_admin_styles() {
-        wp_enqueue_style( $this->widget_slug() . '-admin-styles', ResourceManager::dist_url( 'admin.css' ) );
+        wp_enqueue_style(
+            $this->widget_slug() . '-admin-styles',
+            ResourceManager::dist_url() . $this->widget_slug() . '/admin.css' );
     }
 
     /**
      * Registers and enqueues admin-specific JavaScript.
      */
     public function register_admin_scripts() {
-        wp_enqueue_script( $this->widget_slug() . '-admin-script', ResourceManager::dist_url() . 'admin.js' );
+        wp_enqueue_script(
+            $this->widget_slug() . '-admin-script',
+            ResourceManager::dist_url() . $this->widget_slug() . '/admin.js' );
     }
 
     /**
      * Registers and enqueues widget-specific styles.
      */
     public function register_widget_styles() {
-        wp_enqueue_style( $this->widget_slug() . '-widget-styles', ResourceManager::dist_url() . 'widget.css' );
+        wp_enqueue_style(
+            $this->widget_slug() . '-widget-styles',
+            ResourceManager::dist_url() . $this->widget_slug() . '/widget.css' );
     }
 
     /**
      * Registers and enqueues widget-specific scripts.
      */
     public function register_widget_scripts() {
-        wp_enqueue_script( $this->widget_slug() . '-script', ResourceManager::dist_url() . 'widget.js' );
+        wp_enqueue_script(
+         $this->widget_slug() . '-script',
+         ResourceManager::dist_url() . $this->widget_slug() . '/widget.js' );
     }
 
     /*--------------------------------------------------*/

@@ -43,45 +43,6 @@ class PostsPreview extends Widget {
     } // end constructor
 
     /*--------------------------------------------------*/
-    /* Widget API Functions
-    /*--------------------------------------------------*/
-
-    /**
-     * Processes the widget's options to be saved.
-     *
-     * @param array new_instance The new instance of values to be generated via the update.
-     * @param array old_instance The previous instance of values before the update.
-     */
-    public function update( $new_instance, $old_instance ) {
-
-        $instance = $old_instance;
-
-        // TODO: Here is where you update your widget's old values with the new, incoming values
-
-        return $instance;
-
-    } // end update
-
-    /**
-     * Generates the administration form for the widget.
-     *
-     * @param array instance The array of keys and values for the widget.
-     */
-    public function form( $instance ) {
-
-        // TODO: Define default values for your variables
-        $instance = wp_parse_args(
-            (array) $instance
-        );
-
-        // TODO: Store the values of the widget in their own variable
-
-        // Display the admin form
-        echo $this->blade->view()->make( self::WIDGET_SLUG . 'admin' )->render();
-
-    } // end form
-
-    /*--------------------------------------------------*/
     /* Protected Functions
     /*--------------------------------------------------*/
 
@@ -169,6 +130,3 @@ class PostsPreviewArgs {
 add_action( 'widgets_init', function () {
     register_widget( 'App\PostsPreview' );
 });
-// Hooks fired when the Widget is activated and deactivated
-register_activation_hook( __FILE__, ['App\PostsPreview', 'activate' ] );
-register_deactivation_hook( __FILE__, ['App\PostsPreview', 'deactivate' ] );

@@ -1,12 +1,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 const rootPath = process.cwd()
+var glob = require("glob");
 
 module.exports = {
   entry: {
-    admin: './resources/assets/scripts/admin.js',
-    widget: './resources/assets/scripts/widget.js',
+    'widget-preview/widget': "./resources/assets/scripts/widget-preview/widget.js",
+    'widget-preview/admin': "./resources/assets/scripts/widget-preview/admin.js"
   },
   module: {
     rules:[
