@@ -42,6 +42,9 @@ abstract class Widget extends \WP_Widget {
         add_action( 'save_post',    [ $this, 'flush_widget_cache' ] );
         add_action( 'deleted_post', [ $this, 'flush_widget_cache' ] );
         add_action( 'switch_theme', [ $this, 'flush_widget_cache' ] );
+        // Register assets (but do not enqueue them)
+        add_action('wp_enqueue_scripts', [ $this, 'register_widget_assets' ] );
+        add_action('admin_enqueue_scripts', [ $this, 'register_admin_assets' ] );
         // Hooks fired when the Widget is activated and deactivated
         register_activation_hook( __FILE__, ['App\\' . get_class(), 'activate' ] );
         register_deactivation_hook( __FILE__, ['App\\' . get_class(), 'deactivate' ] );
@@ -70,9 +73,9 @@ abstract class Widget extends \WP_Widget {
         if ( isset ( $cache[ $args['widget_id'] ] ) )
             return print $cache[ $args['widget_id'] ];
 
-        // Register site styles and scripts (only register when showing the widget)
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_styles' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_widget_scripts' ] );
+        // Enqueue widget styles and scripts now we are going to use them
+        $this->enqueue_asset('widget', $is_script=true);
+        $this->enqueue_asset('widget', $is_script=false);
 
         // go on with your widget logic, put everything into a string and …
         extract( $args, EXTR_SKIP );
@@ -121,9 +124,9 @@ abstract class Widget extends \WP_Widget {
      */
     public function form( $instance ) {
 
-        // Register admin styles and scripts (only register when showing admin)
-        add_action( 'admin_print_styles', [ $this, 'register_admin_styles' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_scripts' ] );
+        // Enqueue admin styles and scripts now we are going to use them
+        $this->enqueue_asset('admin', $is_script=true);
+        $this->enqueue_asset('admin', $is_script=false);
 
         // TODO: Define default values for your variables
         $instance = wp_parse_args(
@@ -170,39 +173,53 @@ abstract class Widget extends \WP_Widget {
     } // end deactivate
 
     /**
-     * Registers and enqueues admin-specific styles.
+     * @brief      Enqueues an asset for display
+     * @param      $end        Indicates front or admin end ('widget' or 'admin')
+     * @param      $is_script  Indicates if script or style
      */
-    public function register_admin_styles() {
-        wp_enqueue_style(
-            $this->widget_slug() . '-admin-styles',
-            ResourceManager::dist_url() . $this->widget_slug() . '/admin.css' );
+    protected function enqueue_asset( $end, $is_script ) {
+        if ($is_script) {
+            wp_enqueue_script(
+                $this->widget_slug() . '-' . $end . '-script',
+                ResourceManager::dist_url() . $this->widget_slug() . '/' . $end . '.js' );
+        } else {
+            wp_enqueue_style(
+                $this->widget_slug() . '-' . $end . '-style',
+                ResourceManager::dist_url() . $this->widget_slug() . '/' . $end . '.css' );
+        }
     }
 
     /**
-     * Registers and enqueues admin-specific JavaScript.
+     * @brief      Pre-registers the widget assets
      */
-    public function register_admin_scripts() {
-        wp_enqueue_script(
-            $this->widget_slug() . '-admin-script',
-            ResourceManager::dist_url() . $this->widget_slug() . '/admin.js' );
+    public function register_widget_assets() {
+        $this->register_asset( 'widget', $is_script=true );
+        $this->register_asset( 'widget', $is_script=false );
     }
 
     /**
-     * Registers and enqueues widget-specific styles.
+     * @brief      Pre-registers the admin assets
      */
-    public function register_widget_styles() {
-        wp_enqueue_style(
-            $this->widget_slug() . '-widget-styles',
-            ResourceManager::dist_url() . $this->widget_slug() . '/widget.css' );
+    public function register_admin_assets() {
+        $this->register_asset( 'admin', $is_script=true );
+        $this->register_asset( 'admin', $is_script=false );
     }
 
     /**
-     * Registers and enqueues widget-specific scripts.
+     * @brief      Helper function to register an asset
+     * @param      $end        Indicates front or admin end ('widget' or 'admin')
+     * @param      $is_script  Indicates if script or style
      */
-    public function register_widget_scripts() {
-        wp_enqueue_script(
-         $this->widget_slug() . '-script',
-         ResourceManager::dist_url() . $this->widget_slug() . '/widget.js' );
+    protected function register_asset( $end, $is_script ) {
+        if ($is_script) {
+            wp_register_script(
+                $this->widget_slug() . '-' . $end . '-script',
+                ResourceManager::dist_url() . $this->widget_slug() . '/' . $end . '.js' );
+        } else {
+            wp_register_style(
+                $this->widget_slug() . '-' . $end . '-style',
+                ResourceManager::dist_url() . $this->widget_slug() . '/' . $end . '.css' );
+        }
     }
 
     /*--------------------------------------------------*/
