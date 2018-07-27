@@ -17,6 +17,9 @@
         @include(
           'partials.featured-media',
           ['image_size' => 'large', 'image_classes' => 'd-block w-100'])
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ $article->post_title }}</h5>
+        </div>
       </div>
     @endforeach
   </div>
