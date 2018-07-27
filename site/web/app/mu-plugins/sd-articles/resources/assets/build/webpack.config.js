@@ -5,8 +5,12 @@ var glob = require("glob");
 
 module.exports = {
   entry: {
+    // Preview widget
     'preview/widget': "./resources/assets/scripts/preview/widget.js",
     'preview/admin': "./resources/assets/scripts/preview/admin.js",
+    // Slider widget
+    'slider/widget': "./resources/assets/scripts/slider/widget.js",
+    'slider/admin': "./resources/assets/scripts/slider/admin.js"
   },
   module: {
     rules:[
