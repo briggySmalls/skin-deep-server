@@ -182,7 +182,7 @@
             {
                 "param": "widget",
                 "operator": "==",
-                "value": "widget-preview"
+                "value": "preview"
             }
         ]
     ],
@@ -194,5 +194,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1530257686
+    "modified": 1532647539
 }

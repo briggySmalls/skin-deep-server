@@ -85,7 +85,7 @@ abstract class Widget extends \WP_Widget {
         $context = $this->create_args($args);
 
         // Generate the widget content from the Blade template
-        $widget_string .= $this->blade->view()->make($this->widget_slug() . '.widget', ['context' => $context])->render();
+        $widget_string .= $this->blade->view()->make($this->widget_slug() . '-widget', ['context' => $context])->render();
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;
@@ -136,7 +136,7 @@ abstract class Widget extends \WP_Widget {
         // TODO: Store the values of the widget in their own variable
 
         // Display the admin form
-        echo $this->blade->view()->make('admin')->render();
+        echo $this->blade->view()->make($this->widget_slug() . '-admin')->render();
 
     } // end form
 

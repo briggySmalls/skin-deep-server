@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\ResourceManager;
 use App\Widget;
-use Philo\Blade\Blade;
+use App\WidgetArgs;
 
 /**
  * Posts preview widget
@@ -23,7 +22,7 @@ class PostsPreview extends Widget {
      *
      * @var      string
      */
-    protected const WIDGET_SLUG = 'widget-preview';
+    protected const WIDGET_SLUG = 'preview';
 
     /*--------------------------------------------------*/
     /* Constructor
@@ -61,7 +60,7 @@ class PostsPreview extends Widget {
 
 } // end class
 
-class PostsPreviewArgs {
+class PostsPreviewArgs extends WidgetArgs {
 
     public $args = null;
     public $posts = null;
@@ -117,13 +116,6 @@ class PostsPreviewArgs {
 
         // Execute the query
         return get_posts( $query_args );
-    }
-
-    /**
-     * Helper function to get an ACF field for the given widget
-     */
-    public function get_acf_field( $field ) {
-        return get_field( $field , 'widget_' . $this->args['widget_id'] );
     }
 }
 
