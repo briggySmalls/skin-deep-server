@@ -30,7 +30,7 @@ abstract class Widget extends \WP_Widget {
             $this->widget_slug() ,
             $title,
             [
-                'classname'  => $this->widget_slug() . '-class',
+                'classname'  => $this->widget_slug(),
                 'description' => $description
             ]
         );
