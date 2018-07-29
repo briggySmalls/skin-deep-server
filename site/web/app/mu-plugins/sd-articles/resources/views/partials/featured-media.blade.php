@@ -5,8 +5,5 @@
   </div>
 {{-- Otherwise display the featured image --}}
 @elseif (has_post_thumbnail( $article->ID ) )
-  {!! get_the_post_thumbnail(
-    $article->ID,
-    'post-thumbnail',
-    ['class' => 'card-img-top img-fluid']) !!}
+  {!! get_the_post_thumbnail($article->ID, $image_size, ['class' => 'img-fluid ' . $image_classes]) !!}
 @endif

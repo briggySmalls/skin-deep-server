@@ -1,0 +1,46 @@
+{
+    "key": "group_5b5a4fdc23e8f",
+    "title": "Posts slider options",
+    "fields": [
+        {
+            "key": "field_5b5a4fff2b3c6",
+            "label": "Articles",
+            "name": "sd_widget_slider_articles",
+            "type": "post_object",
+            "instructions": "Select the posts to display in the slider",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "post"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 1,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "slider"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1532647549
+}

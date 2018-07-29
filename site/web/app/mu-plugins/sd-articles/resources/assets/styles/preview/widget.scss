@@ -1,0 +1,14 @@
+.widget.preview {
+    .title {
+        text-align: center;
+        margin: 1em 0em;
+    }
+    .see-more {
+        text-align: center;
+        margin: 1em 0em;
+    }
+    // Add margin between bootstrap rows (identified by w-100)
+    [class*="w-100"] ~ [class*="col-"] {
+        margin-top: 15px;
+    }
+}
