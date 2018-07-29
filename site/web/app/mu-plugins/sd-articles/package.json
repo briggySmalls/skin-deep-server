@@ -7,9 +7,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack --progress --config resources/assets/build/webpack.config.js",
-    "build:production": "webpack --progress -p --config resources/assets/build/webpack.config.js",
-    "start": "webpack --hide-modules --watch --config resources/assets/build/webpack.config.js"
+    "build": "webpack --mode production --progress --config resources/assets/build/webpack.config.js",
+    "build:production": "webpack --mode production --progress -p --config resources/assets/build/webpack.config.js",
+    "start": "webpack --mode development --hide-modules --watch --config resources/assets/build/webpack.config.js"
   },
   "dependencies": {
     "eslint": "^5.0.1",

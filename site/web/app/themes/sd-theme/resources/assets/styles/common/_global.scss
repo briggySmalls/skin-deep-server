@@ -1,0 +1,8 @@
+a {
+  color: theme-color(primary);
+
+  @include hover {
+    color: theme-color(highlight);
+    text-decoration: none;
+  }
+}
