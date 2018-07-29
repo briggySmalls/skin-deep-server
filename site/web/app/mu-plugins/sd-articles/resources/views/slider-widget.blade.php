@@ -2,14 +2,6 @@
   Widget output template
   --}}
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    @for ( $i = 0; $i < count( $context->posts ); $i++ )
-    <li data-target="#carouselExampleIndicators"
-        data-slide-to="{{ $i }}"
-        @if ($i == 0) class="active" @endif>
-    </li>
-    @endfor
-  </ol>
   <div class="carousel-inner">
     @foreach ( $context->posts as $article )
       <div class="carousel-item @if ($loop->first) active @endif">
@@ -20,11 +12,19 @@
           ['image_size' => 'large', 'image_classes' => 'd-block w-100'])
         </a>
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{ $article->post_title }}</h5>
+          <h3>{{ $article->post_title }}</h3>
         </div>
       </div>
     @endforeach
   </div>
+  <ol class="carousel-indicators">
+    @for ( $i = 0; $i < count( $context->posts ); $i++ )
+    <li data-target="#carouselExampleIndicators"
+        data-slide-to="{{ $i }}"
+        @if ($i == 0) class="active" @endif>
+    </li>
+    @endfor
+  </ol>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
