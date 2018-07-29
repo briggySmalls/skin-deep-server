@@ -1,9 +1,9 @@
 {{-- Display category --}}
-<h5>
+<p class="category-link">
   @foreach (get_the_category($article) as $category)
     {{ $category->name }}
   @endforeach
-</h5>
+</p>
 {{-- Display title --}}
-<h4 class="card-title">{{ $article->post_title }}</h4>
+<h3 class="card-title">{{ $article->post_title }}</h3>
 {{-- Display excerpt --}}
