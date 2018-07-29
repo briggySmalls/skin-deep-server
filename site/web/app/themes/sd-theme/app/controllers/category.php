@@ -12,7 +12,7 @@ class Category extends Controller
 
     public static function image( $size ) {
         $image = get_field('sd_article_category_image', Category::id());
-        return wp_get_attachment_image( $image, $size );
+        return wp_get_attachment_image( $image, $size, false, ['class' => 'img-fluid'] );
     }
 
     public static function description() {
