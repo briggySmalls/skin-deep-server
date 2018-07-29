@@ -22,7 +22,7 @@ $column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
             {{-- Display featured image/video --}}
             @include(
               'partials.featured-media',
-              ['image_size' => 'post-thumbnail', 'image_classes' => 'card-img-top img-fluid'])
+              ['image_size' => 'post-thumbnail', 'image_classes' => 'card-img-top'])
             <div class="card-body">
               {{-- Insert main body --}}
               @include('partials.body')
