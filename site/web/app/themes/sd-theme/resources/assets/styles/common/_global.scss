@@ -1,3 +1,4 @@
+// Anchors
 a {
   color: theme-color(primary);
 
@@ -5,4 +6,10 @@ a {
     color: theme-color(highlight);
     text-decoration: none;
   }
+}
+
+// Images
+img {
+  // All images should be fluid (resize maintaining aspect ratio)
+  @extend .img-fluid;
 }

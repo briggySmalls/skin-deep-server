@@ -5,5 +5,5 @@
   </div>
 {{-- Otherwise display the featured image --}}
 @elseif (has_post_thumbnail( $article->ID ) )
-  {!! get_the_post_thumbnail($article->ID, $image_size, ['class' => 'img-fluid ' . $image_classes]) !!}
+  {!! get_the_post_thumbnail($article->ID, $image_size, isset($image_classes) ? ['class' => $image_classes] : []) !!}
 @endif
