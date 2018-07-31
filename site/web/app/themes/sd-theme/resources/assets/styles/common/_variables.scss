@@ -1,6 +1,10 @@
 /** Import Bootstrap functions */
 @import "~bootstrap/scss/functions";
 
+// Production build fix from: https://github.com/roots/sage/issues/2017#issuecomment-361054297
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
+
 $theme-colors: (
   primary: #707070,
   highlight: #ffab26,
