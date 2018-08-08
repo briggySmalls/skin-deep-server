@@ -17,3 +17,5 @@ wordpress_sites:
       provider: self-signed
     cache:
       enabled: false
+    env:
+          acf_pro_key: "{{ vault_acf_pro_key }}"
