@@ -19,3 +19,5 @@ wordpress_sites:
       provider: letsencrypt
     cache:
       enabled: false
+    env:
+      acf_pro_key: "{{ vault_acf_pro_key }}"
