@@ -1,0 +1,124 @@
+{
+    "key": "group_5b60fa89613d9",
+    "title": "Event options",
+    "fields": [
+        {
+            "key": "field_5b60fa9121f4b",
+            "label": "Facebook event",
+            "name": "sd_event_facebook_event",
+            "type": "url",
+            "instructions": "URL of the facebook event",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b64cabd5925b",
+            "label": "Details",
+            "name": "sd_event_details",
+            "type": "group",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5b64cb2a5925c",
+                    "label": "Start time",
+                    "name": "sd_event_start_time",
+                    "type": "time_picker",
+                    "instructions": "The start time of the event",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "H:i",
+                    "return_format": "H:i"
+                },
+                {
+                    "key": "field_5b64ccac5925e",
+                    "label": "End time",
+                    "name": "sd_event_end_time",
+                    "type": "time_picker",
+                    "instructions": "The end time of the event",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "H:i",
+                    "return_format": "H:i"
+                },
+                {
+                    "key": "field_5b64cc565925d",
+                    "label": "Date",
+                    "name": "sd_event_date",
+                    "type": "date_picker",
+                    "instructions": "The date of the event",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "j F Y",
+                    "return_format": "j F Y",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_5b64cce75925f",
+                    "label": "Venue",
+                    "name": "sd_event_venue",
+                    "type": "google_map",
+                    "instructions": "The venue of the event",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "center_lat": "51.5074",
+                    "center_lng": "0.1278",
+                    "zoom": "",
+                    "height": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "sd-event"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1533820664
+}

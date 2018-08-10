@@ -18,4 +18,5 @@ wordpress_sites:
     cache:
       enabled: false
     env:
-          acf_pro_key: "{{ vault_acf_pro_key }}"
+      acf_pro_key: "{{ vault_acf_pro_key }}"
+      google_maps_key: "{{ vault_google_maps_key }}"

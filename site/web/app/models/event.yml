@@ -1,0 +1,27 @@
+---
+- type: cpt
+  active: true
+  name: sd-event
+  supports:
+  - title
+  - editor
+  - revisions
+  - excerpt
+  - thumbnail
+  - custom-fields
+  labels:
+    has_one: Event
+    has_many: Events
+    text_domain: sd-shop
+  config:
+    public: true
+    menu_icon: dashicons-calendar-alt
+    query_var: false
+    has_archive: true
+    hierarchical: false
+    menu_position: 6
+    can_export: true
+    capability_type: post
+    rewrite:
+      slug: events
+      with_front: false
