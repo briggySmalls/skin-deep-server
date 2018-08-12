@@ -4,17 +4,17 @@
       {{-- Display the featured image --}}
       @include('partials/image-header')
     </figure>
-    <div>
-      <p>{{ SingleSdEvent::start_time() }} - {{ SingleSdEvent::end_time() }}</p>
-      <p>{{ SingleSdEvent::date() }}</p>
-      <p>{{ SingleSdEvent::venue() }}</p>
-    </div>
+    <h1 class="entry-title">{{ get_the_title() }}</h1>
+    <ul id="event-details">
+      <li><i class="fas fa-clock event-icon"></i>{{ SingleSdEvent::start_time() }}-{{ SingleSdEvent::end_time() }}</li>
+      <li><i class="fas fa-calendar-alt event-icon"></i>{{ SingleSdEvent::date() }}</li>
+      <li><i class="fas fa-map-marker-alt event-icon"></i>{{ SingleSdEvent::venue() }}</li>
+    </ul>
     <div>
       <a href="{{ SingleSdEvent::facebook_url() }}">
         See event on facebook
       </a>
     </div>
-    <h1 class="entry-title">{{ get_the_title() }}</h1>
   </header>
   <div class="entry-content">
     {{ get_the_content() }}
