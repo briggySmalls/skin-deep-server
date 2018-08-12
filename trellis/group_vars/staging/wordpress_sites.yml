@@ -21,4 +21,3 @@ wordpress_sites:
       enabled: false
     env:
       acf_pro_key: "{{ vault_acf_pro_key }}"
-      google_maps_key: "{{ vault_google_maps_key }}"
