@@ -3,20 +3,52 @@
     "title": "Event options",
     "fields": [
         {
-            "key": "field_5b60fa9121f4b",
-            "label": "Facebook event",
-            "name": "sd_event_facebook_event",
-            "type": "url",
-            "instructions": "URL of the facebook event",
-            "required": 1,
+            "key": "field_5b73763bf9b10",
+            "label": "Has facebook event",
+            "name": "sd_event_has_facebook_event",
+            "type": "true_false",
+            "instructions": "Whether the event has an associated facebook event or not",
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5b60fa9121f4b",
+            "label": "Facebook event",
+            "name": "sd_event_facebook_event",
+            "type": "number",
+            "instructions": "URL of the facebook event",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b73763bf9b10",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
-            "placeholder": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         },
         {
             "key": "field_5b64cabd5925b",
@@ -24,8 +56,16 @@
             "name": "sd_event_details",
             "type": "group",
             "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5b73763bf9b10",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -37,7 +77,7 @@
                     "key": "field_5b64cb2a5925c",
                     "label": "Start time",
                     "name": "sd_event_start_time",
-                    "type": "time_picker",
+                    "type": "date_time_picker",
                     "instructions": "The start time of the event",
                     "required": 1,
                     "conditional_logic": 0,
@@ -46,31 +86,16 @@
                         "class": "",
                         "id": ""
                     },
-                    "display_format": "H:i",
-                    "return_format": "H:i"
+                    "display_format": "H:i d\/m\/Y",
+                    "return_format": "Y-m-d\\TH:i:sP",
+                    "first_day": 1
                 },
                 {
                     "key": "field_5b64ccac5925e",
                     "label": "End time",
                     "name": "sd_event_end_time",
-                    "type": "time_picker",
+                    "type": "date_time_picker",
                     "instructions": "The end time of the event",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "display_format": "H:i",
-                    "return_format": "H:i"
-                },
-                {
-                    "key": "field_5b64cc565925d",
-                    "label": "Date",
-                    "name": "sd_event_date",
-                    "type": "date_picker",
-                    "instructions": "The date of the event",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -78,8 +103,8 @@
                         "class": "",
                         "id": ""
                     },
-                    "display_format": "j F Y",
-                    "return_format": "j F Y",
+                    "display_format": "H:i d\/m\/Y",
+                    "return_format": "Y-m-d\\TH:i:sP",
                     "first_day": 1
                 },
                 {
@@ -120,5 +145,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1533820664
+    "modified": 1534488967
 }

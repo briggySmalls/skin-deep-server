@@ -10,7 +10,7 @@
  * License: MIT
  */
 
-namespace App;
+namespace SdEvents;
 
 // Include autoloader
 require __DIR__ . '/../vendor/autoload.php';

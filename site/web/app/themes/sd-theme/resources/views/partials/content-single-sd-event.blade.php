@@ -6,14 +6,15 @@
     </figure>
     <h1 class="entry-title">{{ get_the_title() }}</h1>
     <ul id="event-details">
-      <li><i class="fas fa-clock event-icon"></i>{{ SingleSdEvent::start_time() }}-{{ SingleSdEvent::end_time() }}</li>
-      <li><i class="fas fa-calendar-alt event-icon"></i>{{ SingleSdEvent::date() }}</li>
-      <li><i class="fas fa-map-marker-alt event-icon"></i>{{ SingleSdEvent::venue() }}</li>
+      <li><i class="fas fa-clock event-icon"></i>{{ SingleSdEvent::toDatetimeString($details) }}</li>
+      <li><i class="fas fa-map-marker-alt event-icon"></i>{{ $details->venue }}</li>
     </ul>
     <div>
-      <a href="{{ SingleSdEvent::facebook_url() }}">
-        See event on facebook
-      </a>
+      @if ($details->facebook_url)
+        <a href="{{ $details->facebook_url }}">
+          See event on facebook
+        </a>
+      @endif
     </div>
   </header>
   <div class="entry-content">

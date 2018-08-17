@@ -20,6 +20,82 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5b70c8160ecf6",
+            "label": "Facebook page group",
+            "name": "sd_event_fb_page_group",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5b70c8460ecf7",
+                    "label": "App ID",
+                    "name": "app_id",
+                    "type": "number",
+                    "instructions": "The application ID for the app",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5b70c8770ecf8",
+                    "label": "App secret",
+                    "name": "app_secret",
+                    "type": "text",
+                    "instructions": "Application secret for the facebook app",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5b70c2e526836",
+                    "label": "Facebook page access token",
+                    "name": "access_token",
+                    "type": "text",
+                    "instructions": "Page access token obtained from user account with admin rights over the facebook page",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -39,5 +115,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534088685
+    "modified": 1534118078
 }

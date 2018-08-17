@@ -13,11 +13,10 @@
   "keywords": ["wordpress"],
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "SdEvents\\": "app/"
     },
     "files": [
-      "app/setup.php",
-      "app/api.php"
+      "app/setup.php"
     ]
   },
   "require": {
