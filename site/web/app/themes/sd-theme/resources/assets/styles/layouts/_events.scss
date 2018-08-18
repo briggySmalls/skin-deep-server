@@ -5,3 +5,14 @@
 ul#event-details {
   list-style: none;
 }
+
+// Event archive
+body.post-type-archive-sd-event {
+  .card {
+    margin-bottom: 1em;
+
+    .col.content {
+      padding: 0 1em;
+    }
+  }
+}

@@ -12,7 +12,7 @@
         {!! SinglePost::image() !!}
       @endif
     </div>
-    <div class="col">
+    <div class="col content">
       {{-- Display category --}}
       <h5>
         @foreach (get_the_category(get_post()) as $category)
