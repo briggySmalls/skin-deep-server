@@ -15,7 +15,11 @@ class SingleSdEvent extends Controller
     }
 
     public function details() {
-        return $this->api->getEventDetails();
+        return self::getDetails($this->api);
+    }
+
+    public static function getDetails($api) {
+        return $api->getEventDetails();
     }
 
     public static function toDatetimeString($details) {

@@ -76,7 +76,7 @@
                 {
                     "key": "field_5b64cb2a5925c",
                     "label": "Start time",
-                    "name": "sd_event_start_time",
+                    "name": "start_time",
                     "type": "date_time_picker",
                     "instructions": "The start time of the event",
                     "required": 1,
@@ -93,7 +93,7 @@
                 {
                     "key": "field_5b64ccac5925e",
                     "label": "End time",
-                    "name": "sd_event_end_time",
+                    "name": "end_time",
                     "type": "date_time_picker",
                     "instructions": "The end time of the event",
                     "required": 1,
@@ -110,7 +110,7 @@
                 {
                     "key": "field_5b64cce75925f",
                     "label": "Venue",
-                    "name": "sd_event_venue",
+                    "name": "venue",
                     "type": "google_map",
                     "instructions": "The venue of the event",
                     "required": 1,
@@ -145,5 +145,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534488967
+    "modified": 1534584171
 }

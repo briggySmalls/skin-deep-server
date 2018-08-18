@@ -8,8 +8,8 @@
     <ul id="event-details">
       <li><i class="fas fa-clock event-icon"></i>{{ SingleSdEvent::toDatetimeString($details) }}</li>
       <li><i class="fas fa-map-marker-alt event-icon"></i>{{ $details->venue }}</li>
-      @if ($details->facebook_url)
-        <li><i class="fab fa-facebook-f event-icon"></i><a href="{{ $details->facebook_url }}">See event on facebook</a></li>
+      @if ($details->event_id)
+        <li><i class="fab fa-facebook-f event-icon"></i><a href="{{ $details->facebookUrl() }}">See event on facebook</a></li>
       @endif
     </ul>
   </header>

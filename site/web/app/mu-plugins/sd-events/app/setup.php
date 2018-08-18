@@ -9,24 +9,6 @@ const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
 // facebook/graph-sdk suggests installing paragonie/random_compat (Provides a better CSPRNG option in PHP 5)
 // facebook/graph-sdk suggests installing guzzlehttp/guzzle (Allows for implementation of the Guzzle HTTP client)
 
-add_action('acf/init', function() {
-    // Deal with google maps registration
-    $google_maps_key = get_field(GOOGLE_MAPS_FIELD_NAME, 'option');
-    if ($google_maps_key) {
-        // Set google API key
-        acf_update_setting('google_api_key', $google_maps_key);
-    } else {
-        // Warn that google API isn't going to work
-        display_error('Google maps API not yet set');
-    }
-
-    // Check we have a facebook access token
-    $facebook_token = get_field('sd_event_facebook_token', 'option');
-    if (!$facebook_token) {
-        display_error('Facebook page access token not yet set');
-    }
-});
-
 // Setup event plugin options
 if(function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
@@ -37,13 +19,4 @@ if(function_exists('acf_add_options_page')) {
     ));
 }
 
-// Display an error
-function display_error($message) {
-    add_action('admin_notices', function() use ($message) {
-        ?>
-        <div class="error notice">
-            <p><?php _e($message, 'sd_events'); ?></p>
-        </div>
-        <?php
-    });
-}
+require __DIR__ . '/hooks.php';
