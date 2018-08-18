@@ -1,0 +1,119 @@
+{
+    "key": "group_5b70556f12bb9",
+    "title": "Event plugin settings",
+    "fields": [
+        {
+            "key": "field_5b70557729267",
+            "label": "Google Maps API Key",
+            "name": "sd_event_google_maps_api_key",
+            "type": "text",
+            "instructions": "Obtained from the google API console",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5b70c8160ecf6",
+            "label": "Facebook page group",
+            "name": "sd_event_fb_page_group",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5b70c8460ecf7",
+                    "label": "App ID",
+                    "name": "app_id",
+                    "type": "number",
+                    "instructions": "The application ID for the app",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5b70c8770ecf8",
+                    "label": "App secret",
+                    "name": "app_secret",
+                    "type": "text",
+                    "instructions": "Application secret for the facebook app",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5b70c2e526836",
+                    "label": "Facebook page access token",
+                    "name": "access_token",
+                    "type": "text",
+                    "instructions": "Page access token obtained from user account with admin rights over the facebook page",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-event-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1534118078
+}

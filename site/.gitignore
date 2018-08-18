@@ -4,6 +4,7 @@ web/app/plugins/*
 web/app/mu-plugins/*/
 !web/app/mu-plugins/sd-articles
 !web/app/mu-plugins/sd-shop
+!web/app/mu-plugins/sd-events
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep

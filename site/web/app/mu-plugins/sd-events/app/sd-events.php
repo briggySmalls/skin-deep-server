@@ -1,16 +1,16 @@
 <?php
 /**
  * @wordpress-plugin
- * Plugin Name: Skin Deep articles
+ * Plugin Name: Skin Deep events
  * Plugin URI: https://github.com/briggySmalls/skin-deep-server/
- * Description: Customisation of wordpress posts to display articles
+ * Description: Custom post type for Skin Deep events
  * Version: 1.0.0
  * Author: Sam Briggs
  * Author URI: https://github.com/briggySmalls/
  * License: MIT
  */
 
-namespace App;
+namespace SdEvents;
 
 // Include autoloader
 require __DIR__ . '/../vendor/autoload.php';
