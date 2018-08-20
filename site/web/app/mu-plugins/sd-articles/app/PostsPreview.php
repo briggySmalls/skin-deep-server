@@ -9,7 +9,8 @@ use App\WidgetArgs;
  * Posts preview widget
  * Displays selection of posts in a taxonomy, format, etc
  */
-class PostsPreview extends Widget {
+class PostsPreview extends Widget
+{
 
     /**
      * Unique identifier for the widget.
@@ -32,13 +33,15 @@ class PostsPreview extends Widget {
      * Specifies the classname and description, instantiates the widget,
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
-            __( 'Posts Preview', self::WIDGET_SLUG ),
-            __( 'Preview of posts in a configured group.', self::WIDGET_SLUG ));
+            __('Posts Preview', self::WIDGET_SLUG),
+            __('Preview of posts in a configured group.', self::WIDGET_SLUG)
+        );
 
         // load plugin text domain
-        add_action( 'init', array( $this, 'widget_textdomain' ) );
+        add_action('init', array( $this, 'widget_textdomain' ));
     } // end constructor
 
     /*--------------------------------------------------*/
@@ -50,22 +53,25 @@ class PostsPreview extends Widget {
      * @param      $args  The arguments
      * @return     { description_of_the_return_value }
      */
-    protected function create_args( $args ) {
+    protected function create_args($args)
+    {
         return new PostsPreviewArgs($args);
     }
 
-    protected function widget_slug() {
+    protected function widget_slug()
+    {
         return self::WIDGET_SLUG;
     }
-
 } // end class
 
-class PostsPreviewArgs extends WidgetArgs {
+class PostsPreviewArgs extends WidgetArgs
+{
 
     public $args = null;
     public $posts = null;
 
-    public function __construct($args) {
+    public function __construct($args)
+    {
         $this->args = $args;
         $this->posts = $this->get_preview_posts($args);
     }
@@ -75,20 +81,21 @@ class PostsPreviewArgs extends WidgetArgs {
      * @param      $args  The widget output arguments.
      * @return     The posts.
      */
-    private function get_preview_posts() {
+    private function get_preview_posts()
+    {
         // Limit query to specified number of posts
         $query_args = [
-            'posts_per_page' => (int)$this->get_acf_field( 'sd_widget_preview_count' ),
+            'posts_per_page' => (int)$this->get_acf_field('sd_widget_preview_count'),
         ];
 
         // Determine what type of filtering we're applying
-        $filter_group = $this->get_acf_field( 'sd_widget_preview_filter_group' );
+        $filter_group = $this->get_acf_field('sd_widget_preview_filter_group');
         switch ($filter_group['sd_widget_preview_filter_type']) {
             # Filter articles to the specified category
             case "category":
                 $category = $filter_group['sd_widget_preview_category'];
                 $query_args['cat'] = $category;
-                $this->url = get_term_link( $category );
+                $this->url = get_term_link($category);
                 break;
 
             # Filter articles to the specified format
@@ -101,7 +108,7 @@ class PostsPreviewArgs extends WidgetArgs {
                         'terms' => $format->term_id,
                     ]
                 ];
-                $this->url = get_post_format_link( $format->name );
+                $this->url = get_post_format_link($format->name);
                 break;
 
             case "all":
@@ -115,10 +122,10 @@ class PostsPreviewArgs extends WidgetArgs {
         }
 
         // Execute the query
-        return get_posts( $query_args );
+        return get_posts($query_args);
     }
 }
 
-add_action( 'widgets_init', function () {
-    register_widget( 'App\PostsPreview' );
+add_action('widgets_init', function () {
+    register_widget('App\PostsPreview');
 });

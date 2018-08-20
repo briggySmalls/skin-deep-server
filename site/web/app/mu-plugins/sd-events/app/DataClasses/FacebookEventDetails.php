@@ -4,8 +4,10 @@ namespace SdEvents\DataClasses;
 
 use \DateTime;
 
-class FacebookEventDetails extends EventDetails {
-    function __construct($response) {
+class FacebookEventDetails extends EventDetails
+{
+    function __construct($response)
+    {
         // Create the core class
         parent::__construct(
             $response->getField('start_time'),
@@ -15,7 +17,8 @@ class FacebookEventDetails extends EventDetails {
         );
     }
 
-    public function toAcfDetails() {
+    public function toAcfDetails()
+    {
         return [
             'start_time' => self::toString($this->start_time),
             'end_time' => self::toString($this->end_time),
@@ -23,11 +26,13 @@ class FacebookEventDetails extends EventDetails {
         ];
     }
 
-    private static function toString($datetime) {
+    private static function toString($datetime)
+    {
         return $datetime->format(DateTime::ATOM);
     }
 
-    private static function toGooglePlace($facebook_place) {
+    private static function toGooglePlace($facebook_place)
+    {
         return [
             'address' => $facebook_place->getField('name'),
             'lat' => (string)$facebook_place->getField('location')->getField('latitude'),

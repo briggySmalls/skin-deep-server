@@ -10,7 +10,7 @@ const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
 // facebook/graph-sdk suggests installing guzzlehttp/guzzle (Allows for implementation of the Guzzle HTTP client)
 
 // Setup event plugin options
-if(function_exists('acf_add_options_page')) {
+if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
         'page_title' => 'Event Settings',
         'capability' => 'edit_posts',

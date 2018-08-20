@@ -4,7 +4,7 @@ namespace SdEvents;
 
 use SdEvents\FacebookApi;
 
-add_action('acf/init', function() {
+add_action('acf/init', function () {
     // Deal with google maps registration
     $google_maps_key = get_field(GOOGLE_MAPS_FIELD_NAME, 'option');
     if ($google_maps_key) {
@@ -23,9 +23,9 @@ add_action('acf/init', function() {
 });
 
 // Update saved post with facebook event info
-add_action('save_post', function($post_id) {
+add_action('save_post', function ($post_id) {
     // Only check events
-    if ( get_post_type($post_id) != 'sd-event') {
+    if (get_post_type($post_id) != 'sd-event') {
         return;
     }
 
@@ -42,8 +42,9 @@ add_action('save_post', function($post_id) {
 }, 1);
 
 // Display an error
-function display_error($message) {
-    add_action('admin_notices', function() use ($message) {
+function display_error($message)
+{
+    add_action('admin_notices', function () use ($message) {
         ?>
         <div class="error notice">
             <p><?php _e($message, 'sd_events'); ?></p>
