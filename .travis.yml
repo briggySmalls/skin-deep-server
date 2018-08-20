@@ -16,9 +16,13 @@ cache:
   apt: true
   directories:
     - $HOME/.composer/cache
-    - vendor
+    - site/vendor
+    - site/web/app/mu-plugins/sd-articles
+    - site/web/app/mu-plugins/sd-events
+    - site/web/app/mu-plugins/sd-shop
 
 before_install:
+  - cd site
   - phpenv config-rm xdebug.ini || true
   - composer self-update
 
