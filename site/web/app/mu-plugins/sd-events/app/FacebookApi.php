@@ -8,7 +8,7 @@ class FacebookApi
 {
     protected $fb;
 
-    function __construct()
+    public function __construct()
     {
         // Get facebook settings
         $fb_settings = get_field('sd_event_fb_page_group', 'option');

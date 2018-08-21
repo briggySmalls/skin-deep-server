@@ -6,7 +6,7 @@ use \DateTime;
 
 class FacebookEventDetails extends EventDetails
 {
-    function __construct($response)
+    public function __construct($response)
     {
         // Create the core class
         parent::__construct(
