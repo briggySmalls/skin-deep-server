@@ -55,9 +55,9 @@ add_action('after_setup_theme', function () {
 
     // Set theme image sizes
     set_post_thumbnail_size(240, 135, true);
-    update_option( 'large_size_w', 1200 );
-    update_option( 'large_size_h', 675 );
-    update_option( 'large_crop', 1 );
+    update_option('large_size_w', 1200);
+    update_option('large_size_h', 675);
+    update_option('large_crop', 1);
 
     /**
      * Enable HTML5 markup support
@@ -80,12 +80,12 @@ add_action('after_setup_theme', function () {
     /**
      * Enable post formats
      */
-    add_theme_support( 'post-formats', array( 'video' ) );
+    add_theme_support('post-formats', array( 'video' ));
 
     /**
      * Enable site logo
      */
-    add_theme_support( 'custom-logo' );
+    add_theme_support('custom-logo');
 }, 20);
 
 /**

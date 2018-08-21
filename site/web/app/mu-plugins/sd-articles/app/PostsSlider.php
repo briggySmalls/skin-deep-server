@@ -2,14 +2,12 @@
 
 namespace App;
 
-use App\Widget;
-use App\WidgetArgs;
-
 /**
  * Posts slider widget
  * Displays selection of posts in a featured slider
  */
-class PostsSlider extends Widget {
+class PostsSlider extends Widget
+{
 
     /**
      * Unique identifier for the widget.
@@ -32,13 +30,12 @@ class PostsSlider extends Widget {
      * Specifies the classname and description, instantiates the widget,
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(
-            __( 'Posts Slider', self::WIDGET_SLUG ),
-            __( 'Preview of posts in a featured slider.', self::WIDGET_SLUG ));
-
-        // load plugin text domain
-        add_action( 'init', array( $this, 'widget_textdomain' ) );
+            __('Posts Slider', self::WIDGET_SLUG),
+            __('Preview of posts in a featured slider.', self::WIDGET_SLUG)
+        );
     } // end constructor
 
     /*--------------------------------------------------*/
@@ -50,31 +47,17 @@ class PostsSlider extends Widget {
      * @param      $args  The arguments
      * @return     { description_of_the_return_value }
      */
-    protected function create_args( $args ) {
+    protected function createArgs($args)
+    {
         return new PostsSliderArgs($args);
     }
 
-    protected function widget_slug() {
+    protected function widgetSlug()
+    {
         return self::WIDGET_SLUG;
     }
-
 } // end class
 
-class PostsSliderArgs extends WidgetArgs {
-
-    public $args = null;
-    public $posts = null;
-
-    public function __construct($args) {
-        $this->args = $args;
-        $this->posts = $this->get_slider_posts($args);
-    }
-
-    protected function get_slider_posts( $args ) {
-        return $this->get_acf_field( 'sd_widget_slider_articles' );
-    }
-}
-
-add_action( 'widgets_init', function () {
-    register_widget( 'App\PostsSlider' );
+add_action('widgets_init', function () {
+    register_widget('App\PostsSlider');
 });

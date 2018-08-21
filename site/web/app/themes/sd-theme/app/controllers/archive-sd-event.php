@@ -7,7 +7,8 @@ use SdEvents\SdEventsApi;
 
 class ArchiveSdEvent extends Controller
 {
-    public function sdEventsApi() {
+    public function sdEventsApi()
+    {
         return new SdEventsApi();
     }
 }

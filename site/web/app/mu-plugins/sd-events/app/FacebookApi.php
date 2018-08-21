@@ -4,10 +4,12 @@ namespace SdEvents;
 
 use SdEvents\DataClasses\FacebookEventDetails;
 
-class FacebookApi {
+class FacebookApi
+{
     protected $fb;
 
-    function __construct() {
+    public function __construct()
+    {
         // Get facebook settings
         $fb_settings = get_field('sd_event_fb_page_group', 'option');
         // Create facebook API
@@ -19,7 +21,8 @@ class FacebookApi {
         ]);
     }
 
-    public function getEventDetails($event_id) {
+    public function getEventDetails($event_id)
+    {
         // Make request to facebook
         $response = $this->request($event_id);
         // Obtain event data
@@ -28,14 +31,15 @@ class FacebookApi {
         return new FacebookEventDetails($event_data);
     }
 
-    private function request($slug) {
+    private function request($slug)
+    {
         try {
             // Returns a `Facebook\FacebookResponse` object
             return $this->fb->get('/' . $slug);
-        } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
-        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
             // When validation fails or other local issues
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
         }

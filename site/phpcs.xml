@@ -2,15 +2,17 @@
 <ruleset name="Roots">
   <description>Roots Coding Standards</description>
 
-  <!-- Scan all files in directory -->
-  <file>.</file>
+  <!-- Scan work under development -->
+  <file>web/app/themes/sd-theme</file>
+  <file>web/app/mu-plugins/sd-articles</file>
+  <file>web/app/mu-plugins/sd-events</file>
+  <file>web/app/mu-plugins/sd-shop</file>
+
+  <!-- Exclude patterns -->
+  <exclude-pattern>*/vendor</exclude-pattern>
 
   <!-- Scan only PHP files -->
   <arg name="extensions" value="php"/>
-
-  <!-- Ignore WordPress and Composer dependencies -->
-  <exclude-pattern>web/wp</exclude-pattern>
-  <exclude-pattern>vendor/</exclude-pattern>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>

@@ -2,41 +2,51 @@
 
 namespace App;
 
-class ResourceManager {
-    static function root_dir ( $is_relative=False ) {
-        $file_directory = $is_relative ? plugin_basename( __DIR__ ) : __DIR__;
+class ResourceManager
+{
+    public static function rootDir($is_relative = false)
+    {
+        $file_directory = $is_relative ? plugin_basename(__DIR__) : __DIR__;
         return $file_directory . '/../';
     }
 
-    static function root_url () {
-        return plugins_url( '/' , __DIR__);
+    public static function rootURL()
+    {
+        return plugins_url('/', __DIR__);
     }
 
-    static function view_dir () {
-        return self::resources_dir() . 'views/';
+    public static function viewDir()
+    {
+        return self::resourcesDir() . 'views/';
     }
 
-    static function assets_dir ( $is_relative=False ) {
-        return self::resources_dir( $is_relative ) . 'assets/';
+    public static function assetsDir($is_relative = false)
+    {
+        return self::resourcesDir($is_relative) . 'assets/';
     }
 
-    static function lang_dir () {
-        return self::assets_dir() . 'lang/';
+    public static function langDir()
+    {
+        return self::assetsDir() . 'lang/';
     }
 
-    static function cache_dir () {
-        return self::resources_dir() . 'cache/';
+    public static function cacheDir()
+    {
+        return wp_upload_dir()['basedir'] . '/cache';
     }
 
-    static function dist_url () {
-        return self::root_url() . 'dist/';
+    public static function distURL()
+    {
+        return self::rootURL() . 'dist/';
     }
 
-    static function resources_dir ( $is_relative=False ) {
-        return self::root_dir( $is_relative ) . 'resources/';
+    public static function resourcesDir($is_relative = false)
+    {
+        return self::rootDir($is_relative) . 'resources/';
     }
 
-    static function dist_dir ( ) {
-        return self::root_dir( ) . 'dist/';
+    public static function distDir()
+    {
+        return self::rootDir() . 'dist/';
     }
 }

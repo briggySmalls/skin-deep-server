@@ -1,10 +1,10 @@
 <article @php post_class() @endphp>
   <header>
     <figure>
-      @if (SinglePost::has_featured_video())
+      @if (SinglePost::hasFeaturedVideo())
       {{-- Feature video takes precedence --}}
       @include('partials/video-header')
-      @elseif (SinglePost::has_featured_image())
+      @elseif (SinglePost::hasFeaturedImage())
       {{-- Otherwise display the featured image --}}
       @include('partials/image-header')
       @endif

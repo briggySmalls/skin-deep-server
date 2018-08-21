@@ -72,20 +72,20 @@ add_filter('comments_template', function ($comments_template) {
 /**
  * Add bootstrap nav class to menu anchors
  */
-add_filter( 'nav_menu_link_attributes', function ( $atts, $item, $args ) {
+add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
     // check if the item is in the primary menu
-    if( $args->theme_location == 'primary_navigation' ) {
+    if ($args->theme_location == 'primary_navigation') {
       // add the desired attributes:
-      $atts['class'] = 'nav-link';
+        $atts['class'] = 'nav-link';
     }
     return $atts;
-}, 10, 3 );
+}, 10, 3);
 
 /**
  * Add custom searchform
  */
 add_filter('get_search_form', function () {
-  return \App\template( 'partials.searchform' );
+    return \App\template('partials.searchform');
 });
 
 /**
@@ -94,14 +94,14 @@ add_filter('get_search_form', function () {
  *
  * There is not a nice way to modify the content produced there
  */
-add_filter( 'img_caption_shortcode', function( $current_html, $attr, $content) {
-    $atts = shortcode_atts( array(
+add_filter('img_caption_shortcode', function ($current_html, $attr, $content) {
+    $atts = shortcode_atts(array(
         'id'      => '',
         'align'   => 'alignnone',
         'width'   => '',
         'caption' => '',
         'class'   => '',
-    ), $attr, 'caption' );
+    ), $attr, 'caption');
 
     // Add custom 'image credit' text
     assert($atts['caption'] !== '');
@@ -119,15 +119,17 @@ add_filter( 'img_caption_shortcode', function( $current_html, $attr, $content) {
     }
 
     $atts['width'] = (int) $atts['width'];
-    if ( $atts['width'] < 1 || empty( $atts['caption'] ) )
+    if ($atts['width'] < 1 || empty($atts['caption'])) {
         return $content;
+    }
 
-    if ( ! empty( $atts['id'] ) )
-        $atts['id'] = 'id="' . esc_attr( sanitize_html_class( $atts['id'] ) ) . '" ';
+    if (! empty($atts['id'])) {
+        $atts['id'] = 'id="' . esc_attr(sanitize_html_class($atts['id'])) . '" ';
+    }
 
-    $class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
+    $class = trim('wp-caption ' . $atts['align'] . ' ' . $atts['class']);
 
-    $html5 = current_theme_supports( 'html5', 'caption' );
+    $html5 = current_theme_supports('html5', 'caption');
     // HTML5 captions never added the extra 10px to the image width
     $width = $html5 ? $atts['width'] : ( 10 + $atts['width'] );
 
@@ -146,20 +148,20 @@ add_filter( 'img_caption_shortcode', function( $current_html, $attr, $content) {
      * @param array  $atts     Attributes of the caption shortcode.
      * @param string $content  The image element, possibly wrapped in a hyperlink.
      */
-    $caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
+    $caption_width = apply_filters('img_caption_shortcode_width', $width, $atts, $content);
 
     $style = '';
-    if ( $caption_width ) {
+    if ($caption_width) {
         $style = 'style="width: ' . (int) $caption_width . 'px" ';
     }
 
-    if ( $html5 ) {
-        $html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
-        . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+    if ($html5) {
+        $html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr($class) . '">'
+        . do_shortcode($content) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
     } else {
-        $html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
-        . do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
+        $html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr($class) . '">'
+        . do_shortcode($content) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
     }
 
     return $html;
-}, 10, 3 );
+}, 10, 3);

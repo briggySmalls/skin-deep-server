@@ -30,8 +30,8 @@ use \YeEasyAdminNotices\V1\AdminNotice;
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
 /**
@@ -53,14 +53,15 @@ require __DIR__ . '/../vendor/autoload.php';
  *
  * @since    1.0.0
  */
-function run_sd_shop() {
-	$plugin = new Shop();
-	$plugin->run();
+function run_sd_shop()
+{
+    $plugin = new Shop();
+    $plugin->run();
 }
 run_sd_shop();
 
 // Setup shop plugin options
-if(function_exists('acf_add_options_page')) {
+if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
         'page_title' => 'Shop Settings',
         'capability' => 'edit_posts',

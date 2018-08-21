@@ -3,12 +3,12 @@
   --}}
 @php
 // Get widget settings
-$column_count = $context->get_acf_field( 'sd_widget_preview_columns' );
+$column_count = $context->getAcfField( 'sd_widget_preview_columns' );
 @endphp
 {{-- Display the category title --}}
 <h2 class="title">
   <a href={{ $context->url }}>
-    {{ $context->get_acf_field( 'sd_widget_preview_title' ) }}
+    {{ $context->getAcfField( 'sd_widget_preview_title' ) }}
   </a>
 </h2>
 {{-- Create grid of posts --}}
