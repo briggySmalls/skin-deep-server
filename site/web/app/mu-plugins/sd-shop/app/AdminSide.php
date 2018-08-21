@@ -59,7 +59,7 @@ class AdminSide
      *
      * @since    1.0.0
      */
-    public function enqueue_styles()
+    public function enqueueStyles()
     {
     }
 
@@ -68,7 +68,7 @@ class AdminSide
      *
      * @since    1.0.0
      */
-    public function enqueue_scripts()
+    public function enqueueScripts()
     {
     }
 }

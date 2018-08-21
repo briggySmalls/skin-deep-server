@@ -75,10 +75,10 @@ class Shop
         $this->loader = new Loader();
 
         // Execute setup actions
-        $this->set_locale();
-        $this->define_admin_hooks();
-        $this->define_public_hooks();
-        $this->define_sitewide_hooks();
+        $this->setLocale();
+        $this->defineAdminHooks();
+        $this->definePublicHooks();
+        $this->defineSitewideHooks();
     }
 
     /**
@@ -90,11 +90,11 @@ class Shop
      * @since    1.0.0
      * @access   private
      */
-    private function set_locale()
+    private function setLocale()
     {
         $plugin_i18n = new I18n();
 
-        $this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
+        $this->loader->addAction('plugins_loaded', $plugin_i18n, 'loadPluginTextdomain');
     }
 
     /**
@@ -104,12 +104,12 @@ class Shop
      * @since    1.0.0
      * @access   private
      */
-    private function define_admin_hooks()
+    private function defineAdminHooks()
     {
-        $plugin_admin = new AdminSide($this->get_sd_shop(), $this->get_version());
+        $plugin_admin = new AdminSide($this->getSdShop(), $this->getVersion());
 
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+        $this->loader->addAction('admin_enqueue_scripts', $plugin_admin, 'enqueueStyles');
+        $this->loader->addAction('admin_enqueue_scripts', $plugin_admin, 'enqueueScripts');
     }
 
     /**
@@ -119,17 +119,17 @@ class Shop
      * @since    1.0.0
      * @access   private
      */
-    private function define_public_hooks()
+    private function definePublicHooks()
     {
-        $plugin_public = new PublicSide($this->get_sd_shop(), $this->get_version());
+        $plugin_public = new PublicSide($this->getSdShop(), $this->getVersion());
 
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+        $this->loader->addAction('wp_enqueue_scripts', $plugin_public, 'enqueueStyles');
+        $this->loader->addAction('wp_enqueue_scripts', $plugin_public, 'enqueueScripts');
 
-        $this->loader->add_filter('script_loader_tag', $plugin_public, 'fixup_script_tags', 10, 3);
+        $this->loader->addFilter('script_loader_tag', $plugin_public, 'scriptLoaderTag', 10, 3);
     }
 
-    private function define_sitewide_hooks()
+    private function defineSitewideHooks()
     {
         // Do nothing
     }
@@ -151,7 +151,7 @@ class Shop
      * @since     1.0.0
      * @return    string    The name of the plugin.
      */
-    public function get_sd_shop()
+    public function getSdShop()
     {
         return $this->sd_shop;
     }
@@ -162,7 +162,7 @@ class Shop
      * @since     1.0.0
      * @return    Loader    Orchestrates the hooks of the plugin.
      */
-    public function get_loader()
+    public function getLoader()
     {
         return $this->loader;
     }
@@ -173,7 +173,7 @@ class Shop
      * @since     1.0.0
      * @return    string    The version number of the plugin.
      */
-    public function get_version()
+    public function getVersion()
     {
         return $this->version;
     }

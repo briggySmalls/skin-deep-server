@@ -83,7 +83,7 @@ class PublicSide
      *
      * @since    1.0.0
      */
-    public function enqueue_styles()
+    public function enqueueStyles()
     {
         wp_enqueue_style(self::SNIPCART_STYLE['handle'], self::SNIPCART_STYLE['src']);
     }
@@ -93,7 +93,7 @@ class PublicSide
      *
      * @since    1.0.0
      */
-    public function enqueue_scripts()
+    public function enqueueScripts()
     {
         wp_enqueue_script(self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], array( 'jquery' ));
     }
@@ -105,7 +105,7 @@ class PublicSide
      * @param      $src     The source
      * @return     Updated tag
      */
-    public function fixup_script_tags($tag, $handle, $src)
+    public function scriptLoaderTag($tag, $handle, $src)
     {
         if (self::SNIPCART_SCRIPT['handle'] === $handle) {
             $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . $this->api_key . '"></script>';
