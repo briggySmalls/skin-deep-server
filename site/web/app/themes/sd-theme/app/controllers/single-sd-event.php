@@ -9,7 +9,7 @@ class SingleSdEvent extends Controller
 {
     protected $api;
 
-    function __construct()
+    public function __construct()
     {
         // Create an API to serve us
         $this->api = new SdEventsApi();

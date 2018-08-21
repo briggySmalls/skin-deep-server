@@ -37,7 +37,7 @@ class SinglePost extends Controller
      * @brief      Determines post has featured video.
      * @return     True if has featured video, False otherwise.
      */
-    public static function has_featured_video()
+    public static function hasFeaturedVideo()
     {
         return (SinglePost::video() != null);
     }
@@ -46,7 +46,7 @@ class SinglePost extends Controller
      * @brief      Determines post has featured image.
      * @return     True if has featured image, False otherwise.
      */
-    public static function has_featured_image()
+    public static function hasFeaturedImage()
     {
         return has_post_thumbnail(get_post()->ID);
     }
