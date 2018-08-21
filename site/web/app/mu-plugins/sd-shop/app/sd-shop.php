@@ -2,6 +2,8 @@
 
 namespace SD_Shop;
 
+use \YeEasyAdminNotices\V1\AdminNotice;
+
 /**
  * The plugin bootstrap file
  *
@@ -37,26 +39,10 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'SD_SHOP_VERSION', '1.0.0' );
+const SD_SHOP_VERSION = '1.0.0';
 
 // Include autoloader
 require __DIR__ . '/../vendor/autoload.php';
-
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-sd-shop-activator.php
- */
-register_activation_hook( __FILE__, function() {
-    Activator::activate();
-});
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-sd-shop-deactivator.php
- */
-register_deactivation_hook( __FILE__, function() {
-    Deactivator::deactivate();
-});
 
 /**
  * Begins execution of the plugin.
@@ -72,3 +58,17 @@ function run_sd_shop() {
 	$plugin->run();
 }
 run_sd_shop();
+
+// Setup shop plugin options
+if(function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title' => 'Shop Settings',
+        'capability' => 'edit_posts',
+        'parent_slug' => 'edit.php?post_type=sd-product',
+        'redirect' => false
+    ));
+} else {
+    AdminNotice::create()
+        ->error('ACF Pro not found: Skin Deep Shop plugin will not work')
+        ->show();
+}

@@ -67,14 +67,12 @@ class Shop {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'SD_SHOP_VERSION' ) ) {
-			$this->version = SD_SHOP_VERSION;
-		} else {
-			$this->version = '1.0.0';
-		}
+        // Initialise variables
+		$this->version = SD_SHOP_VERSION;
 		$this->sd_shop = 'sd-shop';
         $this->loader = new Loader();
 
+        // Execute setup actions
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
@@ -91,7 +89,6 @@ class Shop {
 	 * @access   private
 	 */
 	private function set_locale() {
-
 		$plugin_i18n = new I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -106,8 +103,7 @@ class Shop {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
-		$plugin_admin = new Admin( $this->get_sd_shop(), $this->get_version() );
+		$plugin_admin = new AdminSide( $this->get_sd_shop(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -122,8 +118,7 @@ class Shop {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
-		$plugin_public = new Public( $this->get_sd_shop(), $this->get_version() );
+		$plugin_public = new PublicSide( $this->get_sd_shop(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -133,7 +128,7 @@ class Shop {
 	}
 
     private function define_sitewide_hooks() {
-        $this->loader->add_action('')
+        // Do nothing
     }
 
 	/**

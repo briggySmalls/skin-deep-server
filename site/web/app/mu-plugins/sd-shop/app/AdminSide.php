@@ -1,5 +1,7 @@
 <?php
 
+namespace SD_Shop;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -7,7 +9,6 @@
  * @since      1.0.0
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/admin
  */
 
 /**
@@ -17,10 +18,9 @@
  * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    SD_Shop
- * @subpackage SD_Shop/admin
  * @author     Your Name <email@example.com>
  */
-class SD_Shop_Admin {
+class AdminSide {
 
 	/**
 	 * The ID of this plugin.
@@ -48,10 +48,8 @@ class SD_Shop_Admin {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $sd_shop, $version ) {
-
 		$this->sd_shop = $sd_shop;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -60,21 +58,6 @@ class SD_Shop_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in SD_Shop_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The SD_Shop_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->sd_shop, plugin_dir_url( __FILE__ ) . 'css/sd-shop-admin.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -83,21 +66,6 @@ class SD_Shop_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in SD_Shop_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The SD_Shop_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->sd_shop, plugin_dir_url( __FILE__ ) . 'js/sd-shop-admin.js', array( 'jquery' ), $this->version, false );
-
 	}
 
 }

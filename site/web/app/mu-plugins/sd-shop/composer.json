@@ -14,14 +14,11 @@
   "autoload": {
     "psr-4": {
       "SD_Shop\\": "app/"
-    },
-    "files": [
-      "app/setup.php"
-    ]
+    }
   },
   "require": {
     "php": ">=7.1",
-    ""
+    "yahnis-elsts/admin-notices": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.8.0"
