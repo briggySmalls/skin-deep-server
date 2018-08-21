@@ -4,49 +4,49 @@ namespace App;
 
 class ResourceManager
 {
-    static function root_dir($is_relative = false)
+    public static function rootDir($is_relative = false)
     {
         $file_directory = $is_relative ? plugin_basename(__DIR__) : __DIR__;
         return $file_directory . '/../';
     }
 
-    static function root_url()
+    public static function rootURL()
     {
         return plugins_url('/', __DIR__);
     }
 
-    static function view_dir()
+    public static function viewDir()
     {
-        return self::resources_dir() . 'views/';
+        return self::resourcesDir() . 'views/';
     }
 
-    static function assets_dir($is_relative = false)
+    public static function assetsDir($is_relative = false)
     {
-        return self::resources_dir($is_relative) . 'assets/';
+        return self::resourcesDir($is_relative) . 'assets/';
     }
 
-    static function lang_dir()
+    public static function langDir()
     {
-        return self::assets_dir() . 'lang/';
+        return self::assetsDir() . 'lang/';
     }
 
-    static function cache_dir()
+    public static function cacheDir()
     {
         return wp_upload_dir()['basedir'] . '/cache';
     }
 
-    static function dist_url()
+    public static function distURL()
     {
-        return self::root_url() . 'dist/';
+        return self::rootURL() . 'dist/';
     }
 
-    static function resources_dir($is_relative = false)
+    public static function resourcesDir($is_relative = false)
     {
-        return self::root_dir($is_relative) . 'resources/';
+        return self::rootDir($is_relative) . 'resources/';
     }
 
-    static function dist_dir()
+    public static function distDir()
     {
-        return self::root_dir() . 'dist/';
+        return self::rootDir() . 'dist/';
     }
 }
