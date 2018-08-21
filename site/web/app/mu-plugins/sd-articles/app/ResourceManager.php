@@ -32,7 +32,7 @@ class ResourceManager
 
     static function cache_dir()
     {
-        return self::resources_dir() . 'cache/';
+        return wp_upload_dir()['basedir'] . '/cache';
     }
 
     static function dist_url()
