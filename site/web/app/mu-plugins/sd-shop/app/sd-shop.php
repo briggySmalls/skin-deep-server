@@ -2,6 +2,8 @@
 
 namespace SD_Shop;
 
+use \YeEasyAdminNotices\V1\AdminNotice;
+
 /**
  * The plugin bootstrap file
  *
@@ -56,3 +58,17 @@ function run_sd_shop() {
 	$plugin->run();
 }
 run_sd_shop();
+
+// Setup shop plugin options
+if(function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title' => 'Shop Settings',
+        'capability' => 'edit_posts',
+        'parent_slug' => 'edit.php?post_type=sd-product',
+        'redirect' => false
+    ));
+} else {
+    AdminNotice::create()
+        ->error('ACF Pro not found: Skin Deep Shop plugin will not work')
+        ->show();
+}

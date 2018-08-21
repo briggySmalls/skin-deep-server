@@ -2,6 +2,8 @@
 
 namespace SD_Shop;
 
+use \YeEasyAdminNotices\V1\AdminNotice;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -41,9 +43,9 @@ class PublicSide {
     private $version;
 
     /**
-     * API key for Snipcart
+     * Snipcart API key
      */
-    protected const SNIPCART_KEY = 'ZTdjY2E5YjAtOTRlOC00ODhhLTk1NmMtOWRjNDBiZDIwMjNlNjM2NjQxMzkxOTI2MTUxOTcw';
+    private $api_key;
 
     public const SNIPCART_SCRIPT = [
         'handle' => 'snipcart-script',
@@ -63,8 +65,15 @@ class PublicSide {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $sd_shop, $version ) {
+        // Initialise variables
 		$this->sd_shop = $sd_shop;
 		$this->version = $version;
+        $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
+        if (!$this->api_key) {
+            AdminNotice::create()
+                ->error('Snipcart API key not set. Shop will not function until set in Products > Shop Settings')
+                ->show();
+        }
 	}
 
 	/**
@@ -94,7 +103,7 @@ class PublicSide {
      */
     public function fixup_script_tags($tag, $handle, $src) {
         if ( self::SNIPCART_SCRIPT['handle'] === $handle ) {
-            $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . self::SNIPCART_KEY . '"></script>';
+            $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . $this->api_key . '"></script>';
         }
         return $tag;
     }

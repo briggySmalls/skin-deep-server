@@ -67,14 +67,12 @@ class Shop {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'SD_SHOP_VERSION' ) ) {
-			$this->version = SD_SHOP_VERSION;
-		} else {
-			$this->version = '1.0.0';
-		}
+        // Initialise variables
+		$this->version = SD_SHOP_VERSION;
 		$this->sd_shop = 'sd-shop';
         $this->loader = new Loader();
 
+        // Execute setup actions
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
