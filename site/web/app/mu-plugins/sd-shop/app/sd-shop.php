@@ -43,22 +43,6 @@ define( 'SD_SHOP_VERSION', '1.0.0' );
 require __DIR__ . '/../vendor/autoload.php';
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-sd-shop-activator.php
- */
-register_activation_hook( __FILE__, function() {
-    Activator::activate();
-});
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-sd-shop-deactivator.php
- */
-register_deactivation_hook( __FILE__, function() {
-    Deactivator::deactivate();
-});
-
-/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,
