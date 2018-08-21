@@ -107,7 +107,7 @@ class Shop {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin( $this->get_sd_shop(), $this->get_version() );
+		$plugin_admin = new AdminSide( $this->get_sd_shop(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -123,7 +123,7 @@ class Shop {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Public( $this->get_sd_shop(), $this->get_version() );
+		$plugin_public = new PublicSide( $this->get_sd_shop(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -133,7 +133,7 @@ class Shop {
 	}
 
     private function define_sitewide_hooks() {
-        $this->loader->add_action('')
+        // Do nothing
     }
 
 	/**
