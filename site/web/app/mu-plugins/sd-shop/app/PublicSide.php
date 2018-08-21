@@ -45,7 +45,6 @@ class PublicSide {
      */
     protected const SNIPCART_KEY = 'ZTdjY2E5YjAtOTRlOC00ODhhLTk1NmMtOWRjNDBiZDIwMjNlNjM2NjQxMzkxOTI2MTUxOTcw';
 
-
     public const SNIPCART_SCRIPT = [
         'handle' => 'snipcart-script',
         'src' => 'https://cdn.snipcart.com/scripts/2.0/snipcart.js',
@@ -64,10 +63,8 @@ class PublicSide {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $sd_shop, $version ) {
-
 		$this->sd_shop = $sd_shop;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -76,22 +73,7 @@ class PublicSide {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in SD_Shop_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The SD_Shop_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-        wp_enqueue_style( $this->sd_shop, plugin_dir_url( __FILE__ ) . 'css/sd-shop-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( self::SNIPCART_STYLE['handle'], self::SNIPCART_STYLE['src'], array(), Null, 'all' );
-
+		wp_enqueue_style( self::SNIPCART_STYLE['handle'], self::SNIPCART_STYLE['src']);
 	}
 
 	/**
@@ -100,24 +82,16 @@ class PublicSide {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in SD_Shop_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The SD_Shop_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-        wp_enqueue_script( $this->sd_shop, plugin_dir_url( __FILE__ ) . 'js/sd-shop-public.js', array( 'jquery' ), $this->version, false );
-        wp_enqueue_script( self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], array( 'jquery' ), Null, false );
-
+        wp_enqueue_script( self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], array( 'jquery' ));
 	}
 
+    /**
+     * @brief      Update script tage for snipcart, including API key in it
+     * @param      $tag     The tag
+     * @param      $handle  The handle
+     * @param      $src     The source
+     * @return     Updated tag
+     */
     public function fixup_script_tags($tag, $handle, $src) {
         if ( self::SNIPCART_SCRIPT['handle'] === $handle ) {
             $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . self::SNIPCART_KEY . '"></script>';
