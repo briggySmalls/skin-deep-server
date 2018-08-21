@@ -1,5 +1,7 @@
 # Skin Deep server
 
+[![Build Status](https://travis-ci.org/briggySmalls/skin-deep-server.svg?branch=master)](https://travis-ci.org/briggySmalls/skin-deep-server)
+
 The entire server for the Skin Deep website.
 
 ## Structure
