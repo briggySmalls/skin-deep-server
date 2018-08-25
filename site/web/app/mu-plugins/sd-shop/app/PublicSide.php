@@ -88,7 +88,7 @@ class PublicSide
         });
 
         // Customise Snipcart script
-        $loader->addFilter('script_loader_tag', [$this, 'script_loader_tag'], 10, 3);
+        $loader->addFilter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 3);
     }
 
     /**
@@ -108,7 +108,7 @@ class PublicSide
      */
     public function enqueueScripts()
     {
-        wp_enqueue_script(self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], array( 'jquery' ));
+        wp_enqueue_script(self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], ['jquery']);
     }
 
     /**

@@ -55,8 +55,8 @@ class AdminSide
 
         // Enqueue assets
         $loader->addAction('admin_enqueue_scripts', function () {
-            $this->enqueue_scripts();
-            $this->enqueue_styles();
+            $this->enqueueScripts();
+            $this->enqueueStyles();
         });
     }
 

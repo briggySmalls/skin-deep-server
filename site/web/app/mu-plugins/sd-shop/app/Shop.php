@@ -75,28 +75,12 @@ class Shop
         $this->loader = new Loader();
 
         // Execute setup actions
-        $this->setLocale();
         $this->defineSitewideHooks();
 
         // Instantiate public/admin classes
+        $i18n = new I18n($this->loader);
         $plugin_admin = new AdminSide($this->getSdShop(), $this->getVersion(), $this->loader);
         $plugin_public = new PublicSide($this->getSdShop(), $this->getVersion(), $this->loader);
-    }
-
-    /**
-     * Define the locale for this plugin for internationalization.
-     *
-     * Uses the i18n class in order to set the domain and to register the hook
-     * with WordPress.
-     *
-     * @since    1.0.0
-     * @access   private
-     */
-    private function setLocale()
-    {
-        $plugin_i18n = new I18n();
-
-        $this->loader->addAction('plugins_loaded', $plugin_i18n, 'loadPluginTextdomain');
     }
 
     private function defineSitewideHooks()
