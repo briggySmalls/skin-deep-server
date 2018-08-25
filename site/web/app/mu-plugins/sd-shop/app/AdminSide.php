@@ -54,7 +54,7 @@ class AdminSide
         $this->version = $version;
 
         // Enqueue assets
-        $loader->addAction('admin_enqueue_scripts', function() {
+        $loader->addAction('admin_enqueue_scripts', function () {
             $this->enqueue_scripts();
             $this->enqueue_styles();
         });

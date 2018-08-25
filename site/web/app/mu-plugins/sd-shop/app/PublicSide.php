@@ -72,7 +72,7 @@ class PublicSide
         $this->version = $version;
 
         // Get the API key when we can
-        $loader->addAction('acf/init', function() {
+        $loader->addAction('acf/init', function () {
             $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
             if (!$this->api_key) {
                 AdminNotice::create()
@@ -82,7 +82,7 @@ class PublicSide
         });
 
         // Enqueue assets
-        $loader->addAction('enqueue_scripts', function() {
+        $loader->addAction('enqueue_scripts', function () {
             $this->enqueue_scripts();
             $this->enqueue_styles();
         });
