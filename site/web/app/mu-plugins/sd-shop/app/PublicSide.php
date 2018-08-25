@@ -82,9 +82,9 @@ class PublicSide
         });
 
         // Enqueue assets
-        $loader->addAction('enqueue_scripts', function () {
-            $this->enqueue_scripts();
-            $this->enqueue_styles();
+        $loader->addAction('wp_enqueue_scripts', function () {
+            $this->enqueueScripts();
+            $this->enqueueStyles();
         });
 
         // Customise Snipcart script
