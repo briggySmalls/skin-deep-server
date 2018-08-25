@@ -65,17 +65,30 @@ class PublicSide
      * @param      string    $sd_shop       The name of the plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct($sd_shop, $version)
+    public function __construct($sd_shop, $version, $loader)
     {
         // Initialise variables
         $this->sd_shop = $sd_shop;
         $this->version = $version;
-        $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
-        if (!$this->api_key) {
-            AdminNotice::create()
-                ->error('Snipcart API key not set. Shop will not function until set in Products > Shop Settings')
-                ->show();
-        }
+
+        // Get the API key when we can
+        $loader->addAction('acf/init', function () {
+            $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
+            if (!$this->api_key) {
+                AdminNotice::create()
+                    ->error('Snipcart API key not set. Shop will not function until set in Products > Shop Settings')
+                    ->show();
+            }
+        });
+
+        // Enqueue assets
+        $loader->addAction('wp_enqueue_scripts', function () {
+            $this->enqueueScripts();
+            $this->enqueueStyles();
+        });
+
+        // Customise Snipcart script
+        $loader->addFilter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 3);
     }
 
     /**
@@ -95,7 +108,7 @@ class PublicSide
      */
     public function enqueueScripts()
     {
-        wp_enqueue_script(self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], array( 'jquery' ));
+        wp_enqueue_script(self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], ['jquery']);
     }
 
     /**

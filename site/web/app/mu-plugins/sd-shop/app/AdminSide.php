@@ -48,10 +48,16 @@ class AdminSide
      * @param      string    $sd_shop       The name of this plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct($sd_shop, $version)
+    public function __construct($sd_shop, $version, $loader)
     {
         $this->sd_shop = $sd_shop;
         $this->version = $version;
+
+        // Enqueue assets
+        $loader->addAction('admin_enqueue_scripts', function () {
+            $this->enqueueScripts();
+            $this->enqueueStyles();
+        });
     }
 
     /**

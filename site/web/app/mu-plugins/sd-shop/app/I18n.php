@@ -26,6 +26,11 @@ namespace SD_Shop;
  */
 class I18n
 {
+    public function __construct($loader)
+    {
+        $loader->addAction('plugins_loaded', [$this, 'loadPluginTextdomain']);
+    }
+
     /**
      * Load the plugin text domain for translation.
      *

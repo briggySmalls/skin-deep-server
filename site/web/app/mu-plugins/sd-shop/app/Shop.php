@@ -75,58 +75,12 @@ class Shop
         $this->loader = new Loader();
 
         // Execute setup actions
-        $this->setLocale();
-        $this->defineAdminHooks();
-        $this->definePublicHooks();
         $this->defineSitewideHooks();
-    }
 
-    /**
-     * Define the locale for this plugin for internationalization.
-     *
-     * Uses the i18n class in order to set the domain and to register the hook
-     * with WordPress.
-     *
-     * @since    1.0.0
-     * @access   private
-     */
-    private function setLocale()
-    {
-        $plugin_i18n = new I18n();
-
-        $this->loader->addAction('plugins_loaded', $plugin_i18n, 'loadPluginTextdomain');
-    }
-
-    /**
-     * Register all of the hooks related to the admin area functionality
-     * of the plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     */
-    private function defineAdminHooks()
-    {
-        $plugin_admin = new AdminSide($this->getSdShop(), $this->getVersion());
-
-        $this->loader->addAction('admin_enqueue_scripts', $plugin_admin, 'enqueueStyles');
-        $this->loader->addAction('admin_enqueue_scripts', $plugin_admin, 'enqueueScripts');
-    }
-
-    /**
-     * Register all of the hooks related to the public-facing functionality
-     * of the plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     */
-    private function definePublicHooks()
-    {
-        $plugin_public = new PublicSide($this->getSdShop(), $this->getVersion());
-
-        $this->loader->addAction('wp_enqueue_scripts', $plugin_public, 'enqueueStyles');
-        $this->loader->addAction('wp_enqueue_scripts', $plugin_public, 'enqueueScripts');
-
-        $this->loader->addFilter('script_loader_tag', $plugin_public, 'scriptLoaderTag', 10, 3);
+        // Instantiate public/admin classes
+        $i18n = new I18n($this->loader);
+        $plugin_admin = new AdminSide($this->getSdShop(), $this->getVersion(), $this->loader);
+        $plugin_public = new PublicSide($this->getSdShop(), $this->getVersion(), $this->loader);
     }
 
     private function defineSitewideHooks()
