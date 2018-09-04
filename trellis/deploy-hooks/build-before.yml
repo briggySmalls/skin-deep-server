@@ -24,6 +24,7 @@
     - web/app/themes/sd-theme
     - web/app/mu-plugins/sd-articles
     - web/app/mu-plugins/sd-events
+    - web/app/mu-plugins/sd-shop
 
 - name: Compile assets for production
   command: yarn build:production
