@@ -3,12 +3,12 @@
     <div class="col-md-4">
       {{-- Display featured image/video --}}
       {{-- Feature video takes precedence --}}
-      @if (SinglePost::has_featured_video())
+      @if (SinglePost::hasFeaturedVideo())
         <div class="embed-responsive embed-responsive-16by9">
           {!! SinglePost::video() !!}
         </div>
       {{-- Otherwise display the featured image --}}
-      @elseif (SinglePost::has_featured_image())
+      @elseif (SinglePost::hasFeaturedImage())
         {!! SinglePost::image() !!}
       @endif
     </div>
