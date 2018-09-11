@@ -10,5 +10,6 @@ labels:
 config:
   public: true
   hierarchical: false
+  show_in_rest: true  # Required for Gutenberg
   rewrite:
     slug: authors
