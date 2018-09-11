@@ -26,7 +26,7 @@
             "label": "Facebook event",
             "name": "sd_event_facebook_event",
             "type": "number",
-            "instructions": "URL of the facebook event",
+            "instructions": "ID of the facebook event.\r\nHint: It is the number portion of the URL of an event page. For example the ID of an event with URL  https:\/\/www.facebook.com\/events\/408977832915985\/ is  '408977832915985'",
             "required": 0,
             "conditional_logic": [
                 [
@@ -145,5 +145,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534584171
+    "modified": 1536620765
 }
