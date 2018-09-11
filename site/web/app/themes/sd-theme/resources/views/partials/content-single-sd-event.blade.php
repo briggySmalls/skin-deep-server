@@ -18,7 +18,7 @@
     </ul>
   </header>
   <div class="entry-content">
-    {!! get_the_content() !!}
+    {{ the_content() }}
   </div>
   @php comments_template('/partials/comments.blade.php') @endphp
 </article>
