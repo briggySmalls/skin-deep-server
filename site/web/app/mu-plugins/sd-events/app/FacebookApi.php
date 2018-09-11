@@ -3,6 +3,9 @@
 namespace SdEvents;
 
 use SdEvents\DataClasses\FacebookEventDetails;
+use \Facebook\Facebook;
+use \Facebook\Exceptions\FacebookResponseException;
+use \Facebook\Exceptions\FacebookSDKException;
 
 class FacebookApi
 {
@@ -13,7 +16,7 @@ class FacebookApi
         // Get facebook settings
         $fb_settings = get_field('sd_event_fb_page_group', 'option');
         // Create facebook API
-        $this->fb = new \Facebook\Facebook([
+        $this->fb = new Facebook([
           'app_id' => $fb_settings['app_id'],
           'app_secret' => $fb_settings['app_secret'],
           'default_graph_version' => 'v3.1',
@@ -36,10 +39,10 @@ class FacebookApi
         try {
             // Returns a `Facebook\FacebookResponse` object
             return $this->fb->get('/' . $slug);
-        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             // When validation fails or other local issues
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
         }

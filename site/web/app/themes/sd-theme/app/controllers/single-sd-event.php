@@ -25,28 +25,41 @@ class SingleSdEvent extends Controller
         return $api->getEventDetails();
     }
 
-    public static function toDatetimeString($details)
+    public static function getDisplayTime($details)
     {
-        // First determine if the event starts and ends on the same date
+        // First check that there are times in the first place
+        assert($details->start_time);
+        if (!$details->end_time)
+        {
+            // Only return the start time
+            return self::toDatetimeString($details->start_time);
+        }
+
+        // Determine if we show special formatting for same day (start - end date)
         $is_same_day = $details->start_time->format('d') == $details->end_time->format('d');
         $is_not_24_hrs = $details->start_time->diff($details->end_time)->format('H') < 24;
         if ($is_same_day & $is_not_24_hrs) {
             // Starts/ends on same day
             return self::toTimeString($details->start_time) . ' - ' . self::toTimeString($details->end_time) . ' ' . self::toDateString($details->start_time);
         }
-        // Otherwise wirte out the date twice
+
+        // Otherwise write out the date twice
         return (
-            self::toTimeString($details->start_time) . ' ' . self::toDateString($details->start_time) . ' - ' .
-            self::toTimeString($details->end_time) . ' ' . self::toDateString($details->end_time));
+            self::toDatetimeString($details->start_time) . ' - ' . self::toDatetimeString($details->end_time));
+    }
+
+    protected static function toDatetimeString($datetime)
+    {
+        return self::toTimeString($datetime) . ' ' . self::toDateString($datetime);
     }
 
     protected static function toTimeString($datetime)
     {
-        return $datetime->format('H:m');
+        return date_i18n('H:m', $datetime->getTimestamp());
     }
 
     protected static function toDateString($datetime)
     {
-        return $datetime->format('d M');
+        return date_i18n('d M', $datetime->getTimestamp());
     }
 }

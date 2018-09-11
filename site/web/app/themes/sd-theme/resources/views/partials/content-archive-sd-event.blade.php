@@ -23,7 +23,9 @@
       <h4 class="card-title">{{ get_post()->post_title }}</h4>
       {{-- Display excerpt --}}
       @php $details = $sd_events_api->getEventDetails(); @endphp
-      <p class="card-text">{{ SingleSdEvent::toDatetimeString($details) }}</p>
+      @if ($details->start_time)
+        <p class="card-text">{{ SingleSdEvent::getDisplayTime($details) }}</p>
+      @endif
     </div>
   </div>
 </div>

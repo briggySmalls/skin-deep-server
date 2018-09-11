@@ -11,9 +11,9 @@ class SdEventsApi
     {
         $details = get_field('sd_event_details');
         return new EventDetails(
-            self::toDatetime($details['start_time']),
-            self::toDatetime($details['end_time']),
-            $details['venue']['address'],
+            $details['start_time'] ? self::toDatetime($details['start_time']) : NULL,
+            $details['end_time'] ? self::toDatetime($details['end_time']) : NULL,
+            $details['venue'] ? $details['venue']['address'] : NULL,
             get_field('sd_event_facebook_event')
         );
     }
