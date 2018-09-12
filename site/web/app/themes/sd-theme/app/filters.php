@@ -73,11 +73,8 @@ add_filter('comments_template', function ($comments_template) {
  * Add bootstrap nav class to menu anchors
  */
 add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
-    // check if the item is in the primary menu
-    if ($args->theme_location == 'primary_navigation') {
-      // add the desired attributes:
-        $atts['class'] = 'nav-link';
-    }
+    // add the desired attributes:
+    $atts['class'] = 'nav-link';
     return $atts;
 }, 10, 3);
 
