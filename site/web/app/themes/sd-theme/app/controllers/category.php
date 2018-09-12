@@ -3,8 +3,9 @@
 namespace App;
 
 use Sober\Controller\Controller;
+use Sober\Controller\Module\Tree;
 
-class Category extends Controller
+class Category extends Controller implements Tree
 {
     public static function id()
     {

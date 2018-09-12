@@ -1,0 +1,16 @@
+.posts-navigation {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.widget.preview .card {
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+.container-fluid .row {
+  [class*="col-"] {
+    margin-top: 1em;
+  }
+}
