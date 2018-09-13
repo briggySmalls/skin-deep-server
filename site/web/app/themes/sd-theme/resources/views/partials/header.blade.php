@@ -1,12 +1,13 @@
 <header id="main-header" class="banner">
   <nav class="navbar">
-    <a class="navbar-brand" href="{{ home_url('/') }}">
       @if (has_custom_logo())
-        {!! get_custom_logo() !!}
+        {{-- Don't bother with a link, it's supplied already --}}
+        @php the_custom_logo() @endphp
       @else
-        {{ get_bloginfo('name', 'display') }}
+        <a class="navbar-brand" href="{{ home_url('/') }}">
+          {{ get_bloginfo('name', 'display') }}
+        </a>
       @endif
-    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,8 +25,8 @@
           Logout
         </a>
       </div>
-      {{-- Search bar --}}
-      {!! get_search_form() !!}
     </div>
+    {{-- Search bar --}}
+    {!! get_search_form() !!}
   </nav>
 </header>

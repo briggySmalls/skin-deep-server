@@ -1,27 +1,35 @@
 #main-header {
   @extend .sticky-top;
+
+  .custom-logo-link {
+    // Apply the important stuff from navbar-brand
+    @extend .navbar-brand;
+
+    img {
+      max-height: 100%;
+      height: 3.5em;
+      width: auto;
+    }
+  }
 }
 
-#main-header nav.navbar {
+nav.navbar {
   // Add bootstrap navbar styling
   @extend .navbar-expand-lg;
   @extend .navbar-light;
   @extend .bg-light;
-}
 
-// Menu in main header
-#main-header ul[id^=menu-] {
-  @extend .navbar-nav;
-}
+  // Menu in navbar
+  ul.menu {
+    @extend .navbar-nav;
 
-.navbar .menu-item {
-  @extend .nav-item;
-}
-
-.navbar .menu-item a {
-  @extend .nav-link;
-}
-
-.navbar form {
-  @extend .form-inline;
+    // Item in menu
+    .menu-item {
+      @extend .nav-item;
+    }
+  }
+  // Form in menu item
+  form {
+    @extend .form-inline;
+  }
 }
