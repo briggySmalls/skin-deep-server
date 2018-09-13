@@ -21,3 +21,6 @@ $theme-colors: (
 
   @return null;
 }
+
+$navbar-light-active-color: theme-color(highlight);
+$navbar-light-hover-color: theme-color(highlight);
