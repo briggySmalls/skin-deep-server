@@ -42,6 +42,6 @@ class Product
 
     public function in_stock()
     {
-        return get_field('sd-product-in-stop', $this->post->ID);
+        return get_field('sd_product_in_stock', $this->post->ID);
     }
 }

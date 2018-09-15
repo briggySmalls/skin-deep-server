@@ -7,5 +7,11 @@
   {{-- TODO: Make function to display price (inc. denomination) --}}
 </div>
 <div class="card-footer">
-  <p class="card-text">£{{ $product->price() }}</p>
+  <p class="card-text">
+    @if ($product->in_stock())
+      £{{ $product->price() }}
+    @else
+      Out of stock
+    @endif
+  </p>
 </div>
