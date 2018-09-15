@@ -8,7 +8,7 @@
         {{-- Display featured image/video --}}
         <a href="{{ get_permalink($article) }}">
         @include(
-          'partials.featured-media',
+          'articles::partials.featured-media',
           ['image_size' => 'large', 'image_classes' => 'd-block w-100'])
         </a>
         <div class="carousel-caption d-none d-md-block">

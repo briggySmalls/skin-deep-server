@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Philo\Blade\Blade;
+use App\Articles;
 
 /**
  * Featured posts slider widget
@@ -10,9 +10,6 @@ use Philo\Blade\Blade;
  */
 abstract class Widget extends \WP_Widget
 {
-
-    protected $blade;
-
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/
@@ -23,7 +20,6 @@ abstract class Widget extends \WP_Widget
      */
     public function __construct($title, $description)
     {
-
         // load plugin text domain
         add_action('init', array( $this, 'widgetTextdomain' ));
 
@@ -35,9 +31,6 @@ abstract class Widget extends \WP_Widget
                 'description' => $description
             ]
         );
-
-        // Create Laravel Blade handler
-        $this->blade = new Blade(ResourceManager::viewDir(), ResourceManager::cacheDir());
 
         // Refreshing the widget's cached output with each new post
         add_action('save_post', [ $this, 'flushWidgetCache' ]);
@@ -90,7 +83,7 @@ abstract class Widget extends \WP_Widget
         $context = $this->createArgs($args);
 
         // Generate the widget content from the Blade template
-        $widget_string .= $this->blade->view()->make($this->widgetSlug() . '-widget', ['context' => $context])->render();
+        $widget_string .= Articles::$blade->make($this->template_name('widget'), ['context' => $context])->render();
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;
@@ -141,7 +134,7 @@ abstract class Widget extends \WP_Widget
         // TODO: Store the values of the widget in their own variable
 
         // Display the admin form
-        echo $this->blade->view()->make($this->widgetSlug() . '-admin')->render();
+        echo Articles::$blade->make($this->template_name('admin'))->render();
     } // end form
 
     /*--------------------------------------------------*/
@@ -239,6 +232,11 @@ abstract class Widget extends \WP_Widget
     /*--------------------------------------------------*/
     /* Private/protected Functions
     /*--------------------------------------------------*/
+
+    protected function template_name($name)
+    {
+        return TEMPLATE_NAMESPACE . '::' . $this->widgetSlug() . '-' . $name;
+    }
 
     /**
      * @brief      Gets the name of the widget

@@ -2,7 +2,16 @@
 
 namespace App;
 
+use App\Articles;
+
 const PLUGIN_NAMESPACE = 'App';
+const TEMPLATE_NAMESPACE = 'articles';
+
+// Get the blade engine from sage (for building widget html)
+add_action('skin_deep_init', function($blade) {
+    Articles::$blade = $blade;
+});
+
 // Register the widgets
 add_action('widgets_init', function () {
     register_widget(PLUGIN_NAMESPACE . '\PostsPreview');

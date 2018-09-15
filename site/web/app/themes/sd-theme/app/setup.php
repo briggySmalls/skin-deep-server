@@ -154,5 +154,5 @@ add_action('after_setup_theme', function () {
     /**
      * Notify dependent plugins that we are setup
      */
-    do_action('skin_deep_init', sage());
+    do_action('skin_deep_init', sage('blade'));
 });

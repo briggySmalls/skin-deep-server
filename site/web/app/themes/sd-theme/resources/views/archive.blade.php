@@ -11,18 +11,8 @@
   @endif
 
   {{-- Display posts in a grid --}}
-  <div class="container-fluid">
-    <div class="row">
-      @while (have_posts()) @php the_post() @endphp
-        <div class="col-md-{{ 12 / $column_count }}">
-          {{-- Wrap the entire card in a link --}}
-          <a href={{ get_permalink() }}>
-            @include('partials.content-archive')
-          </a>
-        </div>
-      @endwhile
-    </div>
-  </div>
+  @include('articles::partials.loop-grid')
 
+  {{-- Display navigation --}}
   {!! get_the_posts_navigation() !!}
 @endsection
