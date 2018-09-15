@@ -5,11 +5,11 @@
 <div class="card-body">
   {{-- Display category --}}
   <p class="category-link">
-    @foreach (get_the_category($article) as $category)
+    @foreach (get_the_category($post) as $category)
       {{ $category->name }}
     @endforeach
   </p>
   {{-- Display title --}}
-  <h3 class="card-title">{{ $article->post_title }}</h3>
+  <h3 class="card-title">{{ $post->post_title }}</h3>
   {{-- TODO: Display excerpt? --}}
 </div>

@@ -13,7 +13,7 @@
               $single_post_template = 'articles::partials.single_post';
             }
             @endphp
-            @include($single_post_template, ['article' => $post])
+            @include($single_post_template, ['post' => $post])
           </div>
         </a>
       </div>
