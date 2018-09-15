@@ -43,6 +43,25 @@
             "maxlength": ""
         },
         {
+            "key": "field_5b9d24cb92b4d",
+            "label": "In stock",
+            "name": "sd_product_in_stock",
+            "type": "true_false",
+            "instructions": "Whether to allow customers to purchase the product",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Allow sales",
+            "ui_off_text": "Disable sales"
+        },
+        {
             "key": "field_5b2aef619134e",
             "label": "Subscription",
             "name": "sd-product-subscription",
@@ -113,5 +132,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "Set of options defining a product",
-    "modified": 1529543516
+    "modified": 1537025493
 }

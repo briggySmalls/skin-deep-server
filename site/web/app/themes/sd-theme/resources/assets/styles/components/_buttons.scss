@@ -1,0 +1,10 @@
+// Buttons
+button {
+  // By default make buttons bootstrap style
+  @extend .btn;
+  @extend .btn-light;
+}
+
+button.buy-button {
+  @extend .btn-primary;
+}
