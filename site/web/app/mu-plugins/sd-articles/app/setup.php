@@ -2,9 +2,12 @@
 
 namespace App;
 
-// Include the PostsPreview widget
-require_once __DIR__ . '/PostsPreview.php';
-require_once __DIR__ . '/PostsSlider.php';
+const PLUGIN_NAMESPACE = 'App';
+// Register the widgets
+add_action('widgets_init', function () {
+    register_widget(PLUGIN_NAMESPACE . '\PostsPreview');
+    register_widget(PLUGIN_NAMESPACE . '\PostsSlider');
+});
 
 // Remove existing 'authors' base URL
 add_filter('author_rewrite_rules', function () {

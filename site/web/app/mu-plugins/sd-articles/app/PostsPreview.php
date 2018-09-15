@@ -57,7 +57,3 @@ class PostsPreview extends Widget
         return self::WIDGET_SLUG;
     }
 } // end class
-
-add_action('widgets_init', function () {
-    register_widget('App\PostsPreview');
-});
