@@ -1,3 +1,6 @@
+@import "../custom";
+@import "~bootstrap/scss/bootstrap";
+
 .widget.preview {
     .title {
         text-align: center;
@@ -7,4 +10,10 @@
         text-align: center;
         margin: 1em 0em;
     }
+}
+
+.posts-grid .card > img {
+  &:first-child {
+    @extend .card-img-top;
+  }
 }
