@@ -16,18 +16,19 @@ class SingleSdProduct extends Controller
         return get_the_title();
     }
 
-    public static function price()
+    public static function price($post_id=null)
     {
-        return get_field('sd-product-price');
+
+        return get_field('sd-product-price', $post_id);
     }
 
-    public static function url()
+    public static function url($post_id=null)
     {
-        return get_permalink();
+        return get_permalink($post_id);
     }
 
-    public static function description()
+    public static function description($post_id=null)
     {
-        return get_field('sd-product-description');
+        return get_field('sd-product-description', $post_id);
     }
 }
