@@ -20,8 +20,7 @@
     ]
   },
   "require": {
-    "php": ">=7.1",
-    "philo/laravel-blade": "3.*"
+    "php": ">=7.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.8.0"
