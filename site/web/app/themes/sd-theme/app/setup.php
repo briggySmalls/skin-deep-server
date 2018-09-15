@@ -150,4 +150,9 @@ add_action('after_setup_theme', function () {
     sage('blade')->compiler()->directive('asset', function ($asset) {
         return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
     });
+
+    /**
+     * Notify dependent plugins that we are setup
+     */
+    do_action('skin_deep_init', sage());
 });
