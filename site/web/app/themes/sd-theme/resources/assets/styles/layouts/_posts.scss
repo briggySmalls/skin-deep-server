@@ -11,6 +11,10 @@
 
 .container-fluid .row {
   [class*="col-"] {
-    margin-top: 1em;
+    margin-top: 1em; // Add spacing between rows
+  }
+
+  .card {
+    height: 100%; // Make cards equal height
   }
 }
