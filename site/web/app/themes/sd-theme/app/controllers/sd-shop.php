@@ -3,6 +3,7 @@
 namespace App;
 
 use Sober\Controller\Controller;
+use App\SkinDeep\Product;
 
 class SdShop extends Controller
 {

@@ -1,8 +1,11 @@
 @if (has_post_thumbnail($post->ID))
   {!! get_the_post_thumbnail($post->ID, 'post_thumbnail'); !!}
 @endif
+@php $product = new App\SkinDeep\Product($post); @endphp
 <div class="card-body">
-  <h5 class="card-title">{{ $post->post_title }}</h5>
+  <h5 class="card-title">{{ $product->title() }}</h5>
   {{-- TODO: Make function to display price (inc. denomination) --}}
-  <p class="card-text">£{{ SingleSdProduct::price($post->ID) }}</p>
+</div>
+<div class="card-footer">
+  <p class="card-text">£{{ $product->price() }}</p>
 </div>

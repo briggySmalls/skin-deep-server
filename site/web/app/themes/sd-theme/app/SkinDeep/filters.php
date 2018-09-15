@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SkinDeep;
+namespace App;
 
 /**
  * Add bootstrap nav class to menu anchors

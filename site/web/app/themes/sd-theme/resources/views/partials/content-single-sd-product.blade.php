@@ -7,17 +7,17 @@
       </figure>
     </div>
     <div class="col-md">
-      <h1 class="entry-title">{{ get_the_title() }}</h1>
+      <h1 class="entry-title">{{ $product->title() }}</h1>
       <div class="entry-content">
-        {{ get_the_content() }}
+        {{ the_content() }}
       </div>
       <button
         class="snipcart-add-item"
-        data-item-id="{{ SingleSdProduct::id() }}"
-        data-item-name="{{ SingleSdProduct::name() }}"
-        data-item-price="{{ SingleSdProduct::price() }}"
-        data-item-url="{{ SingleSdProduct::url() }}"
-        data-item-description="{{ SingleSdProduct::description()}}">
+        data-item-id="{{ $product->id() }}"
+        data-item-name="{{ $product->title() }}"
+        data-item-price="{{ $product->price() }}"
+        data-item-url="{{ $product->url() }}"
+        data-item-description="{{ $product->description()}}">
             Buy
       </button>
     </div>
