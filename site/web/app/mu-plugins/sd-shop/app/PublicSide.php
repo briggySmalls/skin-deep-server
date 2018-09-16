@@ -1,6 +1,6 @@
 <?php
 
-namespace SD_Shop;
+namespace SkinDeep\Shop;
 
 use \YeEasyAdminNotices\V1\AdminNotice;
 
@@ -10,7 +10,7 @@ use \YeEasyAdminNotices\V1\AdminNotice;
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  */
 
 /**
@@ -19,7 +19,7 @@ use \YeEasyAdminNotices\V1\AdminNotice;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  * @author     Your Name <email@example.com>
  */
 class PublicSide

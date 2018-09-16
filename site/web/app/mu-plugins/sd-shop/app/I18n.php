@@ -1,6 +1,6 @@
 <?php
 
-namespace SD_Shop;
+namespace SkinDeep\Shop;
 
 /**
  * Define the internationalization functionality
@@ -11,7 +11,7 @@ namespace SD_Shop;
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  */
 
 /**
@@ -21,7 +21,7 @@ namespace SD_Shop;
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  * @author     Your Name <email@example.com>
  */
 class I18n

@@ -1,6 +1,6 @@
 <?php
 
-namespace SD_Shop;
+namespace SkinDeep\Shop;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -8,7 +8,7 @@ namespace SD_Shop;
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  */
 
 /**
@@ -17,7 +17,7 @@ namespace SD_Shop;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  * @author     Your Name <email@example.com>
  */
 class AdminSide

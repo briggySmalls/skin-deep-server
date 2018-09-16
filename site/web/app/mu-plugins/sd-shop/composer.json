@@ -13,7 +13,7 @@
   "keywords": ["wordpress"],
   "autoload": {
     "psr-4": {
-      "SD_Shop\\": "app/"
+      "SkinDeep\\Shop\\": "app/"
     }
   },
   "require": {

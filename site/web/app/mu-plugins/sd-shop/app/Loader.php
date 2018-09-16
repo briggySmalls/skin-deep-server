@@ -1,6 +1,6 @@
 <?php
 
-namespace SD_Shop;
+namespace SkinDeep\Shop;
 
 /**
  * Register all actions and filters for the plugin
@@ -8,7 +8,7 @@ namespace SD_Shop;
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  */
 
 /**
@@ -18,7 +18,7 @@ namespace SD_Shop;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  * @author     Your Name <email@example.com>
  */
 class Loader
