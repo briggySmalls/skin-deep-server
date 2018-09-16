@@ -1,6 +1,6 @@
 <?php
 
-namespace SdEvents;
+namespace SkinDeep\Events;
 
 //! Name of the environment variable that holds the google maps API key
 const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
