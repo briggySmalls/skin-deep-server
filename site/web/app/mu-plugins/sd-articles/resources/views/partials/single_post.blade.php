@@ -6,7 +6,10 @@
   {{-- Display category --}}
   <p class="category-link">
     @foreach (get_the_category($post) as $category)
-      {{ $category->name }}
+      @if (SkinDeep\Articles\Articles::is_default_category($category))
+        @continue
+      @endif
+        {{ $category->name }}
     @endforeach
   </p>
   {{-- Display title --}}

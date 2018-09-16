@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace SkinDeep\Articles;
 
-use App\Articles;
+use SkinDeep\Articles\Articles;
 
-const PLUGIN_NAMESPACE = 'App';
+const PLUGIN_NAMESPACE = 'SkinDeep\\Articles';
 const TEMPLATE_NAMESPACE = 'articles';
 
 // Get the blade engine from sage (for building widget html)
