@@ -30,4 +30,10 @@ class App extends Controller
         }
         return get_the_title();
     }
+
+    public static function is_default_category($category)
+    {
+        $default_category = get_option('default_category');
+        return $default_category == $category->term_id;
+    }
 }
