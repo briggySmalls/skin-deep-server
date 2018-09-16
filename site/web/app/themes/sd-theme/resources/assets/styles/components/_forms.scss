@@ -1,26 +1,13 @@
 /** Search form */
-.search-form {
+form.site-search {
   @extend .form-inline;
-}
 
-.search-form label {
-  @extend .form-group;
+  input[type="search"] {
+    @extend .form-control;
+  }
 
-  font-weight: normal;
-}
-
-.search-form .search-field {
-  @extend .form-control;
-  @extend .mr-sm-2;
-}
-
-.search-form .search-submit {
-  @extend .btn;
-  @extend .btn-light;
-  @extend .my-2;
-  @extend .my-sm-0;
-}
-
-input {
-  @extend .form-control;
+  button[type="button"] {
+    @extend .btn;
+    @extend .btn-outline-secondary;
+  }
 }

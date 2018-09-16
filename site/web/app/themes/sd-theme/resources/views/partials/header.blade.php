@@ -25,8 +25,8 @@
           Logout
         </a>
       </div>
+      {{-- Search bar --}}
+      {!! get_search_form() !!}
     </div>
-    {{-- Search bar --}}
-    {!! get_search_form() !!}
   </nav>
 </header>
