@@ -2,7 +2,7 @@
 
 namespace SkinDeep\Articles;
 
-use App\Articles;
+use SkinDeep\Articles\Articles;
 
 /**
  * Featured posts slider widget

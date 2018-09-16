@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SkinDeep\Theme;
 
 use Roots\Sage\Container;
 

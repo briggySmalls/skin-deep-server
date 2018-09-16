@@ -14,7 +14,7 @@
   "keywords": ["wordpress"],
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "SkinDeep\\Theme\\": "app/"
     }
   },
   "require": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SkinDeep;
+namespace SkinDeep\Theme\SkinDeep;
 
 /**
  * Wrapper for product data

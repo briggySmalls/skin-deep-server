@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SkinDeep\Theme;
 
 /**
  * Add bootstrap nav class to menu anchors
@@ -15,7 +15,7 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
  * Add custom searchform
  */
 add_filter('get_search_form', function () {
-    return \App\template('partials.searchform');
+    return template('partials.searchform');
 });
 
 /**
