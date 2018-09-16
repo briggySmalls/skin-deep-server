@@ -1,6 +1,6 @@
 <?php
 
-namespace SdEvents\DataClasses;
+namespace SkinDeep\Events\DataClasses;
 
 use \DateTime;
 

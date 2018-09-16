@@ -1,6 +1,6 @@
 <?php
 
-namespace SdEvents;
+namespace SkinDeep\Events;
 
 use SdEvents\FacebookApi;
 

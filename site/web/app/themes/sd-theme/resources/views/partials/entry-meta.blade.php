@@ -1,7 +1,7 @@
 {{-- Display cateogories & date --}}
 <div class="">
   @foreach (get_the_category() as $category)
-    @if (App::is_default_category($category))
+    @if (SkinDeep\Articles\Articles::is_default_category($category))
       @continue
     @endif
     <a href="{{ get_term_link($category) }}">{{ $category->name }}</a>

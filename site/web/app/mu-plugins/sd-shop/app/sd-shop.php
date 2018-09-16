@@ -1,6 +1,6 @@
 <?php
 
-namespace SD_Shop;
+namespace SkinDeep\Shop;
 
 use \YeEasyAdminNotices\V1\AdminNotice;
 
@@ -14,7 +14,7 @@ use \YeEasyAdminNotices\V1\AdminNotice;
  *
  * @link              http://example.com
  * @since             1.0.0
- * @package           SD_Shop
+ * @package           SkinDeep\Shop
  *
  * @wordpress-plugin
  * Plugin Name:       Skin Deep Shop

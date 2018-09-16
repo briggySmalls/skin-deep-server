@@ -1,11 +1,11 @@
 <?php
 
-namespace SdEvents;
+namespace SkinDeep\Events;
 
-use SdEvents\DataClasses\EventDetails;
+use SkinDeep\Events\DataClasses\EventDetails;
 use \DateTime;
 
-class SdEventsApi
+class EventsApi
 {
     public function getEventDetails()
     {

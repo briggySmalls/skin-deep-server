@@ -1,6 +1,6 @@
 <?php
 
-namespace SD_Shop;
+namespace SkinDeep\Shop;
 
 /**
  * The file that defines the core plugin class
@@ -11,7 +11,7 @@ namespace SD_Shop;
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  */
 
 /**
@@ -24,7 +24,7 @@ namespace SD_Shop;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    SD_Shop
+ * @package    SkinDeep\Shop
  * @author     Your Name <email@example.com>
  */
 class Shop
