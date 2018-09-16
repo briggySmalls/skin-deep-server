@@ -31,9 +31,34 @@ class App extends Controller
         return get_the_title();
     }
 
+    public static function image($size)
+    {
+        if (is_category())
+        {
+            $image = get_field('sd_article_category_image', self::category());
+            return wp_get_attachment_image($image, $size, false);
+        }
+        return null;
+    }
+
+    public static function description()
+    {
+        if (is_category())
+        {
+            return get_field('sd_article_category_description', self::category());
+        }
+        return null;
+    }
+
     public static function is_default_category($category)
     {
         $default_category = get_option('default_category');
         return $default_category == $category->term_id;
+    }
+
+    protected static function category()
+    {
+        assert(is_category());
+        return get_queried_object();
     }
 }
