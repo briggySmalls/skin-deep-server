@@ -19,12 +19,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, // Puts styles in separate files
           "css-loader", // translates CSS into CommonJS
-          {
-            loader: 'postcss-loader', // Run post css actions (for bootstrap)
-            options: {
-              plugins: () => [require('autoprefixer')]
-            }
-          },
           "sass-loader" // compiles Sass to CSS
         ]
       }
