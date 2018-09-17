@@ -2,7 +2,7 @@
 
 namespace SkinDeep\Events;
 
-use SdEvents\FacebookApi;
+use SkinDeep\Events\FacebookApi;
 
 add_action('acf/init', function () {
     // Deal with google maps registration

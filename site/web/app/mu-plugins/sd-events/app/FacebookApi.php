@@ -2,7 +2,7 @@
 
 namespace SkinDeep\Events;
 
-use SdEvents\DataClasses\FacebookEventDetails;
+use SkinDeep\Events\DataClasses\FacebookEventDetails;
 use \Facebook\Facebook;
 use \Facebook\Exceptions\FacebookResponseException;
 use \Facebook\Exceptions\FacebookSDKException;

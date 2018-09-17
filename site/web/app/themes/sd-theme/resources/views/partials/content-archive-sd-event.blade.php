@@ -16,7 +16,7 @@
       {{-- Display title --}}
       <h4 class="card-title">{{ get_post()->post_title }}</h4>
       {{-- Display time --}}
-      @php $details = $sd_events_api->getEventDetails(); @endphp
+      @php $details = $events_api->getEventDetails(); @endphp
       @if ($details->start_time)
         <p class="card-text">{{ SingleSdEvent::getDisplayTime($details) }}</p>
       @endif
