@@ -3,7 +3,7 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
-use SdEvents\SdEventsApi;
+use SkinDeep\Events\EventsApi;
 
 class SingleSdEvent extends Controller
 {
@@ -12,7 +12,7 @@ class SingleSdEvent extends Controller
     public function __construct()
     {
         // Create an API to serve us
-        $this->api = new SdEventsApi();
+        $this->api = new EventsApi();
     }
 
     public function details()
