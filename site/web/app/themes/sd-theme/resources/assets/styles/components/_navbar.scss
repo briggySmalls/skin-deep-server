@@ -20,7 +20,7 @@ nav.navbar {
   @extend .bg-light;
 
   // Menu in navbar
-  ul.menu {
+  ul {
     @extend .navbar-nav;
 
     // Item in menu

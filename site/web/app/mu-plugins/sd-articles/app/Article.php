@@ -72,7 +72,7 @@ class Article extends Post
         return $this->post->$name;
     }
 
-    protected static function isDefaultCategory($category)
+    public static function isDefaultCategory($category)
     {
         return self::defaultCategory() == $category->term_id;
     }
