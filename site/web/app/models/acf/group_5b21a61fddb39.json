@@ -1,6 +1,48 @@
 {
     "key": "group_5b21a61fddb39",
-    "title": "Featured",
+    "title": "Article options",
+    "fields": [
+        {
+            "key": "field_5b21a633286bf",
+            "label": "Featured Video",
+            "name": "sd_featured_video",
+            "type": "oembed",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "width": "",
+            "height": ""
+        },
+        {
+            "key": "field_5b9f09181e0c1",
+            "label": "Magazine",
+            "name": "sd_article_magazine",
+            "type": "post_object",
+            "instructions": "Select a magazine that this article is from",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "sd-product"
+            ],
+            "taxonomy": [
+                "sd-product-cat:print-magazines"
+            ],
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
     "location": [
         [
             {
@@ -18,23 +60,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "fields": [
-        {
-            "key": "field_5b21a633286bf",
-            "label": "Featured Video",
-            "name": "sd_featured_video",
-            "type": "oembed",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "width": "",
-            "height": ""
-        }
-    ],
-    "modified": 1529461827
+    "modified": 1537149398
 }

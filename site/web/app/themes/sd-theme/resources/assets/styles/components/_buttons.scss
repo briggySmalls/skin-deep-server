@@ -5,6 +5,7 @@ button {
   @extend .btn-light;
 }
 
-button.buy-button {
+.buy-button {
+  @extend .btn;
   @extend .btn-primary;
 }

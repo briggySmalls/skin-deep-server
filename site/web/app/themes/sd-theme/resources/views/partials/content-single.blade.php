@@ -21,6 +21,24 @@
       </p>
     @endif
   </header>
+  @php $magazine = SinglePost::magazine(); @endphp
+  @if ($magazine)
+    <div class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-auto">
+            <h1 class="display-4">Get the full magazine</h1>
+            <p class="lead">This piece is from our print edition: {{ $magazine->post_title }}</p>
+            <a class="buy-button" href="{{ get_permalink($magazine->ID) }}">Buy it now</a>
+          </div>
+          <div class="col-sm">
+            {{-- TODO: Make an article wrapper like for Product --}}
+            {!! get_the_post_thumbnail($magazine->ID, 'thumbnail') !!}
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
   <div class="entry-content">
     {{ the_content() }}
   </div>

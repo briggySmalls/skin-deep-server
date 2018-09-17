@@ -30,7 +30,7 @@ class SinglePost extends Controller
      */
     public static function image()
     {
-        return get_the_post_thumbnail(get_post()->ID, 'large', ['class' => 'img-fluid']);
+        return get_the_post_thumbnail(get_post()->ID, 'large');
     }
 
     /**
@@ -39,7 +39,7 @@ class SinglePost extends Controller
      */
     public static function hasFeaturedVideo()
     {
-        return (SinglePost::video() != null);
+        return (self::video() != null);
     }
 
     /**
@@ -49,5 +49,15 @@ class SinglePost extends Controller
     public static function hasFeaturedImage()
     {
         return has_post_thumbnail(get_post()->ID);
+    }
+
+    public static function magazine()
+    {
+        return get_field('sd_article_magazine');
+    }
+
+    public function is_articles_page()
+    {
+        return true;
     }
 }
