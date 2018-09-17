@@ -56,6 +56,11 @@ class App extends Controller
         return $default_category == $category->term_id;
     }
 
+    public function columnCount()
+    {
+        return 3;
+    }
+
     protected static function category()
     {
         assert(is_category());

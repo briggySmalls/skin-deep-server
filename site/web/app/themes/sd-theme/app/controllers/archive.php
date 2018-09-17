@@ -6,11 +6,6 @@ use Sober\Controller\Controller;
 
 class Archive extends Controller
 {
-    public function columnCount()
-    {
-        return 3;
-    }
-
     public function is_articles_page()
     {
         if (is_category())
