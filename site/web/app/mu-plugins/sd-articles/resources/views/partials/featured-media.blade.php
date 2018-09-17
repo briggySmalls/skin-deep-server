@@ -1,5 +1,5 @@
 {{-- Feature video takes precedence --}}
-@if (get_field( 'sd_featured_video', $post->ID ))
+@if (get_field('sd_featured_video', $post->ID ))
   <div class="embed-responsive embed-responsive-16by9">
     {!! get_field('sd_featured_video', $post->ID) !!}
   </div>
