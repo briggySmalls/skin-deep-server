@@ -1,4 +1,6 @@
 <div class="page-header">
+  {{-- Title --}}
+  <h1>{!! App::title() !!}</h1>
   {{-- Image --}}
   @php $image = App::image('large'); @endphp
   @if ($image)
@@ -6,8 +8,6 @@
       {!! $image !!}
     </figure>
   @endif
-  {{-- Title --}}
-  <h1>{!! App::title() !!}</h1>
   {{-- Description --}}
   @php $description = App::description(); @endphp
   @if ($description)
