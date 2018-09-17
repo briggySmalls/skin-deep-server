@@ -10,7 +10,7 @@
       @endif
     </figure>
     @include('partials/entry-meta')
-    <h1 class="entry-title">{{ get_the_title() }}</h1>
+    <h1 class="entry-title">{{ the_title() }}</h1>
     {{-- Display author(s) --}}
     @if (count(SinglePost::authors()))
       <p class="byline author vcard">
