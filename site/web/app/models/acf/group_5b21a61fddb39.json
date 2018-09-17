@@ -35,7 +35,7 @@
                 "sd-product"
             ],
             "taxonomy": [
-                "sd-product-cat:print-magazines"
+                "sd-product-cat:magazines"
             ],
             "allow_null": 1,
             "multiple": 0,
@@ -60,5 +60,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537149398
+    "modified": 1537218485
 }
