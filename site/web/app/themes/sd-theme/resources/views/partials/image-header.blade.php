@@ -1,3 +1,3 @@
-{!! SinglePost::image() !!}
+{!! $post->image() !!}
 <figcaption>
 </figcaption>

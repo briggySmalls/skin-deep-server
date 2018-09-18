@@ -2,10 +2,12 @@
 <div class="container-fluid posts-grid">
   <div class="row">
     @while (have_posts()) @php the_post() @endphp
-      @php $post = get_post() @endphp
+      @php
+      $post = new \SkinDeep\Articles\Article(get_post())
+      @endphp
       <div class="col-md-{{ 12 / $column_count }}">
         {{-- Wrap the entire card in a link --}}
-        <a href={{ get_permalink($post) }}>
+        <a href={{ $post->url() }}>
           <div class="card">
             {{-- Insert component content --}}
             @php

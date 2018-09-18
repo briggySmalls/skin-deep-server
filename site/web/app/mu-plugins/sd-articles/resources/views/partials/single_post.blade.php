@@ -5,11 +5,8 @@
 <div class="card-body">
   {{-- Display category --}}
   <p class="category-link">
-    @foreach (get_the_category($post) as $category)
-      @if (SkinDeep\Articles\Articles::is_default_category($category))
-        @continue
-      @endif
-        {{ $category->name }}
+    @foreach ($post->categories() as $category)
+      {{ $category->name }}
     @endforeach
   </p>
   {{-- Display title --}}

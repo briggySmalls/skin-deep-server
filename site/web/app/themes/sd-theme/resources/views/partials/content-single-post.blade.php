@@ -1,35 +1,35 @@
 <article @php post_class() @endphp>
   <header>
     <figure>
-      @if (SinglePost::hasFeaturedVideo())
-      {{-- Feature video takes precedence --}}
-      @include('partials/video-header')
-      @elseif (SinglePost::hasFeaturedImage())
-      {{-- Otherwise display the featured image --}}
-      @include('partials/image-header')
+      @if ($article->hasFeaturedVideo())
+        {{-- Feature video takes precedence --}}
+        @include('partials/video-header')
+      @elseif ($article->hasImage())
+        {{-- Otherwise display the featured image --}}
+        @include('partials/image-header', ['post' => $article])
       @endif
     </figure>
     @include('partials/entry-meta')
-    <h1 class="entry-title">{{ the_title() }}</h1>
+    <h1 class="entry-title">{!! $article->title() !!}</h1>
     {{-- Display author(s) --}}
-    @if (count(SinglePost::authors()))
+    @if (count($article->authors()))
       <p class="byline author vcard">
         {{ __('Written by', 'sage') }}
-        @foreach (SinglePost::authors() as $author)
+        @foreach ($article->authors() as $author)
           <a href="{{ get_term_link($author) }}" rel="author">{{ $author->name }}</a>{{ !$loop->last ? ", " : "" }}
         @endforeach
       </p>
     @endif
   </header>
-  @php $magazine = SinglePost::magazine(); @endphp
+  @php $magazine = $article->magazine(); @endphp
   @if ($magazine)
     <div class="jumbotron">
       <div class="container">
         <div class="row">
           <div class="col-sm-auto">
             <h1 class="display-4">Get the full magazine</h1>
-            <p class="lead">This piece is from our print edition: {{ $magazine->post_title }}</p>
-            <a class="buy-button" href="{{ get_permalink($magazine->ID) }}">Buy it now</a>
+            <p class="lead">This piece is from our print edition: {{ $magazine->title() }}</p>
+            <a class="buy-button" href="{{ $magazine->url() }}">Buy it now</a>
           </div>
           <div class="col-sm">
             {{-- TODO: Make an article wrapper like for Product --}}
@@ -42,6 +42,7 @@
   <div class="entry-content">
     {{ the_content() }}
   </div>
+  @php dynamic_sidebar('sidebar-post') @endphp
   <footer>
     {!! wp_link_pages(['echo' => 0, 'before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']) !!}
   </footer>

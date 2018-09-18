@@ -3,7 +3,7 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
-use SkinDeep\Theme\SkinDeep\Product;
+use SkinDeep\Shop\Product;
 
 class SdShop extends Controller
 {
@@ -31,7 +31,9 @@ class SdShop extends Controller
         {
             // Update query for new term and save result
             $query_args['tax_query'][0]['terms'] = $term->term_id;
-            $this->products[$term->term_id] = get_posts($query_args);
+            $this->products[$term->term_id] = array_map(
+                function($post) { return new Product($post); },
+                get_posts($query_args));
         }
     }
 

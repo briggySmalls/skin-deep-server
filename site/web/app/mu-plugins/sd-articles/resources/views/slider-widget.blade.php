@@ -6,13 +6,13 @@
     @foreach ( $context->posts as $post )
       <div class="carousel-item @if ($loop->first) active @endif">
         {{-- Display featured image/video --}}
-        <a href="{{ get_permalink($post) }}">
+        <a href="{{ $post->url() }}">
         @include(
           'articles::partials.featured-media',
           ['image_size' => 'large', 'image_classes' => 'd-block w-100'])
         </a>
         <div class="carousel-caption d-none d-md-block">
-          <h3>{{ $post->post_title }}</h3>
+          <h3>{{ $post->title() }}</h3>
         </div>
       </div>
     @endforeach

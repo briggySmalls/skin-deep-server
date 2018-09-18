@@ -1,9 +1,6 @@
 {{-- Display cateogories & date --}}
 <div class="">
-  @foreach (get_the_category() as $category)
-    @if (SkinDeep\Articles\Articles::is_default_category($category))
-      @continue
-    @endif
+  @foreach ($article->categories() as $category)
     <a href="{{ get_term_link($category) }}">{{ $category->name }}</a>
     @if ($loop->last)
       |

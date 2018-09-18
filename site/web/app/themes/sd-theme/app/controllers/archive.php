@@ -15,6 +15,6 @@ class Archive extends Controller
         }
         // Queried object is the post type, or null if post type is 'post'
         $post_type = get_queried_object();
-        return $post_type == null;
+        return ($post_type == null);
     }
 }

@@ -2,8 +2,6 @@
 
 namespace SkinDeep\Articles;
 
-use SkinDeep\Articles\Articles;
-
 /**
  * Featured posts slider widget
  *
@@ -83,7 +81,7 @@ abstract class Widget extends \WP_Widget
         $context = $this->createArgs($args);
 
         // Generate the widget content from the Blade template
-        $widget_string .= Articles::$blade->make($this->template_name('widget'), ['context' => $context])->render();
+        $widget_string .= Article::$blade->make($this->template_name('widget'), ['context' => $context])->render();
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;

@@ -10,11 +10,7 @@ class PostsSliderArgs extends WidgetArgs
     public function __construct($args)
     {
         $this->args = $args;
-        $this->posts = $this->getSliderPosts($args);
-    }
-
-    protected function getSliderPosts($args)
-    {
-        return $this->getAcfField('sd_widget_slider_articles');
+        $this->posts = $this->toArticles(
+            $this->getAcfField('sd_widget_slider_articles'));
     }
 }

@@ -2,7 +2,7 @@
   <header>
     <h2 class="entry-title"><a href="{{ get_permalink() }}">{{ get_the_title() }}</a></h2>
     @if (get_post_type() === 'post')
-      @include('partials/entry-meta')
+      @include('partials/entry-meta', ['article' => new SkinDeep\Articles\Article(get_post())])
     @endif
   </header>
   <div class="entry-summary">

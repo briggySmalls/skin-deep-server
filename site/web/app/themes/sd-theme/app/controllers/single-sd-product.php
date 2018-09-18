@@ -3,7 +3,7 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
-use SkinDeep\Theme\SkinDeep\Product;
+use SkinDeep\Shop\Product;
 
 class SingleSdProduct extends Controller
 {

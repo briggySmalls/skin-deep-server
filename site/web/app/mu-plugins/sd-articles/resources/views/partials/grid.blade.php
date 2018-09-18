@@ -4,7 +4,7 @@
     @foreach ($posts as $post)
       <div class="col-md-{{ 12 / $column_count }}">
         {{-- Wrap the entire card in a link --}}
-        <a href={{ get_permalink($post) }}>
+        <a href={{ $post->url() }}>
           <div class="card">
             {{-- Insert component content --}}
             @php

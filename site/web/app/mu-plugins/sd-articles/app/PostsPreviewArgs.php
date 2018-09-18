@@ -11,7 +11,7 @@ class PostsPreviewArgs extends WidgetArgs
     public function __construct($args)
     {
         $this->args = $args;
-        $this->posts = $this->getPreviewPosts($args);
+        $this->posts = $this->toArticles($this->getPreviewPosts($args));
     }
 
     /**
