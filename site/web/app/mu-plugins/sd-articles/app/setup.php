@@ -14,6 +14,7 @@ add_action('skin_deep_init', function($blade) {
 add_action('widgets_init', function () {
     register_widget(PLUGIN_NAMESPACE . '\PostsPreview');
     register_widget(PLUGIN_NAMESPACE . '\PostsSlider');
+    register_widget(PLUGIN_NAMESPACE . '\PostSuggestions');
 });
 
 // Remove existing 'authors' base URL

@@ -111,6 +111,10 @@ add_action('widgets_init', function () {
         'name'          => __('Focus', 'sage'),
         'id'            => 'sidebar-focus'
     ] + $config);
+    register_sidebar([
+        'name'          => __('End of post', 'sage'),
+        'id'            => 'sidebar-post'
+    ] + $config);
 });
 
 /**
