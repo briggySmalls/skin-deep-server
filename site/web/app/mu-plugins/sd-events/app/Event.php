@@ -10,7 +10,7 @@ class Event extends Post
     protected $start_time;
     protected $end_time;
     protected $venue;
-    protected $facebook_id;
+    protected $facebookId;
 
     public function __construct($post)
     {
@@ -21,7 +21,7 @@ class Event extends Post
         $this->start_time = self::toDatetime($details['start_time']);
         $this->end_time = self::toDatetime($details['end_time']);
         $this->venue = $details['venue'] ? $details['venue']['address'] : null;
-        $this->facebook_id = get_field('sd_event_facebook_event');
+        $this->facebookId = get_field('sd_event_facebook_event');
 
     }
 
@@ -40,9 +40,13 @@ class Event extends Post
         return $this->venue;
     }
 
-    public function facebook_url()
+    public function facebookUrl()
     {
-        return FACEBOOK_EVENTS_URL_BASE . $this->event_id;
+        if ($this->event_id)
+        {
+            return FACEBOOK_EVENTS_URL_BASE . $this->event_id;
+        }
+        return null;
     }
 
     private static function toDatetime($datetime_string)
