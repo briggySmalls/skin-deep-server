@@ -31,3 +31,4 @@ install:
 
 script:
   - composer test
+  - yarn --cwd site/web/app/themes/sd-theme run lint
