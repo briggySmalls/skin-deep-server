@@ -3,7 +3,7 @@
     <div class="col-md">
       <figure>
         {{-- Display the featured image --}}
-        @include('partials/image-header', ['post' => $product]))
+        @include('partials/image-header', ['post' => $product])
       </figure>
     </div>
     <div class="col-md">
