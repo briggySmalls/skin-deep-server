@@ -132,7 +132,7 @@ abstract class Widget extends \WP_Widget
         // TODO: Store the values of the widget in their own variable
 
         // Display the admin form
-        echo Articles::$blade->make($this->template_name('admin'))->render();
+        echo Article::$blade->make($this->template_name('admin'))->render();
     } // end form
 
     /*--------------------------------------------------*/
