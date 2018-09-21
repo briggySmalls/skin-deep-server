@@ -10,7 +10,7 @@
       @endif
     </figure>
     @include('partials/entry-meta')
-    <h1 class="entry-title">{!! $article->title() !!}</h1>
+    <h1 class="entry-title">{{ $article->title() }}</h1>
     {{-- Display author(s) --}}
     @if (count($article->authors()))
       <p class="byline author vcard">
