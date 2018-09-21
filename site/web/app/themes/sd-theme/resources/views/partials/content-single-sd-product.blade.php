@@ -13,7 +13,7 @@
       </div>
       <button class="snipcart-add-item buy-button"
       @if ($product->in_stock())
-        data-item-id="{{ $product->id() }}"
+        data-item-id="{{ $product->ID }}"
         data-item-name="{{ $product->title() }}"
         data-item-price="{{ $product->price() }}"
         data-item-url="{{ $product->url() }}"
