@@ -2,7 +2,6 @@
 
 namespace SkinDeep\Articles;
 
-const PLUGIN_NAMESPACE = 'SkinDeep\\Articles';
 const TEMPLATE_NAMESPACE = 'articles';
 
 // Get the blade engine from sage (for building widget html)
@@ -12,9 +11,9 @@ add_action('skin_deep_init', function($blade) {
 
 // Register the widgets
 add_action('widgets_init', function () {
-    register_widget(PLUGIN_NAMESPACE . '\PostsPreview');
-    register_widget(PLUGIN_NAMESPACE . '\PostsSlider');
-    register_widget(PLUGIN_NAMESPACE . '\PostSuggestions');
+    register_widget(__NAMESPACE__ . '\PostsPreview');
+    register_widget(__NAMESPACE__ . '\PostsSlider');
+    register_widget(__NAMESPACE__ . '\PostSuggestions');
 });
 
 // Remove existing 'authors' base URL

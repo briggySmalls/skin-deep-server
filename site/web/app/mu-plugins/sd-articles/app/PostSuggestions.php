@@ -34,7 +34,9 @@ class PostSuggestions extends Widget
     {
         parent::__construct(
             __('Post suggestions', self::WIDGET_SLUG),
-            __('Suggest how to navigate to relevant posts.', self::WIDGET_SLUG)
+            __('Suggest how to navigate to relevant posts.', self::WIDGET_SLUG),
+            new ResourceManager(__DIR__),
+            TEMPLATE_NAMESPACE
         );
     } // end constructor
 

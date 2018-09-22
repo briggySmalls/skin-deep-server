@@ -1,0 +1,83 @@
+{
+    "key": "group_5ba5fc0172d79",
+    "title": "Donation widget fields",
+    "fields": [
+        {
+            "key": "field_5ba611e52dfe4",
+            "label": "Title",
+            "name": "sd_shop_donation_title",
+            "type": "text",
+            "instructions": "Name of product to display in basket",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5ba6025f811ce",
+            "label": "Description",
+            "name": "sd_shop_donation_description",
+            "type": "text",
+            "instructions": "The description to be shown in the basket",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Contribution to Skin Deep: thanks :D",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5ba5fc0e0dcca",
+            "label": "Default donation",
+            "name": "sd_shop_default_donation",
+            "type": "number",
+            "instructions": "The default amount to be prefilled when donating",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "0.50",
+            "max": "",
+            "step": "0.01"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "donation"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1537610536
+}

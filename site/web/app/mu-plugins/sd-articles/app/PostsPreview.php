@@ -34,7 +34,9 @@ class PostsPreview extends Widget
     {
         parent::__construct(
             __('Posts Preview', self::WIDGET_SLUG),
-            __('Preview of posts in a configured group.', self::WIDGET_SLUG)
+            __('Preview of posts in a configured group.', self::WIDGET_SLUG),
+            new ResourceManager(__DIR__),
+            TEMPLATE_NAMESPACE
         );
     } // end constructor
 

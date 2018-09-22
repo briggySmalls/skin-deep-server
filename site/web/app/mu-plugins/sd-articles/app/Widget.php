@@ -8,6 +8,9 @@ namespace SkinDeep\Articles;
  */
 abstract class Widget extends \WP_Widget
 {
+    protected $resource_manager;
+    protected $template_namespace;
+
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/
@@ -16,8 +19,11 @@ abstract class Widget extends \WP_Widget
      * Specifies the classname and description, instantiates the widget,
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
-    public function __construct($title, $description)
+    public function __construct($title, $description, $resource_manager, $template_namespace)
     {
+        $this->resource_manager = $resource_manager;
+        $this->template_namespace = $template_namespace;
+
         // load plugin text domain
         add_action('init', array( $this, 'widgetTextdomain' ));
 
@@ -38,8 +44,8 @@ abstract class Widget extends \WP_Widget
         add_action('wp_enqueue_scripts', [ $this, 'registerWidgetAssets' ]);
         add_action('admin_enqueue_scripts', [ $this, 'registerAdminAssets' ]);
         // Hooks fired when the Widget is activated and deactivated
-        register_activation_hook(__FILE__, ['App\\' . get_class(), 'activate' ]);
-        register_deactivation_hook(__FILE__, ['App\\' . get_class(), 'deactivate' ]);
+        register_activation_hook(__FILE__, [ __NAMESPACE__ . '\\' . get_class(), 'activate' ]);
+        register_deactivation_hook(__FILE__, [ __NAMESPACE__ . '\\' . get_class(), 'deactivate' ]);
     } // end constructor
 
     /*--------------------------------------------------*/
@@ -104,7 +110,6 @@ abstract class Widget extends \WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-
         $instance = $old_instance;
 
         // TODO: Here is where you update your widget's old values with the new, incoming values
@@ -119,7 +124,6 @@ abstract class Widget extends \WP_Widget
      */
     public function form($instance)
     {
-
         // Enqueue admin styles and scripts now we are going to use them
         $this->enqueueAsset('admin', $is_script = true);
         $this->enqueueAsset('admin', $is_script = false);
@@ -144,9 +148,7 @@ abstract class Widget extends \WP_Widget
      */
     public function widgetTextdomain()
     {
-
-        // TODO be sure to change 'widget-name' to the name of *your* plugin
-        load_plugin_textdomain($this->widgetSlug(), false, ResourceManager::langDir());
+        load_plugin_textdomain($this->widgetSlug(), false, $this->resource_manager->langDir());
     } // end widget_textdomain
 
     /**
@@ -179,12 +181,12 @@ abstract class Widget extends \WP_Widget
         if ($is_script) {
             wp_enqueue_script(
                 $this->widgetSlug() . '-' . $end . '-script',
-                ResourceManager::distURL() . $this->widgetSlug() . '/' . $end . '.js'
+                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.js'
             );
         } else {
             wp_enqueue_style(
                 $this->widgetSlug() . '-' . $end . '-style',
-                ResourceManager::distURL() . $this->widgetSlug() . '/' . $end . '.css'
+                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.css'
             );
         }
     }
@@ -217,12 +219,12 @@ abstract class Widget extends \WP_Widget
         if ($is_script) {
             wp_register_script(
                 $this->widgetSlug() . '-' . $end . '-script',
-                ResourceManager::distURL() . $this->widgetSlug() . '/' . $end . '.js'
+                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.js'
             );
         } else {
             wp_register_style(
                 $this->widgetSlug() . '-' . $end . '-style',
-                ResourceManager::distURL() . $this->widgetSlug() . '/' . $end . '.css'
+                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.css'
             );
         }
     }
@@ -233,7 +235,7 @@ abstract class Widget extends \WP_Widget
 
     protected function template_name($name)
     {
-        return TEMPLATE_NAMESPACE . '::' . $this->widgetSlug() . '-' . $name;
+        return $this->template_namespace . '::' . $this->widgetSlug() . '-' . $name;
     }
 
     /**

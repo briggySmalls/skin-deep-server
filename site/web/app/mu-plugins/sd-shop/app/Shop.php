@@ -85,7 +85,10 @@ class Shop
 
     private function defineSitewideHooks()
     {
-        // Do nothing
+        // Register the widgets
+        add_action('widgets_init', function () {
+            register_widget(__NAMESPACE__ . '\Donations\Donation');
+        });
     }
 
     /**
