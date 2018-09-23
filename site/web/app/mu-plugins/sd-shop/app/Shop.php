@@ -92,12 +92,13 @@ class Shop
 
         // Register shortcode
         add_shortcode('donation', function ($atts) {
+            // Construct arguments
             $args = new Donations\DonationArgs(
-                $atts['id'],
                 $atts['title'],
                 $atts['default_donation'],
                 array_key_exists('description', $atts) ? $atts['description'] : null);
             $args = get_object_vars($args);
+            // Generate the 'widget' content
             return Donations\Donation::output('widget', $args);
         });
     }

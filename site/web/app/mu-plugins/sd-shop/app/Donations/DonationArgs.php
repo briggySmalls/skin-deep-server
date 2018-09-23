@@ -10,16 +10,15 @@ const DONATION_QUERY_VAR = 'donation';
 
 class DonationArgs implements WidgetArgsInterface
 {
-    public $id;
+    public $id = "donation";
     public $title;
     public $price;
     public $url;
     public $description;
 
-    public function __construct($id, $title, $default_price, $description)
+    public function __construct($title, $default_price, $description)
     {
         // Record arguments
-        $this->id = $id;
         $this->title = $title;
         $this->price = $default_price;
         $this->description = $description;
@@ -44,7 +43,6 @@ class DonationArgs implements WidgetArgsInterface
     {
         $helper = new WidgetArgsHelper($args);
         return new DonationArgs(
-            $args['widget_id'],
             $helper->getAcfField('sd_shop_donation_title'),
             $helper->getAcfField('sd_shop_default_donation'),
             $helper->getAcfField('sd_shop_donation_description'));
