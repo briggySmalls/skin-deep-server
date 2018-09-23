@@ -205,7 +205,11 @@ abstract class Widget extends \WP_Widget
      */
     public static function output($template, $args)
     {
-        return Article::$blade->make(self::template_name($template), $args)->render();
+        if ($args)
+        {
+            return Article::$blade->make(self::template_name($template), $args)->render();
+        }
+        return Article::$blade->make(self::template_name($template))->render();
     }
 
     /*--------------------------------------------------*/
