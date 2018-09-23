@@ -2,38 +2,40 @@
 
 namespace SkinDeep\Articles;
 
-class PostsPreviewArgs extends WidgetArgs
+class PostsPreviewArgs implements WidgetArgsInterface
 {
+    public $posts;
+    public $url;
+    public $title;
+    public $column_count;
 
-    public $args = null;
-    public $posts = null;
-
-    public function __construct($args)
+    public function __construct($posts, $url, $title, $column_count)
     {
-        $this->args = $args;
-        $this->posts = $this->toArticles($this->getPreviewPosts($args));
+        $this->posts = $posts;
+        $this->url = $url;
+        $this->title = $title;
+        $this->column_count = $column_count;
     }
 
-    /**
-     * @brief      Helper function to get posts matching widget configuration.
-     * @param      $args  The widget output arguments.
-     * @return     The posts.
-     */
-    private function getPreviewPosts()
+    public static function fromArgs($args)
     {
+        // Create a helper
+        $helper = new WidgetArgsHelper($args);
+
         // Limit query to specified number of posts
         $query_args = [
-            'posts_per_page' => (int)$this->getAcfField('sd_widget_preview_count'),
+            'posts_per_page' => (int)$helper->getAcfField('sd_widget_preview_count'),
         ];
 
         // Determine what type of filtering we're applying
-        $filter_group = $this->getAcfField('sd_widget_preview_filter_group');
+        $filter_group = $helper->getAcfField('sd_widget_preview_filter_group');
+        $url = null;
         switch ($filter_group['sd_widget_preview_filter_type']) {
             # Filter articles to the specified category
             case "category":
                 $category = $filter_group['sd_widget_preview_category'];
                 $query_args['cat'] = $category;
-                $this->url = get_term_link($category);
+                $url = get_term_link($category);
                 break;
 
             # Filter articles to the specified format
@@ -46,12 +48,12 @@ class PostsPreviewArgs extends WidgetArgs
                         'terms' => $format->term_id,
                     ]
                 ];
-                $this->url = get_post_format_link($format->name);
+                $url = get_post_format_link($format->name);
                 break;
 
             case "all":
                 // Set URL as posts archive
-                $this->url = get_post_type_archive_link('post');
+                $url = get_post_type_archive_link('post');
                 break;
 
             default:
@@ -60,6 +62,13 @@ class PostsPreviewArgs extends WidgetArgs
         }
 
         // Execute the query
-        return get_posts($query_args);
+        $posts = WidgetArgsHelper::toArticles(get_posts($query_args));
+
+        // Now create the argument
+        return new PostsPreviewArgs(
+            $posts,
+            $url,
+            $helper->getAcfField('sd_widget_preview_title'),
+            $helper->getAcfField('sd_widget_preview_columns'));
     }
 }

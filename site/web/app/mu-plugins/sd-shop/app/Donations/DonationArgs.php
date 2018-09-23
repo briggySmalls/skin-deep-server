@@ -3,59 +3,50 @@
 namespace SkinDeep\Shop\Donations;
 
 use SkinDeep\Articles\WidgetArgs;
+use SkinDeep\Articles\WidgetArgsInterface;
+use SkinDeep\Articles\WidgetArgsHelper;
 
 const DONATION_QUERY_VAR = 'donation';
 
-class DonationArgs extends WidgetArgs
+class DonationArgs implements WidgetArgsInterface
 {
-    public $args = null;
-    public $posts = null;
+    public $id;
+    public $title;
+    public $price;
+    public $url;
+    public $description;
 
-    public function __construct($args)
+    public function __construct($id, $title, $default_price, $description)
     {
-        // Record the arguments
-        $this->args = $args;
+        // Record arguments
+        $this->id = $id;
+        $this->title = $title;
+        $this->price = $default_price;
+        $this->description = $description;
 
         // Update the URL for the page to add the donation amount
-        add_action('init','add_get_val');
-        function add_get_val() {
+        add_action('init', function () {
             global $wp;
             $wp->add_query_var(DONATION_QUERY_VAR);
-        }
-    }
+        });
 
-    public function id()
-    {
-        return $this->args['widget_id'];
-    }
-
-    public function title()
-    {
-        return $this->getAcfField('sd_shop_donation_title');
-    }
-
-    public function price()
-    {
-        // First assume the default
-        $donation = $this->getAcfField('sd_shop_default_donation');
         // Now check if a parameter was supplied
         if (get_query_var(DONATION_QUERY_VAR)) {
             // If so update with this
-            $donation = get_query_var('donation');
+            $this->price = get_query_var('donation');
         }
-        return $donation;
+
+        // Set URL based on price
+        $this->url = get_permalink() . '?' . DONATION_QUERY_VAR . '=' . $this->price;
     }
 
-    public function url()
+    public static function fromArgs($args)
     {
-        // Set the query for validating the donation
-        // Note: This will be updated in javascript
-        $donation = $this->getAcfField('sd_shop_default_donation');
-        return get_permalink() . '?' . DONATION_QUERY_VAR . '=' . $this->price();
-    }
-
-    public function description()
-    {
-        return $this->getAcfField('sd_shop_donation_description');
+        $helper = new WidgetArgsHelper($args);
+        return new DonationArgs(
+            $args['widget_id'],
+            $helper->getAcfField('sd_shop_donation_title'),
+            $helper->getAcfField('sd_shop_default_donation'),
+            $helper->getAcfField('sd_shop_donation_description'));
     }
 }

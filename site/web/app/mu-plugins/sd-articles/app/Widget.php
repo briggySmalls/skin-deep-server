@@ -9,7 +9,7 @@ namespace SkinDeep\Articles;
 abstract class Widget extends \WP_Widget
 {
     protected $resource_manager;
-    protected $template_namespace;
+    protected const TEMPLATE_NAMESPACE = null;
 
     /*--------------------------------------------------*/
     /* Constructor
@@ -19,19 +19,18 @@ abstract class Widget extends \WP_Widget
      * Specifies the classname and description, instantiates the widget,
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
-    public function __construct($title, $description, $resource_manager, $template_namespace)
+    public function __construct($title, $description, $resource_manager)
     {
         $this->resource_manager = $resource_manager;
-        $this->template_namespace = $template_namespace;
 
         // load plugin text domain
         add_action('init', array( $this, 'widgetTextdomain' ));
 
         parent::__construct(
-            $this->widgetSlug(),
+            static::WIDGET_SLUG,
             $title,
             [
-                'classname'  => $this->widgetSlug(),
+                'classname'  => static::WIDGET_SLUG,
                 'description' => $description
             ]
         );
@@ -61,7 +60,7 @@ abstract class Widget extends \WP_Widget
     public function widget($args, $instance)
     {
         // Check if there is a cached output
-        $cache = wp_cache_get($this->widgetSlug(), 'widget');
+        $cache = wp_cache_get(static::WIDGET_SLUG, 'widget');
 
         if (!is_array($cache)) {
             $cache = array();
@@ -83,23 +82,21 @@ abstract class Widget extends \WP_Widget
         extract($args, EXTR_SKIP);
         $widget_string = $before_widget;
 
-        // Get the context for the template
-        $context = $this->createArgs($args);
-
         // Generate the widget content from the Blade template
-        $widget_string .= Article::$blade->make($this->template_name('widget'), ['context' => $context])->render();
+        $context = get_object_vars($this->createArgs($args));
+        $widget_string .= self::output('widget', $context);
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;
 
-        wp_cache_set($this->widgetSlug(), $cache, 'widget');
+        wp_cache_set(static::WIDGET_SLUG, $cache, 'widget');
 
         print $widget_string;
     } // end widget
 
     public function flushWidgetCache()
     {
-        wp_cache_delete($this->widgetSlug(), 'widget');
+        wp_cache_delete(static::WIDGET_SLUG, 'widget');
     }
 
     /**
@@ -128,15 +125,8 @@ abstract class Widget extends \WP_Widget
         $this->enqueueAsset('admin', $is_script = true);
         $this->enqueueAsset('admin', $is_script = false);
 
-        // TODO: Define default values for your variables
-        $instance = wp_parse_args(
-            (array) $instance
-        );
-
-        // TODO: Store the values of the widget in their own variable
-
         // Display the admin form
-        echo Article::$blade->make($this->template_name('admin'))->render();
+        echo self::output('admin', null);
     } // end form
 
     /*--------------------------------------------------*/
@@ -148,7 +138,7 @@ abstract class Widget extends \WP_Widget
      */
     public function widgetTextdomain()
     {
-        load_plugin_textdomain($this->widgetSlug(), false, $this->resource_manager->langDir());
+        load_plugin_textdomain(static::WIDGET_SLUG, false, $this->resource_manager->langDir());
     } // end widget_textdomain
 
     /**
@@ -180,13 +170,13 @@ abstract class Widget extends \WP_Widget
     {
         if ($is_script) {
             wp_enqueue_script(
-                $this->widgetSlug() . '-' . $end . '-script',
-                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.js'
+                static::WIDGET_SLUG . '-' . $end . '-script',
+                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js'
             );
         } else {
             wp_enqueue_style(
-                $this->widgetSlug() . '-' . $end . '-style',
-                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.css'
+                static::WIDGET_SLUG . '-' . $end . '-style',
+                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.css'
             );
         }
     }
@@ -210,6 +200,19 @@ abstract class Widget extends \WP_Widget
     }
 
     /**
+     * @brief      Returns the output of the widget
+     * @return     Widget HTML
+     */
+    public static function output($template, $args)
+    {
+        return Article::$blade->make(self::template_name($template), $args)->render();
+    }
+
+    /*--------------------------------------------------*/
+    /* Private/protected Functions
+    /*--------------------------------------------------*/
+
+    /**
      * @brief      Helper function to register an asset
      * @param      $end        Indicates front or admin end ('widget' or 'admin')
      * @param      $is_script  Indicates if script or style
@@ -218,31 +221,21 @@ abstract class Widget extends \WP_Widget
     {
         if ($is_script) {
             wp_register_script(
-                $this->widgetSlug() . '-' . $end . '-script',
-                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.js'
+                static::WIDGET_SLUG . '-' . $end . '-script',
+                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js'
             );
         } else {
             wp_register_style(
-                $this->widgetSlug() . '-' . $end . '-style',
-                $this->resource_manager->distURL() . $this->widgetSlug() . '/' . $end . '.css'
+                static::WIDGET_SLUG . '-' . $end . '-style',
+                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.css'
             );
         }
     }
 
-    /*--------------------------------------------------*/
-    /* Private/protected Functions
-    /*--------------------------------------------------*/
-
-    protected function template_name($name)
+    protected static function template_name($name)
     {
-        return $this->template_namespace . '::' . $this->widgetSlug() . '-' . $name;
+        return static::TEMPLATE_NAMESPACE . '::' . static::WIDGET_SLUG . '-' . $name;
     }
-
-    /**
-     * @brief      Gets the name of the widget
-     * @return     Name of the widget
-     */
-    abstract protected function widgetSlug();
 
     /**
      * @brief      Gets the arguments for the widget template
@@ -250,4 +243,28 @@ abstract class Widget extends \WP_Widget
      * @return     The processed arguments
      */
     abstract protected function createArgs($args);
+
+    /**
+     * @brief      Helper function to get an ACF field for the given widget
+     * @param      $args   The Widget instance arguments
+     * @param      $field  The field to get
+     * @return     The acf field value
+     */
+    public static function getAcfField($args, $field)
+    {
+        // We are getting the field on a widget
+        return get_field($field, 'widget_' . $args['widget_id']);
+    }
+
+    /**
+     * @brief      Wraps an array of posts as an array of Article objects
+     * @param      $posts  The posts
+     * @return     An array of Article objects
+     */
+    public static function toArticles($posts)
+    {
+        return array_map(
+            function($post) { return new Article($post); },
+            $posts);
+    }
 } // end class

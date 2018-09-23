@@ -10,6 +10,11 @@ class Donation extends Widget
     protected const WIDGET_SLUG = 'donation';
 
     /**
+     * Namespace in which blade templates are identified
+     */
+    protected const TEMPLATE_NAMESPACE = 'shop';
+
+    /**
      * Specifies the classname and description, instantiates the widget,
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
@@ -19,8 +24,7 @@ class Donation extends Widget
         parent::__construct(
             __('Donation', self::WIDGET_SLUG),
             __('Donations widget.', self::WIDGET_SLUG),
-            new ResourceManager(dirname(__DIR__)),
-            \SkinDeep\Shop\TEMPLATE_NAMESPACE
+            new ResourceManager(dirname(__DIR__))
         );
 
         // Add a query var for donations
@@ -41,11 +45,6 @@ class Donation extends Widget
      */
     protected function createArgs($args)
     {
-        return new DonationArgs($args);
-    }
-
-    protected function widgetSlug()
-    {
-        return self::WIDGET_SLUG;
+        return DonationArgs::fromArgs($args);
     }
 }

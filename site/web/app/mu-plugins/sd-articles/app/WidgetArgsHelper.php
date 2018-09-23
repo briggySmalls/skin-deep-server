@@ -2,8 +2,15 @@
 
 namespace SkinDeep\Articles;
 
-abstract class WidgetArgs
+class WidgetArgsHelper
 {
+    protected $args;
+
+    public function __construct($args)
+    {
+        $this->args = $args;
+    }
+
     /**
      * Helper function to get an ACF field for the given widget
      */
@@ -17,7 +24,7 @@ abstract class WidgetArgs
      * @param      $posts  The posts
      * @return     An array of Article objects
      */
-    public function toArticles($posts)
+    public static function toArticles($posts)
     {
         return array_map(
             function($post) { return new Article($post); },

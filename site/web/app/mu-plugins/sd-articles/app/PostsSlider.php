@@ -22,6 +22,11 @@ class PostsSlider extends Widget
      */
     protected const WIDGET_SLUG = 'slider';
 
+    /**
+     * Namespace in which blade templates are identified
+     */
+    protected const TEMPLATE_NAMESPACE = 'articles';
+
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/
@@ -35,8 +40,7 @@ class PostsSlider extends Widget
         parent::__construct(
             __('Posts Slider', self::WIDGET_SLUG),
             __('Preview of posts in a featured slider.', self::WIDGET_SLUG),
-            new ResourceManager(__DIR__),
-            TEMPLATE_NAMESPACE
+            new ResourceManager(__DIR__)
         );
     }
 
@@ -51,11 +55,6 @@ class PostsSlider extends Widget
      */
     protected function createArgs($args)
     {
-        return new PostsSliderArgs($args);
-    }
-
-    protected function widgetSlug()
-    {
-        return self::WIDGET_SLUG;
+        return PostsSliderArgs::fromArgs($args);
     }
 } // end class
