@@ -89,6 +89,17 @@ class Shop
         add_action('widgets_init', function () {
             register_widget(__NAMESPACE__ . '\Donations\Donation');
         });
+
+        // Register shortcode
+        add_shortcode('donation', function ($atts) {
+            $args = new Donations\DonationArgs(
+                $atts['id'],
+                $atts['title'],
+                $atts['default_donation'],
+                array_key_exists('description', $atts) ? $atts['description'] : null);
+            $args = get_object_vars($args);
+            return Donations\Donation::output('widget', $args);
+        });
     }
 
     /**
