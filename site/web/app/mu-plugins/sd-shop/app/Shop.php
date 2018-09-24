@@ -2,6 +2,8 @@
 
 namespace SkinDeep\Shop;
 
+use SkinDeep\Articles\ResourceManager;
+
 /**
  * The file that defines the core plugin class
  *
@@ -99,7 +101,10 @@ class Shop
                 array_key_exists('description', $atts) ? $atts['description'] : null);
             $args = get_object_vars($args);
             // Generate the 'widget' content
-            return Donations\Donation::output('widget', $args);
+            return Donations\Donation::output(
+                new ResourceManager(__DIR__),
+                'widget',
+                $args);
         });
     }
 

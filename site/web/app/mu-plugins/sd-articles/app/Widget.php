@@ -74,17 +74,13 @@ abstract class Widget extends \WP_Widget
             return print $cache[ $args['widget_id'] ];
         }
 
-        // Enqueue widget styles and scripts now we are going to use them
-        $this->enqueueAsset('widget', $is_script = true);
-        $this->enqueueAsset('widget', $is_script = false);
-
         // go on with your widget logic, put everything into a string and …
         extract($args, EXTR_SKIP);
         $widget_string = $before_widget;
 
         // Generate the widget content from the Blade template
         $context = get_object_vars($this->createArgs($args));
-        $widget_string .= self::output('widget', $context);
+        $widget_string .= self::output($this->resource_manager, 'widget', $context);
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;
@@ -121,12 +117,8 @@ abstract class Widget extends \WP_Widget
      */
     public function form($instance)
     {
-        // Enqueue admin styles and scripts now we are going to use them
-        $this->enqueueAsset('admin', $is_script = true);
-        $this->enqueueAsset('admin', $is_script = false);
-
         // Display the admin form
-        echo self::output('admin', null);
+        echo self::output($this->resource_manager, 'admin', null);
     } // end form
 
     /*--------------------------------------------------*/
@@ -166,17 +158,17 @@ abstract class Widget extends \WP_Widget
      * @param      $end        Indicates front or admin end ('widget' or 'admin')
      * @param      $is_script  Indicates if script or style
      */
-    protected function enqueueAsset($end, $is_script)
+    protected static function enqueueAsset($resource_manager, $end, $is_script)
     {
         if ($is_script) {
             wp_enqueue_script(
                 static::WIDGET_SLUG . '-' . $end . '-script',
-                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js'
+                $resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js'
             );
         } else {
             wp_enqueue_style(
                 static::WIDGET_SLUG . '-' . $end . '-style',
-                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.css'
+                $resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.css'
             );
         }
     }
@@ -203,10 +195,16 @@ abstract class Widget extends \WP_Widget
      * @brief      Returns the output of the widget
      * @return     Widget HTML
      */
-    public static function output($template, $args)
+    public static function output($resource_manager, $template, $args)
     {
+        // Enqueue styles and scripts now we are going to use them
+        self::enqueueAsset($resource_manager, $template, $is_script = true);
+        self::enqueueAsset($resource_manager, $template, $is_script = false);
+
+        // Generate the output
         if ($args)
         {
+            // Pass context variables to template
             return Article::$blade->make(self::template_name($template), $args)->render();
         }
         return Article::$blade->make(self::template_name($template))->render();
