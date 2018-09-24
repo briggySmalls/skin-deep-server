@@ -6,6 +6,10 @@ class BuyButton {
     this.button = button;
   }
 
+  /**
+   * @brief      Determine the donation amount supplied
+   * @return     The amount (in GBP)
+   */
   findAmount() {
     var inputGroup = this.button.closest('.input-group');
     var amountEls = inputGroup.getElementsByClassName('donate-amount');
@@ -15,6 +19,9 @@ class BuyButton {
     return amount;
   }
 
+  /**
+   * @brief      Update the button's properties based on value input
+   */
   update() {
     var amount = this.findAmount();
     // Update the button price
@@ -25,6 +32,10 @@ class BuyButton {
     this.button.setAttribute('data-item-url', url);
   }
 
+  /**
+   * @brief      Handler for a click event on buy button
+   * @param      event  The event
+   */
   static handleClick(event) {
     console.assert(event.type == 'click');
     console.log("clicked!");
