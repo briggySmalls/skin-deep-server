@@ -6,7 +6,7 @@
     </figure>
     <h1 class="entry-title">{{ $event->title() }}</h1>
     <ul id="event-details">
-      @if ($event->start_time())
+      @if ($event->startTime())
         <li><i class="fas fa-clock event-icon"></i>{{ SingleSdEvent::getDisplayTime($event) }}</li>
       @endif
       @if ($event->venue())

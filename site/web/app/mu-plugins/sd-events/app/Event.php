@@ -24,12 +24,12 @@ class Event extends Post
         $this->facebookId = get_field('sd_event_facebook_event');
     }
 
-    public function start_time()
+    public function startTime()
     {
         return $this->start_time;
     }
 
-    public function end_time()
+    public function endTime()
     {
         return $this->end_time;
     }
