@@ -204,9 +204,9 @@ abstract class Widget extends \WP_Widget
         // Generate the output
         if ($args) {
             // Pass context variables to template
-            return Article::$blade->make(self::template_name($template), $args)->render();
+            return Article::$blade->make(self::templateName($template), $args)->render();
         }
-        return Article::$blade->make(self::template_name($template))->render();
+        return Article::$blade->make(self::templateName($template))->render();
     }
 
     /*--------------------------------------------------*/
@@ -233,7 +233,7 @@ abstract class Widget extends \WP_Widget
         }
     }
 
-    protected static function template_name($name)
+    protected static function templateName($name)
     {
         return static::TEMPLATE_NAMESPACE . '::' . static::WIDGET_SLUG . '-' . $name;
     }
