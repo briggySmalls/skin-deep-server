@@ -27,13 +27,15 @@ class SdShop extends Controller
                 ]
             ]
         ];
-        foreach($this->categories as $term)
-        {
+        foreach ($this->categories as $term) {
             // Update query for new term and save result
             $query_args['tax_query'][0]['terms'] = $term->term_id;
             $this->products[$term->term_id] = array_map(
-                function($post) { return new Product($post); },
-                get_posts($query_args));
+                function ($post) {
+                    return new Product($post);
+                },
+                get_posts($query_args)
+            );
         }
     }
 

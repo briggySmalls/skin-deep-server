@@ -9,8 +9,7 @@ class PostSuggestionsArgs implements WidgetArgsInterface
 
     public function __construct()
     {
-        if (!is_single())
-        {
+        if (!is_single()) {
             // We don't support non-post display
             return;
         }

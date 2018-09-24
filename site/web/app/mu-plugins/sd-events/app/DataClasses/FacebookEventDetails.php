@@ -39,23 +39,20 @@ class FacebookEventDetails extends EventDetails
             'lat' => "",
             'lng' => "",
         ];
-        if (!$facebook_place)
-        {
+        if (!$facebook_place) {
             # There is no location data at all. Return early.
             return $place;
         }
 
         # Add address (if it exists)
         $address = $facebook_place->getField('name');
-        if ($address)
-        {
+        if ($address) {
             $place['address'] = $address;
         }
 
         # Add location (if it exists)
         $loc = $facebook_place->getField('location');
-        if ($loc)
-        {
+        if ($loc) {
             $place['lat'] = (string)$loc->getField('latitude');
             $place['lng'] = (string)$loc->getField('longitude');
         }

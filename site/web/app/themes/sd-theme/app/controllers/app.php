@@ -33,8 +33,7 @@ class App extends Controller
 
     public static function image($size)
     {
-        if (is_category())
-        {
+        if (is_category()) {
             $image = get_field('sd_article_category_image', self::category());
             return wp_get_attachment_image($image, $size, false);
         }
@@ -43,8 +42,7 @@ class App extends Controller
 
     public static function description()
     {
-        if (is_category())
-        {
+        if (is_category()) {
             return get_field('sd_article_category_description', self::category());
         }
         return null;

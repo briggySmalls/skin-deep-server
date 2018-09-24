@@ -202,8 +202,7 @@ abstract class Widget extends \WP_Widget
         self::enqueueAsset($resource_manager, $template, $is_script = false);
 
         // Generate the output
-        if ($args)
-        {
+        if ($args) {
             // Pass context variables to template
             return Article::$blade->make(self::template_name($template), $args)->render();
         }
@@ -266,7 +265,10 @@ abstract class Widget extends \WP_Widget
     public static function toArticles($posts)
     {
         return array_map(
-            function($post) { return new Article($post); },
-            $posts);
+            function ($post) {
+                return new Article($post);
+            },
+            $posts
+        );
     }
 } // end class

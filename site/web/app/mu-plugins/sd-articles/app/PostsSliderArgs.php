@@ -16,6 +16,8 @@ class PostsSliderArgs implements WidgetArgsInterface
         $helper = new WidgetArgsHelper($args);
         return new PostsSliderArgs(
             WidgetArgsHelper::toArticles(
-                $helper->getAcfField('sd_widget_slider_articles')));
+                $helper->getAcfField('sd_widget_slider_articles')
+            )
+        );
     }
 }

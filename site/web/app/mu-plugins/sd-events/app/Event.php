@@ -22,7 +22,6 @@ class Event extends Post
         $this->end_time = self::toDatetime($details['end_time']);
         $this->venue = $details['venue'] ? $details['venue']['address'] : null;
         $this->facebookId = get_field('sd_event_facebook_event');
-
     }
 
     public function start_time()
@@ -42,8 +41,7 @@ class Event extends Post
 
     public function facebookUrl()
     {
-        if ($this->event_id)
-        {
+        if ($this->event_id) {
             return FACEBOOK_EVENTS_URL_BASE . $this->event_id;
         }
         return null;

@@ -17,8 +17,7 @@ class SingleSdEvent extends Controller
     {
         // First check that there are times in the first place
         assert($event->start_time());
-        if (!$event->end_time())
-        {
+        if (!$event->end_time()) {
             // Only return the start time
             return self::toDatetimeString($event->start_time());
         }
