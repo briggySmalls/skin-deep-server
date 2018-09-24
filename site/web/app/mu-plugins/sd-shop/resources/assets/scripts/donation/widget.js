@@ -27,8 +27,8 @@ class BuyButton {
     this.button.setAttribute('data-item-price', amount);
     // Update the button URL (used to validate)
     var url = new URL(document.location);
-    url.searchParams.set('donation', amount);
     url.hash = ''; // Remove any unnecessary anchor
+    url.searchParams.set('donation', amount * 100); // Add donation parameter
     this.button.setAttribute('data-item-url', url);
   }
 
