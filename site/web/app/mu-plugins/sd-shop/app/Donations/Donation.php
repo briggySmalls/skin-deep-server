@@ -26,16 +26,6 @@ class Donation extends Widget
             __('Donations widget.', self::WIDGET_SLUG),
             new ResourceManager(dirname(__DIR__))
         );
-
-        // Add a query var for donations
-        add_action('init', function () {
-            // Check if the page will display the widget
-            if (is_active_widget(false, false, $this->id_base, true))
-            {
-                global $wp;
-                $wp->add_query_var('donation');
-            }
-        });
     }
 
     /**
