@@ -15,7 +15,6 @@
         >
           Donate
       </button>
-      <button class="test-button">Test</button>
     </span>
   </div>
 </div>
