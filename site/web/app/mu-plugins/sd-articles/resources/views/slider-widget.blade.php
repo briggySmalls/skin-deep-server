@@ -3,7 +3,7 @@
   --}}
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    @foreach ( $context->posts as $post )
+    @foreach ( $posts as $post )
       <div class="carousel-item @if ($loop->first) active @endif">
         {{-- Display featured image/video --}}
         <a href="{{ $post->url() }}">
@@ -18,7 +18,7 @@
     @endforeach
   </div>
   <ol class="carousel-indicators">
-    @for ( $i = 0; $i < count( $context->posts ); $i++ )
+    @for ( $i = 0; $i < count( $posts ); $i++ )
     <li data-target="#carouselExampleIndicators"
         data-slide-to="{{ $i }}"
         @if ($i == 0) class="active" @endif>

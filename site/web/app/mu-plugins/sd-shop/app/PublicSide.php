@@ -89,6 +89,12 @@ class PublicSide
 
         // Customise Snipcart script
         $loader->addFilter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 3);
+
+        // Add a query var for donations
+        $loader->addAction('init', function() {
+            global $wp;
+            $wp->add_query_var(Donations\DonationArgs::DONATION_QUERY_VAR);
+        });
     }
 
     /**

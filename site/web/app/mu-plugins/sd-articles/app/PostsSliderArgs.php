@@ -2,15 +2,20 @@
 
 namespace SkinDeep\Articles;
 
-class PostsSliderArgs extends WidgetArgs
+class PostsSliderArgs implements WidgetArgsInterface
 {
-    public $args = null;
-    public $posts = null;
+    public $posts;
 
-    public function __construct($args)
+    public function __construct($posts)
     {
-        $this->args = $args;
-        $this->posts = $this->toArticles(
-            $this->getAcfField('sd_widget_slider_articles'));
+        $this->posts = $posts;
+    }
+
+    public static function fromArgs($args)
+    {
+        $helper = new WidgetArgsHelper($args);
+        return new PostsSliderArgs(
+            WidgetArgsHelper::toArticles(
+                $helper->getAcfField('sd_widget_slider_articles')));
     }
 }

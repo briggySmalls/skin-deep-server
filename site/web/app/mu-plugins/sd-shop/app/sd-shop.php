@@ -41,6 +41,11 @@ if (! defined('WPINC')) {
  */
 const SD_SHOP_VERSION = '1.0.0';
 
+/**
+ * Namespace for templates in blade engine
+ */
+const TEMPLATE_NAMESPACE = 'shop';
+
 // Include autoloader
 require __DIR__ . '/../vendor/autoload.php';
 

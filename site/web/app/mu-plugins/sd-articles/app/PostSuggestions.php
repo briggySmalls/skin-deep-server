@@ -8,7 +8,6 @@ namespace SkinDeep\Articles;
  */
 class PostSuggestions extends Widget
 {
-
     /**
      * Unique identifier for the widget.
      *
@@ -22,6 +21,11 @@ class PostSuggestions extends Widget
      */
     protected const WIDGET_SLUG = 'suggestions';
 
+    /**
+     * Namespace in which blade templates are identified
+     */
+    protected const TEMPLATE_NAMESPACE = 'articles';
+
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/
@@ -34,7 +38,8 @@ class PostSuggestions extends Widget
     {
         parent::__construct(
             __('Post suggestions', self::WIDGET_SLUG),
-            __('Suggest how to navigate to relevant posts.', self::WIDGET_SLUG)
+            __('Suggest how to navigate to relevant posts.', self::WIDGET_SLUG),
+            new ResourceManager(__DIR__)
         );
     } // end constructor
 
@@ -49,11 +54,6 @@ class PostSuggestions extends Widget
      */
     protected function createArgs($args)
     {
-        return new PostsSuggestionsArgs($args);
-    }
-
-    protected function widgetSlug()
-    {
-        return self::WIDGET_SLUG;
+        return PostSuggestionsArgs::fromArgs($args);
     }
 } // end class

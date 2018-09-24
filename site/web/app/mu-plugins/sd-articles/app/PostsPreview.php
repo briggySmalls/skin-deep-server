@@ -22,6 +22,11 @@ class PostsPreview extends Widget
      */
     protected const WIDGET_SLUG = 'preview';
 
+    /**
+     * Namespace in which blade templates are identified
+     */
+    protected const TEMPLATE_NAMESPACE = 'articles';
+
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/
@@ -34,7 +39,8 @@ class PostsPreview extends Widget
     {
         parent::__construct(
             __('Posts Preview', self::WIDGET_SLUG),
-            __('Preview of posts in a configured group.', self::WIDGET_SLUG)
+            __('Preview of posts in a configured group.', self::WIDGET_SLUG),
+            new ResourceManager(__DIR__)
         );
     } // end constructor
 
@@ -49,11 +55,6 @@ class PostsPreview extends Widget
      */
     protected function createArgs($args)
     {
-        return new PostsPreviewArgs($args);
-    }
-
-    protected function widgetSlug()
-    {
-        return self::WIDGET_SLUG;
+        return PostsPreviewArgs::fromArgs($args);
     }
 } // end class
