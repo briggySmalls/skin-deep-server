@@ -19,7 +19,7 @@ class Product extends Post
         return get_field('sd-product-description', $this->post->ID);
     }
 
-    public function in_stock()
+    public function inStock()
     {
         return get_field('sd_product_in_stock', $this->post->ID);
     }

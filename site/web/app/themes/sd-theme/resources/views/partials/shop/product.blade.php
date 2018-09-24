@@ -8,7 +8,7 @@
 </div>
 <div class="card-footer">
   <p class="card-text">
-    @if ($product->in_stock())
+    @if ($product->inStock())
       £{{ $product->price() }}
     @else
       Out of stock
