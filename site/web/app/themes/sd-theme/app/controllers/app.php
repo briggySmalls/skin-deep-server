@@ -48,7 +48,7 @@ class App extends Controller
         return null;
     }
 
-    public static function is_default_category($category)
+    public static function isDefaultCategory($category)
     {
         $default_category = get_option('default_category');
         return $default_category == $category->term_id;

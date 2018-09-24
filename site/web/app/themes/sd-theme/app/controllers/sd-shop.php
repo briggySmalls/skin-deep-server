@@ -44,7 +44,7 @@ class SdShop extends Controller
         return $this->categories;
     }
 
-    public function column_count()
+    public function columnCount()
     {
         return 4;
     }
