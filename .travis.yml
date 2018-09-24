@@ -17,9 +17,9 @@ cache:
   directories:
     - $HOME/.composer/cache
     - site/vendor
-    - site/web/app/mu-plugins/sd-articles
-    - site/web/app/mu-plugins/sd-events
-    - site/web/app/mu-plugins/sd-shop
+    - site/web/app/mu-plugins/sd-articles/vendor
+    - site/web/app/mu-plugins/sd-events/vendor
+    - site/web/app/mu-plugins/sd-shop/vendor
 
 before_install:
   - cd site
