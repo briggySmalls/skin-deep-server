@@ -1,6 +1,6 @@
 {
     "key": "group_5b60fa89613d9",
-    "title": "Event options",
+    "title": "Event fields",
     "fields": [
         {
             "key": "field_5b73763bf9b10",
@@ -87,7 +87,7 @@
                         "id": ""
                     },
                     "display_format": "H:i d\/m\/Y",
-                    "return_format": "Y-m-d\\TH:i:sP",
+                    "return_format": "Y-m-dTH:i:sP",
                     "first_day": 1
                 },
                 {
@@ -104,7 +104,7 @@
                         "id": ""
                     },
                     "display_format": "H:i d\/m\/Y",
-                    "return_format": "Y-m-d\\TH:i:sP",
+                    "return_format": "Y-m-dTH:i:sP",
                     "first_day": 1
                 },
                 {
@@ -145,5 +145,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1536620765
+    "modified": 1537604311
 }

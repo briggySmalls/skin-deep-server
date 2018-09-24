@@ -1,6 +1,6 @@
 {
     "key": "group_5b5a4fdc23e8f",
-    "title": "Posts slider options",
+    "title": "Slider widget fields",
     "fields": [
         {
             "key": "field_5b5a4fff2b3c6",
@@ -42,5 +42,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1532647549
+    "modified": 1537604342
 }

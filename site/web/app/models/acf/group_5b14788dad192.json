@@ -1,6 +1,6 @@
 {
     "key": "group_5b14788dad192",
-    "title": "Preview options",
+    "title": "Preview widget fields",
     "fields": [
         {
             "key": "field_5b14795f2eb5b",
@@ -194,5 +194,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1532647539
+    "modified": 1537604377
 }

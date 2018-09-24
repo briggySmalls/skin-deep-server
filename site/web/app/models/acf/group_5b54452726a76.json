@@ -1,6 +1,6 @@
 {
     "key": "group_5b54452726a76",
-    "title": "Category options",
+    "title": "Category fields",
     "fields": [
         {
             "key": "field_5b54457baf086",
@@ -63,5 +63,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537120620
+    "modified": 1537604300
 }

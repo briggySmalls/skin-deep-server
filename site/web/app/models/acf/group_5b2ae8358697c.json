@@ -1,6 +1,6 @@
 {
     "key": "group_5b2ae8358697c",
-    "title": "Product options",
+    "title": "Product fields",
     "fields": [
         {
             "key": "field_5b2ae8729134c",
@@ -132,5 +132,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "Set of options defining a product",
-    "modified": 1537025493
+    "modified": 1537604362
 }
