@@ -28,6 +28,7 @@ class BuyButton {
     // Update the button URL (used to validate)
     var url = new URL(document.location);
     url.searchParams.set('donation', amount);
+    url.hash = ''; // Remove any unnecessary anchor
     this.button.setAttribute('data-item-url', url);
   }
 
