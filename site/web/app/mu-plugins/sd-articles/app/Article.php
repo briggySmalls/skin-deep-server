@@ -15,7 +15,6 @@ class Article extends Post
     public function authors()
     {
         return wp_get_post_terms($this->post->ID, 'sd-author');
-        ;
     }
 
     /**
