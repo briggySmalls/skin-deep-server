@@ -99,12 +99,12 @@ class Shop
                 $atts['title'],
                 $atts['default_donation'],
                 array_key_exists('description', $atts) ? $atts['description'] : null);
-            $args = get_object_vars($args);
+            $arg_array = get_object_vars($args);
             // Generate the 'widget' content
             return Donations\Donation::output(
                 new ResourceManager(__DIR__),
                 'widget',
-                $args);
+                $arg_array);
         });
     }
 
