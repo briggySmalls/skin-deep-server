@@ -11,8 +11,7 @@ class BuyButton {
    * @return     The amount (in GBP)
    */
   findAmount() {
-    var inputGroup = this.button.closest('.input-group');
-    var amountEls = inputGroup.getElementsByClassName('donate-amount');
+    var amountEls = this.button.closest('form').getElementsByClassName('donate-amount');
     console.assert(amountEls.length === 1);
     var amount = amountEls[0].value;
     console.log("Amount is " + amount);
@@ -46,8 +45,21 @@ class BuyButton {
 
 // Find all donation buttons, and register a handler
 document.addEventListener("DOMContentLoaded", function() {
+  // Configure every buy button to update prior to handling
   var donation_buttons = document.getElementsByClassName('donate-button');
   [].forEach.call(donation_buttons, function(button) {
-    button.addEventListener("click", BuyButton.handleClick);
+    button.addEventListener("click", function(event) {
+      // First validate the form
+      var form = button.closest('form');
+      if (form.checkValidity() === false) {
+        // The form validation failed, so stop there
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        // Validation succeeded, so handle the click
+        BuyButton.handleClick(event);
+      }
+      form.classList.add('was-validated');
+    });
   });
-});
+}, false);
