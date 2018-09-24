@@ -54,6 +54,6 @@ class PostSuggestions extends Widget
      */
     protected function createArgs($args)
     {
-        return PostSuggestionsArgs::formArgs($args);
+        return PostSuggestionsArgs::fromArgs($args);
     }
 } // end class
