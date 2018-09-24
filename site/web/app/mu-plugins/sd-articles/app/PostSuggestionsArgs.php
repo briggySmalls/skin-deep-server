@@ -7,24 +7,22 @@ class PostSuggestionsArgs implements WidgetArgsInterface
     public $authors;
     public $categories;
 
-    public function __construct($authors, $categories)
-    {
-        $this->authors = $authors;
-        $this->categories = $categories;
-    }
-
-    public static function fromArgs($args)
+    public function __construct()
     {
         if (!is_single())
         {
-            // We don't support
-            return null;
+            // We don't support non-post display
+            return;
         }
         // Get the current article
         $article = new Article(get_queried_object());
         // Create args from article
-        return new PostSuggestionsArgs(
-            $article->authors(),
-            $article->categories());
+        $this->authors = $article->authors();
+        $this->categories = $article->categories();
+    }
+
+    public static function fromArgs($args)
+    {
+        return new PostSuggestionsArgs();
     }
 }
