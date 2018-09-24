@@ -31,6 +31,6 @@ install:
 
 script:
   - composer test
-  - yarn --cwd site/web/app/themes/sd-theme run test
-  - yarn --cwd site/web/app/mu-plugins/sd-articles run test
-  - yarn --cwd site/web/app/mu-plugins/sd-shop run test
+  - yarn --cwd web/app/themes/sd-theme run test
+  - yarn --cwd web/app/mu-plugins/sd-articles run test
+  - yarn --cwd web/app/mu-plugins/sd-shop run test
