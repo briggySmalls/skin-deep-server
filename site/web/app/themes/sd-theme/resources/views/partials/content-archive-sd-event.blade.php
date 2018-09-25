@@ -10,7 +10,7 @@
       {{-- Display title --}}
       <h4 class="card-title">{{ $event->post_title }}</h4>
       {{-- Display time --}}
-      @if ($event->start_time)
+      @if ($event->startTime())
         <p class="card-text">{{ SingleSdEvent::getDisplayTime($event) }}</p>
       @endif
       <p>{!! the_excerpt() !!}</p>

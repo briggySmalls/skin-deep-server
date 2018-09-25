@@ -58,6 +58,12 @@ class Post
      */
     public function __get($name)
     {
-        return $this->post->$name;
+        if (property_exists($this->post, $name)) {
+            return $this->post->$name;
+        }
+        trigger_error(
+            sprintf("Undefined property '%s' on %s", $name, get_class($this)),
+            E_USER_NOTICE
+        );
     }
 }

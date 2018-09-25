@@ -5,6 +5,8 @@ namespace SkinDeep\Events;
 use \DateTime;
 use SkinDeep\Articles\Post;
 
+const FACEBOOK_EVENTS_URL_BASE = 'https://www.facebook.com/events/';
+
 class Event extends Post
 {
     protected $start_time;
@@ -41,8 +43,8 @@ class Event extends Post
 
     public function facebookUrl()
     {
-        if ($this->event_id) {
-            return FACEBOOK_EVENTS_URL_BASE . $this->event_id;
+        if ($this->facebookId) {
+            return FACEBOOK_EVENTS_URL_BASE . $this->facebookId;
         }
         return null;
     }

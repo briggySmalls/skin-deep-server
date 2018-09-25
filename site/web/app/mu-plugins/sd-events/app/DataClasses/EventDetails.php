@@ -2,10 +2,6 @@
 
 namespace SkinDeep\Events\DataClasses;
 
-use \DateTime;
-
-const FACEBOOK_EVENTS_URL_BASE = 'https://www.facebook.com/events/';
-
 class EventDetails
 {
     public $start_time;
@@ -19,10 +15,5 @@ class EventDetails
         $this->end_time = $end_time;
         $this->venue = $venue;
         $this->event_id = $event_id;
-    }
-
-    public function facebookUrl()
-    {
-        return FACEBOOK_EVENTS_URL_BASE . $this->event_id;
     }
 }
