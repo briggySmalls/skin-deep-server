@@ -7,7 +7,7 @@ php:
   - nightly
 env:
   - NODE_RELEASE=9.x
-  - NOTE_RELEASE=10.x
+  - NODE_RELEASE=10.x
 
 matrix:
   fast_finish: true
