@@ -15,6 +15,7 @@
   with_items:
     - web/app/themes/sd-theme
     - web/app/mu-plugins/sd-articles
+    - web/app/mu-plugins/sd-shop
 
 - name: Install Composer dependencies
   command: composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
@@ -34,6 +35,7 @@
   with_items:
     - web/app/themes/sd-theme
     - web/app/mu-plugins/sd-articles
+    - web/app/mu-plugins/sd-shop
 
 - name: Copy production assets
   synchronize:
@@ -45,3 +47,4 @@
   with_items:
     - web/app/themes/sd-theme
     - web/app/mu-plugins/sd-articles
+    - web/app/mu-plugins/sd-shop
