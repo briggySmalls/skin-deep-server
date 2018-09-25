@@ -1,11 +1,12 @@
-sudo: false
+sudo: true
 language: php
 php:
   - 7.2
   - 7.1
-  - 7.0
-  - 5.6
   - nightly
+env:
+  - NODE_RELEASE=9.x
+  - NODE_RELEASE=10.x
 
 matrix:
   fast_finish: true
@@ -14,21 +15,41 @@ matrix:
 
 cache:
   apt: true
+  yarn: true
+  composer: true
   directories:
-    - $HOME/.composer/cache
     - site/vendor
-    - site/web/app/mu-plugins/sd-articles
-    - site/web/app/mu-plugins/sd-events
-    - site/web/app/mu-plugins/sd-shop
+    - site/web/app/themes/sd-theme/vendor
+    - site/web/app/mu-plugins/sd-articles/vendor
+    - site/web/app/mu-plugins/sd-events/vendor
+    - site/web/app/mu-plugins/sd-shop/vendor
+    - site/web/app/themes/sd-theme/node_modules
+    - site/web/app/mu-plugins/sd-articles/node_modules
+    - site/web/app/mu-plugins/sd-shop/node_modules
 
 before_install:
+  # Repo for newer Node.js versions
+  - sudo rm -rf ~/.nvm
+  - curl -sL https://deb.nodesource.com/setup_${NODE_RELEASE} | sudo -E bash -
+  # Repo for Yarn
+  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  # Install yarn and node
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq nodejs yarn
+  # Ensure bedrock is ready
   - cd site
   - phpenv config-rm xdebug.ini || true
   - composer self-update
 
 install:
   - composer install -o --prefer-dist --no-interaction
+  - yarn --cwd web/app/themes/sd-theme install
+  - yarn --cwd web/app/mu-plugins/sd-articles install
+  - yarn --cwd web/app/mu-plugins/sd-shop install
 
 script:
   - composer test
-  - yarn --cwd site/web/app/themes/sd-theme run lint
+  - yarn --cwd web/app/themes/sd-theme run test
+  - yarn --cwd web/app/mu-plugins/sd-articles run test
+  - yarn --cwd web/app/mu-plugins/sd-shop run test

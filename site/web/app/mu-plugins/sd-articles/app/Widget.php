@@ -202,12 +202,11 @@ abstract class Widget extends \WP_Widget
         self::enqueueAsset($resource_manager, $template, $is_script = false);
 
         // Generate the output
-        if ($args)
-        {
+        if ($args) {
             // Pass context variables to template
-            return Article::$blade->make(self::template_name($template), $args)->render();
+            return Article::$blade->make(self::templateName($template), $args)->render();
         }
-        return Article::$blade->make(self::template_name($template))->render();
+        return Article::$blade->make(self::templateName($template))->render();
     }
 
     /*--------------------------------------------------*/
@@ -234,7 +233,7 @@ abstract class Widget extends \WP_Widget
         }
     }
 
-    protected static function template_name($name)
+    protected static function templateName($name)
     {
         return static::TEMPLATE_NAMESPACE . '::' . static::WIDGET_SLUG . '-' . $name;
     }
@@ -266,7 +265,10 @@ abstract class Widget extends \WP_Widget
     public static function toArticles($posts)
     {
         return array_map(
-            function($post) { return new Article($post); },
-            $posts);
+            function ($post) {
+                return new Article($post);
+            },
+            $posts
+        );
     }
 } // end class

@@ -12,7 +12,7 @@
         {{ the_content() }}
       </div>
       <button class="snipcart-add-item buy-button"
-      @if ($product->in_stock())
+      @if ($product->inStock())
         data-item-id="{{ $product->ID }}"
         data-item-name="{{ $product->title() }}"
         data-item-price="{{ $product->price() }}"
@@ -22,7 +22,7 @@
         disabled
       @endif
         >
-          @if ($product->in_stock())
+          @if ($product->inStock())
             Buy
           @else
             Out of stock

@@ -16,24 +16,23 @@ class SingleSdEvent extends Controller
     public static function getDisplayTime($event)
     {
         // First check that there are times in the first place
-        assert($event->start_time());
-        if (!$event->end_time())
-        {
+        assert($event->startTime());
+        if (!$event->endTime()) {
             // Only return the start time
-            return self::toDatetimeString($event->start_time());
+            return self::toDatetimeString($event->startTime());
         }
 
         // Determine if we show special formatting for same day (start - end date)
-        $is_same_day = $event->start_time()->format('d') == $event->end_time()->format('d');
-        $is_not_24_hrs = $event->start_time()->diff($event->end_time())->format('H') < 24;
+        $is_same_day = $event->startTime()->format('d') == $event->endTime()->format('d');
+        $is_not_24_hrs = $event->startTime()->diff($event->endTime())->format('H') < 24;
         if ($is_same_day & $is_not_24_hrs) {
             // Starts/ends on same day
-            return self::toTimeString($event->start_time()) . ' - ' . self::toTimeString($event->end_time()) . ' ' . self::toDateString($event->start_time());
+            return self::toTimeString($event->startTime()) . ' - ' . self::toTimeString($event->endTime()) . ' ' . self::toDateString($event->startTime());
         }
 
         // Otherwise write out the date twice
         return (
-            self::toDatetimeString($event->start_time()) . ' - ' . self::toDatetimeString($event->end_time()));
+            self::toDatetimeString($event->startTime()) . ' - ' . self::toDatetimeString($event->endTime()));
     }
 
     protected static function toDatetimeString($datetime)

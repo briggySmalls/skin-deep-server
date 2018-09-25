@@ -6,22 +6,55 @@
   "author": "Sam Briggs",
   "license": "MIT",
   "private": true,
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "no-empty-source": null,
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "extend",
+            "at-root",
+            "debug",
+            "warn",
+            "error",
+            "if",
+            "else",
+            "for",
+            "each",
+            "while",
+            "mixin",
+            "include",
+            "content",
+            "return",
+            "function"
+          ]
+        }
+      ]
+    }
+  },
   "scripts": {
     "build": "webpack --mode production --progress --config resources/assets/build/webpack.config.js",
     "build:production": "webpack --mode production --progress -p --config resources/assets/build/webpack.config.js",
-    "start": "webpack --mode development --hide-modules --watch --config resources/assets/build/webpack.config.js"
+    "start": "webpack --mode development --hide-modules --watch --config resources/assets/build/webpack.config.js",
+    "lint": "npm run -s lint:scripts && npm run -s lint:styles",
+    "lint:scripts": "eslint resources/assets/scripts resources/assets/build",
+    "lint:styles": "stylelint \"resources/assets/styles/**/*.{css,sass,scss,sss,less}\"",
+    "test": "npm run -s lint"
   },
-  "dependencies": {
-    "@vimeo/player": "^2.6.3",
-    "eslint": "^5.0.1",
-    "node-sass": "^4.9.1",
-    "sass-loader": "^7.0.3",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.15.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "css-loader": "^1.0.0",
+    "eslint": "^5.6.0",
+    "eslint-plugin-import": "^2.14.0",
     "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "stylelint": "^9.5.0",
+    "stylelint-config-standard": "^18.2.0",
+    "webpack": "^4.19.1",
     "webpack-cli": "^3.0.8"
   }
 }

@@ -27,7 +27,10 @@ class WidgetArgsHelper
     public static function toArticles($posts)
     {
         return array_map(
-            function($post) { return new Article($post); },
-            $posts);
+            function ($post) {
+                return new Article($post);
+            },
+            $posts
+        );
     }
 }

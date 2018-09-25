@@ -14,7 +14,7 @@ class Article extends Post
      */
     public function authors()
     {
-        return wp_get_post_terms($this->post->ID, 'sd-author');;
+        return wp_get_post_terms($this->post->ID, 'sd-author');
     }
 
     /**
@@ -47,8 +47,7 @@ class Article extends Post
     public function magazine()
     {
         $magazine_post = get_field('sd_article_magazine');
-        if ($magazine_post)
-        {
+        if ($magazine_post) {
             return new Product($magazine_post);
         }
         return null;
@@ -85,10 +84,8 @@ class Article extends Post
 
     protected static function getDefaultIndex($categories)
     {
-        foreach ($categories as $i=>$category)
-        {
-            if (self::isDefaultCategory($category))
-            {
+        foreach ($categories as $i => $category) {
+            if (self::isDefaultCategory($category)) {
                 return $i;
             }
         }

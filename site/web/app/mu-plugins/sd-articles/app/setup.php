@@ -5,7 +5,7 @@ namespace SkinDeep\Articles;
 const TEMPLATE_NAMESPACE = 'articles';
 
 // Get the blade engine from sage (for building widget html)
-add_action('skin_deep_init', function($blade) {
+add_action('skin_deep_init', function ($blade) {
     Article::$blade = $blade;
 });
 

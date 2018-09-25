@@ -69,6 +69,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
             $posts,
             $url,
             $helper->getAcfField('sd_widget_preview_title'),
-            $helper->getAcfField('sd_widget_preview_columns'));
+            $helper->getAcfField('sd_widget_preview_columns')
+        );
     }
 }

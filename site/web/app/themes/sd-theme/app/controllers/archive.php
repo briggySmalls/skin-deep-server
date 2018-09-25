@@ -6,10 +6,9 @@ use Sober\Controller\Controller;
 
 class Archive extends Controller
 {
-    public function is_articles_page()
+    public function isArticlesPage()
     {
-        if (is_category())
-        {
+        if (is_category()) {
             // All category pages are for posts
             return true;
         }
