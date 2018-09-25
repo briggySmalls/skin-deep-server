@@ -16,7 +16,6 @@ module.exports = {
       "globalReturn": true,
       "generators": false,
       "objectLiteralDuplicateProperties": false,
-      "experimentalObjectRestSpread": true
     },
     "ecmaVersion": 2017,
     "sourceType": "module"
