@@ -1,7 +1,7 @@
 <article @php post_class() @endphp>
   <header>
     <figure>
-      @if ($article->hasFeaturedVideo())
+      @if ($article->hasVideo())
         {{-- Feature video takes precedence --}}
         @include('partials/video-header')
       @elseif ($article->hasImage())

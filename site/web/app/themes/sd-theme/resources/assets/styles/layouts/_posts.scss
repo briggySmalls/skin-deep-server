@@ -15,11 +15,21 @@
       font-size: 1rem;
     }
 
-    > img {
-      &:first-child {
-        @extend .card-img-top;
-      }
+    .featured-image > img {
+      @extend .card-img-top;
     }
+  }
+}
+
+.featured-image {
+  position: relative;
+
+  .video-icon {
+    @extend .img-fluid;
+
+    position: absolute; // Overlay on image
+    width: 15%;
+    margin: 4%;
   }
 }
 

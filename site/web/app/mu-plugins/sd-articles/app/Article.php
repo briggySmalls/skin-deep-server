@@ -35,7 +35,7 @@ class Article extends Post
      * @brief      Determines post has featured video.
      * @return     True if has featured video, False otherwise.
      */
-    public function hasFeaturedVideo()
+    public function hasVideo()
     {
         return (self::video() != null);
     }
