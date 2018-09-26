@@ -1,10 +1,14 @@
 // Anchors
-a {
-  color: theme-color(primary);
+a:not(.nav-link) {
+  color: theme-color(link);
+  text-decoration: underline;
+
+  &:visited {
+    color: theme-color(link-visited);
+  }
 
   @include hover {
-    color: theme-color(highlight);
-    text-decoration: none;
+    color: theme-color(link-hover);
   }
 }
 

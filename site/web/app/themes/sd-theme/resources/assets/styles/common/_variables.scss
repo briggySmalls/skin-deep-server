@@ -6,21 +6,11 @@ $navbar-dark-toggler-icon-bg: none;
 $navbar-light-toggler-icon-bg: none;
 
 $theme-colors: (
-  primary: #707070,
-  highlight: #ffab26,
+  primary: #369,
+  link: hsl(30, 68%, 40%),
+  link-hover: hsl(30, 100%, 45%),
+  link-visited: hsl(30, 30%, 40%),
 );
 
-@function theme-color($key) {
-  // Get the colour from the map
-  @if map-has-key($theme-colors, $key) {
-    @return map-get($theme-colors, $key);
-  }
-
-  // Warn that colour was not found in map
-  @warn "Unknown `#{$key}` in $colors.";
-
-  @return null;
-}
-
-$navbar-light-active-color: theme-color(highlight);
-$navbar-light-hover-color: theme-color(highlight);
+$navbar-light-active-color: theme-color(primary);
+$navbar-light-hover-color: theme-color(link-hover);

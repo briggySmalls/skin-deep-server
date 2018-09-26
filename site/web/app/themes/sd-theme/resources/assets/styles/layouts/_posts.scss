@@ -7,4 +7,8 @@
 body.single-format-video {
   background-color: black;
   color: white;
+
+  .widget.suggestions .jumbotron {
+    background-color: $gray-800;
+  }
 }
