@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="row no-gutters">
+  <div class="row no-gutters card-content">
     <div class="col-md-4">
       {{-- Display the featured image --}}
       @if ($event->hasImage())
@@ -16,4 +16,6 @@
       <p>{!! the_excerpt() !!}</p>
     </div>
   </div>
+  {{-- Supply link for card --}}
+  <a class="card-link" href={{ $event->url() }}></a>
 </div>

@@ -6,7 +6,9 @@
   {{-- Display category --}}
   <p class="category-link">
     @foreach ($post->categories() as $category)
-      {{ $category->name }}
+      <a href="{{ get_category_link($category) }}">
+        {{ $category->name }}
+      </a>
     @endforeach
   </p>
   {{-- Display title --}}

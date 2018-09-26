@@ -1,0 +1,53 @@
+.posts-grid .row {
+  [class*="col-"] {
+    margin: 0.5em 0; // Add spacing between rows
+  }
+}
+
+// Style cards throughout UI consistently
+.card {
+  position: relative; // Ensure we can cover in a link
+  height: 100%; // Make cards equal height
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .featured-image > img {
+    @extend .card-img-top;
+  }
+
+  &:hover {
+    background-color: $gray-100;
+  }
+
+  // Display links on top of card link
+  .card-body a {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Cover the card in a link
+  > a.card-link {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
+}
+
+// Style video tiles/slider with video icon
+.featured-image {
+  position: relative;
+
+  .video-icon {
+    @extend .img-fluid;
+
+    position: absolute; // Overlay on image
+    width: 15%;
+    margin: 4%;
+  }
+}

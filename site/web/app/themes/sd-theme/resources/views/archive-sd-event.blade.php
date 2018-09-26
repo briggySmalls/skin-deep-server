@@ -8,10 +8,7 @@
     @php
     $event = new SkinDeep\Events\Event(get_post());
     @endphp
-      {{-- Wrap the entire card in a link --}}
-      <a href={{ $event->url() }}>
-        @include('partials.content-archive-sd-event')
-      </a>
+    @include('partials.content-archive-sd-event')
   @endwhile
 
   {!! get_the_posts_navigation() !!}

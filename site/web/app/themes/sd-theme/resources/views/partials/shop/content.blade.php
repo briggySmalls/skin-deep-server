@@ -4,7 +4,7 @@
   <div class="card category">
     <div class="card-header" id="{{ $category->slug }}-heading">
       <h5 class="mb-0">
-        <button class="btn btn-link"
+        <button class="btn"
                 type="button"
                 data-toggle="collapse"
                 data-target="#{{ $category->slug }}"
@@ -18,15 +18,13 @@
          class="{{ $loop->last ? "collapse show" : "collapse" }}"
          aria-labelledby="{{ $category->slug }}"
          data-parent="#categoryContainer">
-      <div class="card-body">
-        @include(
-          'articles::partials.grid',
-          [
-            'single_post_template' => 'partials/shop/product',
-            'posts' => $products[$category->term_id],
-            'column_count' => $column_count,
-          ])
-      </div>
+      @include(
+        'articles::partials.grid',
+        [
+          'single_post_template' => 'partials/shop/product',
+          'posts' => $products[$category->term_id],
+          'column_count' => $column_count,
+        ])
     </div>
   </div>
   @endforeach

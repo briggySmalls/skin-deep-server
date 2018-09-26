@@ -3,36 +3,6 @@
   margin: 1em 0;
 }
 
-.posts-grid .row {
-  [class*="col-"] {
-    margin: 0.5em 0; // Add spacing between rows
-  }
-
-  .card {
-    height: 100%; // Make cards equal height
-
-    h3 {
-      font-size: 1rem;
-    }
-
-    .featured-image > img {
-      @extend .card-img-top;
-    }
-  }
-}
-
-.featured-image {
-  position: relative;
-
-  .video-icon {
-    @extend .img-fluid;
-
-    position: absolute; // Overlay on image
-    width: 15%;
-    margin: 4%;
-  }
-}
-
 // Video format
 body.single-format-video {
   background-color: black;
