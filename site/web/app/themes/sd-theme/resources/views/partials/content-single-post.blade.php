@@ -33,7 +33,7 @@
           </div>
           <div class="col-sm">
             {{-- TODO: Make an article wrapper like for Product --}}
-            {!! get_the_post_thumbnail($magazine->ID, 'thumbnail') !!}
+            {!! get_the_post_thumbnail($magazine->ID, 'post-thumbnail') !!}
           </div>
         </div>
       </div>
