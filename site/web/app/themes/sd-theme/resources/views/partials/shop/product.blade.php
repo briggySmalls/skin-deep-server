@@ -1,5 +1,5 @@
 @if (has_post_thumbnail($post->ID))
-  {!! get_the_post_thumbnail($post->ID, 'post_thumbnail'); !!}
+  {!! get_the_post_thumbnail($post->ID, 'post-thumbnail'); !!}
 @endif
 @php $product = new SkinDeep\Shop\Product($post); @endphp
 <div class="card-body">
