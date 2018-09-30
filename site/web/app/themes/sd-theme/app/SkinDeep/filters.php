@@ -95,3 +95,8 @@ add_filter('img_caption_shortcode', function ($current_html, $attr, $content) {
 
     return $html;
 }, 10, 3);
+
+// Remove image size attributes from post thumbnails
+add_filter('post_thumbnail_html', function($html) {
+    return preg_replace( '/(width|height)="\d*"/', '', $html );
+}, 10, 1);
