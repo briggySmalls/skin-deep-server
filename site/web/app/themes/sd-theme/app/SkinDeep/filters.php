@@ -102,3 +102,14 @@ add_filter('img_caption_shortcode', function ($current_html, $attr, $content) {
 add_filter('post_thumbnail_html', function ($html) {
     return preg_replace('/(width|height)="\d*"/', '', $html);
 }, 10, 1);
+
+/**
+ * Disable relative URLs on images if jetpack photon is enabled
+ */
+add_filter('soil/relative-url-filters', function ($filters) {
+    if (class_exists('Jetpack') && \Jetpack::is_module_active('photon')) {
+        // Photon CDN is enabled
+        return array_diff($filters, ['wp_get_attachment_url']);
+    }
+    return $filters;
+});
