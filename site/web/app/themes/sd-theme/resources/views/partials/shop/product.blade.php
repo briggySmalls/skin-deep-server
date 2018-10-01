@@ -1,5 +1,5 @@
 @php $product = new SkinDeep\Shop\Product($post); @endphp
-@if (has_post_thumbnail($product->ID))
+@if ($product->hasImage())
   @include('partials/image-header', ['post' => $product])
 @endif
 <div class="card-body">

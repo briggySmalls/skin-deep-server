@@ -3,7 +3,7 @@
     <div class="col-md-4">
       {{-- Display the featured image --}}
       @if ($event->hasImage())
-        @include('partials/image-header')
+        @include('partials/image-header', ['post' => $event])
       @endif
     </div>
     <div class="col content">
