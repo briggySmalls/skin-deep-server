@@ -4,7 +4,7 @@ namespace SkinDeep\Theme;
 
 class ImageManager
 {
-    const ASPECT_RATIO = 16/9;
+    const ASPECT_RATIO = 1200/514;
 
     const WIDTHS = [
         'post-thumbnail' => 240,
