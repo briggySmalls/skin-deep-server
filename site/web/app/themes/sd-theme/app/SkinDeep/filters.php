@@ -113,3 +113,11 @@ add_filter('soil/relative-url-filters', function ($filters) {
     }
     return $filters;
 });
+
+/**
+ * Override 'sizes' attribute for all images
+ */
+add_filter('wp_calculate_image_sizes', function ($sizes, $size) {
+    // Always assume images are nearly full-width
+    return "100vw";
+}, 10, 2);

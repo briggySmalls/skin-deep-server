@@ -36,7 +36,7 @@ class Post
      * @brief      Get featured image
      * @return     Featured image
      */
-    public function image($size = "full")
+    public function image($size = "post-thumbnail")
     {
         return get_the_post_thumbnail($this->post->ID, $size);
     }
