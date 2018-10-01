@@ -1,7 +1,7 @@
-@if (has_post_thumbnail($post->ID))
-  {!! get_the_post_thumbnail($post->ID, 'post-thumbnail'); !!}
-@endif
 @php $product = new SkinDeep\Shop\Product($post); @endphp
+@if (has_post_thumbnail($product->ID))
+  @include('partials/image-header', ['post' => $product])
+@endif
 <div class="card-body">
   <h5 class="card-title">{{ $product->title() }}</h5>
 </div>

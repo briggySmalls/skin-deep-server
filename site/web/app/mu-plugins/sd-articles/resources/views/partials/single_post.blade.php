@@ -1,7 +1,5 @@
 {{-- Display featured image/video --}}
-@include(
-  'articles::partials.featured-media',
-  ['image_size' => 'post-thumbnail'])
+@include('articles::partials.featured-media')
 <div class="card-body">
   @php
   $categories = $post->categories();
