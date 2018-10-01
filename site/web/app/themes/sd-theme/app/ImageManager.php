@@ -56,7 +56,7 @@ class ImageManager
     {
         return [
             'width' => $width,
-            'height' => $width / self::ASPECT_RATIO,
+            'height' => round($width / self::ASPECT_RATIO),
             'crop' => true
         ];
     }
