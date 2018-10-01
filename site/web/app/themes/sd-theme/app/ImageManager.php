@@ -47,8 +47,8 @@ class ImageManager
     {
         $img_src = wp_get_attachment_image_url($image_id, 'full');
         $img_srcset = wp_get_attachment_image_srcset($image_id, 'medium_large');
-        $img_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true ); ?>
-        <img src="<?php echo esc_attr( $img_src ); ?>" srcset="<?php echo esc_attr( $img_srcset ); ?>" sizes="100vw" alt="<?php echo $img_alt; ?>">
+        $img_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); ?>
+        <img src="<?php echo esc_attr($img_src); ?>" srcset="<?php echo esc_attr($img_srcset); ?>" sizes="100vw" alt="<?php echo $img_alt; ?>">
         <?php
     }
 
@@ -60,5 +60,4 @@ class ImageManager
             'crop' => true
         ];
     }
-
 }
