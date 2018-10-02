@@ -35,12 +35,10 @@ class Product extends Post
                 "/(.+?\?resize=)(?<width>\d+)%2C(?<height>\d+) (?<width_2>\d+)w, /",
                 "$1$3%2C$2 $3w, ",
                 $img_srcset);
-            return sprintf(
-                '<img src="%s" srcset="%s" sizes="%s" alt="%s">',
-                wp_get_attachment_image_url($img_id, 'full'),
-                $transformed_srcset,
-                $sizes ?? '100vw',
-                get_post_meta($img_id, '_wp_attachment_image_alt', true));
+            return get_the_post_thumbnail(
+                $this->post->ID,
+                'post-thumbnail',
+                ['srcset' => $transformed_srcset]);
         }
         return parent::image($classes, $sizes, $size);
     }
