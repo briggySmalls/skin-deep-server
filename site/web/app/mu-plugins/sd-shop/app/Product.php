@@ -32,8 +32,8 @@ class Product extends Post
             // Get the srcset and modify it to be portrait
             $img_srcset = wp_get_attachment_image_srcset($img_id, 'post-thumbnail');
             $transformed_srcset = preg_replace(
-                "/((?<path>.+?)(?<width>\d+)x(?<height>\d+)(?<ext>\..+?) (?<width_2>\d+w))/",
-                "$2$4x$3$5 $4w",
+                "/(.+?\?resize=)(?<width>\d+)%2C(?<height>\d+) (?<width_2>\d+)w, /",
+                "$1$3%2C$2 $3w, ",
                 $img_srcset);
             return sprintf(
                 '<img src="%s" srcset="%s" sizes="%s" alt="%s">',
