@@ -1,6 +1,11 @@
 @php $product = new SkinDeep\Shop\Product($post); @endphp
 @if ($product->hasImage())
-  @include('partials/image-header', ['post' => $product])
+  @include(
+    'partials/image-header',
+    [
+      'post' => $product,
+      'image_sizes' => \SkinDeep\Articles\PostsPreview::sizes($column_count)
+    ])
 @endif
 <div class="card-body">
   <h5 class="card-title">{{ $product->title() }}</h5>

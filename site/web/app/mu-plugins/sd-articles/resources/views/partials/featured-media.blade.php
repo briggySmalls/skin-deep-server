@@ -4,6 +4,6 @@
       <i class="fas fa-video video-icon" title="Video article"></i>
     @endif
     {{-- Display the featured image --}}
-    {!! $post->image($image_classes, $image_sizes) !!}
+    {!! $post->image($image_classes ?? false, $image_sizes ?? false) !!}
   </div>
 @endif

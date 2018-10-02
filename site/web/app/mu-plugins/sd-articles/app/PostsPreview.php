@@ -27,6 +27,14 @@ class PostsPreview extends Widget
      */
     protected const TEMPLATE_NAMESPACE = 'articles';
 
+    /**
+     * Bootstrap columns for responsive breakpoints
+     */
+    public const BOOTSTRAP_COLUMNS = [
+        'md' => 576,
+        'xl' => 1200,
+    ];
+
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/
@@ -42,7 +50,22 @@ class PostsPreview extends Widget
             __('Preview of posts in a configured group.', self::WIDGET_SLUG),
             new ResourceManager(__DIR__)
         );
-    } // end constructor
+    }
+
+    /*--------------------------------------------------*/
+    /* Public Functions
+    /*--------------------------------------------------*/
+
+    public static function sizes($column_count)
+    {
+        $approx_width = round(100 / $column_count);
+
+        return sprintf(
+            '(max-width: %upx) %uvw, (max-width: %upx) %uvw, %upx',
+            self::BOOTSTRAP_COLUMNS['md'], 100,
+            self::BOOTSTRAP_COLUMNS['xl'], $approx_width,
+            self::BOOTSTRAP_COLUMNS['xl'] / $column_count);
+    }
 
     /*--------------------------------------------------*/
     /* Protected Functions
