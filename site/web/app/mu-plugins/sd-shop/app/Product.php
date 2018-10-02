@@ -27,17 +27,10 @@ class Product extends Post
     public function image($classes=false, $sizes=false, $size="post-thumbnail")
     {
         if (has_term('magazines', 'sd-product-cat', $this->post->ID) && self::is_photon_active()) {
-            // Product is a magazine, and photon is active - let's make it portrait!
-            $img_id = get_post_thumbnail_id($this->post->ID);
-            // Get the srcset and modify it to be portrait
-            $img_srcset = wp_get_attachment_image_srcset($img_id, 'post-thumbnail');
-            $transformed_srcset = preg_replace(
-                "/(.+?\?resize=)(?<width>\d+)%2C(?<height>\d+) (?<width_2>\d+)w, /",
-                "$1$3%2C$2 $3w, ",
-                $img_srcset);
+            // Provide a new size that is portrait
             return get_the_post_thumbnail(
                 $this->post->ID,
-                'post-thumbnail',
+                [103, 240],
                 ['srcset' => $transformed_srcset]);
         }
         return parent::image($classes, $sizes, $size);
