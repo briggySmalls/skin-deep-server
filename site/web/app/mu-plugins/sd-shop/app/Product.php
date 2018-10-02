@@ -26,9 +26,7 @@ class Product extends Post
 
     public function image($classes=false, $sizes=false, $size="post-thumbnail")
     {
-        if (has_term('magazines', 'sd-product-cat', $this->post->ID) &&
-                class_exists('Jetpack') &&
-                \Jetpack::is_module_active('photon')) {
+        if (has_term('magazines', 'sd-product-cat', $this->post->ID) && self::is_photon_active()) {
             // Product is a magazine, and photon is active - let's make it portrait!
             $img_id = get_post_thumbnail_id($this->post->ID);
             // Get the srcset and modify it to be portrait
@@ -37,11 +35,17 @@ class Product extends Post
                 "/((?<path>.+?)(?<width>\d+)x(?<height>\d+)(?<ext>\..+?) (?<width_2>\d+w))/",
                 "$2$4x$3$5 $4w",
                 $img_srcset);
-            return get_the_post_thumbnail(
-                $this->post->ID,
-                'post-thumbnail',
-                ['srcset' => $transformed_srcset]);
+            return sprintf(
+                '<img src="%s" srcset="%s" sizes="%s" alt="%s">',
+                wp_get_attachment_image_url($img_id, 'full'),
+                $transformed_srcset,
+                $sizes ?? '100vw',
+                get_post_meta($img_id, '_wp_attachment_image_alt', true));
         }
         return parent::image($classes, $sizes, $size);
+    }
+
+    protected static function is_photon_active() {
+        return class_exists('Jetpack') && \Jetpack::is_module_active('photon');
     }
 }
