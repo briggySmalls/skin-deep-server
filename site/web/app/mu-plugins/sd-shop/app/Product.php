@@ -34,21 +34,8 @@ class Product extends Post
             if (!$url) {
                 return false;
             }
-
             // Produce a srcset from portrait sizes
-            $portrait_sizes = self::getPortraitSizes();
-            $sources = apply_filters(
-                'wp_calculate_image_srcset',
-                self::toSrcSet($url, $portrait_sizes),
-                $portrait_sizes[0],
-                $url,
-                wp_get_attachment_metadata($image_id),
-                $image_id);
-            $srcset = '';
-            foreach ( $sources as $source ) {
-                $srcset .= str_replace( ' ', '%20', $source['url'] ) . ' ' . $source['value'] . $source['descriptor'] . ', ';
-            }
-            $srcset = rtrim( $srcset, ', ' );
+            $srcset = self::toSrcSet($url, self::getPortraitSizes());
 
             // Provide a new size that is portrait
             $sizes = $sizes ?? "100vw";
@@ -63,7 +50,7 @@ class Product extends Post
     }
 
     protected static function getImageSrc($image_id) {
-        // Get the image
+        // Get the image (note this is filtered by jetpack)
         $image_src = wp_get_attachment_image_src($image_id, 'full');
         if (!$image_src) {
             // There is no associated attachment
@@ -71,7 +58,9 @@ class Product extends Post
         }
         list($url, $width, $height, $is_intermediate) = $image_src;
         assert(!$is_intermediate);
-        return $url;
+        // Drop any query string
+        $url_parts = parse_url($url);
+        return sprintf('%s://%s%s', $url_parts['scheme'], $url_parts['host'], $url_parts['path']);
     }
 
     /**
@@ -92,18 +81,12 @@ class Product extends Post
     }
 
     protected static function toSrcSet($src, $sizes) {
-        list($dirname, $basename, $extension, $filename) = array_values(pathinfo($src));
-        $srcset = [];
+        $srcset = '';
         foreach ($sizes as $i=>$size) {
             // Add the image
             list($width, $height) = $size;
-            $srcset[] = [
-                'width' => $width,
-                'url' => "${dirname}/${filename}-${width}x${height}.${extension}",
-                'descriptor' => 'w',
-                'value' => $width
-            ];
+            $srcset .= "${src}?resize=${width},${height} ${width}w, ";
         }
-        return $srcset;
+        return rtrim($srcset, ', ');
     }
 }
