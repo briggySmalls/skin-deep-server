@@ -65,9 +65,12 @@ class PostsPreview extends Widget
 
         return sprintf(
             '(max-width: %upx) %uvw, (max-width: %upx) %uvw, %upx',
-            self::BOOTSTRAP_COLUMNS['md'], 100,
-            self::BOOTSTRAP_COLUMNS['xl'], $approx_width,
-            self::BOOTSTRAP_COLUMNS['xl'] / $column_count);
+            self::BOOTSTRAP_COLUMNS['md'],
+            100,
+            self::BOOTSTRAP_COLUMNS['xl'],
+            $approx_width,
+            self::BOOTSTRAP_COLUMNS['xl'] / $column_count
+        );
     }
 
     /*--------------------------------------------------*/

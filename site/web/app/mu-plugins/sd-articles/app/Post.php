@@ -39,14 +39,14 @@ class Post
      * @param      $size     The nominal wordpress size (default to small)
      * @return     Featured image
      */
-    public function image($classes=false, $sizes=false, $size="post-thumbnail")
+    public function image($classes = false, $sizes = false, $size = "post-thumbnail")
     {
         $attrs = [];
         if (isset($classes)) {
-          $attrs['class'] = $classes;
+            $attrs['class'] = $classes;
         }
         if (isset($sizes)) {
-          $attrs['sizes'] = $sizes;
+            $attrs['sizes'] = $sizes;
         }
         return get_the_post_thumbnail($this->post->ID, $size, $attrs);
     }

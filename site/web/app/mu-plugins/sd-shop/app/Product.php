@@ -25,7 +25,7 @@ class Product extends Post
         return get_field('sd_product_in_stock', $this->post->ID);
     }
 
-    public function image($classes=null, $sizes=null, $size="post-thumbnail")
+    public function image($classes = null, $sizes = null, $size = "post-thumbnail")
     {
         if (has_term('magazines', 'sd-product-cat', $this->post->ID) && self::isPhotonActive()) {
             // Get the image details
@@ -45,11 +45,13 @@ class Product extends Post
         return parent::image($classes, $sizes, $size);
     }
 
-    protected static function isPhotonActive() {
+    protected static function isPhotonActive()
+    {
         return class_exists('Jetpack') && \Jetpack::is_module_active('photon');
     }
 
-    protected static function getImageSrc($image_id) {
+    protected static function getImageSrc($image_id)
+    {
         // Get the image (note this is filtered by jetpack)
         $image_src = wp_get_attachment_image_src($image_id, 'full');
         if (!$image_src) {
@@ -67,7 +69,8 @@ class Product extends Post
      * @brief      Get sizes based on landscape dimensions
      * @return     The portrait sizes.
      */
-    protected static function getPortraitSizes() {
+    protected static function getPortraitSizes()
+    {
         $heights = ImageManager::WIDTHS;
         $sizes = [];
         foreach ($heights as $height) {
@@ -80,9 +83,10 @@ class Product extends Post
         return $sizes;
     }
 
-    protected static function toSrcSet($src, $sizes) {
+    protected static function toSrcSet($src, $sizes)
+    {
         $srcset = '';
-        foreach ($sizes as $i=>$size) {
+        foreach ($sizes as $i => $size) {
             // Add the image
             list($width, $height) = $size;
             $srcset .= "${src}?resize=${width},${height} ${width}w, ";
