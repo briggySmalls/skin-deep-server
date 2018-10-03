@@ -140,3 +140,12 @@ function display_sidebar()
     isset($display) || $display = apply_filters('sage/display_sidebar', false);
     return $display;
 }
+
+/**
+ * @brief      Tests if Jetpack's Photon is active
+ * @return     true if photon is active, otherwise false
+ */
+function is_photon_active()
+{
+    return class_exists('Jetpack') && \Jetpack::is_module_active('photon');
+}

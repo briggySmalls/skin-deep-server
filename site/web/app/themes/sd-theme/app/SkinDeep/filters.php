@@ -107,7 +107,7 @@ add_filter('post_thumbnail_html', function ($html) {
  * Disable relative URLs on images if jetpack photon is enabled
  */
 add_filter('soil/relative-url-filters', function ($filters) {
-    if (class_exists('Jetpack') && \Jetpack::is_module_active('photon')) {
+    if (is_photon_active()) {
         // Photon CDN is enabled
         return array_diff($filters, ['wp_get_attachment_url']);
     }
@@ -118,6 +118,6 @@ add_filter('soil/relative-url-filters', function ($filters) {
  * Override 'sizes' attribute for all images
  */
 add_filter('wp_calculate_image_sizes', function ($sizes, $size) {
-    // Always assume images are nearly full-width
+    // Always assume images are full-width
     return "100vw";
 }, 10, 2);
