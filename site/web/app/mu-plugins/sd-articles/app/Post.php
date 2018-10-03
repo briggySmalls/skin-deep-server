@@ -34,11 +34,21 @@ class Post
 
     /**
      * @brief      Get featured image
+     * @param      $classes  Classes to add to the image element
+     * @param      $sizes    Responsive 'sizes' attribute for image element
+     * @param      $size     The nominal wordpress size (default to small)
      * @return     Featured image
      */
-    public function image()
+    public function image($classes = false, $sizes = false, $size = "post-thumbnail")
     {
-        return get_the_post_thumbnail($this->post->ID, 'large');
+        $attrs = [];
+        if (isset($classes)) {
+            $attrs['class'] = $classes;
+        }
+        if (isset($sizes)) {
+            $attrs['sizes'] = $sizes;
+        }
+        return get_the_post_thumbnail($this->post->ID, $size, $attrs);
     }
 
     /**

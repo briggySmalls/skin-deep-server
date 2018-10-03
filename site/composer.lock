@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df7220cb47e9a9677a8b9fdb02be250c",
+    "content-hash": "14ac7e065bcaa90b511eb346f8523e4c",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -20,6 +20,38 @@
                 "philippbaschke/acf-pro-installer": "^1.0"
             },
             "type": "wordpress-muplugin"
+        },
+        {
+            "name": "automattic/jetpack",
+            "version": "6.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/jetpack.git",
+                "reference": "037acaa016d141c765c398ea166ba32b72519d04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/jetpack/zipball/037acaa016d141c765c398ea166ba32b72519d04",
+                "reference": "037acaa016d141c765c398ea166ba32b72519d04",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "sirbrillig/phpcs-variable-analysis": "^2.0",
+                "wimg/php-compatibility": "^8.1",
+                "wp-coding-standards/wpcs": "^0.14.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Jetpack supercharges your self‑hosted WordPress site with the awesome cloud power of WordPress.com",
+            "homepage": "http://jetpack.com/",
+            "time": "2018-09-05T00:06:51+00:00"
         },
         {
             "name": "composer/installers",
@@ -1255,7 +1287,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }

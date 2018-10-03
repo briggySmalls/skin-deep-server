@@ -7,6 +7,8 @@ use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
 
+use SkinDeep\Theme\ImageManager;
+
 /**
  * Theme assets
  */
@@ -55,10 +57,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
 
     // Set theme image sizes
-    set_post_thumbnail_size(240, 135, true);
-    update_option('large_size_w', 1200);
-    update_option('large_size_h', 675);
-    update_option('large_crop', 1);
+    ImageManager::setSrcSizes();
 
     /**
      * Enable HTML5 markup support

@@ -95,3 +95,29 @@ add_filter('img_caption_shortcode', function ($current_html, $attr, $content) {
 
     return $html;
 }, 10, 3);
+
+/**
+ * Remove image size attributes from post thumbnails
+ */
+add_filter('post_thumbnail_html', function ($html) {
+    return preg_replace('/(width|height)="\d*"/', '', $html);
+}, 10, 1);
+
+/**
+ * Disable relative URLs on images if jetpack photon is enabled
+ */
+add_filter('soil/relative-url-filters', function ($filters) {
+    if (is_photon_active()) {
+        // Photon CDN is enabled
+        return array_diff($filters, ['wp_get_attachment_url']);
+    }
+    return $filters;
+});
+
+/**
+ * Override 'sizes' attribute for all images
+ */
+add_filter('wp_calculate_image_sizes', function ($sizes, $size) {
+    // Always assume images are full-width
+    return "100vw";
+}, 10, 2);

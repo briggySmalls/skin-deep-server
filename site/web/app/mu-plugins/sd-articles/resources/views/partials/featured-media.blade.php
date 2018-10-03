@@ -4,9 +4,6 @@
       <i class="fas fa-video video-icon" title="Video article"></i>
     @endif
     {{-- Display the featured image --}}
-    {!! get_the_post_thumbnail(
-      $post->ID,
-      $image_size,
-      isset($image_classes) ? ['class' => $image_classes] : []) !!}
+    {!! $post->image($image_classes ?? false, $image_sizes ?? false) !!}
   </div>
 @endif

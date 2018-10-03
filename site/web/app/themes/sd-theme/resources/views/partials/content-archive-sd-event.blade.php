@@ -3,7 +3,12 @@
     <div class="col-md-4">
       {{-- Display the featured image --}}
       @if ($event->hasImage())
-        {!! $event->image() !!}
+        @include(
+          'partials/image-header',
+          [
+            'post' => $event,
+            'image_sizes' => \SkinDeep\Articles\PostsPreview::sizes(3)
+          ])
       @endif
     </div>
     <div class="col content">

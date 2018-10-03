@@ -1,7 +1,7 @@
 {{-- Display featured image/video --}}
 @include(
   'articles::partials.featured-media',
-  ['image_size' => 'post-thumbnail'])
+  ['image_sizes' => \SkinDeep\Articles\PostsPreview::sizes($column_count)])
 <div class="card-body">
   @php
   $categories = $post->categories();
