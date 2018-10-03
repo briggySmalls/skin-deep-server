@@ -31,8 +31,11 @@ class PostsPreview extends Widget
      * Bootstrap columns for responsive breakpoints
      */
     public const BOOTSTRAP_COLUMNS = [
-        'md' => 576,
-        'xl' => 1200,
+        'xs' => 0, // Extra small screen / phone
+        'sm' => 576, // Small screen / phone
+        'md' => 768, // Medium screen / tablet
+        'lg' => 992, // Large screen / desktop
+        'xl' => 1200,   // Extra large screen / wide desktop
     ];
 
     /*--------------------------------------------------*/
