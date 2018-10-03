@@ -73,7 +73,7 @@ class Product extends Post
         foreach ($heights as $height) {
             // Add new width and height to sizes array
             $sizes[] = [
-                round($height / ImageManager::ASPECT_RATIO),
+                round($height / 1.42),
                 $height
             ];
         }
