@@ -10,9 +10,11 @@
     {{-- Display category --}}
     <p class="category-link">
       @foreach ($categories as $category)
-        <a href="{{ get_category_link($category) }}">
-          {{ $category->name }}
-        </a>
+        <a href="{{ get_category_link($category) }}">{{ $category->name }}</a>
+        @if (!$loop->last)
+          {{-- Add a space --}}
+          <span>&#32;</span>
+        @endif
       @endforeach
     </p>
   @endif

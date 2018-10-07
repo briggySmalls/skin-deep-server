@@ -8,7 +8,7 @@
           @php
           if (!isset($single_post_template))
           {
-            $single_post_template = 'articles::partials.single_post';
+            $single_post_template = 'articles::partials.single-post';
           }
           @endphp
           @include($single_post_template, ['post' => $post])
