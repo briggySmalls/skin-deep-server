@@ -15,4 +15,13 @@ class SinglePost extends Controller
     {
         return new Article(get_post());
     }
+
+    /**
+     * @brief      Indicate the page is in the 'articles' tree
+     * @return     True if articles page, False otherwise.
+     */
+    public function isArticlesPage()
+    {
+        return true;
+    }
 }
