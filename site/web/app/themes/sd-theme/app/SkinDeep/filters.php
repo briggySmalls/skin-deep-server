@@ -27,6 +27,27 @@ add_filter('get_search_form', function () {
 });
 
 /**
+ * Add SnipCart login to primary navigation
+ */
+add_filter('wp_nav_menu_items', function ($items, $args) {
+    if($args->theme_location == 'primary_navigation'){
+        $items .= '<li class="menu-item">'
+            . '<li class="nav-item">'
+            . '<a href="#" class="snipcart-user-profile nav-link">'
+            . '<span class="snipcart-user-email">Login</span>'
+            . '</a>'
+            . '</li>'
+            . '<li class="nav-item">'
+            . '<a href="#" class="snipcart-user-logout nav-link">'
+            . 'Logout'
+            . '</a>'
+            . '</li>'
+            . '</li>';
+    }
+    return $items;
+}, 10, 2);
+
+/**
  * Add custom caption Note: This is pretty much a straight copy of
  * img_caption_shortcode() in wp-includes/media.php.
  *

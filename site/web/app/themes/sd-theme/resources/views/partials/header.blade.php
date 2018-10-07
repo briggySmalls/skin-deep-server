@@ -27,15 +27,6 @@
               'menu_class'=> 'navbar-nav',
               ]) !!}
           @endif
-          {{-- Snipcart account --}}
-          <ul class="snipcart-summary nav-item">
-            <a href="#" class="snipcart-user-profile nav-link">
-              <span class="snipcart-user-email">Login</span>
-            </a>
-            <a href="#" class="snipcart-user-logout nav-link">
-              Logout
-            </a>
-          </ul>
         </div>
         {{-- Display categories on an articles page --}}
         @if ($is_articles_page)
