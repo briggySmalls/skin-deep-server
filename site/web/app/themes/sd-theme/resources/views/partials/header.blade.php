@@ -1,14 +1,20 @@
 <header id="main-header" class="banner">
-  <nav class="navbar">
-      @if (has_custom_logo())
-        {{-- Don't bother with a link, it's supplied already --}}
-        @php the_custom_logo() @endphp
-      @else
-        <a class="navbar-brand" href="{{ home_url('/') }}">
-          {{ get_bloginfo('name', 'display') }}
-        </a>
-      @endif
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-light bg-light">
+    @if (has_custom_logo())
+      {{-- Don't bother with a link, it's supplied already --}}
+      @php the_custom_logo() @endphp
+    @else
+      <a class="navbar-brand" href="{{ home_url('/') }}">
+        {{ get_bloginfo('name', 'display') }}
+      </a>
+    @endif
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarNavDropdown" class="collapse navbar-collapse">
@@ -19,29 +25,30 @@
             {!! wp_nav_menu(['theme_location' => 'primary_navigation']) !!}
           @endif
           {{-- Snipcart account --}}
-          <div class="snipcart-summary">
+          <ul class="snipcart-summary nav-item">
             <a href="#" class="snipcart-user-profile nav-link">
               <span class="snipcart-user-email">Login</span>
             </a>
             <a href="#" class="snipcart-user-logout nav-link">
               Logout
             </a>
-          </div>
+          </ul>
         </div>
         {{-- Display categories on an articles page --}}
         @if ($is_articles_page)
-        <ul class="navbar-nav d-flex">
-          @foreach (get_categories(['parent' => 0]) as $category)
-            @if (\SkinDeep\Articles\Article::isDefaultCategory($category))
-              @continue
-            @endif
-            <li class="nav-item">
-              <a href="{{ get_category_link($category->term_id) }}" class="nav-link">
-                {{ $category->name }}
-              </a>
-            </li>
-          @endforeach
-        </ul>
+          <h2 class="d-lg-none">Categories</h2>
+          <ul class="navbar-nav d-flex">
+            @foreach (get_categories(['parent' => 0]) as $category)
+              @if (\SkinDeep\Articles\Article::isDefaultCategory($category))
+                @continue
+              @endif
+              <li class="nav-item">
+                <a href="{{ get_category_link($category->term_id) }}" class="nav-link">
+                  {{ $category->name }}
+                </a>
+              </li>
+            @endforeach
+          </ul>
         @endif
       </div>
       {{-- Search bar --}}
