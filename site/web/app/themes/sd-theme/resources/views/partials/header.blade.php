@@ -1,5 +1,5 @@
 <header id="main-header" class="banner">
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light navbar-expand-lg">
     @if (has_custom_logo())
       {{-- Don't bother with a link, it's supplied already --}}
       @php the_custom_logo() @endphp
