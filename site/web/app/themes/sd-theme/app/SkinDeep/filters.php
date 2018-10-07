@@ -3,6 +3,14 @@
 namespace SkinDeep\Theme;
 
 /**
+ * Add bootstrap nav class to menu items
+ */
+add_filter('nav_menu_css_class' , function($classes, $item) {
+    $classes[] = 'nav-item';
+    return $classes;
+}, 10 , 2);
+
+/**
  * Add bootstrap nav class to menu anchors
  */
 add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {

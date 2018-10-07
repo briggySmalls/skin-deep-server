@@ -19,16 +19,6 @@ nav.navbar {
     margin: 0;
   }
 
-  // Menu in navbar
-  ul {
-    @extend .navbar-nav;
-
-    // Item in menu
-    .menu-item {
-      @extend .nav-item;
-    }
-  }
-
   // Form in menu item
   form {
     @extend .form-inline;
