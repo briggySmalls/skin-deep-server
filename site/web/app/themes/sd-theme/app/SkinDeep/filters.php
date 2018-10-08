@@ -3,6 +3,14 @@
 namespace SkinDeep\Theme;
 
 /**
+ * Add bootstrap navbar class to nav menus
+ */
+add_filter('wp_nav_menu_args', function($args) {
+    $args['menu_class'] .= ' navbar-nav';
+    return $args;
+});
+
+/**
  * Add bootstrap nav class to menu items
  */
 add_filter('nav_menu_css_class' , function($classes, $item) {

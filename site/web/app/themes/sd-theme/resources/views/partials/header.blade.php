@@ -22,10 +22,7 @@
         <div class="d-flex">
           {{-- Main menu navigation --}}
           @if (has_nav_menu('primary_navigation'))
-            {!! wp_nav_menu([
-              'theme_location' => 'primary_navigation',
-              'menu_class'=> 'navbar-nav',
-              ]) !!}
+            {!! wp_nav_menu(['theme_location' => 'primary_navigation']) !!}
           @endif
         </div>
         {{-- Display categories on an articles page --}}
