@@ -1,0 +1,13 @@
+.widget.slider {
+  .carousel-item {
+    .featured-image {
+      @include media-breakpoint-up(md) {
+        background-color: black;
+
+        img {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

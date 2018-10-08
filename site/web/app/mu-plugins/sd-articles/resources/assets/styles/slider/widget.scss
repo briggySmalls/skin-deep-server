@@ -3,19 +3,21 @@ $slider-indicator-diameter: 20px;
 $slider-indicator-color: #707070;
 $slider-indicator-lighter-active: 40%;
 
-.widget.slider .carousel-indicators {
-  position: static;
-  margin: 20px 0;
+.widget.slider {
+  .carousel-indicators {
+    position: static;
+    margin: 20px 0;
 
-  .active {
-    background-color: lighten($slider-indicator-color, $slider-indicator-lighter-active);
-  }
+    .active {
+      background-color: lighten($slider-indicator-color, $slider-indicator-lighter-active);
+    }
 
-  li {
-    width: $slider-indicator-diameter;
-    height: $slider-indicator-diameter;
-    border-radius: 100%;
-    margin: 0 10px;
-    background-color: $slider-indicator-color;
+    li {
+      width: $slider-indicator-diameter;
+      height: $slider-indicator-diameter;
+      border-radius: 100%;
+      margin: 0 10px;
+      background-color: $slider-indicator-color;
+    }
   }
 }
