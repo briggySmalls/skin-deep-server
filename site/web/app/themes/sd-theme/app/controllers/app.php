@@ -59,6 +59,11 @@ class App extends Controller
         return 3;
     }
 
+    public function isArticlesPage()
+    {
+        return false;
+    }
+
     protected static function category()
     {
         assert(is_category());

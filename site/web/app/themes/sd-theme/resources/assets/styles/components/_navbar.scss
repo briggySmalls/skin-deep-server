@@ -6,28 +6,19 @@
     @extend .navbar-brand;
 
     img {
-      max-height: 100%;
-      height: 3.5em;
+      max-height: 3.5em;
       width: auto;
     }
   }
 }
 
 nav.navbar {
-  // Add bootstrap navbar styling
-  @extend .navbar-expand-lg;
-  @extend .navbar-light;
-  @extend .bg-light;
-
-  // Menu in navbar
-  ul.menu {
-    @extend .navbar-nav;
-
-    // Item in menu
-    .menu-item {
-      @extend .nav-item;
-    }
+  h2 {
+    font-size: 1em;
+    padding: 0.5em 0;
+    margin: 0;
   }
+
   // Form in menu item
   form {
     @extend .form-inline;

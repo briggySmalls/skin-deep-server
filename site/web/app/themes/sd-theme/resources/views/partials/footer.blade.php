@@ -1,5 +1,5 @@
 <footer class="content-info">
-  <nav class="navbar">
+  <nav class="navbar navbar-light bg-light navbar-expand-lg">
     {{-- Footer navigation --}}
     @if (has_nav_menu('footer_navigation'))
       {!! wp_nav_menu(['theme_location' => 'footer_navigation']) !!}
