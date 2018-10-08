@@ -16,4 +16,23 @@ class Archive extends Controller
         $post_type = get_queried_object();
         return ($post_type == null);
     }
+
+    public function singlePostTemplate()
+    {
+        if ($this->isArticlesPage()) {
+            return 'articles::partials.single-post';
+        } else if (self::postType() === 'sd-product') {
+            return 'partials.shop.archive-product';
+        }
+    }
+
+    protected static function postType()
+    {
+        // Queried object is the post type, or null if post type is 'post'
+        $post_type = get_queried_object();
+        if ($post_type === null) {
+            return 'post';
+        }
+        return $post_type->name;
+    }
 }
