@@ -26,7 +26,8 @@ class Archive extends Controller
         }
     }
 
-    protected static function postType() {
+    protected static function postType()
+    {
         // Queried object is the post type, or null if post type is 'post'
         $post_type = get_queried_object();
         if ($post_type === null) {
