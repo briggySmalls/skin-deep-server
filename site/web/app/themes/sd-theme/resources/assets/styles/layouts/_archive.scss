@@ -38,16 +38,3 @@
     z-index: 0;
   }
 }
-
-// Style video tiles/slider with video icon
-.featured-image {
-  position: relative;
-
-  .video-icon {
-    @extend .img-fluid;
-
-    position: absolute; // Overlay on image
-    width: 15%;
-    margin: 4%;
-  }
-}
