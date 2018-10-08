@@ -5,7 +5,7 @@ namespace SkinDeep\Theme;
 /**
  * Add bootstrap navbar class to nav menus
  */
-add_filter('wp_nav_menu_args', function($args) {
+add_filter('wp_nav_menu_args', function ($args) {
     $args['menu_class'] .= ' navbar-nav';
     return $args;
 });
@@ -13,10 +13,10 @@ add_filter('wp_nav_menu_args', function($args) {
 /**
  * Add bootstrap nav class to menu items
  */
-add_filter('nav_menu_css_class' , function($classes, $item) {
+add_filter('nav_menu_css_class', function ($classes, $item) {
     $classes[] = 'nav-item';
     return $classes;
-}, 10 , 2);
+}, 10, 2);
 
 /**
  * Add bootstrap nav class to menu anchors
@@ -38,7 +38,7 @@ add_filter('get_search_form', function () {
  * Add SnipCart login to primary navigation
  */
 add_filter('wp_nav_menu_items', function ($items, $args) {
-    if($args->theme_location == 'primary_navigation'){
+    if ($args->theme_location == 'primary_navigation') {
         $items .= '<li class="menu-item">'
             . '<li class="nav-item">'
             . '<a href="#" class="snipcart-user-profile nav-link">'
