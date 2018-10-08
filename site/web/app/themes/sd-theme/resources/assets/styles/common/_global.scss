@@ -1,14 +1,25 @@
 // Anchors
+
+$link: hsl(30, 68%, 40%);
+$link-hover: hsl(30, 100%, 45%);
+$link-visited: hsl(30, 30%, 40%);
+$link-decoration: gray("400");
+
 a:not(.nav-link) {
-  color: theme-color(link);
+  color: $link;
   text-decoration: underline;
+  text-decoration-color: $link-decoration;
 
   &:visited {
-    color: theme-color(link-visited);
+    color: $link-visited;
   }
 
   @include hover {
-    color: theme-color(link-hover);
+    text-decoration-color: $link-hover;
+  }
+
+  @include hover-focus {
+    text-decoration-color: $link-visited;
   }
 }
 
