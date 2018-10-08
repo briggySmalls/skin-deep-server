@@ -26,21 +26,19 @@
           @endif
         </div>
         {{-- Display categories on an articles page --}}
-        @if ($is_articles_page)
-          <h2 class="d-lg-none">Categories</h2>
-          <ul class="navbar-nav d-flex">
-            @foreach (get_categories(['parent' => 0]) as $category)
-              @if (\SkinDeep\Articles\Article::isDefaultCategory($category))
-                @continue
-              @endif
-              <li class="nav-item">
-                <a href="{{ get_category_link($category->term_id) }}" class="nav-link">
-                  {{ $category->name }}
-                </a>
-              </li>
-            @endforeach
-          </ul>
-        @endif
+        <h2 class="d-lg-none">Categories</h2>
+        <ul class="navbar-nav d-flex {{ $is_articles_page ? "" : "d-lg-none" }}">
+          @foreach (get_categories(['parent' => 0]) as $category)
+            @if (\SkinDeep\Articles\Article::isDefaultCategory($category))
+              @continue
+            @endif
+            <li class="nav-item">
+              <a href="{{ get_category_link($category->term_id) }}" class="nav-link">
+                {{ $category->name }}
+              </a>
+            </li>
+          @endforeach
+        </ul>
       </div>
       {{-- Search bar --}}
       {!! get_search_form() !!}
