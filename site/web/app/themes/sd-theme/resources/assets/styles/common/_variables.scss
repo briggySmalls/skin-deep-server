@@ -1,13 +1,13 @@
 /** Import Bootstrap functions */
 @import "~bootstrap/scss/functions";
 
-// Production build fix from: https://github.com/roots/sage/issues/2017#issuecomment-361054297
-$navbar-dark-toggler-icon-bg: none;
-$navbar-light-toggler-icon-bg: none;
-
 $theme-colors: (
   primary: #369,
 );
+
+/** Bootstrap navbar fix (https://git.io/fADqW) */
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
 
 $navbar-light-active-color: theme-color(primary);
 $navbar-light-hover-color: theme-color(link-hover);
