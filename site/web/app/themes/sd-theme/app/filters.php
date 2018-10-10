@@ -81,4 +81,11 @@ add_filter('comments_template', function ($comments_template) {
     return $comments_template;
 }, 100);
 
+/**
+ * Update controller namespace to current namespace
+ */
+add_filter('sober/controller/namespace', function () {
+    return __NAMESPACE__ . '\Controllers';
+});
+
 require_once(__DIR__.'/SkinDeep/filters.php');
