@@ -1,6 +1,6 @@
-c<?php
+<?php
 
-namespace SkinDeep\Theme;
+namespace SkinDeep\Theme\Controllers;
 
 use Sober\Controller\Controller;
 
