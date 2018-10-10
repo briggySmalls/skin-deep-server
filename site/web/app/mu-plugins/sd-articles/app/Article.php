@@ -6,8 +6,6 @@ use SkinDeep\Shop\Product;
 
 class Article extends Post
 {
-    public static $blade;
-
     /**
      * @brief      Get the authors attached to the post
      * @return     Array of WP_Term objects

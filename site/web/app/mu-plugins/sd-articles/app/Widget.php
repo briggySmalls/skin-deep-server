@@ -2,6 +2,8 @@
 
 namespace SkinDeep\Articles;
 
+use function SkinDeep\Theme\sage;
+
 /**
  * Featured posts slider widget
  *
@@ -197,6 +199,11 @@ abstract class Widget extends \WP_Widget
      */
     public static function output($resource_manager, $template, $args)
     {
+        // Ensure we have access to the blade template
+        if (!function_exists('SkinDeep\Theme\sage')) {
+            return false;
+        }
+
         // Enqueue styles and scripts now we are going to use them
         self::enqueueAsset($resource_manager, $template, $is_script = true);
         self::enqueueAsset($resource_manager, $template, $is_script = false);
@@ -204,9 +211,9 @@ abstract class Widget extends \WP_Widget
         // Generate the output
         if ($args) {
             // Pass context variables to template
-            return Article::$blade->make(self::templateName($template), $args)->render();
+            return sage('blade')->make(self::templateName($template), $args)->render();
         }
-        return Article::$blade->make(self::templateName($template))->render();
+        return sage('blade')->make(self::templateName($template))->render();
     }
 
     /*--------------------------------------------------*/
