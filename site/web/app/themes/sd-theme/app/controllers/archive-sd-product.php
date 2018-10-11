@@ -10,7 +10,8 @@ class ArchiveSdProduct extends Controller
      * @brief      Set template for a single product in the archive
      * @return     Path of template for product
      */
-    public function singlePostTemplate() {
+    public function singlePostTemplate()
+    {
         return 'partials.shop.archive-product';
     }
 
@@ -18,7 +19,8 @@ class ArchiveSdProduct extends Controller
      * @brief      Number of columns for the product archive
      * @return     Number of columns
      */
-    public function columnCount() {
+    public function columnCount()
+    {
         return 4;
     }
 }
