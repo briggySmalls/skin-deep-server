@@ -26,6 +26,24 @@ class Archive extends Controller
         }
     }
 
+    public function postWrapperFactory()
+    {
+        if ($this->isArticlesPage()) {
+            return function ($post) {
+                return new \SkinDeep\Articles\Article($post);
+            };
+        } else if (self::postType() === 'sd-event') {
+            return function ($post) {
+                return new \SkinDeep\Events\Event($post);
+            };
+        } else if (self::postType() === 'sd-product') {
+            return function ($post) {
+                return new \SkinDeep\Shop\Product($post);
+            };
+        }
+        return false;
+    }
+
     protected static function postType()
     {
         // Queried object is the post type, or null if post type is 'post'
