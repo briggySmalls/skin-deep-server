@@ -3,6 +3,9 @@
   <div class="row">
     @foreach ($posts as $post)
       <div class="col-md-{{ 12 / $column_count }}">
+      @php
+      $post = $post_wrapper_factory(get_post());
+      @endphp
         <div class="card">
           {{-- Insert component content --}}
           @php
