@@ -1,11 +1,11 @@
 {{-- Creates grid of cards --}}
 <div class="container-fluid posts-grid">
   <div class="row">
-    @foreach ($posts as $post)
+    @foreach ($posts as $raw_post)
       <div class="col-md-{{ 12 / $column_count }}">
-      @php
-      $post = $post_wrapper_factory(get_post());
-      @endphp
+        @php
+        $post = $post_wrapper_factory($raw_post);
+        @endphp
         <div class="card">
           {{-- Insert component content --}}
           @php

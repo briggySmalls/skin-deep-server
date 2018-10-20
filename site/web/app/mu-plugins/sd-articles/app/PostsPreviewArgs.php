@@ -8,6 +8,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
     public $url;
     public $title;
     public $column_count;
+    public $post_wrapper_factory;
 
     public function __construct($posts, $url, $title, $column_count)
     {
@@ -15,6 +16,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
         $this->url = $url;
         $this->title = $title;
         $this->column_count = $column_count;
+        $this->post_wrapper_factory = ['SkinDeep\Articles\PostsPreviewArgs', 'postWrapperFactory'];
     }
 
     public static function fromArgs($args)
@@ -61,15 +63,16 @@ class PostsPreviewArgs implements WidgetArgsInterface
                 break;
         }
 
-        // Execute the query
-        $posts = WidgetArgsHelper::toArticles(get_posts($query_args));
-
         // Now create the argument
         return new PostsPreviewArgs(
-            $posts,
+            get_posts($query_args),
             $url,
             $helper->getAcfField('sd_widget_preview_title'),
             $helper->getAcfField('sd_widget_preview_columns')
         );
+    }
+
+    public static function postWrapperFactory($post) {
+        return new Article($post);
     }
 }

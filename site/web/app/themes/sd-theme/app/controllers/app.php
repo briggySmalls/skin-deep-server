@@ -67,7 +67,7 @@ class App extends Controller
     public function postWrapperFactory()
     {
         return function ($post) {
-            return new \SkinDeep\Articles\Article($post);
+            return new \SkinDeep\Articles\Post($post);
         };
     }
 
