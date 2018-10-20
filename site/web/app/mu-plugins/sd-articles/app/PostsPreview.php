@@ -79,8 +79,8 @@ class PostsPreview extends Widget
 
     /**
      * @brief      Factory method for creating args for the widget
-     * @param      $args  The arguments
-     * @return     { description_of_the_return_value }
+     * @param      $args  The widget arguments
+     * @return     WidgetArgs Template variables
      */
     protected function createArgs($args)
     {

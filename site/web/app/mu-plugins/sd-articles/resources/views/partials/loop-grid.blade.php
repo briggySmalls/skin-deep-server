@@ -3,10 +3,10 @@
   <div class="row">
     @while (have_posts()) @php the_post() @endphp
       @php
-      $post = new \SkinDeep\Articles\Article(get_post())
+      $post = $post_wrapper_factory(get_post());
       @endphp
       <div class="col-md-{{ 12 / $column_count }}">
-        <div class="card">
+        <div class="{{ $post->cardClasses() }}">
           {{-- Insert component content --}}
           @php
           if (!isset($single_post_template))

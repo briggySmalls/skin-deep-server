@@ -64,6 +64,13 @@ class App extends Controller
         return false;
     }
 
+    public function postWrapperFactory()
+    {
+        return function ($post) {
+            return new \SkinDeep\Articles\Post($post);
+        };
+    }
+
     protected static function category()
     {
         assert(is_category());

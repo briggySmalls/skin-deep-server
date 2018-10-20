@@ -45,6 +45,12 @@ class Product extends Post
         return parent::image($classes, $sizes, $size);
     }
 
+    public function cardClasses()
+    {
+        $base_classes = parent::cardClasses();
+        return $base_classes . ($this->inStock() ? ' in-stock' : ' out-of-stock');
+    }
+
     protected static function isPhotonActive()
     {
         return class_exists('Jetpack') && \Jetpack::is_module_active('photon');
