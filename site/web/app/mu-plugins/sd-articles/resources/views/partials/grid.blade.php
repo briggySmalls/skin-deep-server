@@ -3,10 +3,10 @@
   <div class="row">
     @foreach ($posts as $raw_post)
       <div class="col-md-{{ 12 / $column_count }}">
-        @php
-        $post = $post_wrapper_factory($raw_post);
-        @endphp
-        <div class="card">
+      @php
+      $post = $post_wrapper_factory($raw_post);
+      @endphp
+        <div class="{{ $post->cardClasses() }}">
           {{-- Insert component content --}}
           @php
           if (!isset($single_post_template))

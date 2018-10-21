@@ -47,8 +47,7 @@ class Product extends Post
 
     public function cardClasses()
     {
-        $base_classes = parent::cardClasses();
-        return $base_classes . ($this->inStock() ? ' in-stock' : ' out-of-stock');
+        return parent::cardClasses() . ($this->inStock() ? ' in-stock' : ' out-of-stock');
     }
 
     protected static function isPhotonActive()

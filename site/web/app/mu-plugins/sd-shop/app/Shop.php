@@ -87,12 +87,12 @@ class Shop
 
     private function defineSitewideHooks()
     {
-        // Register the widgets
+        // Register the widgets (donation)
         add_action('widgets_init', function () {
             register_widget(__NAMESPACE__ . '\Donations\Donation');
         });
 
-        // Register shortcode
+        // Register shortcode (donation)
         add_shortcode('donation', function ($atts) {
             // Construct arguments
             $args = new Donations\DonationArgs(
@@ -107,6 +107,22 @@ class Shop
                 'widget',
                 $arg_array
             );
+        });
+
+        add_action('pre_get_posts', function ($query) {
+            if (!is_admin() && // Do not mess up admin lists
+                    $query->is_main_query() && // Preserve menus etc.
+                    is_post_type_archive('sd-product')) {
+                // Order products by stock status (and then date within that)
+                $query->set(
+                    'orderby',
+                    [
+                        'meta_value' => 'DESC',
+                        'date' => 'DESC'
+                    ]
+                );
+                $query->set('meta_key', 'sd_product_in_stock');
+            }
         });
     }
 
