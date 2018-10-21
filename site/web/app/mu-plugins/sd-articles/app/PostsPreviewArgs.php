@@ -72,7 +72,8 @@ class PostsPreviewArgs implements WidgetArgsInterface
         );
     }
 
-    public static function postWrapperFactory($post) {
+    public static function postWrapperFactory($post)
+    {
         return new Article($post);
     }
 }
