@@ -19,5 +19,5 @@
     </p>
   @endif
   {{-- Display title --}}
-  <h3 class="card-title">{{ $post->post_title }}</h3>
+  <h3 class="card-title">{!! $post->title() !!}</h3>
 </div>

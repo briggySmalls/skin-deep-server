@@ -11,7 +11,7 @@
       @endif
     </figure>
     @include('partials/entry-meta')
-    <h1 class="entry-title">{{ $article->title() }}</h1>
+    <h1 class="entry-title">{!! $article->title() !!}</h1>
     {{-- Display author(s) --}}
     @if (count($article->authors()))
       <p class="byline author vcard">
@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-sm-8">
             <h1 class="display-4">Get the full magazine</h1>
-            <p class="lead">This piece is from our print edition: {{ $magazine->title() }}</p>
+            <p class="lead">This piece is from our print edition: {!! $magazine->title() !!}</p>
             <a class="buy-button" href="{{ $magazine->url() }}">Buy it now</a>
           </div>
           <div class="col-sm-4">

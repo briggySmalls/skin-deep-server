@@ -7,14 +7,14 @@
       </figure>
     </div>
     <div class="col-md">
-      <h1 class="entry-title">{{ $product->title() }}</h1>
+      <h1 class="entry-title">{!! $product->title() !!}</h1>
       <div class="entry-content">
         {{ the_content() }}
       </div>
       <button class="snipcart-add-item buy-button"
       @if ($product->inStock())
         data-item-id="{{ $product->ID }}"
-        data-item-name="{{ $product->title() }}"
+        data-item-name="{!! $product->title() !!}"
         data-item-price="{{ $product->price() }}"
         data-item-url="{{ $product->url() }}"
         data-item-description="{{ $product->description()}}"

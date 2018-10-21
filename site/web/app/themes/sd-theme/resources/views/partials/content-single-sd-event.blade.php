@@ -4,7 +4,7 @@
       {{-- Display the featured image --}}
       @include('partials/image-header', ['post' => $event])
     </figure>
-    <h1 class="entry-title">{{ $event->title() }}</h1>
+    <h1 class="entry-title">{!! $event->title() !!}</h1>
     <ul id="event-details">
       @if ($event->startTime())
         <li>

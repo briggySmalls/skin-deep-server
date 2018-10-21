@@ -13,7 +13,7 @@
     </div>
     <div class="col content">
       {{-- Display title --}}
-      <h4 class="card-title">{{ $event->post_title }}</h4>
+      <h4 class="card-title">{!! $event->title() !!}</h4>
       {{-- Display time --}}
       @if ($event->startTime())
         <p class="card-text">{{ SingleSdEvent::getDisplayTime($event) }}</p>

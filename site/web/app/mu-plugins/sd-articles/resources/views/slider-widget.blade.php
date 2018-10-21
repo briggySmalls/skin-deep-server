@@ -12,7 +12,7 @@
           ['image_classes' => 'd-block w-100'])
         </a>
         <div class="carousel-caption d-none d-md-block">
-          <h3>{{ $post->title() }}</h3>
+          <h3>{!! $post->title() !!}</h3>
         </div>
       </div>
     @endforeach

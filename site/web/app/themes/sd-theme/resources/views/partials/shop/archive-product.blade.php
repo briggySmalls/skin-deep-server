@@ -8,7 +8,7 @@
     ])
 @endif
 <div class="card-body">
-  <h5 class="card-title">{{ $product->title() }}</h5>
+  <h5 class="card-title">{!! $product->title() !!}</h5>
 </div>
 <div class="card-footer">
   <p class="card-text">
