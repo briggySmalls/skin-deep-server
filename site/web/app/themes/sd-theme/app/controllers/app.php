@@ -67,6 +67,12 @@ class App extends Controller
     public function postWrapperFactory()
     {
         return function ($post) {
+            if (is_home()) {
+                /* This is an archive of articles (blog page)
+                 * NOTE: home is a bit of a misnomer
+                 */
+                return new \SkinDeep\Articles\Article($post);
+            }
             return new \SkinDeep\Articles\Post($post);
         };
     }
