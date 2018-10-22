@@ -3,30 +3,6 @@
     "title": "Category fields",
     "fields": [
         {
-            "key": "field_5b54457baf086",
-            "label": "Category image",
-            "name": "sd_article_category_image",
-            "type": "image",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "large",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
             "key": "field_5b9e965fc63bf",
             "label": "Description",
             "name": "sd_article_category_description",
@@ -63,5 +39,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537604300
+    "modified": 1540163112
 }
