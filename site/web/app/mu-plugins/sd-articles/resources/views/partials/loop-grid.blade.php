@@ -3,9 +3,9 @@
   <div class="row">
     @while (have_posts()) @php the_post() @endphp
       <div class="col-md-{{ 12 / $column_count }}">
-        @php
-        $post = $post_wrapper_factory(get_post());
-        @endphp
+      @php
+      $post = $post_wrapper_factory(get_post());
+      @endphp
         <div class="{{ $post->cardClasses() }}">
           {{-- Insert component content --}}
           @php
