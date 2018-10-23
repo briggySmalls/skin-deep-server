@@ -86,6 +86,14 @@ add_action('after_setup_theme', function () {
      * Enable site logo
      */
     add_theme_support('custom-logo');
+
+    /**
+     * Allow infinite scrolling
+     */
+    add_theme_support('infinite-scroll', [
+        'container' => 'content',
+        'footer' => 'footer',
+    ]);
 }, 20);
 
 /**

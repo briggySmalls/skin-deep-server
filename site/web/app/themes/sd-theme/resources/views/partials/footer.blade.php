@@ -1,4 +1,4 @@
-<footer class="content-info">
+<footer id="footer" class="content-info">
   <nav class="navbar navbar-light bg-light navbar-expand-lg">
     {{-- Footer navigation --}}
     @if (has_nav_menu('footer_navigation'))
