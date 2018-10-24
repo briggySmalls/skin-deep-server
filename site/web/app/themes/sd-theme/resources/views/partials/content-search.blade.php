@@ -1,8 +1,9 @@
 <article @php post_class() @endphp>
   <header>
-    <h2 class="entry-title"><a href="{{ get_permalink() }}">{{ get_the_title() }}</a></h2>
     @if (get_post_type() === 'post')
       @include('partials/entry-meta', ['article' => new SkinDeep\Articles\Article(get_post())])
+    @else
+      <h2 class="entry-title"><a href="{{ get_permalink() }}">{{ get_the_title() }}</a></h2>
     @endif
   </header>
   <div class="entry-summary">

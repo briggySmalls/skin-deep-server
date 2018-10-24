@@ -1,5 +1,4 @@
 // Anchors
-
 $link: hsl(30, 68%, 40%);
 $link-hover: hsl(30, 100%, 45%);
 $link-visited: hsl(30, 30%, 40%);
@@ -27,23 +26,4 @@ a:not(.nav-link) {
 img {
   // All images should be fluid (resize maintaining aspect ratio)
   @extend .img-fluid;
-}
-
-// Add more padding to all single posts
-body.single .container {
-  @include media-breakpoint-up(xs) {
-    padding: 0 5%;
-  }
-
-  @include media-breakpoint-up(md) {
-    padding: 0 7%;
-  }
-
-  @include media-breakpoint-up(lg) {
-    padding: 0 10%;
-  }
-
-  @include media-breakpoint-up(xl) {
-    padding: 0 15%;
-  }
 }
