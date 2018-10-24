@@ -21,20 +21,22 @@ body.single-format-video {
 }
 
 // Add more padding to all single posts
-body.single main > .container {
-  @include media-breakpoint-up(xs) {
-    padding: 0 5%;
-  }
+body.single {
+  &:not(.single-sd-product) main > .container, {
+    @include media-breakpoint-up(xs) {
+      padding: 0 5%;
+    }
 
-  @include media-breakpoint-up(md) {
-    padding: 0 7%;
-  }
+    @include media-breakpoint-up(md) {
+      padding: 0 7%;
+    }
 
-  @include media-breakpoint-up(lg) {
-    padding: 0 10%;
-  }
+    @include media-breakpoint-up(lg) {
+      padding: 0 10%;
+    }
 
-  @include media-breakpoint-up(xl) {
-    padding: 0 15%;
+    @include media-breakpoint-up(xl) {
+      padding: 0 15%;
+    }
   }
 }
