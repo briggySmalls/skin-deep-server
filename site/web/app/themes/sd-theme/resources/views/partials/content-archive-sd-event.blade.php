@@ -4,7 +4,7 @@
       {{-- Display the featured image --}}
       @if ($event->hasImage())
         @include(
-          'partials/image-header',
+          'partials.components.image-header',
           [
             'post' => $event,
             'image_sizes' => \SkinDeep\Articles\PostsPreview::sizes(3)

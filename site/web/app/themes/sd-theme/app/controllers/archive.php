@@ -4,6 +4,11 @@ namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
 
+use SkinDeep\Articles\Post;
+use SkinDeep\Articles\Article;
+use SkinDeep\Events\Event;
+use SkinDeep\Shop\Product;
+
 class Archive extends Controller
 {
     public function isArticlesPage()
@@ -30,18 +35,22 @@ class Archive extends Controller
     {
         if ($this->isArticlesPage()) {
             return function ($post) {
-                return new \SkinDeep\Articles\Article($post);
+                return new Article($post);
             };
-        } else if (self::postType() === 'sd-event') {
+        } elseif (self::postType() === 'sd-event') {
             return function ($post) {
-                return new \SkinDeep\Events\Event($post);
+                return new Event($post);
             };
-        } else if (self::postType() === 'sd-product') {
+        } elseif (self::postType() === 'sd-product') {
             return function ($post) {
-                return new \SkinDeep\Shop\Product($post);
+                return new Product($post);
             };
         }
-        return false;
+        // Fall back to an article... it probably is
+        // Note: this could be e.g. Video format archive
+        return function ($post) {
+            return new Article($post);
+        };
     }
 
     protected static function postType()

@@ -30,15 +30,6 @@ class Article extends Post
     }
 
     /**
-     * @brief      Determines post has featured video.
-     * @return     True if has featured video, False otherwise.
-     */
-    public function hasVideo()
-    {
-        return (self::video() != null);
-    }
-
-    /**
      * @brief      Get the magazine attached to the article
      * @return     A Product object if attached, otherwise null
      */
@@ -49,15 +40,6 @@ class Article extends Post
             return new Product($magazine_post);
         }
         return null;
-    }
-
-    /**
-     * @brief      Get the article's featured video
-     * @return     HTML or false if no video attached
-     */
-    public function video()
-    {
-        return get_field('sd_featured_video', $this->post->ID);
     }
 
     /**

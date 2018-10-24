@@ -6,9 +6,9 @@ use Sober\Controller\Controller;
 use SkinDeep\Events\EventsApi;
 use SkinDeep\Events\Event;
 
-class SingleSdEvent extends Controller
+class SingleSdEvent extends Controller implements SingleControllerInterface
 {
-    public function event()
+    public function post()
     {
         return new Event(get_post());
     }

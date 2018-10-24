@@ -52,6 +52,24 @@ class Post
     }
 
     /**
+     * @brief      Determines post has featured video.
+     * @return     True if has featured video, False otherwise.
+     */
+    public function hasVideo()
+    {
+        return (self::video() != null);
+    }
+
+    /**
+     * @brief      Get the article's featured video
+     * @return     HTML or false if no video attached
+     */
+    public function video()
+    {
+        return get_field('sd_featured_video', $this->post->ID);
+    }
+
+    /**
      * @brief      Return an unescaped title
      * @note       As this is unescaped, it should be run through {{ }} tags
      * @return     The post title
