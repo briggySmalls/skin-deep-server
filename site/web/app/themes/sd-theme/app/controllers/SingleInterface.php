@@ -2,6 +2,7 @@
 
 namespace SkinDeep\Theme;
 
-interface SingleControllerInterface {
+interface SingleControllerInterface
+{
     public function post();
 }

@@ -11,7 +11,8 @@ class SinglePost extends Controller implements SingleControllerInterface
      * @brief      Wrap the post in convenience object
      * @return     Article object
      */
-    public function post() {
+    public function post()
+    {
         return new Article(get_post());
     }
 
