@@ -69,7 +69,7 @@ class PostsPreview extends Widget
             100,
             self::BOOTSTRAP_COLUMNS['xl'],
             $approx_width,
-            self::BOOTSTRAP_COLUMNS['xl'] / $column_count
+            round(self::BOOTSTRAP_COLUMNS['xl'] / $column_count)
         );
     }
 
