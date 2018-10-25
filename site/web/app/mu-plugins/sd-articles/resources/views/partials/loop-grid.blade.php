@@ -6,7 +6,7 @@
       @php
       $post = $post_wrapper_factory(get_post());
       @endphp
-        <div class="{{ $post->cardClasses() }}">
+        <div @php post_class('card', $post->ID) @endphp>
           {{-- Insert component content --}}
           @php
           if (!isset($single_post_template))
