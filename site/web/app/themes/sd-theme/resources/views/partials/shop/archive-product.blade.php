@@ -1,5 +1,5 @@
 @php $product = new SkinDeep\Shop\Product($post); @endphp
-<figure class="product-figure">
+<figure class="product-figure" style="background-color: {{ $product->backgroundColour() }}">
   @if ($product->hasImage())
     @include(
       'partials.components.image-header',
