@@ -1,0 +1,25 @@
+$magazine-card-selector: ".card.type-sd-product.sd-product-cat-magazine";
+
+.card.type-sd-product.sd-product-cat-magazines .product-figure {
+  margin: 5%;
+}
+
+.row [class^=col] {
+  &:nth-child(odd) {
+    .card.type-sd-product.sd-product-cat-magazines .product-figure img {
+      transform: rotate(2deg);
+    }
+  }
+
+  &:nth-child(even) {
+    .card.type-sd-product.sd-product-cat-magazines .product-figure img {
+      transform: rotate(-2deg);
+    }
+  }
+
+  &:nth-child(4n) {
+    .card.type-sd-product.sd-product-cat-magazines .product-figure img {
+      transform: rotate(-10deg);
+    }
+  }
+}
