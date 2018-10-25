@@ -4,6 +4,9 @@ namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
 
+const SD_PRODUCT_COLUMN_COUNT = 3;
+const SD_PRODUCT_TEMPLATE = 'partials.shop.archive-product';
+
 class ArchiveSdProduct extends Controller
 {
     /**
@@ -12,7 +15,7 @@ class ArchiveSdProduct extends Controller
      */
     public function singlePostTemplate()
     {
-        return 'partials.shop.archive-product';
+        return SD_PRODUCT_TEMPLATE;
     }
 
     /**
@@ -21,6 +24,6 @@ class ArchiveSdProduct extends Controller
      */
     public function columnCount()
     {
-        return 4;
+        return SD_PRODUCT_COLUMN_COUNT;
     }
 }
