@@ -6,7 +6,7 @@
       'partials.components.image-header',
       [
         'post' => $product,
-        'image_sizes' => \SkinDeep\Articles\PostsPreview::sizes($column_count)
+        'image_sizes' => ArchiveSdProduct::archiveSizes($post)
       ])
     @endif
   </div>
