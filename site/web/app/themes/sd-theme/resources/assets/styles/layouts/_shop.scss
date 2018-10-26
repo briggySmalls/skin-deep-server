@@ -25,6 +25,9 @@ $magazine-figure: '.card.type-sd-product.sd-product-cat-magazines .product-figur
       max-height: 100%;
       height: auto;
       width: auto;
+
+      // Add shadow
+      box-shadow: 0.15em 0.15em 0.5em rgba(0, 0, 0, 0.75);
     }
   }
 }
@@ -45,7 +48,7 @@ $magazine-figure: '.card.type-sd-product.sd-product-cat-magazines .product-figur
 
   &:nth-child(4n) {
     #{$magazine-figure} img {
-      transform: rotate(-10deg);
+      transform: rotate(-5deg);
     }
   }
 }
