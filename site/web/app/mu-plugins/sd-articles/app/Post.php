@@ -79,11 +79,6 @@ class Post
         return get_the_title($this->post->ID);
     }
 
-    public function cardClasses()
-    {
-        return 'card';
-    }
-
     /**
      * @brief      Route other attribute accesses to wrapped post object
      * @param      $name  The name of the attribute

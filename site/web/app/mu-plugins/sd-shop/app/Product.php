@@ -50,6 +50,11 @@ class Product extends Post
         return parent::cardClasses() . ($this->inStock() ? ' in-stock' : ' out-of-stock');
     }
 
+    public function backgroundColour()
+    {
+        return get_field('sd_product_magazine_image_background_colour', $this->post->ID);
+    }
+
     protected static function isPhotonActive()
     {
         return class_exists('Jetpack') && \Jetpack::is_module_active('photon');
