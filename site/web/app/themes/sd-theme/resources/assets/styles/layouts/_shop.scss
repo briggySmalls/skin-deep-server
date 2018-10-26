@@ -25,6 +25,9 @@ $magazine-figure: '.card.type-sd-product.sd-product-cat-magazines .product-figur
       max-height: 100%;
       height: auto;
       width: auto;
+
+      // Add shadow
+      box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.75);
     }
   }
 }
