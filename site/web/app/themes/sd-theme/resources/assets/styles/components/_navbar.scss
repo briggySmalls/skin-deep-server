@@ -5,6 +5,12 @@
     position: static;
   }
 
+  nav {
+    @extend .navbar-light;
+    @extend .bg-light;
+    @extend .navbar-expand-lg;
+  }
+
   .custom-logo-link {
     // Apply the important stuff from navbar-brand
     @extend .navbar-brand;
