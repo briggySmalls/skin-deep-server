@@ -80,6 +80,15 @@ class Post
     }
 
     /**
+     * @brief      Allow non-articles to be handled by generic template
+     * @return     False
+     */
+    public function categories()
+    {
+        return false;
+    }
+
+    /**
      * @brief      Route other attribute accesses to wrapped post object
      * @param      $name  The name of the attribute
      * @return     Value of $name attribute on wrapped post object
