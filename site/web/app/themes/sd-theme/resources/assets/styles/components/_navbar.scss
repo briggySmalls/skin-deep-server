@@ -28,9 +28,9 @@ nav.navbar {
     padding: 0.5em 0;
     margin: 0;
   }
+}
 
-  // Form in menu item
-  form {
-    @extend .form-inline;
-  }
+.search-btn {
+  @extend .btn;
+  @extend .btn-outline-secondary;
 }
