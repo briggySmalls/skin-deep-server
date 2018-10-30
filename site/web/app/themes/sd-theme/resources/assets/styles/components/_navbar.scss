@@ -1,6 +1,10 @@
 #main-header {
   @extend .sticky-top;
 
+  @include media-breakpoint-down(lg) {
+    position: static;
+  }
+
   .custom-logo-link {
     // Apply the important stuff from navbar-brand
     @extend .navbar-brand;
@@ -13,14 +17,24 @@
 }
 
 nav.navbar {
+  @extend .navbar-light;
+  @extend .bg-light;
+  @extend .navbar-expand-lg;
+
   h2 {
     font-size: 1em;
     padding: 0.5em 0;
     margin: 0;
   }
+}
 
-  // Form in menu item
-  form {
-    @extend .form-inline;
-  }
+body.single-format-video nav.navbar {
+  @extend .bg-dark;
+  @extend .navbar-dark;
+  @extend .navbar-expand-lg;
+}
+
+.search-btn {
+  @extend .btn;
+  @extend .btn-outline-secondary;
 }

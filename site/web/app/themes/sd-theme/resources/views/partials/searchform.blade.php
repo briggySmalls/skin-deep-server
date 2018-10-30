@@ -1,4 +1,4 @@
-<form role="search" method="get" class="site-search" action="{{ esc_url( home_url( '/' ) ) }}">
+<form role="search" method="get" class="site-search form-inline" action="{{ esc_url( home_url( '/' ) ) }}">
   <div class="input-group">
     <input
       type="search"
@@ -7,7 +7,7 @@
       name="s"
       aria-label="Search" />
     <div class="input-group-append">
-      <button type="button">Search</button>
+      <button class="search-btn" type="submit">Search</button>
     </div>
   </div>
 </form>

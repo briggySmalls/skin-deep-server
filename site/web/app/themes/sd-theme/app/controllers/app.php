@@ -3,6 +3,10 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
+use SkinDeep\Articles\Post;
+use SkinDeep\Articles\Article;
+use SkinDeep\Events\Event;
+use SkinDeep\Shop\Product;
 
 class App extends Controller
 {
@@ -66,14 +70,34 @@ class App extends Controller
 
     public function postWrapperFactory()
     {
+        if (is_home()) {
+            /* This is an archive of articles (blog page)
+             * NOTE: home is a bit of a misnomer
+             */
+            return function($post) { return new Article($post); };
+        } elseif (is_search()) {
+            return function ($post) {
+                switch (get_post_type()) {
+                    case 'post':
+                        return new Article($post);
+                        break;
+
+                    case 'sd-product':
+                        return new Product($post);
+                        break;
+
+                    case 'sd-event':
+                        return new Event($post);
+                        break;
+
+                    default:
+                        return new Post($post);
+                        break;
+                }
+            };
+        }
         return function ($post) {
-            if (is_home()) {
-                /* This is an archive of articles (blog page)
-                 * NOTE: home is a bit of a misnomer
-                 */
-                return new \SkinDeep\Articles\Article($post);
-            }
-            return new \SkinDeep\Articles\Post($post);
+            return new Post($post);
         };
     }
 
