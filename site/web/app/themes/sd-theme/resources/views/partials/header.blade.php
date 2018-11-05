@@ -19,26 +19,20 @@
     </button>
     <div id="navbarNavDropdown" class="collapse navbar-collapse">
       <div class="flex-column align-items-start">
-        <div class="d-flex">
-          {{-- Main menu navigation --}}
-          @if (has_nav_menu('primary_navigation'))
-            {!! wp_nav_menu(['theme_location' => 'primary_navigation']) !!}
-          @endif
-        </div>
-        {{-- Display categories on an articles page --}}
-        <h2 class="d-lg-none">Categories</h2>
-        <ul class="navbar-nav d-flex {{ $is_articles_page ? "" : "d-lg-none" }}">
-          @foreach (get_categories(['parent' => 0]) as $category)
-            @if (\SkinDeep\Articles\Article::isDefaultCategory($category))
-              @continue
-            @endif
-            <li class="nav-item">
-              <a href="{{ get_category_link($category->term_id) }}" class="nav-link">
-                {{ $category->name }}
-              </a>
-            </li>
-          @endforeach
-        </ul>
+        {{-- Main menu navigation --}}
+        @if (has_nav_menu('primary_navigation'))
+          {{-- Standard 'top-level' menu items --}}
+          {!! wp_nav_menu([
+            'theme_location' => 'primary_navigation',
+            'depth' => 1,
+            'menu_class' => 'd-flex']) !!}
+          {{-- Add sub-menu with custom walker for children --}}
+          {!! wp_nav_menu([
+            'theme_location' => 'primary_navigation',
+            'walker' => new SkinDeep\Theme\ChildOnlyNavWalker(),
+            'depth' => 0,
+            'menu_class' => 'd-flex']) !!}
+        @endif
       </div>
       {{-- Search bar --}}
       {!! get_search_form() !!}

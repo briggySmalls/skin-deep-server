@@ -38,7 +38,7 @@ add_filter('get_search_form', function () {
  * Add SnipCart login to primary navigation
  */
 add_filter('wp_nav_menu_items', function ($items, $args) {
-    if ($args->theme_location == 'primary_navigation') {
+    if (($args->theme_location == 'primary_navigation') && ($args->depth == 1)) {
         $items .= '<li class="menu-item">'
             . '<li class="nav-item">'
             . '<a href="#" class="snipcart-user-profile nav-link">'

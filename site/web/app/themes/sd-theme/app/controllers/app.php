@@ -74,7 +74,9 @@ class App extends Controller
             /* This is an archive of articles (blog page)
              * NOTE: home is a bit of a misnomer
              */
-            return function($post) { return new Article($post); };
+            return function ($post) {
+                return new Article($post);
+            };
         } elseif (is_search()) {
             return function ($post) {
                 switch (get_post_type()) {
