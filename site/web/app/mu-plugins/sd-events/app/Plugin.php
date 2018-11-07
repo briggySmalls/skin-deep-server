@@ -76,6 +76,8 @@ class Plugin
             // Determine if we are looking for past/upcoming
             $status = get_query_var(self::EVENT_STATUS_QUERY_ARG);
             if (!array_key_exists($status, self::$status_to_comparison_map)) {
+                // Return no posts for an invalid query arg
+                $query->set('post__in', [0]);
                 return;
             }
 
