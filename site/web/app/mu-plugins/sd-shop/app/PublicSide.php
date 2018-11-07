@@ -71,16 +71,6 @@ class PublicSide
         $this->sd_shop = $sd_shop;
         $this->version = $version;
 
-        // Get the API key when we can
-        $loader->addAction('acf/init', function () {
-            $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
-            if (!$this->api_key) {
-                AdminNotice::create()
-                    ->error('Snipcart API key not set. Shop will not function until set in Products > Shop Settings')
-                    ->show();
-            }
-        });
-
         // Enqueue assets
         $loader->addAction('wp_enqueue_scripts', function () {
             $this->enqueueScripts();
