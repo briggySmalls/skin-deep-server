@@ -2,10 +2,27 @@
 
 namespace SkinDeep\Theme;
 
-class ChildOnlyNavWalker extends \Walker_Nav_Menu
+use Roots\Soil\Nav\NavWalker as Soil;
+
+/**
+ * Return if Soil does not exist.
+ */
+if (!class_exists('Roots\Soil\Nav\NavWalker')) {
+    return;
+}
+
+
+class ChildOnlyNavWalker extends Soil
 {
-    function start_lvl(&$output, $depth = 0, $args = array())
+    public function __construct()
     {
+        add_filter('nav_menu_css_class', array($this, 'removePageHierarchy'), 9, 1);
+    }
+
+    // @codingStandardsIgnoreStart
+    public function start_lvl(&$output, $depth = 0, $args = array())
+    {
+    // @codingStandardsIgnoreEnd
         if ($depth == 0) {
             // We start at level 1
             return;
@@ -13,8 +30,10 @@ class ChildOnlyNavWalker extends \Walker_Nav_Menu
         parent::start_lvl($output, $depth, $args);
     }
 
-    function end_lvl(&$output, $depth = 0, $args = array())
+    // @codingStandardsIgnoreStart
+    public function end_lvl(&$output, $depth = 0, $args = array())
     {
+    // @codingStandardsIgnoreEnd
         if ($depth == 0) {
             // We start at level 1
             return;
@@ -22,8 +41,10 @@ class ChildOnlyNavWalker extends \Walker_Nav_Menu
         parent::end_lvl($output, $depth, $args);
     }
 
-    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    // @codingStandardsIgnoreStart
+    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
     {
+    // @codingStandardsIgnoreEnd
         if ($depth == 0) {
             // We start at level 1
             return;
@@ -31,8 +52,10 @@ class ChildOnlyNavWalker extends \Walker_Nav_Menu
         parent::start_el($output, $item, $depth, $args);
     }
 
-    function end_el(&$output, $item, $depth = 0, $args = array())
+    // @codingStandardsIgnoreStart
+    public function end_el(&$output, $item, $depth = 0, $args = array())
     {
+    // @codingStandardsIgnoreEnd
         if ($depth == 0) {
             // We start at level 1
             return;
@@ -40,8 +63,10 @@ class ChildOnlyNavWalker extends \Walker_Nav_Menu
         parent::end_el($output, $item, $depth, $args);
     }
 
-    function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output)
+    // @codingStandardsIgnoreStart
+    public function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output)
     {
+    // @codingStandardsIgnoreEnd
         // Check if element as a 'current element' class
         $current_element_markers = ['current-menu-item', 'current-menu-parent', 'current-menu-ancestor'];
         $current_class = array_intersect($current_element_markers, $element->classes);
@@ -55,5 +80,11 @@ class ChildOnlyNavWalker extends \Walker_Nav_Menu
         }
 
         parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+    }
+
+    public function removePageHierarchy($classes)
+    {
+        // Remove page hierarchy classes (which later get interpreted as 'active')
+        return preg_replace('/(current([-_]page[-_])(item|parent|ancestor))/', '', $classes);
     }
 }
