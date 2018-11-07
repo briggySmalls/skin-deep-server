@@ -59,8 +59,16 @@ class Plugin
     }
 
     public function addEventStatusQuery() {
+        // First add the custom query
         global $wp;
         $wp->add_query_var(self::EVENT_STATUS_QUERY_ARG);
+        // Register a new rewrite tag (notify wordpress of custom query arg)
+        add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
+        // Add a rewrite rule for events
+        add_rewrite_rule(
+            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]*)/?',
+            'index.php?post_type=sd-event&status=$matches[1]',
+            'top');
     }
 
     public function filterEventsOnStatus($query) {
