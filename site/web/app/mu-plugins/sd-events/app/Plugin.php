@@ -141,4 +141,10 @@ class Plugin
             }
         }
     }
+
+    public static function isValidEventPage() {
+        return array_key_exists(
+            get_query_var(self::EVENT_STATUS_QUERY_ARG),
+            self::$status_to_comparison_map);
+    }
 }
