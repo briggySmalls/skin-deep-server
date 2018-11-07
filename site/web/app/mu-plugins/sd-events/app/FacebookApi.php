@@ -3,9 +3,11 @@
 namespace SkinDeep\Events;
 
 use SkinDeep\Events\DataClasses\FacebookEventDetails;
+use SkinDeep\Events\FacebookApiException;
 use \Facebook\Facebook;
 use \Facebook\Exceptions\FacebookResponseException;
 use \Facebook\Exceptions\FacebookSDKException;
+use \YeEasyAdminNotices\V1\AdminNotice;
 
 class FacebookApi
 {
@@ -41,10 +43,11 @@ class FacebookApi
             return $this->fb->get('/' . $slug);
         } catch (FacebookResponseException $e) {
             // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
+            throw new FacebookApiException('Facebook graph API returned an error', 0, $e);
         } catch (FacebookSDKException $e) {
             // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            throw new FacebookApiException('Facebook SDK returned an error', 0, $e);
         }
+        return null;
     }
 }
