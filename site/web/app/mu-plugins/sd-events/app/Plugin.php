@@ -59,9 +59,6 @@ class Plugin
     }
 
     public function addEventStatusQuery() {
-        // First add the custom query
-        global $wp;
-        $wp->add_query_var(self::EVENT_STATUS_QUERY_ARG);
         // Register a new rewrite tag (notify wordpress of custom query arg)
         add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
         // Add a rewrite rule for events
