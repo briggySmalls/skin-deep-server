@@ -67,12 +67,12 @@ run_sd_shop();
 
 // Setup shop plugin options
 if (function_exists('acf_add_options_page')) {
-    acf_add_options_page(array(
+    acf_add_options_page([
         'page_title' => 'Shop Settings',
         'capability' => 'edit_posts',
         'parent_slug' => 'edit.php?post_type=sd-product',
         'redirect' => false
-    ));
+    ]);
 } else {
     AdminNotice::create()
         ->error('ACF Pro not found: Skin Deep Shop plugin will not work')
