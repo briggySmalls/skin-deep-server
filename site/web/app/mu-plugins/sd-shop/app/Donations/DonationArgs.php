@@ -52,7 +52,7 @@ class DonationArgs implements WidgetArgsInterface
         // Now check if a parameter was supplied
         if (get_query_var(self::DONATION_QUERY_VAR)) {
             // Validate parameter
-            $param = get_query_var('donation');
+            $param = get_query_var(self::DONATION_QUERY_VAR);
             if (is_numeric($param) && $param >= 1 && $param == round($param)) {
                 // If so update with this
                 return money_format(MONEY_FORMAT, (int)$param / 100);
