@@ -2,8 +2,6 @@
 
 namespace SkinDeep\Theme;
 
-use Roots\Soil\Nav\NavWalker as Soil;
-
 /**
  * Return if Soil does not exist.
  */
@@ -12,13 +10,8 @@ if (!class_exists('Roots\Soil\Nav\NavWalker')) {
 }
 
 
-class ChildOnlyNavWalker extends Soil
+class ChildOnlyNavWalker extends NavWalker
 {
-    public function __construct()
-    {
-        add_filter('nav_menu_css_class', array($this, 'removePageHierarchy'), 9, 1);
-    }
-
     // @codingStandardsIgnoreStart
     public function start_lvl(&$output, $depth = 0, $args = array())
     {
@@ -80,11 +73,5 @@ class ChildOnlyNavWalker extends Soil
         }
 
         parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
-    }
-
-    public function removePageHierarchy($classes)
-    {
-        // Remove page hierarchy classes (which later get interpreted as 'active')
-        return preg_replace('/(current([-_]page[-_])(item|parent|ancestor))/', '', $classes);
     }
 }

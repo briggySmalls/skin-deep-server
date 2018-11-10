@@ -24,6 +24,7 @@
           {{-- Standard 'top-level' menu items --}}
           {!! wp_nav_menu([
             'theme_location' => 'primary_navigation',
+            'walker' => new SkinDeep\Theme\NavWalker(),
             'depth' => 1,
             'menu_class' => 'd-flex']) !!}
           {{-- Add sub-menu with custom walker for children --}}
