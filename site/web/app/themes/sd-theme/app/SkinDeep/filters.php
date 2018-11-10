@@ -8,7 +8,7 @@ add_filter('wp_nav_menu_args', function ($args) {
 
     // Use custom nav walker (note: priority 9 to beat soil to it)
     if (!$args['walker']) {
-        $nav_menu_args['walker'] = new NavWalker();
+        $args['walker'] = new NavWalker();
     }
 
     return $args;
