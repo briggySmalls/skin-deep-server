@@ -2,13 +2,17 @@
 
 namespace SkinDeep\Theme;
 
-/**
- * Add bootstrap navbar class to nav menus
- */
 add_filter('wp_nav_menu_args', function ($args) {
+    // Add bootstrap navbar class to nav menus
     $args['menu_class'] .= ' navbar-nav';
+
+    // Use custom nav walker (note: priority 9 to beat soil to it)
+    if (!$args['walker']) {
+        $nav_menu_args['walker'] = new NavWalker();
+    }
+
     return $args;
-});
+}, 9);
 
 /**
  * Add bootstrap nav class to menu items
