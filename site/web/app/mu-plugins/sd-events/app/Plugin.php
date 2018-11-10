@@ -23,7 +23,8 @@ class Plugin
 
     protected $settings_page_info;
 
-    public function __construct() {
+    public function __construct()
+    {
         // Create a loader
         $this->loader = new Loader();
 
@@ -42,7 +43,8 @@ class Plugin
         $this->loader->run();
     }
 
-    public function createEventSettings() {
+    public function createEventSettings()
+    {
         // Setup event plugin options
         if (function_exists('acf_add_options_page')) {
             $this->settings_page_info = acf_add_options_page([
@@ -58,17 +60,20 @@ class Plugin
         }
     }
 
-    public function addEventStatusQuery() {
+    public function addEventStatusQuery()
+    {
         // Register a new rewrite tag (notify wordpress of custom query arg)
         add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
         // Add a rewrite rule for events
         add_rewrite_rule(
             '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]*)/?',
             'index.php?post_type=sd-event&status=$matches[1]',
-            'top');
+            'top'
+        );
     }
 
-    public function filterEventsOnStatus($query) {
+    public function filterEventsOnStatus($query)
+    {
         if (!is_admin() && // Do not mess up admin lists
                 $query->is_main_query() && // Preserve menus etc.
                 is_post_type_archive('sd-event') &&
@@ -94,7 +99,8 @@ class Plugin
         }
     }
 
-    public function updateEventWithFacebookDetails($post_id) {
+    public function updateEventWithFacebookDetails($post_id)
+    {
         // Only check events
         if (get_post_type($post_id) != 'sd-event') {
             return;
@@ -112,7 +118,8 @@ class Plugin
         update_field('sd_event_details', $details, $post_id);
     }
 
-    public function checkEventSettings() {
+    public function checkEventSettings()
+    {
         // Get URL of settings page
         $url = admin_url($this->settings_page_info['parent_slug'] . '&page=' . $this->settings_page_info['menu_slug']);
 
