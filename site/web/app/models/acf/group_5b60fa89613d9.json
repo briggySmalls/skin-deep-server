@@ -3,25 +3,6 @@
     "title": "Event fields",
     "fields": [
         {
-            "key": "field_5b73763bf9b10",
-            "label": "Has facebook event",
-            "name": "sd_event_has_facebook_event",
-            "type": "true_false",
-            "instructions": "Whether the event has an associated facebook event or not",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5b60fa9121f4b",
             "label": "Facebook event",
             "name": "sd_event_facebook_event",
@@ -60,9 +41,8 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5b73763bf9b10",
-                        "operator": "!=",
-                        "value": "1"
+                        "field": "field_5b60fa9121f4b",
+                        "operator": "==empty"
                     }
                 ]
             ],
@@ -96,7 +76,7 @@
                     "name": "end_time",
                     "type": "date_time_picker",
                     "instructions": "The end time of the event",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -113,7 +93,7 @@
                     "name": "venue",
                     "type": "google_map",
                     "instructions": "The venue of the event",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -145,5 +125,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537604311
+    "modified": 1541949345
 }

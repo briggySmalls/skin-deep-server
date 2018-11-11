@@ -6,7 +6,7 @@
 
   @while (have_posts()) @php the_post() @endphp
     @php
-    $event = new SkinDeep\Events\Event(get_post());
+    $post = new SkinDeep\Events\Event(get_post());
     @endphp
     @include('partials.content-archive-sd-event')
   @endwhile
