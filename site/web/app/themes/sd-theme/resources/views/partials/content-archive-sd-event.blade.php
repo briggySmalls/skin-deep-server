@@ -31,7 +31,13 @@
         <div class="event-detail-item">
           @if ($post->venue())
               <i class="fas fa-map-marker-alt event-icon" title="Venue"></i>
-              {{ $post->venue() }}
+              @if ($post->venueUrl())
+                <a href="{{ $post->venueUrl() }}">
+              @endif
+              {{ $post->venue() }}</a>
+              @if ($post->venueUrl())
+                </a>
+              @endif
           @endif
         </div>
       </div>

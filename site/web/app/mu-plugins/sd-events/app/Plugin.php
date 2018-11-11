@@ -13,7 +13,7 @@ class Plugin
     const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
 
     //! Meta key for storing facebook location
-    const FACEBOOK_LOCATION_META_KEY = '';
+    const FACEBOOK_PLACE_META_KEY = 'sd_event_facebook_place';
 
     const EVENT_STATUS_QUERY_ARG = 'status';
 
@@ -117,8 +117,19 @@ class Plugin
 
         // Update details with facebook event data
         $api = new FacebookApi();
-        $details = $api->getEventDetails($facebook_event)->toAcfDetails();
-        update_field('sd_event_details', $details, $post_id);
+        try {
+            $details = $api->getEventDetails($facebook_event);
+        } catch (FacebookApiException $e) {
+            AdminNotice::create()
+                ->error('Facebook API exception: ' . $e->getMessage())
+                ->show();
+            // return;
+        }
+
+        // Update date and time (also clears Google maps fields)
+        update_field('sd_event_details', $details->toAcfDetails(), $post_id);
+        // Save facebook location in DB
+        self::addOrUpdate($post_id, self::FACEBOOK_PLACE_META_KEY, maybe_serialize($details->venue));
     }
 
     public function checkEventSettings()
@@ -160,10 +171,10 @@ class Plugin
         );
     }
 
-    protected static function addOrUpdate()
+    protected static function addOrUpdate($post_id, $key, $value)
     {
-        if (!add_post_meta( 7, 'fruit', 'banana', true)) {
-           update_post_meta(7, 'fruit', 'banana');
+        if (!add_post_meta($post_id, $key, $value, true)) {
+            update_post_meta($post_id, $key, $value);
         }
     }
 }
