@@ -12,6 +12,9 @@ class Plugin
     //! Name of the environment variable that holds the google maps API key
     const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
 
+    //! Meta key for storing facebook location
+    const FACEBOOK_LOCATION_META_KEY = '';
+
     const EVENT_STATUS_QUERY_ARG = 'status';
 
     protected static $status_to_comparison_map = [
@@ -140,7 +143,7 @@ class Plugin
         $facebook_details = get_field('sd_event_fb_page_group', 'option');
         foreach (['app_id', 'app_secret', 'access_token'] as $field) {
             if (!(array_key_exists($field, $facebook_details) && $facebook_details[$field])) {
-                // Warn that google API isn't going to work
+                // Warn that facebook API isn't going to work
                 AdminNotice::create()
                     ->error()
                     ->html("Event setting '$field' not yet set. Configure in <a href=\"$url\">Events -&gt; Event Settings</a>")
@@ -155,5 +158,12 @@ class Plugin
             get_query_var(self::EVENT_STATUS_QUERY_ARG),
             self::$status_to_comparison_map
         );
+    }
+
+    protected static function addOrUpdate()
+    {
+        if (!add_post_meta( 7, 'fruit', 'banana', true)) {
+           update_post_meta(7, 'fruit', 'banana');
+        }
     }
 }
