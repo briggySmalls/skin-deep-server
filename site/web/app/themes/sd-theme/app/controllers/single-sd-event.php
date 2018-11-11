@@ -58,12 +58,14 @@ class SingleSdEvent extends Controller implements SingleControllerInterface
             return sprintf(
                 '%s - %s',
                 date_i18n(self::DAY_FORMAT, $start->getTimestamp()),
-                date_i18n(self::DAY_AND_MONTH_FORMAT, $end->getTimestamp()));
+                date_i18n(self::DAY_AND_MONTH_FORMAT, $end->getTimestamp())
+            );
         }
 
         return sprintf(
             '%s - %s',
             date_i18n(self::DAY_AND_MONTH_FORMAT, $start->getTimestamp()),
-            date_i18n(self::DAY_AND_MONTH_FORMAT, $end->getTimestamp()));
+            date_i18n(self::DAY_AND_MONTH_FORMAT, $end->getTimestamp())
+        );
     }
 }
