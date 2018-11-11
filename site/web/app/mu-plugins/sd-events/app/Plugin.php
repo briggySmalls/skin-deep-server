@@ -69,13 +69,13 @@ class Plugin
         add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
         // Add a rewrite rule for paged events
         add_rewrite_rule(
-            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?',
+            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?$',
             'index.php?post_type=sd-event&status=$matches[1]&paged=$matches[2]',
             'top'
         );
         // Add a rewrite rule for events
         add_rewrite_rule(
-            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/?',
+            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/?$',
             'index.php?post_type=sd-event&status=$matches[1]',
             'top'
         );
