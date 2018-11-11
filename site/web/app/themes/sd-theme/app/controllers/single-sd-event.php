@@ -30,7 +30,7 @@ class SingleSdEvent extends Controller implements SingleControllerInterface
         assert($event->startTime());
         if (!$event->endTime()) {
             // Only return the start time
-            return self::toDatetimeString($event->startTime());
+            return self::toDateString($event->startTime());
         }
 
         // Determine if we show special formatting for same day (start - end date)
