@@ -8,12 +8,23 @@ use SkinDeep\Events\Event;
 
 class SingleSdEvent extends Controller implements SingleControllerInterface
 {
+    public const DAY_FORMAT = 'jS';
+    public const MONTH_FORMAT = 'M';
+    public const DAY_AND_MONTH_FORMAT = 'jS M';
+    public const TIME_FORMAT = 'H:m';
+
     public function post()
     {
         return new Event(get_post());
     }
 
     public static function getDisplayTime($event)
+    {
+        assert($event->startTime());
+        return self::toTimeString($event->startTime());
+    }
+
+    public static function getDisplayDate($event)
     {
         // First check that there are times in the first place
         assert($event->startTime());
@@ -24,29 +35,35 @@ class SingleSdEvent extends Controller implements SingleControllerInterface
 
         // Determine if we show special formatting for same day (start - end date)
         $is_same_day = $event->startTime()->format('d') == $event->endTime()->format('d');
-        $is_not_24_hrs = $event->startTime()->diff($event->endTime())->format('H') < 24;
-        if ($is_same_day & $is_not_24_hrs) {
-            // Starts/ends on same day
-            return self::toTimeString($event->startTime()) . ' - ' . self::toTimeString($event->endTime()) . ' ' . self::toDateString($event->startTime());
-        }
-
-        // Otherwise write out the date twice
-        return (
-            self::toDatetimeString($event->startTime()) . ' - ' . self::toDatetimeString($event->endTime()));
-    }
-
-    protected static function toDatetimeString($datetime)
-    {
-        return self::toTimeString($datetime) . ' ' . self::toDateString($datetime);
+        return $is_same_day ?
+            self::toDateString($event->startTime()) :
+            self::toDateRange($event->startTime(), $event->endTime());
     }
 
     protected static function toTimeString($datetime)
     {
-        return date_i18n('H:m', $datetime->getTimestamp());
+        return date_i18n(self::TIME_FORMAT, $datetime->getTimestamp());
     }
 
     protected static function toDateString($datetime)
     {
-        return date_i18n('d M', $datetime->getTimestamp());
+        return date_i18n(self::DAY_AND_MONTH_FORMAT, $datetime->getTimestamp());
+    }
+
+    protected static function toDateRange($start, $end)
+    {
+        $is_same_month = $start->format('n') == $end->format('n');
+
+        if ($is_same_month) {
+            return sprintf(
+                '%s - %s',
+                date_i18n(self::DAY_FORMAT, $start->getTimestamp()),
+                date_i18n(self::DAY_AND_MONTH_FORMAT, $end->getTimestamp()));
+        }
+
+        return sprintf(
+            '%s - %s',
+            date_i18n(self::DAY_AND_MONTH_FORMAT, $start->getTimestamp()),
+            date_i18n(self::DAY_AND_MONTH_FORMAT, $end->getTimestamp()));
     }
 }

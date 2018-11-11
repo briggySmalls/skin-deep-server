@@ -6,8 +6,12 @@ assert(is_a($post, 'SkinDeep\Events\Event'));
   <ul id="event-details">
     @if ($post->startTime())
       <li>
-        <i class="fas fa-clock event-icon fa-fw" title="Time"></i>
+        <i class="far fa-clock event-icon fa-fw" title="Time"></i>
         {{ SingleSdEvent::getDisplayTime($post) }}
+      </li>
+      <li>
+        <i class="far fa-calendar event-icon fa-fw" title="Date"></i>
+        {{ SingleSdEvent::getDisplayDate($post) }}
       </li>
     @endif
     @if ($post->venue())
