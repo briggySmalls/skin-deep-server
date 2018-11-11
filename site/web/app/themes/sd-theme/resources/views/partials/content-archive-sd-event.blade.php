@@ -41,3 +41,4 @@
   {{-- Supply link for card --}}
   <a class="card-link" href={{ $post->url() }}></a>
 </div>
+<hr/>
