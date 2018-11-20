@@ -4,12 +4,23 @@
 }
 
 // Video format
-body.single-format-video {
+body.single-format-video,
+body.term-post-format-video {
   background-color: black;
   color: white;
 
   .widget.suggestions .jumbotron {
     background-color: $gray-800;
+  }
+
+  .card {
+    @extend .text-white;
+    @extend .bg-dark;
+  }
+
+  nav.navbar {
+    @extend .bg-dark;
+    @extend .navbar-dark;
   }
 }
 

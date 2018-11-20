@@ -28,12 +28,6 @@ nav.navbar {
   }
 }
 
-body.single-format-video nav.navbar {
-  @extend .bg-dark;
-  @extend .navbar-dark;
-  @extend .navbar-expand-lg;
-}
-
 .search-btn {
   @extend .btn;
   @extend .btn-outline-secondary;
