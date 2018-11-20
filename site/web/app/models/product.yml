@@ -1,4 +1,23 @@
 ---
+- type: tax
+  active: true
+  name: sd-product-cat
+  links:
+  - sd-product
+  labels:
+    has_one: Product category
+    has_many: Product categories
+    text_domain: sd-shop
+  config:
+    public: true
+    show_tagcloud: true
+    show_in_quick_edit: true
+    show_admin_column: true
+    show_in_rest: true  # Required for Gutenberg
+    rewrite:
+      slug: products/product-categories
+      hierarchical: true
+      with_front: false
 - type: cpt
   active: true
   name: sd-product
@@ -25,21 +44,3 @@
     rewrite:
       slug: products
       with_front: false
-- type: tax
-  active: true
-  name: sd-product-cat
-  links:
-  - sd-product
-  labels:
-    has_one: Product category
-    has_many: Product categories
-    text_domain: sd-shop
-  config:
-    public: true
-    show_tagcloud: true
-    show_in_quick_edit: true
-    show_admin_column: true
-    show_in_rest: true  # Required for Gutenberg
-    rewrite:
-      slug: product-categories
-      hierarchical: true
