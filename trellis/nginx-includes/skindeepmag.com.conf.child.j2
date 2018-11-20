@@ -1,0 +1,37 @@
+{% extends 'roles/wordpress-setup/templates/wordpress-site.conf.j2' %}
+
+{% block server_before %}
+map_hash_bucket_size 512;
+
+map $uri $new_uri {
+  /online-articles/skin-deep-sonic-transmissions-brainchild-festival-2015/ /events/skin-deep-sonic-transmissions-brainchild-festival-2015/;
+  /online-articles/climate-change-march-justice-peace-colonialism-conference-race-people-colour-global-north-south-blacklivesmatter/ /events/climate-change-march-justice-peace-colonialism-conference-race-people-colour-global-north-south-blacklivesmatter/;
+  /online-articles/skin-deep-6x60/ /events/skin-deep-6x60/;
+  /online-articles/imagining-2043-magazine-launch/ /events/imagining-2043-magazine-launch/;
+  /online-articles/skin-deep-sonic-transmissions-presents-ahnanse/ /events/skin-deep-sonic-transmissions-presents-ahnanse/;
+  /online-articles/through-our-lens-sonic-transmissions-presents-ahnanse/ /events/through-our-lens-sonic-transmissions-presents-ahnanse/;
+  /online-articles/nerija-jazz-live-music-london-female-collective-gig-total-refreshment-centre-skin-deep-race-culture-music/ /events/nerija-jazz-live-music-london-female-collective-gig-total-refreshment-centre-skin-deep-race-culture-music/;
+  /online-articles/through-our-lens-sonic-transmissions-nerija-live-music-women-jazz/ /events/through-our-lens-sonic-transmissions-nerija-live-music-women-jazz/;
+  /online-articles/through-our-lens-moonlight-advance-screening/ /events/through-our-lens-moonlight-advance-screening/;
+  /online-articles/brown-girls-screening/ /events/brown-girls-screening/;
+  /online-articles/skin-deep-advance-screening-i-am-not-your-negro/ /events/skin-deep-advance-screening-i-am-not-your-negro/;
+  /online-articles/how-are-poc-communities-around-the-world-organising-for-climate-justice/ /events/how-are-poc-communities-around-the-world-organising-for-climate-justice/;
+  /online-articles/the-food-issue-magazine-launch/ /events/the-food-issue-magazine-launch/;
+  /online-articles/sonic-bodies-presents-house-of-absolute/ /events/sonic-bodies-presents-house-of-absolute/;
+
+  ~/online-articles/(.*) /articles/$1;
+  ~/category/events/(.*) /events/$1;
+  ~/category/(.*) /articles/category/$1;
+  ~/product-category/(.*) /products/category/$1;
+  ~/product/(.*) /products/$1;
+}
+{% endblock %}
+
+{% block includes_d -%}
+  # Call parent template content
+  {{ super() }}
+  # Add rewrite from old website using map module
+  if ($new_uri) {
+    rewrite ^ $new_uri permanent;
+  }
+{% endblock %}

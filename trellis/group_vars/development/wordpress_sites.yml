@@ -4,6 +4,7 @@
 
 wordpress_sites:
   skindeepmag.com:
+    nginx_wordpress_site_conf: nginx-includes/skindeepmag.com.conf.child.j2
     site_hosts:
       - canonical: skindeepmag.test
         redirects:
