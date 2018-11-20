@@ -19,11 +19,14 @@ map $uri $new_uri {
   /online-articles/the-food-issue-magazine-launch/ /events/the-food-issue-magazine-launch/;
   /online-articles/sonic-bodies-presents-house-of-absolute/ /events/sonic-bodies-presents-house-of-absolute/;
 
-  ~/online-articles/(.*) /articles/$1;
-  ~/category/events/(.*) /events/$1;
-  ~/category/(.*) /articles/category/$1;
-  ~/product-category/(.*) /products/category/$1;
-  ~/product/(.*) /products/$1;
+  /product-category/merchandise/ /products/category/merchandise/;
+  /product-category/print-magazines/ /products/category/magazines/;
+  /product-category/subscriptions/ /products/category/subscriptions/;
+
+  ~^/online-articles/(.*)$ /articles/$1;
+  ~^/category/events/(.*)$ /events/$1;
+  ~^/category/(.*)$ /articles/category/$1;
+  ~^/product/(.*)$ /products/$1;
 }
 {% endblock %}
 
