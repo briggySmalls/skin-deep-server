@@ -41,7 +41,9 @@
           @endif
         </div>
       </div>
-      <p>{!! the_excerpt() !!}</p>
+      <div>
+        @php the_excerpt() @endphp
+      </div>
     </div>
   </div>
   {{-- Supply link for card --}}

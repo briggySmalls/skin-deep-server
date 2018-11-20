@@ -20,4 +20,8 @@
   @endif
   {{-- Display title --}}
   <h3 class="card-title">{!! $post->title() !!}</h3>
+  {{-- Display excerpt --}}
+  <div>
+    {!! get_the_excerpt($post->ID) !!}
+  </div>
 </div>
