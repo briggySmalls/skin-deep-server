@@ -15,7 +15,7 @@
     show_admin_column: true
     show_in_rest: true  # Required for Gutenberg
     rewrite:
-      slug: products/product-categories
+      slug: products/category
       hierarchical: true
       with_front: false
 - type: cpt
