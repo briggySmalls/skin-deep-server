@@ -21,7 +21,7 @@
   {{-- Display title --}}
   <h3 class="card-title">{!! $post->title() !!}</h3>
   {{-- Display excerpt --}}
-  <div>
+  <div class="card-text">
     {!! get_the_excerpt($post->ID) !!}
   </div>
 </div>

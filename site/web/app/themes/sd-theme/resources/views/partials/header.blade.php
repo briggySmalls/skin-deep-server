@@ -31,7 +31,7 @@
             'theme_location' => 'primary_navigation',
             'walker' => new SkinDeep\Theme\ChildOnlyNavWalker(),
             'depth' => 0,
-            'menu_class' => 'd-flex']) !!}
+            'menu_class' => 'd-flex secondary-nav']) !!}
         @endif
       </div>
       {{-- Search bar --}}

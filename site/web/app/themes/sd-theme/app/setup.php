@@ -19,6 +19,21 @@ add_action('wp_enqueue_scripts', function () {
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
+
+    # Add google fonts
+    if (!is_admin()) {
+        # We only need fonts on the frontend
+        $fonts = [
+            'oswald' => 'Oswald:300,500',
+            'amiri' => 'Amiri'
+        ];
+        foreach ($fonts as $font) {
+            wp_enqueue_style(
+                'custom-google-fonts',
+                "https://fonts.googleapis.com/css?family=$font&amp;subset=latin-ext",
+                false);
+        }
+    }
 }, 100);
 
 /**
