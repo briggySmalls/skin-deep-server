@@ -4,6 +4,7 @@
 
 wordpress_sites:
   skindeepmag.com:
+    nginx_wordpress_site_conf: "{{ skindeepmag_com_nginx_conf }}"
     site_hosts:
       - canonical: skindeepmag.tk
         redirects:
