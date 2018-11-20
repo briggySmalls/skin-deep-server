@@ -1,7 +1,7 @@
 #main-header {
   @extend .sticky-top;
 
-  @include media-breakpoint-down(lg) {
+  @include media-breakpoint-down(xl) {
     position: static;
   }
 
@@ -19,7 +19,7 @@
 nav.navbar {
   @extend .navbar-light;
   @extend .bg-light;
-  @extend .navbar-expand-lg;
+  @extend .navbar-expand-xl;
 
   h2 {
     font-size: 1em;
