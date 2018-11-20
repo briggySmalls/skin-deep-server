@@ -8,17 +8,21 @@
 .card {
   position: relative; // Ensure we can cover in a link
   height: 100%; // Make cards equal height
+  border: 0;
+  border-radius: 0;
+  border-bottom-left-radius: 0;
+
+  .category-link {
+    font-size: 0.8rem;
+    margin: 0.5em 0;
+  }
 
   h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
-  .featured-image > img {
-    @extend .card-img-top;
-  }
-
-  &:hover {
-    background-color: $gray-100;
+  .card-body {
+    padding: 0 0;
   }
 
   // Display links on top of card link
@@ -26,6 +30,10 @@
   .card-content a {
     position: relative;
     z-index: 1;
+  }
+
+  .card-footer {
+    background-color: white;
   }
 
   // Cover the card in a link
