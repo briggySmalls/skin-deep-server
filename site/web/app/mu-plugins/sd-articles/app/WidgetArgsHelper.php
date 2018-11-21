@@ -2,7 +2,7 @@
 
 namespace SkinDeep\Articles;
 
-class WidgetArgsHelper
+class WidgetArgsHelper implements ArgsHelperInterface
 {
     protected $args;
 

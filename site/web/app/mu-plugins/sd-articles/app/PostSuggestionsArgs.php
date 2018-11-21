@@ -20,7 +20,7 @@ class PostSuggestionsArgs implements WidgetArgsInterface
         $this->categories = $article->categories();
     }
 
-    public static function fromArgs($args)
+    public static function fromArgs($args_helper)
     {
         return new PostSuggestionsArgs();
     }

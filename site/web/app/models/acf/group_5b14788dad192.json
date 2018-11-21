@@ -300,6 +300,13 @@
                 "operator": "==",
                 "value": "preview"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/preview"
+            }
         ]
     ],
     "menu_order": 0,
@@ -310,5 +317,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1542762111
+    "modified": 1542851786
 }
