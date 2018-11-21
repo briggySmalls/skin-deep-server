@@ -59,7 +59,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
                 break;
 
             default:
-                assert("Unexpected default");
+                assert(false, "Unexpected default");
                 break;
         }
 
