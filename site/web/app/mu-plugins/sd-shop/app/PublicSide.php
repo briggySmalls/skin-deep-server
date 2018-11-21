@@ -79,6 +79,7 @@ class PublicSide
 
         // Customise Snipcart script
         $loader->addFilter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 3);
+        $loader->addFilter('rest_api_allowed_post_types', ['self', 'enable_rest_api']);
 
         // Add a query var for donations
         $loader->addAction('init', function () {
@@ -130,5 +131,17 @@ class PublicSide
             $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . $this->api_key . '"></script>';
         }
         return $tag;
+    }
+
+    /**
+     * Enables the rest api for products
+     * This is done in order to enable Jetpack's 'related posts' on products
+     * @param  array  $rest_api_allowed_post_types  The post types the REST API is enabled for
+     * @return array  The post types the REST API is enabled for
+     */
+    public static function enable_rest_api($rest_api_allowed_post_types)
+    {
+        $allowed_post_types[] = 'sd-product';
+        return $allowed_post_types;
     }
 }

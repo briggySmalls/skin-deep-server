@@ -17,6 +17,8 @@ class Plugin
 
     const EVENT_STATUS_QUERY_ARG = 'status';
 
+    const EVENT_POST_TYPE = 'sd-event';
+
     protected static $status_to_comparison_map = [
         'past' => '<',
         'upcoming' => '>=',
@@ -39,6 +41,8 @@ class Plugin
         $this->loader->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
         $this->loader->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
         $this->loader->addAction('acf/init', [$this, 'checkEventSettings']);
+
+        $loader->addFilter('rest_api_allowed_post_types', ['self', 'enable_rest_api']);
     }
 
     public function run()
@@ -182,5 +186,17 @@ class Plugin
         if (!add_post_meta($post_id, $key, $value, true)) {
             update_post_meta($post_id, $key, $value);
         }
+    }
+
+    /**
+     * Enables the rest api for products
+     * This is done in order to enable Jetpack's 'related posts' on products
+     * @param  array  $rest_api_allowed_post_types  The post types the REST API is enabled for
+     * @return array  The post types the REST API is enabled for
+     */
+    public static function enable_rest_api($rest_api_allowed_post_types)
+    {
+        $allowed_post_types[] = self::EVENT_POST_TYPE;
+        return $allowed_post_types;
     }
 }
