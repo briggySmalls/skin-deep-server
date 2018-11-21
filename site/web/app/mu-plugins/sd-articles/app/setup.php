@@ -2,7 +2,17 @@
 
 namespace SkinDeep\Articles;
 
+use \YeEasyAdminNotices\V1\AdminNotice;
+
 const TEMPLATE_NAMESPACE = 'articles';
+
+add_action('plugins_loaded', function () {
+    if (!function_exists('get_field')) {
+        AdminNotice::create()
+            ->error('ACF Pro not found: Skin Deep Articles plugin will not work')
+            ->show();
+    }
+});
 
 // Get the blade engine from sage (for building widget html)
 add_action('skin_deep_init', function ($blade) {
