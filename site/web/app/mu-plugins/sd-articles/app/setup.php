@@ -26,6 +26,38 @@ add_action('widgets_init', function () {
     register_widget(__NAMESPACE__ . '\PostSuggestions');
 });
 
+/**
+ * Register blocks
+ */
+add_action('acf/init', function () {
+    // check function exists
+    if (function_exists('acf_register_block')) {
+        // register posts preview block
+        acf_register_block([
+            'name'              => 'preview',
+            'title'             => __('Posts preview'),
+            'description'       => __('Preview filtered posts.'),
+            'render_callback'   => __NAMESPACE__ . '\render_preview_posts',
+            'category'          => 'formatting',
+            'icon'              => 'exerpt-view',
+            'keywords'          => ['posts', 'content'],
+        ]);
+    }
+});
+
+function render_preview_posts()
+{
+    // Construct arguments
+    $args = PostsPreviewArgs::fromArgs(new BlockArgsHelper());
+    $arg_array = get_object_vars($args);
+    // Generate the 'widget' content
+    echo PostsPreview::output(
+        new ResourceManager(__DIR__),
+        'widget',
+        $arg_array
+    );
+}
+
 // Remove existing 'authors' base URL
 add_filter('author_rewrite_rules', function () {
     return [];

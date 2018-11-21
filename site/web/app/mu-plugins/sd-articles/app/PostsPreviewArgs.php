@@ -22,25 +22,22 @@ class PostsPreviewArgs implements WidgetArgsInterface
         $this->post_wrapper_factory = $post_wrapper_factory;
     }
 
-    public static function fromArgs($args)
+    public static function fromArgs($args_helper)
     {
-        // Create a helper
-        $helper = new WidgetArgsHelper($args);
-
         // Limit query to specified number of posts
         $query_args = [
-            'posts_per_page' => (int)$helper->getAcfField('sd_widget_preview_count'),
+            'posts_per_page' => (int)$args_helper->getAcfField('sd_widget_preview_count'),
         ];
 
         // Determine what type of filtering we're applying
-        $post_type = $helper->getAcfField('sd_widget_preview_post_type');
+        $post_type = $args_helper->getAcfField('sd_widget_preview_post_type');
         switch ($post_type) {
             case 'post':
-                list($query_args, $url) = self::getArticleArgs($helper, $query_args);
+                list($query_args, $url) = self::getArticleArgs($args_helper, $query_args);
                 break;
 
             case Plugin::EVENT_POST_TYPE:
-                list($query_args, $url) = self::getEventArgs($helper, $query_args);
+                list($query_args, $url) = self::getEventArgs($args_helper, $query_args);
                 break;
 
             default:
@@ -52,15 +49,15 @@ class PostsPreviewArgs implements WidgetArgsInterface
         return new PostsPreviewArgs(
             get_posts($query_args),
             $url,
-            $helper->getAcfField('sd_widget_preview_title'),
-            $helper->getAcfField('sd_widget_preview_columns'),
+            $args_helper->getAcfField('sd_widget_preview_title'),
+            $args_helper->getAcfField('sd_widget_preview_columns'),
             self::getPostWrapperFactory($post_type)
         );
     }
 
-    private static function getArticleArgs($helper, $query_args)
+    private static function getArticleArgs($args_helper, $query_args)
     {
-        $filter_group = $helper->getAcfField('sd_widget_preview_article_filter_group');
+        $filter_group = $args_helper->getAcfField('sd_widget_preview_article_filter_group');
         $url = null;
         switch ($filter_group['type']) {
             # Filter articles to the specified category
@@ -95,9 +92,9 @@ class PostsPreviewArgs implements WidgetArgsInterface
         return [$query_args, $url];
     }
 
-    private static function getEventArgs($helper, $query_args)
+    private static function getEventArgs($args_helper, $query_args)
     {
-        $filter_group = $helper->getAcfField('sd_widget_preview_event_filter_group');
+        $filter_group = $args_helper->getAcfField('sd_widget_preview_event_filter_group');
         switch ($filter_group['type']) {
             case 'status':
                 $status = $filter_group['status'];

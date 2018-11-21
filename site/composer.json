@@ -39,7 +39,7 @@
       "type": "package",
       "package": {
         "name": "advanced-custom-fields/advanced-custom-fields-pro",
-        "version": "5.7.3",
+        "version": "5.8.0-beta2",
         "type": "wordpress-muplugin",
         "dist": {
           "type": "zip",
@@ -62,7 +62,6 @@
     "roots/wp-config": "1.0.0",
     "roots/soil": "^3.7.3",
     "solarissmoke/disable-comments-mu": "^1.2",
-    "advanced-custom-fields/advanced-custom-fields-pro": "^5.0.0",
     "soberwp/unravel": "^1.0",
     "soberwp/models": "1.0.6",
     "automattic/jetpack": "^6.5"

@@ -53,8 +53,8 @@ class PostsSlider extends Widget
      * @param      $args  The arguments
      * @return     { description_of_the_return_value }
      */
-    protected function createArgs($args)
+    protected function createArgs($args_helper)
     {
-        return PostsSliderArgs::fromArgs($args);
+        return PostsSliderArgs::fromArgs($args_helper);
     }
 } // end class

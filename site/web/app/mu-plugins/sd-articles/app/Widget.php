@@ -81,7 +81,7 @@ abstract class Widget extends \WP_Widget
         $widget_string = $before_widget;
 
         // Generate the widget content from the Blade template
-        $context = get_object_vars($this->createArgs($args));
+        $context = get_object_vars($this->createArgs(new WidgetArgsHelper($args)));
         $widget_string .= self::output($this->resource_manager, 'widget', $context);
         $widget_string .= $after_widget;
 
@@ -247,10 +247,10 @@ abstract class Widget extends \WP_Widget
 
     /**
      * @brief      Gets the arguments for the widget template
-     * @param      $args  The array of form elements
+     * @param      $args_helper  The widget args accessible from the helper
      * @return     The processed arguments
      */
-    abstract protected function createArgs($args);
+    abstract protected function createArgs($args_helper);
 
     /**
      * @brief      Helper function to get an ACF field for the given widget

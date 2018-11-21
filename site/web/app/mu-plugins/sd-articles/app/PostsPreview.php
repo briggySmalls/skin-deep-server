@@ -82,8 +82,8 @@ class PostsPreview extends Widget
      * @param      $args  The widget arguments
      * @return     WidgetArgs Template variables
      */
-    protected function createArgs($args)
+    protected function createArgs($args_helper)
     {
-        return PostsPreviewArgs::fromArgs($args);
+        return PostsPreviewArgs::fromArgs($args_helper);
     }
 } // end class

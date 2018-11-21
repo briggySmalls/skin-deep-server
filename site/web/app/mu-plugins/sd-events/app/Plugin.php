@@ -33,9 +33,6 @@ class Plugin
         // Create a loader
         $this->loader = new Loader();
 
-        // Immediate setup
-        $this->createEventSettings();
-
         // Add some hooks
         $this->loader->addAction('init', [$this, 'addEventStatusQuery']);
         $this->loader->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);

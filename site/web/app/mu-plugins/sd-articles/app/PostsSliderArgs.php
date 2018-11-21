@@ -11,12 +11,11 @@ class PostsSliderArgs implements WidgetArgsInterface
         $this->posts = $posts;
     }
 
-    public static function fromArgs($args)
+    public static function fromArgs($args_helper)
     {
-        $helper = new WidgetArgsHelper($args);
         return new PostsSliderArgs(
             WidgetArgsHelper::toArticles(
-                $helper->getAcfField('sd_widget_slider_articles')
+                $args_helper->getAcfField('sd_widget_slider_articles')
             )
         );
     }
