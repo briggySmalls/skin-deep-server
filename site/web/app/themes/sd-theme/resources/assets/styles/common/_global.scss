@@ -37,8 +37,15 @@ img {
   font-family: 'Oswald', sans-serif;
 }
 
+.card .category-link,
+.event-details {
+  font-size: 0.8rem;
+}
+
 .secondary-nav .nav-item,
-.card .category-link {
+.card .category-link,
+.event-details,
+.byline.author {
   font-weight: lighter;
 }
 
