@@ -39,28 +39,18 @@ class Plugin
         $this->loader->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
         $this->loader->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
         $this->loader->addAction('acf/init', [$this, 'checkEventSettings']);
+        $this->loader->addAction('plugins_loaded', function () {
+            if (!function_exists('get_field')) {
+                AdminNotice::create()
+                    ->error('ACF Pro not found: Skin Deep Events plugin will not work')
+                    ->show();
+            }
+        });
     }
 
     public function run()
     {
         $this->loader->run();
-    }
-
-    public function createEventSettings()
-    {
-        // Setup event plugin options
-        if (function_exists('acf_add_options_page')) {
-            $this->settings_page_info = acf_add_options_page([
-                'page_title' => 'Event Settings',
-                'capability' => 'edit_posts',
-                'parent_slug' => 'edit.php?post_type=sd-event',
-                'redirect' => false
-            ]);
-        } else {
-            AdminNotice::create()
-                ->error('ACF Pro not found: Skin Deep Shop plugin will not work')
-                ->show();
-        }
     }
 
     public function addEventStatusQuery()
@@ -140,6 +130,14 @@ class Plugin
 
     public function checkEventSettings()
     {
+        // Create event settings
+        $this->settings_page_info = acf_add_options_page([
+            'page_title' => 'Event Settings',
+            'capability' => 'edit_posts',
+            'parent_slug' => 'edit.php?post_type=' . self::EVENT_POST_TYPE,
+            'redirect' => false
+        ]);
+
         // Get URL of settings page
         $url = admin_url($this->settings_page_info['parent_slug'] . '&page=' . $this->settings_page_info['menu_slug']);
 

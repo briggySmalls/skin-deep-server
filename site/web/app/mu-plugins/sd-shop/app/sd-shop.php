@@ -2,8 +2,6 @@
 
 namespace SkinDeep\Shop;
 
-use \YeEasyAdminNotices\V1\AdminNotice;
-
 /**
  * The plugin bootstrap file
  *
