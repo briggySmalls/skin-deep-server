@@ -85,6 +85,16 @@ class PublicSide
             global $wp;
             $wp->add_query_var(Donations\DonationArgs::DONATION_QUERY_VAR);
         });
+
+        // Get the API key when we can
+        $loader->addAction('acf/init', function () {
+            $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
+            if (!$this->api_key) {
+                AdminNotice::create()
+                    ->error('Snipcart API key not set. Shop will not function until set in Products > Shop Settings')
+                    ->show();
+            }
+        });
     }
 
     /**
