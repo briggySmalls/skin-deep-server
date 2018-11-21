@@ -17,6 +17,8 @@ class Plugin
 
     const EVENT_STATUS_QUERY_ARG = 'status';
 
+    const EVENT_POST_TYPE = 'sd-event';
+
     protected static $status_to_comparison_map = [
         'past' => '<',
         'upcoming' => '>=',
@@ -60,13 +62,14 @@ class Plugin
         // Add a rewrite rule for paged events
         add_rewrite_rule(
             '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?$',
-            'index.php?post_type=sd-event&status=$matches[1]&paged=$matches[2]',
+            'index.php?post_type=' . self::EVENT_POST_TYPE . '&' .
+            self::EVENT_STATUS_QUERY_ARG . '=$matches[1]&paged=$matches[2]',
             'top'
         );
         // Add a rewrite rule for events
         add_rewrite_rule(
             '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/?$',
-            'index.php?post_type=sd-event&status=$matches[1]',
+            'index.php?post_type=' . self::EVENT_POST_TYPE . '&' . self::EVENT_STATUS_QUERY_ARG . '=$matches[1]',
             'top'
         );
     }
@@ -75,7 +78,7 @@ class Plugin
     {
         if (!is_admin() && // Do not mess up admin lists
                 $query->is_main_query() && // Preserve menus etc.
-                is_post_type_archive('sd-event') &&
+                is_post_type_archive(self::EVENT_POST_TYPE) &&
                 get_query_var(self::EVENT_STATUS_QUERY_ARG)) {
             // Determine if we are looking for past/upcoming
             $status = get_query_var(self::EVENT_STATUS_QUERY_ARG);
@@ -88,11 +91,7 @@ class Plugin
             //Get original meta query
             $meta_query = is_array($query->get('meta_query')) ? $query->get('meta_query') : [];
             //Add our meta query to the original meta queries
-            $meta_query[] = [
-                'key' => 'sd_event_details_end_time',
-                'compare' => self::$status_to_comparison_map[$status],
-                'value' => date(DateTime::ATOM),
-            ];
+            $meta_query[] = self::getStatusMetaQuery($status);
             // Update the query
             $query->set('meta_query', $meta_query);
         }
@@ -101,7 +100,7 @@ class Plugin
     public function updateEventWithFacebookDetails($post_id)
     {
         // Only check events
-        if (get_post_type($post_id) != 'sd-event') {
+        if (get_post_type($post_id) != self::EVENT_POST_TYPE) {
             return;
         }
 
@@ -173,6 +172,21 @@ class Plugin
             get_query_var(self::EVENT_STATUS_QUERY_ARG),
             self::$status_to_comparison_map
         );
+    }
+
+    public static function getStatusMetaQuery($status)
+    {
+        // Construct a meta query to the original meta queries
+        return [
+            'key' => 'sd_event_details_end_time',
+            'compare' => self::$status_to_comparison_map[$status],
+            'value' => date(DateTime::ATOM),
+        ];
+    }
+
+    public static function getStatusUrl($status)
+    {
+        return '/events/' . self::EVENT_STATUS_QUERY_ARG . "/$status";
     }
 
     protected static function addOrUpdate($post_id, $key, $value)
