@@ -27,3 +27,28 @@ img {
   // All images should be fluid (resize maintaining aspect ratio)
   @extend .img-fluid;
 }
+
+// Fonts
+.page-header h1,
+.card-title,
+.nav-item,
+.entry-title,
+.widget.preview .title {
+  font-family: 'Oswald', sans-serif;
+}
+
+.card .category-link,
+.event-details {
+  font-size: 0.8rem;
+}
+
+.secondary-nav .nav-item,
+.card .category-link,
+.event-details,
+.byline.author {
+  font-weight: lighter;
+}
+
+.card .card-text {
+  font-family: amiri, sans-serif;
+}

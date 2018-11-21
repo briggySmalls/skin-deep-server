@@ -3,7 +3,7 @@ assert(is_a($post, 'SkinDeep\Events\Event'));
 @endphp
 <header>
   <h1 class="entry-title">{!! $post->title() !!}</h1>
-  <ul id="event-details">
+  <ul class="event-details">
     @if ($post->startTime())
       <li>
         <i class="far fa-clock event-icon fa-fw" title="Time"></i>
