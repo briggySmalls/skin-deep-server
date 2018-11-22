@@ -1,6 +1,6 @@
 {{-- Display featured image/video --}}
 @include(
-  'articles::partials.featured-media',
+  'partials.components.featured-media',
   ['image_sizes' => \SkinDeep\Articles\PostsPreview::sizes($column_count)])
 <div class="card-body">
   @php

@@ -5,6 +5,7 @@ namespace SkinDeep\Articles;
 use SkinDeep\Events\Plugin;
 use SkinDeep\Events\Event;
 
+
 class PostsPreviewArgs implements WidgetArgsInterface
 {
     public $posts;
@@ -12,14 +13,16 @@ class PostsPreviewArgs implements WidgetArgsInterface
     public $title;
     public $column_count;
     public $post_wrapper_factory;
+    public $card_template;
 
-    public function __construct($posts, $url, $title, $column_count, $post_wrapper_factory)
+    public function __construct($posts, $url, $title, $column_count, $post_wrapper_factory, $card_template)
     {
         $this->posts = $posts;
         $this->url = $url;
         $this->title = $title;
         $this->column_count = $column_count;
         $this->post_wrapper_factory = $post_wrapper_factory;
+        $this->card_template = $card_template;
     }
 
     public static function fromArgs($args_helper)
@@ -29,8 +32,9 @@ class PostsPreviewArgs implements WidgetArgsInterface
             'posts_per_page' => (int)$args_helper->getAcfField('sd_widget_preview_count'),
         ];
 
-        // Determine what type of filtering we're applying
         $post_type = $args_helper->getAcfField('sd_widget_preview_post_type');
+
+        // Determine what type of filtering we're applying
         switch ($post_type) {
             case 'post':
                 list($query_args, $url) = self::getArticleArgs($args_helper, $query_args);
@@ -45,14 +49,17 @@ class PostsPreviewArgs implements WidgetArgsInterface
                 break;
         }
 
+        // Get the per-post-type configuration map
+        $post_type_config_map = apply_filters('sd/post-type-config-map', []);
+
         // Now create the argument
         return new PostsPreviewArgs(
             get_posts($query_args),
             $url,
             $args_helper->getAcfField('sd_widget_preview_title'),
             $args_helper->getAcfField('sd_widget_preview_columns'),
-            self::getPostWrapperFactory($post_type)
-        );
+            $post_type_config_map[$post_type]['wrapper'],
+            $post_type_config_map[$post_type]['template']);
     }
 
     private static function getArticleArgs($args_helper, $query_args)

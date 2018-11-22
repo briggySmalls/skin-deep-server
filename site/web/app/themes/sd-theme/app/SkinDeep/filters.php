@@ -2,6 +2,9 @@
 
 namespace SkinDeep\Theme;
 
+use SkinDeep\Articles\Article;
+use SkinDeep\Events\Event;
+
 add_filter('wp_nav_menu_args', function ($args) {
     // Add bootstrap navbar class to nav menus
     $args['menu_class'] .= ' navbar-nav';
@@ -162,3 +165,19 @@ add_filter('wp_calculate_image_sizes', function ($sizes, $size) {
     // Always assume images are full-width
     return "100vw";
 }, 10, 2);
+
+/**
+ * Configure posts preview widget
+ */
+add_filter('sd/post-type-config-map', function ($post_type_config_map) {
+    return [
+        'post' => [
+            'wrapper' => function ($post) { return new Article($post); },
+            'template' => 'partials.archive.post',
+        ],
+        'sd-event' => [
+            'wrapper' => function ($post) { return new Event($post); },
+            'template' => 'partials.archive.event',
+        ]
+    ];
+});

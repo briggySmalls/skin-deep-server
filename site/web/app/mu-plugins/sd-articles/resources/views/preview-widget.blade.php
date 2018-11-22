@@ -9,7 +9,7 @@
     </a>
   </h2>
   {{-- Create grid of posts --}}
-  @include("articles::partials.grid", ['posts' => $posts])
+  @include('articles::partials.grid')
   {{-- Display see more link --}}
   <div class="see-more"><a href="{{ $url }}">See more articles</a></div>
 </div>

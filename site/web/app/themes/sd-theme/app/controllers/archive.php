@@ -11,13 +11,16 @@ use SkinDeep\Shop\Product;
 
 class Archive extends Controller
 {
-    public function singlePostTemplate()
+    public function cardTemplate()
     {
         if ($this->isArticlesPage()) {
-            return 'articles::partials.single-post';
-        } else if (self::postType() === 'sd-product') {
-            return 'partials.shop.archive-product';
+            return 'partials.archive.post';
+        } elseif (self::postType() === 'sd-event') {
+            return 'partials.archive.event';
+        } elseif (self::postType() === 'sd-product') {
+            return 'partials.archive.product';
         }
+        return 'partials.archive.post';
     }
 
     public function postWrapperFactory()
