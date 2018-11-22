@@ -130,10 +130,6 @@ add_action('widgets_init', function () {
         'id'            => 'sidebar-footer'
     ] + $config);
     register_sidebar([
-        'name'          => __('Focus', 'sage'),
-        'id'            => 'sidebar-focus'
-    ] + $config);
-    register_sidebar([
         'name'          => __('End of post', 'sage'),
         'id'            => 'sidebar-post'
     ] + $config);
