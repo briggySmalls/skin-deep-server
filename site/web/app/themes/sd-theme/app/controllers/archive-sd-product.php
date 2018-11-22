@@ -3,12 +3,17 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
+use Sober\Controller\Module\Tree;
 use SkinDeep\Articles\PostsPreview;
 
 const SD_PRODUCT_COLUMN_COUNT = 3;
 const SD_PRODUCT_IMAGE_FACTOR = 3; // Factor to divide card size by to get image size
 
-class ArchiveSdProduct extends Controller
+/**
+ * @brief      Class for archive sd product.
+ * @note       Inherits from Archive controller
+ */
+class ArchiveSdProduct extends Controller implements Tree
 {
     /**
      * @brief      Number of columns for the product archive
