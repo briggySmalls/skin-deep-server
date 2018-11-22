@@ -63,6 +63,11 @@ class App extends Controller
         return 3;
     }
 
+    public function cardTemplate()
+    {
+        return 'partials.archive.post';
+    }
+
     public function postWrapperFactory()
     {
         if (is_home()) {
