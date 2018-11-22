@@ -12,7 +12,7 @@
       {{ $post->venue() }}
     </span>
   @endif
-  @if ($post->facebookUrl() && $show_facebook)
+  @if ($post->facebookUrl() && isset($show_facebook) && $show_facebook)
     <span>
       <a href="{{ $post->facebookUrl() }}">Facebook event</a>
     </span>
