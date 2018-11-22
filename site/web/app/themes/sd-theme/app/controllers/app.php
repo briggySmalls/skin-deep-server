@@ -63,11 +63,6 @@ class App extends Controller
         return 3;
     }
 
-    public function isArticlesPage()
-    {
-        return false;
-    }
-
     public function postWrapperFactory()
     {
         if (is_home()) {

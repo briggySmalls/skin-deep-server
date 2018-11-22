@@ -11,17 +11,6 @@ use SkinDeep\Shop\Product;
 
 class Archive extends Controller
 {
-    public function isArticlesPage()
-    {
-        if (is_category()) {
-            // All category pages are for posts
-            return true;
-        }
-        // Queried object is the post type, or null if post type is 'post'
-        $post_type = get_queried_object();
-        return ($post_type == null);
-    }
-
     public function singlePostTemplate()
     {
         if ($this->isArticlesPage()) {
@@ -61,5 +50,16 @@ class Archive extends Controller
             return 'post';
         }
         return $post_type->name;
+    }
+
+    protected function isArticlesPage()
+    {
+        if (is_category()) {
+            // All category pages are for posts
+            return true;
+        }
+        // Queried object is the post type, or null if post type is 'post'
+        $post_type = get_queried_object();
+        return ($post_type == null);
     }
 }
