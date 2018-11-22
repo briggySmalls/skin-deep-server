@@ -1,6 +1,6 @@
 {{-- Creates grid of cards --}}
 <div class="container-fluid posts-grid">
-  <div class="row">
+  <div class="row justify-content-center">
     @foreach ($posts as $raw_post)
       <div class="col-md-{{ 12 / $column_count }}">
       @php
