@@ -98,12 +98,13 @@ class PostsPreviewArgs implements WidgetArgsInterface
         switch ($filter_group['type']) {
             case 'status':
                 $status = $filter_group['status'];
-                $query_args['meta_query'] = Plugin::getStatusMetaQuery($status);
+                $query_args['meta_query'][] = Plugin::getStatusMetaQuery($status);
+                $query_args['post_type'] = Plugin::EVENT_POST_TYPE;
                 $url = Plugin::getStatusUrl($status);
                 break;
 
             default:
-                assert("Unexpected default");
+                assert(false, "Unexpected default");
                 break;
         }
         return [$query_args, $url];
