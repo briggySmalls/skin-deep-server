@@ -1,6 +1,6 @@
 {{-- Creates grid of cards --}}
 <div class="container-fluid posts-grid">
-  <div class="row">
+  <div class="row justify-content-center">
     @while (have_posts()) @php the_post() @endphp
       <div class="col-md-{{ 12 / $column_count }}">
       @php
