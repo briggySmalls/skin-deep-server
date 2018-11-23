@@ -9,10 +9,16 @@
   @endif
   @if ($post->venue())
     <span>
+      @if (isset($full_event_details))
+        <a href="{{ $post->venueUrl() }}" target="_blank" rel="noopener noreferrer">
+      @endif
       {{ $post->venue() }}
+      @if (isset($full_event_details))
+        </a>
+      @endif
     </span>
   @endif
-  @if ($post->facebookUrl() && isset($show_facebook) && $show_facebook)
+  @if ($post->facebookUrl() && isset($full_event_details))
     <span>
       <a href="{{ $post->facebookUrl() }}">Facebook event</a>
     </span>
