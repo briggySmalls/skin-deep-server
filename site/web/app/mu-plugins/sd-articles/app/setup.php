@@ -38,8 +38,8 @@ add_action('acf/init', function () {
             'title'             => __('Posts preview'),
             'description'       => __('Preview filtered posts.'),
             'render_callback'   => __NAMESPACE__ . '\render_preview_posts',
-            'category'          => 'formatting',
-            'icon'              => 'exerpt-view',
+            'category'          => 'widgets',
+            'icon'              => 'layout',
             'keywords'          => ['posts', 'content'],
         ]);
     }
