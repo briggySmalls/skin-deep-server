@@ -64,7 +64,8 @@
     "solarissmoke/disable-comments-mu": "^1.2",
     "soberwp/unravel": "^1.0",
     "soberwp/models": "1.0.6",
-    "automattic/jetpack": "^6.5"
+    "automattic/jetpack": "^6.5",
+    "wpackagist-plugin/gutenberg": "4.5.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
@@ -78,6 +79,7 @@
         "type:wordpress-muplugin",
         "roots/soil",
         "wpackagist-plugin/advanced-custom-fields",
+        "wpackagist-plugin/gutenberg",
         "soberwp/unravel",
         "automattic/jetpack"
       ],
