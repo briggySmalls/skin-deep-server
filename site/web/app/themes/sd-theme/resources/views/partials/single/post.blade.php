@@ -1,8 +1,9 @@
+@extends('layouts.content-single')
 @php
 assert(is_a($post, 'SkinDeep\Articles\Article'));
 @endphp
 {{-- Header content --}}
-<header>
+@section('single-header')
   {{-- Include meta (categories/title) --}}
   @include('partials/entry-meta')
   {{-- Display author(s) --}}
@@ -14,7 +15,8 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
       @endforeach
     </p>
   @endif
-</header>
+@endsection
+@section('single-content')
 {{-- Magazine advert --}}
 @php $magazine = $post->magazine(); @endphp
 @if ($magazine)
@@ -39,9 +41,11 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
 <div class="entry-content">
   {{ the_content() }}
 </div>
-{{-- Footer --}}
-@php dynamic_sidebar('sidebar-post') @endphp
-<footer>
-  {!! wp_link_pages(['echo' => 0, 'before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']) !!}
-</footer>
-@php comments_template('/partials/comments.blade.php') @endphp
+@endsection
+@section('after-content')
+  {{-- Footer --}}
+  @php dynamic_sidebar('sidebar-post') @endphp
+  <footer>
+    {!! wp_link_pages(['echo' => 0, 'before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']) !!}
+  </footer>
+@endsection
