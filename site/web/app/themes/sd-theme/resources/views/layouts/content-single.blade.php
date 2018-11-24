@@ -10,5 +10,12 @@
 </figure>
 {{-- Now display the main article --}}
 <article @php post_class('container') @endphp>
-  @include('partials.single.'.get_post_type())
+  <header class="single-header">
+    @yield('single-header')
+  </header>
+  <div class="entry-content">
+    @yield('single-content')
+  </div>
 </article>
+@yield('after-content')
+@php comments_template('/partials/comments.blade.php') @endphp
