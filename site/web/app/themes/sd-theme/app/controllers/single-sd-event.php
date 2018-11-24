@@ -11,7 +11,7 @@ class SingleSdEvent extends Controller implements SingleControllerInterface
     public const DAY_FORMAT = 'jS';
     public const MONTH_FORMAT = 'M';
     public const DAY_AND_MONTH_FORMAT = 'jS M';
-    public const TIME_FORMAT = 'H:m';
+    public const TIME_FORMAT = 'H:i';
 
     public function post()
     {
