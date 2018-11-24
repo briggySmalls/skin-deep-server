@@ -8,7 +8,7 @@
         {{-- Display featured image/video --}}
         <a href="{{ $post->url() }}">
         @include(
-          'articles::partials.featured-media',
+          'partials.components.featured-media',
           ['image_classes' => 'd-block w-100'])
         </a>
         <div class="carousel-caption d-none d-md-block">

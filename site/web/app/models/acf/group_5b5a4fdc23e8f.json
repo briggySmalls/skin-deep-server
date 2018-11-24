@@ -32,6 +32,13 @@
                 "operator": "==",
                 "value": "slider"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/slider"
+            }
         ]
     ],
     "menu_order": 0,
@@ -42,5 +49,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537604342
+    "modified": 1543024139
 }
