@@ -52,8 +52,8 @@ class PostSuggestions extends Widget
      * @param      $args  The arguments
      * @return     { description_of_the_return_value }
      */
-    protected function createArgs($args)
+    protected function createArgs($args_helper)
     {
-        return PostSuggestionsArgs::fromArgs($args);
+        return PostSuggestionsArgs::fromArgs($args_helper);
     }
 } // end class

@@ -33,8 +33,8 @@ class Donation extends Widget
      * @param      $args  The arguments
      * @return     Context for the widget
      */
-    protected function createArgs($args)
+    protected function createArgs($args_helper)
     {
-        return DonationArgs::fromArgs($args);
+        return DonationArgs::fromArgs($args_helper);
     }
 }

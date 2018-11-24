@@ -2,10 +2,11 @@
 
 @section('content')
   @include('partials.page-header')
-  @include('partials.no-posts')
 
-  {{-- Display posts in a grid --}}
-  @include('articles::partials.loop-grid')
+  @component('components.try-posts')
+    {{-- Display posts in a grid --}}
+    @include('articles::partials.loop-grid')
+  @endcomponent
 
   {{-- Display navigation --}}
   {!! get_the_posts_navigation() !!}

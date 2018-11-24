@@ -22,7 +22,7 @@ class Event extends Post
         // Construct the post wrapper as usual
         parent::__construct($post);
         // Fetch the event details
-        $details = get_field('sd_event_details');
+        $details = get_field('sd_event_details', $post->ID);
         $this->start_time = self::toDatetime($details['start_time']);
         $this->end_time = self::toDatetime($details['end_time']);
 

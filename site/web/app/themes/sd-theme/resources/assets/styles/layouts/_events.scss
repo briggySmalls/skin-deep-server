@@ -1,5 +1,5 @@
-ul#event-details {
-  list-style: none;
+.event-details span {
+  margin-left: 0.5em;
 }
 
 // Event archive
@@ -10,18 +10,6 @@ body.post-type-archive-sd-event {
 
     .col.content {
       padding: 0 1em;
-    }
-
-    .event-details {
-      font-size: 1.5em;
-
-      .event-detail-item {
-        margin-right: 1em;
-
-        @include media-breakpoint-up(md) {
-          display: inline;
-        }
-      }
     }
   }
 }
