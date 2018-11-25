@@ -4,15 +4,24 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
 <article @php post_class('container') @endphp>
   <div class="row">
     <div class="col-md">
-      <figure>
+      <figure class="product-image">
         {{-- Display the featured image --}}
         @include('partials.components.image-header')
       </figure>
     </div>
     <div class="col-md">
-      <h1 class="entry-title">{!! $post->title() !!}</h1>
-      <div class="entry-content">
+      <header class="single-header">
+        <h1 class="entry-title">{!! $post->title() !!}</h1>
+        <hr>
+        <div class="product-price">
+          £{{ $post->price() }}
+        </div>
+        <hr>
+      </header>
+      <section class="entry-content">
         {{ the_content() }}
+      </section>
+      <section class="product-details">
         <button class="snipcart-add-item buy-button"
         @if ($post->inStock())
           data-item-id="{{ $post->ID }}"
@@ -24,13 +33,13 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
           disabled
         @endif
           >
-            @if ($post->inStock())
-              Buy
-            @else
-              Out of stock
-            @endif
+          @if ($post->inStock())
+            Add to cart
+          @else
+            Out of stock
+          @endif
         </button>
-      </div>
+      </section>
     </div>
   </div>
   @php comments_template('/partials/comments.blade.php') @endphp
