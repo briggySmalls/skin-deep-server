@@ -39,7 +39,17 @@ add_action('acf/init', function () {
             'description'       => __('Preview filtered posts.'),
             'render_callback'   => __NAMESPACE__ . '\render_preview_posts',
             'category'          => 'widgets',
-            'icon'              => 'layout',
+            'icon'              => 'grid-view',
+            'keywords'          => ['posts', 'content'],
+        ]);
+        // register slider block
+        acf_register_block([
+            'name'              => 'slider',
+            'title'             => __('Posts slider'),
+            'description'       => __('Display featured posts in a slider.'),
+            'render_callback'   => __NAMESPACE__ . '\render_slider',
+            'category'          => 'widgets',
+            'icon'              => 'images-alt2',
             'keywords'          => ['posts', 'content'],
         ]);
     }
@@ -52,6 +62,19 @@ function render_preview_posts()
     $arg_array = get_object_vars($args);
     // Generate the 'widget' content
     echo PostsPreview::output(
+        new ResourceManager(__DIR__),
+        'widget',
+        $arg_array
+    );
+}
+
+function render_slider()
+{
+    // Construct arguments
+    $args = PostsSliderArgs::fromArgs(new BlockArgsHelper());
+    $arg_array = get_object_vars($args);
+    // Generate the 'widget' content
+    echo PostsSlider::output(
         new ResourceManager(__DIR__),
         'widget',
         $arg_array
