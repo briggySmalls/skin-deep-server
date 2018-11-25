@@ -5,7 +5,6 @@ namespace SkinDeep\Articles;
 use SkinDeep\Events\Plugin;
 use SkinDeep\Events\Event;
 
-
 class PostsPreviewArgs implements WidgetArgsInterface
 {
     public $posts;
@@ -59,7 +58,8 @@ class PostsPreviewArgs implements WidgetArgsInterface
             $args_helper->getAcfField('sd_widget_preview_title'),
             $args_helper->getAcfField('sd_widget_preview_columns'),
             $post_type_config_map[$post_type]['wrapper'],
-            $post_type_config_map[$post_type]['template']);
+            $post_type_config_map[$post_type]['template']
+        );
     }
 
     private static function getArticleArgs($args_helper, $query_args)
