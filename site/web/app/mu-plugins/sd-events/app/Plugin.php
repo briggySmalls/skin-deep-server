@@ -34,7 +34,7 @@ class Plugin
         $this->loader = new Loader();
 
         // Add some hooks
-        $this->loader->addAction('init', [$this, 'addEventStatusQuery']);
+        $this->loader->addFilter('registered_post_type', [$this, 'addEventStatusQuery'], 10, 2);
         $this->loader->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
         $this->loader->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
         $this->loader->addAction('acf/init', [$this, 'checkEventSettings']);
@@ -52,23 +52,29 @@ class Plugin
         $this->loader->run();
     }
 
-    public function addEventStatusQuery()
+    public function addEventStatusQuery($post_type, $args)
     {
-        // Register a new rewrite tag (notify wordpress of custom query arg)
-        add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
-        // Add a rewrite rule for paged events
-        add_rewrite_rule(
-            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?$',
-            'index.php?post_type=' . self::EVENT_POST_TYPE . '&' .
-            self::EVENT_STATUS_QUERY_ARG . '=$matches[1]&paged=$matches[2]',
-            'top'
-        );
-        // Add a rewrite rule for events
-        add_rewrite_rule(
-            '^events/' . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/?$',
-            'index.php?post_type=' . self::EVENT_POST_TYPE . '&' . self::EVENT_STATUS_QUERY_ARG . '=$matches[1]',
-            'top'
-        );
+        if ($args->has_archive) {
+            $slug = get_post_type_archive_link(self::EVENT_POST_TYPE);
+            $slug = str_replace(home_url(), '', $slug);
+            $slug = trim($slug, '/');
+
+            // Register a new rewrite tag (notify wordpress of custom query arg)
+            add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
+            // Add a rewrite rule for paged events
+            add_rewrite_rule(
+                "^{$slug}" . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?$',
+                'index.php?post_type=' . self::EVENT_POST_TYPE . '&' .
+                self::EVENT_STATUS_QUERY_ARG . '=$matches[1]&paged=$matches[2]',
+                'top'
+            );
+            // Add a rewrite rule for events
+            add_rewrite_rule(
+                "^{$slug}/" . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/?$',
+                'index.php?post_type=' . self::EVENT_POST_TYPE . '&' . self::EVENT_STATUS_QUERY_ARG . '=$matches[1]',
+                'top'
+            );
+        }
     }
 
     public function filterEventsOnStatus($query)
