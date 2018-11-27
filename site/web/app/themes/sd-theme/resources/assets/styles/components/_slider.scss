@@ -1,4 +1,8 @@
-.widget.slider {
+.slider-posts {
+  .carousel-caption {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+
   .carousel-item {
     .featured-image {
       @include media-breakpoint-up(md) {

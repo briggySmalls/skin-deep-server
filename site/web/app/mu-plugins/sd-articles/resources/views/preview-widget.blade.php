@@ -4,9 +4,7 @@
 {{-- Display the category title --}}
 <div class="preview-posts">
   <h2 class="title">
-    <a href={{ $url }}>
-      {{ $title }}
-    </a>
+    {{ $title }}
   </h2>
   {{-- Create grid of posts --}}
   @include('articles::partials.grid')
