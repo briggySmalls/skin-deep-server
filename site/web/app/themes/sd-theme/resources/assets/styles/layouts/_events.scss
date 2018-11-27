@@ -6,7 +6,9 @@ body.single-sd-event {
 }
 
 .event-details span {
-  margin-left: 0.5em;
+  &:not(:first-child) {
+    margin-left: 0.5em;
+  }
 }
 
 // Event archive
