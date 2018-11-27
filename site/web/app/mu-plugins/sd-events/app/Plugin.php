@@ -59,9 +59,12 @@ class Plugin
             $slug = str_replace(home_url(), '', $slug);
             $slug = trim($slug, '/');
 
-            global $wp_rewrite;
             // Use a page instead of the archive
-            $wp_rewrite->extra_rules_top["{$slug}/?$"] = "index.php?pagename={$slug}";
+            $page = get_page_by_path($slug, OBJECT);
+            if (isset($page)) {
+                global $wp_rewrite;
+                $wp_rewrite->extra_rules_top["{$slug}/?$"] = "index.php?pagename={$slug}";
+            }
 
             // Register a new rewrite tag (notify wordpress of custom query arg)
             add_rewrite_tag('%' . self::EVENT_STATUS_QUERY_ARG . '%', '([^&]+)');
