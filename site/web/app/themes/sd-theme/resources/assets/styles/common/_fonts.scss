@@ -1,0 +1,38 @@
+
+// Fonts
+.nav-item,
+.page-header h1,
+.preview-posts .title {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.card-title,
+.entry-title,
+.slider-posts .carousel-caption {
+  font-family: 'Acme', sans-serif;
+}
+
+.secondary-nav .nav-item,
+.card .category-link,
+.event-details,
+.byline.author,
+.product-price {
+  font-weight: lighter;
+}
+
+.card {
+  .category-link,
+  .event-details {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}
+
+body.single-sd-event .event-details {
+  font-size: 1rem;
+}
+
+.card .card-text {
+  font-family: 'Amiri', serif;
+}

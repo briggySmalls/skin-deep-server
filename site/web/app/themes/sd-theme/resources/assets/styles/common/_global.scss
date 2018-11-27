@@ -15,34 +15,8 @@ img {
   @extend .img-fluid;
 }
 
-// Fonts
-.page-header h1,
-.card-title,
-.nav-item,
-.entry-title,
-.preview-posts .title {
-  font-family: 'Oswald', sans-serif;
-}
-
-.secondary-nav .nav-item,
-.card .category-link,
-.event-details,
-.byline.author,
-.product-price {
-  font-weight: lighter;
-}
-
-.card {
-  .category-link,
-  .event-details {
-    font-size: 0.8rem;
-  }
-}
-
-body.single-sd-event .event-details {
-  font-size: 1rem;
-}
-
-.card .card-text {
-  font-family: amiri, sans-serif;
+// Title
+.page-header h1 {
+  margin: 0.5em 0;
+  font-size: 3em;
 }

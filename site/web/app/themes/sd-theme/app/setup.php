@@ -24,16 +24,14 @@ add_action('wp_enqueue_scripts', function () {
     if (!is_admin()) {
         # We only need fonts on the frontend
         $fonts = [
-            'oswald' => 'Oswald:300,500',
-            'amiri' => 'Amiri'
+            'Acme',
+            'Amiri',
         ];
-        foreach ($fonts as $font) {
-            wp_enqueue_style(
-                'custom-google-fonts',
-                "https://fonts.googleapis.com/css?family=$font&amp;subset=latin-ext",
-                false
-            );
-        }
+        wp_enqueue_style(
+            'custom-google-fonts',
+            "https://fonts.googleapis.com/css?family=" . implode('|', $fonts),
+            false
+        );
     }
 }, 100);
 
