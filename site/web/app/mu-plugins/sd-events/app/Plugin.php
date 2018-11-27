@@ -35,6 +35,7 @@ class Plugin
 
         // Add some hooks
         $this->loader->addFilter('registered_post_type', [$this, 'addEventStatusQuery'], 10, 2);
+        $this->loader->addFilter('get_the_archive_title', [$this, 'addStatusToTitle'], 11);
         $this->loader->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
         $this->loader->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
         $this->loader->addAction('acf/init', [$this, 'checkEventSettings']);
@@ -82,6 +83,27 @@ class Plugin
                 'top'
             );
         }
+    }
+
+    public function addStatusToTitle($title)
+    {
+        if (is_post_type_archive(Plugin::EVENT_POST_TYPE) &&
+                get_query_var(self::EVENT_STATUS_QUERY_ARG)) {
+            # Add status to archive
+            $status = get_query_var(self::EVENT_STATUS_QUERY_ARG);
+            switch ($status) {
+                case 'upcoming':
+                    return "Upcoming Events";
+
+                case 'past':
+                    return "Past Events";
+
+                default:
+                    assert(false, "Unexpected status");
+                    break;
+            }
+        }
+        return $title;
     }
 
     public function filterEventsOnStatus($query)
