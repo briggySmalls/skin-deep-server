@@ -10,6 +10,8 @@ module.exports = {
     // Slider widget
     'slider/widget': "./resources/assets/scripts/slider/widget.js",
     'slider/admin': "./resources/assets/scripts/slider/admin.js",
+    // ACF scripts
+    'acf': "./resources/assets/scripts/acf.js",
   },
   module: {
     rules:[
