@@ -9,5 +9,5 @@
   {{-- Create grid of posts --}}
   @include('articles::partials.grid')
   {{-- Display see more link --}}
-  <div class="see-more"><a href="{{ $url }}">See more articles</a></div>
+  <div class="see-more"><a href="{{ $url }}">See more</a></div>
 </div>
