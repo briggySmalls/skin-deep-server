@@ -210,7 +210,7 @@ class Plugin
     {
         // Construct a meta query to the original meta queries
         return [
-            'key' => 'sd_event_details_end_time',
+            'key' => 'sd_event_details_start_time',
             'compare' => self::$status_to_comparison_map[$status],
             'value' => date(DateTime::ATOM),
         ];
