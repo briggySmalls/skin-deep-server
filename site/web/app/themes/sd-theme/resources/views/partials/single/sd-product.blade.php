@@ -12,19 +12,21 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
     <div class="col-md">
       <header class="single-header">
         <h1 class="entry-title">{!! $post->title() !!}</h1>
-        <hr>
-        <div class="product-price">
-          £{{ $post->price() }}
-        </div>
-        <hr>
       </header>
-      <section class="entry-content">
+      <div class="entry-content">
         {{ the_content() }}
-      </section>
-      <section class="product-details">
+      </div>
+      <hr/>
+      <div class="product-details d-flex flex-row-reverse justify-content-end align-items-center">
+        <div class="price ml-5">
+          @if ($post->inStock())
+            £{{ $post->price() }}
+          @endif
+        </div>
         @include('partials.components.buy-button')
-      </section>
+      </div>
     </div>
   </div>
+  <hr/>
   @php comments_template('/partials/comments.blade.php') @endphp
 </article>
