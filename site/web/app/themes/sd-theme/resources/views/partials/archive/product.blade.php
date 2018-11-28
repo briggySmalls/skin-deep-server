@@ -11,15 +11,14 @@
     @endif
   </div>
 </figure>
-<div class="card-body">
-  <h5 class="card-title">{!! $product->title() !!}</h5>
-</div>
-<div class="card-footer">
-  <p class="card-text">
+<div class="card-body d-xl-flex">
+  <h5 class="card-title mr-auto">{!! $product->title() !!}</h5>
+  <div class="card-text">
     @if ($product->inStock())
       £{{ $product->price() }}
-    @else
-      Out of stock
     @endif
-  </p>
+  </div>
+</div>
+<div class="card-footer d-flex">
+  @include('partials.components.buy-button', ['classes' => 'ml-auto'])
 </div>

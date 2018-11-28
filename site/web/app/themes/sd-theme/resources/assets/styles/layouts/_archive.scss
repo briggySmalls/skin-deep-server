@@ -30,14 +30,10 @@
   }
 
   // Display links on top of card link
-  .card-body a,
-  .card-content a {
+  a,
+  button {
     position: relative;
     z-index: 1;
-  }
-
-  .card-footer {
-    background-color: white;
   }
 
   // Cover the card in a link
@@ -49,5 +45,9 @@
     height: 100%;
     width: 100%;
     z-index: 0;
+  }
+
+  .card-footer {
+    background-color: white;
   }
 }
