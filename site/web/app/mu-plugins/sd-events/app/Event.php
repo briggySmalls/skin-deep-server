@@ -26,10 +26,10 @@ class Event extends Post
         $this->start_time = self::toDatetime($details['start_time']);
         $this->end_time = self::toDatetime($details['end_time']);
 
-        $this->facebookId = get_field('sd_event_facebook_event');
+        $this->facebookId = get_field('sd_event_facebook_event', $post->ID);
         if ($this->facebookId) {
             // We have a facebook event
-            $facebook_place_stored = get_post_meta($this->post->ID, Plugin::FACEBOOK_PLACE_META_KEY, true);
+            $facebook_place_stored = get_post_meta($post->ID, Plugin::FACEBOOK_PLACE_META_KEY, true);
             $this->facebook_place = maybe_unserialize($facebook_place_stored);
         } else {
             $this->google_place = $details['venue'];
