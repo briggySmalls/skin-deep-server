@@ -1,5 +1,5 @@
 // Anchors
-a:not(.nav-link) {
+a:not(.nav-link):not(.btn) {
   @include hover {
     text-decoration: underline;
   }
