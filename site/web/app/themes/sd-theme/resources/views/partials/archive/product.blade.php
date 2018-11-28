@@ -20,5 +20,5 @@
   </div>
 </div>
 <div class="card-footer d-flex">
-  @include('partials.components.buy-button')
+  @include('partials.components.buy-button', ['classes' => 'ml-auto'])
 </div>
