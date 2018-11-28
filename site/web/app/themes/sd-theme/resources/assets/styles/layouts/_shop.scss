@@ -31,6 +31,11 @@ $magazine-figure: '.card.type-sd-product.sd-product-cat-magazines .product-figur
   }
 }
 
+body.post-type-archive-sd-product .card-footer {
+  padding: 0.23em 0 0 0;
+  border-top: 0;
+}
+
 // Add rotations to magazines
 .row [class^=col] {
   &:nth-child(odd) {

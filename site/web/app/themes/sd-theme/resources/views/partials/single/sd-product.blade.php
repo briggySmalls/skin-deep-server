@@ -22,23 +22,7 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
         {{ the_content() }}
       </section>
       <section class="product-details">
-        <button class="snipcart-add-item buy-button"
-        @if ($post->inStock())
-          data-item-id="{{ $post->ID }}"
-          data-item-name="{!! $post->title() !!}"
-          data-item-price="{{ $post->price() }}"
-          data-item-url="{{ $post->url() }}"
-          data-item-description="{{ $post->description()}}"
-        @else
-          disabled
-        @endif
-          >
-          @if ($post->inStock())
-            Add to cart
-          @else
-            Out of stock
-          @endif
-        </button>
+        @include('partials.components.buy-button')
       </section>
     </div>
   </div>
