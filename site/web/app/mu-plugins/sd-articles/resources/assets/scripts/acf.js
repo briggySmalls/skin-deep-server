@@ -1,3 +1,5 @@
+/*global acf wp*/
+
 const FEATURED_VIDEO_FIELD = 'field_5b21a633286bf';
 
 // Configure featured video to hide/show on format
