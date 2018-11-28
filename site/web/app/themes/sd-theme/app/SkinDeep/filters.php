@@ -46,15 +46,9 @@ add_filter('get_search_form', function () {
  */
 add_filter('wp_nav_menu_items', function ($items, $args) {
     if (($args->theme_location == 'primary_navigation') && ($args->depth == 1)) {
-        $items .= '<li class="menu-item">'
-            . '<li class="nav-item">'
-            . '<a href="#" class="snipcart-user-profile nav-link">'
-            . '<span class="snipcart-user-email">Login</span>'
-            . '</a>'
-            . '</li>'
-            . '<li class="nav-item">'
-            . '<a href="#" class="snipcart-user-logout nav-link">'
-            . 'Logout'
+        $items .= '<li class="nav-item menu-item snipcart-summary">'
+            . '<a href="#" class="snipcart-checkout nav-link">'
+            . 'Cart (<span class="snipcart-total-items"></span>)'
             . '</a>'
             . '</li>'
             . '</li>';
