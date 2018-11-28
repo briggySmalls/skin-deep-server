@@ -98,3 +98,38 @@ add_action('admin_init', function () {
         }
     }
 });
+
+// Rename 'Posts' to 'Articles'
+add_action('admin_menu', function() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Articles';
+    if (array_key_exists('edit.php', $submenu)) {
+      $submenu['edit.php'][5][0]  = 'Articles';
+      if (count($submenu['edit.php']) >= 11) {
+        $submenu['edit.php'][10][0] = 'Add Article';
+      }
+      if (count($submenu['edit.php']) >= 17) {
+       $submenu['edit.php'][16][0] = 'Article Tags';
+      }
+    }
+});
+
+// Rename 'Posts' to 'Articles'
+add_action('init', function() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Articles';
+    $labels->singular_name = 'Article';
+    $labels->add_new = 'Add Article';
+    $labels->add_new_item = 'Add Article';
+    $labels->edit_item = 'Edit Article';
+    $labels->new_item = 'Article';
+    $labels->view_item = 'View Article';
+    $labels->search_items = 'Search Articles';
+    $labels->not_found = 'No Articles found';
+    $labels->not_found_in_trash = 'No Articles found in Trash';
+    $labels->all_items = 'All Articles';
+    $labels->menu_name = 'Articles';
+    $labels->name_admin_bar = 'Articles';
+});
