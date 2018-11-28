@@ -68,7 +68,7 @@ class ChildOnlyNavWalker extends NavWalker
         $ancestor_of_current = !empty($current_class);
 
         // If this is a top-level link and not the current, or ancestor of the current menu item - stop here.
-        if (0 == $depth && !$ancestor_of_current) {
+        if (apply_filters('sd/theme/skip-nav-walking', (0 == $depth) && !$ancestor_of_current, $element)) {
             return;
         }
 
