@@ -195,3 +195,11 @@ add_filter('get_the_archive_title', function ($title) {
     }
     return $title;
 });
+
+/**
+ * Reveal articles sub-nav bar on article-related pages
+ */
+add_filter('sd/theme/skip-nav-walking', function ($skip, $element) {
+    # Don't skip if we are on an article page
+    return is_singular('post') && (strpos($element->url, '/articles') == 0) ? false : $skip;
+}, 10, 2);
