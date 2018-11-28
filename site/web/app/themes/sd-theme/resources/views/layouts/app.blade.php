@@ -19,5 +19,21 @@
     @php do_action('get_footer') @endphp
     @include('partials.footer')
     @php wp_footer() @endphp
+  <script id="cart-content-text" type="text/template">
+    <div>
+      <a href="#" class="snipcart-checkout">
+        Cart
+      </a>
+      <a href="#" class="snipcart-user-profile">
+        Orders
+      </a>
+      <a href="#" class="snipcart-edit-profile">
+        Profile
+      </a>
+      <a href="#" class="snipcart-user-logout">
+        Logout
+      </a>
+    </div>
+  </script>
   </body>
 </html>
