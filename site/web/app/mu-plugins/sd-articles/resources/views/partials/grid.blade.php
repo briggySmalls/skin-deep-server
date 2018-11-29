@@ -7,11 +7,11 @@
       @foreach ($posts as $raw_post)
         <div class="col-md-{{ 12 / $column_count }}">
         @php
-        $post = $post_wrapper_factory($raw_post);
+        $post = $grid_config['wrapper']($raw_post);
         @endphp
           <div @php post_class('card', $post->ID) @endphp>
             {{-- Insert card content --}}
-            @include($card_template_factory($post->ID))
+            @include($grid_config['template']($post->ID))
             {{-- Supply link for card --}}
             <a class="card-link" href={{ $post->url() }}></a>
           </div>

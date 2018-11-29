@@ -74,19 +74,17 @@ class App extends Controller
         return 3;
     }
 
-    public function cardTemplateFactory()
+    public function gridConfig()
     {
-        return function ($post) {
-            return $this::POST_TYPE_MAP[get_post_type($post)]['template'];
-        };
-    }
-
-    public function postWrapperFactory()
-    {
-        return function ($post) {
-            $class_name = $this::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
-            return new $class_name($post);
-        };
+        return [
+            'template' => function($post) {
+                return App::POST_TYPE_MAP[get_post_type($post)]['template'];
+            },
+            'wrapper' => function($post) {
+                $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
+                return new $class_name($post);
+            },
+        ];
     }
 
     protected static function category()

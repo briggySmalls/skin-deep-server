@@ -11,17 +11,15 @@ class PostsPreviewArgs implements WidgetArgsInterface
     public $url;
     public $title;
     public $column_count;
-    public $post_wrapper_factory;
-    public $card_template_factory;
+    public $grid_config;
 
-    public function __construct($posts, $url, $title, $column_count, $post_wrapper_factory, $card_template_factory)
+    public function __construct($posts, $url, $title, $column_count, $grid_config)
     {
         $this->posts = $posts;
         $this->url = $url;
         $this->title = $title;
         $this->column_count = $column_count;
-        $this->post_wrapper_factory = $post_wrapper_factory;
-        $this->card_template_factory = $card_template_factory;
+        $this->grid_config = $grid_config;
     }
 
     public static function fromArgs($args_helper)
@@ -57,8 +55,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
             $url,
             $args_helper->getAcfField('sd_widget_preview_title'),
             $args_helper->getAcfField('sd_widget_preview_columns'),
-            $config['wrapper'],
-            $config['template']
+            $config
         );
     }
 
@@ -115,26 +112,5 @@ class PostsPreviewArgs implements WidgetArgsInterface
                 break;
         }
         return [$query_args, $url];
-    }
-
-    public static function getPostWrapperFactory($post_type)
-    {
-        switch ($post_type) {
-            case 'post':
-                return function ($post) {
-                    return new Article($post);
-                };
-                break;
-
-            case Plugin::EVENT_POST_TYPE:
-                return function ($post) {
-                    return new Event($post);
-                };
-                break;
-
-            default:
-                assert(false, 'Unexpected default');
-                break;
-        }
     }
 }
