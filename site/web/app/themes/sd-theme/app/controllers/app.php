@@ -3,13 +3,24 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
-use SkinDeep\Articles\Post;
-use SkinDeep\Articles\Article;
-use SkinDeep\Events\Event;
-use SkinDeep\Shop\Product;
 
 class App extends Controller
 {
+    public const POST_TYPE_MAP = [
+        'post' => [
+            'template' => 'partials.archive.post',
+            'wrapper' => 'SkinDeep\\Articles\\Article',
+        ],
+        'sd-event' => [
+            'template' => 'partials.archive.event',
+            'wrapper' => 'SkinDeep\\Events\\Event',
+        ],
+        'sd-product' => [
+            'template' => 'partials.archive.product',
+            'wrapper' => 'SkinDeep\\Shop\\Product',
+        ],
+    ];
+
     public function siteName()
     {
         return get_bloginfo('name');
@@ -63,43 +74,18 @@ class App extends Controller
         return 3;
     }
 
-    public function cardTemplate()
+    public function cardTemplateFactory()
     {
-        return 'partials.archive.post';
+        return function ($post) {
+            return $this::POST_TYPE_MAP[get_post_type($post)]['template'];
+        };
     }
 
     public function postWrapperFactory()
     {
-        if (is_home()) {
-            /* This is an archive of articles (blog page)
-             * NOTE: home is a bit of a misnomer
-             */
-            return function ($post) {
-                return new Article($post);
-            };
-        } elseif (is_search()) {
-            return function ($post) {
-                switch (get_post_type()) {
-                    case 'post':
-                        return new Article($post);
-                        break;
-
-                    case 'sd-product':
-                        return new Product($post);
-                        break;
-
-                    case 'sd-event':
-                        return new Event($post);
-                        break;
-
-                    default:
-                        return new Post($post);
-                        break;
-                }
-            };
-        }
         return function ($post) {
-            return new Post($post);
+            $class_name = $this::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
+            return new $class_name($post);
         };
     }
 

@@ -12,16 +12,16 @@ class PostsPreviewArgs implements WidgetArgsInterface
     public $title;
     public $column_count;
     public $post_wrapper_factory;
-    public $card_template;
+    public $card_template_factory;
 
-    public function __construct($posts, $url, $title, $column_count, $post_wrapper_factory, $card_template)
+    public function __construct($posts, $url, $title, $column_count, $post_wrapper_factory, $card_template_factory)
     {
         $this->posts = $posts;
         $this->url = $url;
         $this->title = $title;
         $this->column_count = $column_count;
         $this->post_wrapper_factory = $post_wrapper_factory;
-        $this->card_template = $card_template;
+        $this->card_template_factory = $card_template_factory;
     }
 
     public static function fromArgs($args_helper)
@@ -49,7 +49,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
         }
 
         // Get the per-post-type configuration map
-        $post_type_config_map = apply_filters('sd/post-type-config-map', []);
+        $config = apply_filters('sd/articles/preview-config', []);
 
         // Now create the argument
         return new PostsPreviewArgs(
@@ -57,8 +57,8 @@ class PostsPreviewArgs implements WidgetArgsInterface
             $url,
             $args_helper->getAcfField('sd_widget_preview_title'),
             $args_helper->getAcfField('sd_widget_preview_columns'),
-            $post_type_config_map[$post_type]['wrapper'],
-            $post_type_config_map[$post_type]['template']
+            $config['wrapper'],
+            $config['template']
         );
     }
 

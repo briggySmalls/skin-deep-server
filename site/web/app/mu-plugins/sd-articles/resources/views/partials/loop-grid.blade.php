@@ -11,7 +11,7 @@
         @endphp
           <div @php post_class('card', $post->ID) @endphp>
             {{-- Insert card content --}}
-            @include($card_template)
+            @include($card_template_factory($post->ID))
             {{-- Supply link for card --}}
             <a class="card-link" href={{ $post->url() }}></a>
           </div>
