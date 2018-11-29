@@ -135,7 +135,7 @@ add_action('init', function() {
 });
 
 // Add custom js to editor
-add_action('acf/input/admin_enqueue_scripts', function() {
+add_action('acf/input/admin_enqueue_scripts', function () {
     $resources = new ResourceManager(__DIR__);
     wp_enqueue_script('acf-js', $resources->distURL() . 'acf.js', array(), '1.0.0', true);
 });
