@@ -13,11 +13,6 @@
 </figure>
 <div class="card-body d-xl-flex">
   <h5 class="card-title mr-auto">{!! $product->title() !!}</h5>
-  <div class="card-text">
-    @if ($product->inStock())
-      £{{ $product->price() }}
-    @endif
-  </div>
 </div>
 <div class="card-footer d-flex">
   @include('partials.components.buy-button', ['classes' => 'ml-auto'])

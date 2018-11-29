@@ -18,11 +18,6 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
       </div>
       <hr/>
       <div class="product-details d-flex flex-row-reverse justify-content-end align-items-center">
-        <div class="price ml-5">
-          @if ($post->inStock())
-            £{{ $post->price() }}
-          @endif
-        </div>
         @include('partials.components.buy-button')
       </div>
     </div>
