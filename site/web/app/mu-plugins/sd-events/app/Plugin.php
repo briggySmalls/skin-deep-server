@@ -77,7 +77,7 @@ class Plugin
             );
             // Add a rewrite rule for paged events
             add_rewrite_rule(
-                "^{$slug}" . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?$',
+                "^{$slug}/" . self::EVENT_STATUS_QUERY_ARG . '/([^/]+)/page/([0-9]{1,})/?$',
                 'index.php?post_type=' . $post_type . '&' .
                 self::EVENT_STATUS_QUERY_ARG . '=$matches[1]&paged=$matches[2]',
                 'top'
