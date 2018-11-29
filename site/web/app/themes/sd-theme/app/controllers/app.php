@@ -19,6 +19,10 @@ class App extends Controller
             'template' => 'partials.archive.product',
             'wrapper' => 'SkinDeep\\Shop\\Product',
         ],
+        'page' => [
+            'template' => 'partials.archive.post',
+            'wrapper' => 'SkinDeep\\Articles\\Post',
+        ]
     ];
 
     public function siteName()
