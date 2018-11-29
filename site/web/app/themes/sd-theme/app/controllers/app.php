@@ -81,10 +81,10 @@ class App extends Controller
     public function gridConfig()
     {
         return [
-            'template' => function($post) {
+            'template' => function ($post) {
                 return App::POST_TYPE_MAP[get_post_type($post)]['template'];
             },
-            'wrapper' => function($post) {
+            'wrapper' => function ($post) {
                 $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
                 return new $class_name($post);
             },

@@ -100,23 +100,23 @@ add_action('admin_init', function () {
 });
 
 // Rename 'Posts' to 'Articles'
-add_action('admin_menu', function() {
+add_action('admin_menu', function () {
     global $menu;
     global $submenu;
     $menu[5][0] = 'Articles';
     if (array_key_exists('edit.php', $submenu)) {
-      $submenu['edit.php'][5][0]  = 'Articles';
-      if (count($submenu['edit.php']) >= 11) {
-        $submenu['edit.php'][10][0] = 'Add Article';
-      }
-      if (count($submenu['edit.php']) >= 17) {
-       $submenu['edit.php'][16][0] = 'Article Tags';
-      }
+        $submenu['edit.php'][5][0]  = 'Articles';
+        if (count($submenu['edit.php']) >= 11) {
+            $submenu['edit.php'][10][0] = 'Add Article';
+        }
+        if (count($submenu['edit.php']) >= 17) {
+            $submenu['edit.php'][16][0] = 'Article Tags';
+        }
     }
 });
 
 // Rename 'Posts' to 'Articles'
-add_action('init', function() {
+add_action('init', function () {
     global $wp_post_types;
     $labels = &$wp_post_types['post']->labels;
     $labels->name = 'Articles';
