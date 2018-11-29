@@ -15,7 +15,8 @@ body.term-post-format-video {
 
   .card {
     @extend .text-white;
-    @extend .bg-dark;
+
+    background-color: transparent;
   }
 
   nav.navbar {
