@@ -133,3 +133,9 @@ add_action('init', function() {
     $labels->menu_name = 'Articles';
     $labels->name_admin_bar = 'Articles';
 });
+
+// Add custom js to editor
+add_action('acf/input/admin_enqueue_scripts', function () {
+    $resources = new ResourceManager(__DIR__);
+    wp_enqueue_script('acf-js', $resources->distURL() . 'acf.js', array(), '1.0.0', true);
+});
