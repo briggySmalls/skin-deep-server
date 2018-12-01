@@ -1,7 +1,7 @@
 #main-header {
   @extend .sticky-top;
 
-  @include media-breakpoint-down(xl) {
+  @include media-breakpoint-down(xs) {
     position: static;
   }
 
@@ -14,12 +14,21 @@
       width: auto;
     }
   }
+
+  nav.secondary {
+    overflow: auto;
+    white-space: nowrap;
+
+    .menu-item {
+      display: inline-block;
+    }
+  }
 }
 
 nav.navbar {
   @extend .navbar-light;
   @extend .bg-light;
-  @extend .navbar-expand-xl;
+  @extend .navbar-expand-sm;
 
   h2 {
     font-size: 1em;

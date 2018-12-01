@@ -6,13 +6,17 @@ use SkinDeep\Articles\Article;
 use SkinDeep\Events\Event;
 
 add_filter('wp_nav_menu_args', function ($args) {
-    // Add bootstrap navbar class to nav menus
-    $args['menu_class'] .= ' navbar-nav';
-
     // Use custom nav walker (note: priority 9 to beat soil to it)
     if (!$args['walker']) {
         $args['walker'] = new NavWalker();
     }
+
+    if (strpos($args['menu_class'], 'secondary-nav')) {
+        return $args;
+    }
+
+    // Add bootstrap navbar class to nav menus
+    $args['menu_class'] .= ' navbar-nav';
 
     return $args;
 }, 9);
