@@ -1,6 +1,6 @@
 <header id="main-header" class="banner">
       {{-- Don't bother with a link, it's supplied already --}}
-  <nav class="navbar">
+  <nav class="navbar top-level">
     @if (has_custom_logo())
       @php the_custom_logo() @endphp
     @else
@@ -32,12 +32,12 @@
   </nav>
   {{-- Add sub-menu with custom walker for children --}}
   @if (has_nav_menu('primary_navigation'))
-    <nav class="secondary navbar">
+    <nav class="navbar sub-menu">
       {!! wp_nav_menu([
         'theme_location' => 'primary_navigation',
         'walker' => new SkinDeep\Theme\ChildOnlyNavWalker(),
         'depth' => 0,
-        'menu_class' => 'header-menu secondary-nav']) !!}
+        'menu_class' => 'header-menu']) !!}
     </nav>
   @endif
 </header>

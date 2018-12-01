@@ -11,10 +11,6 @@ add_filter('wp_nav_menu_args', function ($args) {
         $args['walker'] = new NavWalker();
     }
 
-    if (strpos($args['menu_class'], 'secondary-nav')) {
-        return $args;
-    }
-
     // Add bootstrap navbar class to nav menus
     $args['menu_class'] .= ' navbar-nav';
 

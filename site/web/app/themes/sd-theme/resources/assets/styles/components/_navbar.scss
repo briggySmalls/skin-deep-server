@@ -1,3 +1,15 @@
+nav.navbar {
+  @extend .navbar-light;
+  @extend .bg-light;
+  @extend .navbar-expand-sm;
+
+  h2 {
+    font-size: 1em;
+    padding: 0.5em 0;
+    margin: 0;
+  }
+}
+
 #main-header {
   @extend .sticky-top;
 
@@ -15,29 +27,25 @@
     }
   }
 
-  nav.secondary {
-    overflow: auto;
-    white-space: nowrap;
+  nav.navbar.sub-menu {
+    @extend .justify-content-center;
 
-    .menu-item {
-      display: inline-block;
+    .navbar-nav {
+      display: block;
+      overflow: auto;
+      white-space: nowrap;
+
+      .menu-item {
+        display: inline-block;
+      }
+
+      .nav-link {
+        padding: 0 0.5rem;
+      }
     }
   }
-}
 
-nav.navbar {
-  @extend .navbar-light;
-  @extend .bg-light;
-  @extend .navbar-expand-sm;
-
-  h2 {
-    font-size: 1em;
-    padding: 0.5em 0;
-    margin: 0;
-  }
-
-  .header-menu {
-    @extend .justify-content-center;
+  nav.navbar.top-level .header-menu {
     @extend .d-flex;
   }
 }
