@@ -27,13 +27,16 @@ nav.navbar {
     }
   }
 
+  nav.navbar .navbar-nav {
+    white-space: nowrap;
+  }
+
   nav.navbar.sub-menu {
     @extend .justify-content-center;
 
     .navbar-nav {
       display: block;
       overflow: auto;
-      white-space: nowrap;
 
       .menu-item {
         display: inline-block;
