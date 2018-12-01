@@ -1,11 +1,17 @@
 // Anchors
 a:not(.nav-link):not(.btn) {
+  color: #00e;
+
   @include hover {
     text-decoration: underline;
   }
 
   @include hover-focus {
     text-decoration: underline;
+  }
+
+  &:visited {
+    color: #551a8b;
   }
 }
 
