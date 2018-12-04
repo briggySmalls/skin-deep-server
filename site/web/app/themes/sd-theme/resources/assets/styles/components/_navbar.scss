@@ -1,7 +1,6 @@
 nav.navbar {
   @extend .navbar-light;
   @extend .bg-light;
-  @extend .navbar-expand-sm;
 
   h2 {
     font-size: 1em;
@@ -19,25 +18,50 @@ nav.navbar {
     position: static;
   }
 
+  nav.navbar {
+    @extend .navbar-expand-sm;
+  }
+
   .navigation-grid {
     width: 100%;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:
-      "logo top-nav search"
-      "logo sub-nav search";
+      "logo toggler"
+      "top-nav top-nav"
+      "search search"
+      "sub-nav sub-nav";
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-up(sm) {
       grid-template-areas:
         "logo top-nav search"
         "sub-nav sub-nav sub-nav";
+
+      #toggler {
+        display: none;
+      }
+
+      #top-nav {
+        justify-self: center;
+      }
+
+      #search {
+        justify-self: end;
+      }
     }
 
-    .logo,
-    .top-nav,
-    .sub-nav,
-    .search {
+    @include media-breakpoint-up(lg) {
+      grid-template-areas:
+        "logo top-nav search"
+        "logo sub-nav search";
+    }
+
+    #logo,
+    #toggler,
+    #top-nav,
+    #sub-nav,
+    #search {
       align-self: center;
     }
 
@@ -45,22 +69,25 @@ nav.navbar {
       white-space: nowrap;
     }
 
-    .logo {
+    #logo {
       grid-area: logo;
       justify-self: start;
     }
 
-    .top-nav {
-      grid-area: top-nav;
-      justify-self: center;
-    }
-
-    .search {
-      grid-area: search;
+    #toggler {
+      grid-area: toggler;
       justify-self: end;
     }
 
-    .sub-nav {
+    #top-nav {
+      grid-area: top-nav;
+    }
+
+    #search {
+      grid-area: search;
+    }
+
+    #sub-nav {
       justify-self: stretch;
       grid-area: sub-nav;
       overflow-x: auto;

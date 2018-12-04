@@ -2,7 +2,7 @@
       {{-- Don't bother with a link, it's supplied already --}}
   <nav class="navbar top-level">
     <div class="navigation-grid">
-      <div class="logo">
+      <div id="logo">
         @if (has_custom_logo())
           @php the_custom_logo() @endphp
         @else
@@ -11,7 +11,18 @@
           </a>
         @endif
       </div>
-      <div class="top-nav">
+      <div id="toggler">
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target=".collapsable"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div id="top-nav" class="collapse navbar-collapse collapsable">
         {{-- Main menu navigation --}}
         @if (has_nav_menu('primary_navigation'))
           {{-- Standard 'top-level' menu items --}}
@@ -21,7 +32,7 @@
             'menu_class' => 'header-menu']) !!}
         @endif
       </div>
-      <div class="sub-nav">
+      <div id="sub-nav">
         {{-- Add sub-menu with custom walker for children --}}
         @if (has_nav_menu('primary_navigation'))
           {!! wp_nav_menu([
@@ -31,7 +42,7 @@
             'menu_class' => 'header-menu']) !!}
         @endif
       </div>
-      <div class="search">
+      <div id="search" class="collapse navbar-collapse collapsable">
         {{-- Search bar --}}
         {!! get_search_form() !!}
       </div>
