@@ -35,21 +35,6 @@ nav.navbar {
     grid-gap: 0.5em 0;
     align-items: center;
 
-    @include media-breakpoint-up(sm) {
-      grid-template-areas:
-        "logo top-nav search"
-        "sub-nav sub-nav sub-nav";
-
-      #toggler {
-        display: none;
-      }
-
-      #search {
-        justify-self: end;
-        margin-left: 1rem;
-      }
-    }
-
     .navbar-nav {
       white-space: nowrap;
     }
@@ -66,7 +51,6 @@ nav.navbar {
 
     #top-nav {
       grid-area: top-nav;
-      justify-self: center;
     }
 
     #search {
@@ -92,16 +76,35 @@ nav.navbar {
       }
     }
 
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(sm) {
       grid-template-areas:
         "logo top-nav search"
-        "logo sub-nav search";
+        "sub-nav sub-nav sub-nav";
+
+      #toggler {
+        display: none;
+      }
+
+      #top-nav {
+        justify-self: center;
+      }
+
+      #search {
+        justify-self: end;
+        margin-left: 1rem;
+      }
     }
 
     @include media-breakpoint-up(md) {
       #sub-nav {
         justify-self: center;
       }
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-template-areas:
+        "logo top-nav search"
+        "logo sub-nav search";
     }
   }
 
