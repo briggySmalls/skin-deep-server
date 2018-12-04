@@ -22,8 +22,17 @@ nav.navbar {
   .navigation-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "logo top-nav search"
+      "logo sub-nav search";
+
+    @include media-breakpoint-down(md) {
+      grid-template-areas:
+        "logo top-nav search"
+        "sub-nav sub-nav sub-nav";
+    }
 
     .logo,
     .top-nav,
@@ -37,20 +46,22 @@ nav.navbar {
     }
 
     .logo {
-      grid-column-start: 1;
-      grid-row-start: 1;
+      grid-area: logo;
       justify-self: start;
     }
 
     .top-nav {
-      grid-column-start: 2;
-      grid-row-start: 1;
+      grid-area: top-nav;
       justify-self: center;
     }
 
+    .search {
+      grid-area: search;
+      justify-self: end;
+    }
+
     .sub-nav {
-      grid-column-start: 2;
-      grid-row-start: 2;
+      grid-area: sub-nav;
       justify-self: center;
 
       .navbar-nav {
@@ -64,30 +75,6 @@ nav.navbar {
             padding: 0 0.5rem;
           }
         }
-      }
-    }
-
-    .search {
-      grid-column-start: 3;
-      grid-row-start: 1;
-      justify-self: end;
-    }
-
-    .search,
-    .logo {
-      grid-row-end: span 2;
-    }
-
-    @include media-breakpoint-down(md) {
-      .logo,
-      .search {
-        grid-row-end: span 1;
-      }
-
-      .sub-nav {
-        grid-column-start: 1;
-        grid-column-end: span 3;
-        grid-row-start: 2;
       }
     }
   }
