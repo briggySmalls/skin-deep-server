@@ -25,7 +25,7 @@ nav.navbar {
   .navigation-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto 1fr;
     grid-template-rows: auto;
     grid-template-areas:
       "logo toggler"
@@ -46,6 +46,7 @@ nav.navbar {
 
       #search {
         justify-self: end;
+        margin-left: 1rem;
       }
     }
 
