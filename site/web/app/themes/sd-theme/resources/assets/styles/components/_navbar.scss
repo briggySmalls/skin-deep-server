@@ -61,12 +61,14 @@ nav.navbar {
     }
 
     .sub-nav {
+      justify-self: stretch;
       grid-area: sub-nav;
-      justify-self: center;
+      overflow-x: auto;
 
       .navbar-nav {
         display: block;
-        overflow: auto;
+        overflow-x: scroll;
+        margin: auto;
 
         .menu-item {
           display: inline-block;
