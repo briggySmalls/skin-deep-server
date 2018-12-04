@@ -44,19 +44,9 @@ nav.navbar {
         display: none;
       }
 
-      #top-nav {
-        justify-self: center;
-      }
-
       #search {
         justify-self: end;
       }
-    }
-
-    @include media-breakpoint-up(xl) {
-      grid-template-areas:
-        "logo top-nav search"
-        "logo sub-nav search";
     }
 
     .navbar-nav {
@@ -75,6 +65,7 @@ nav.navbar {
 
     #top-nav {
       grid-area: top-nav;
+      justify-self: center;
     }
 
     #search {
@@ -98,6 +89,18 @@ nav.navbar {
             padding: 0 0.5rem;
           }
         }
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-template-areas:
+        "logo top-nav search"
+        "logo sub-nav search";
+    }
+
+    @include media-breakpoint-up(md) {
+      #sub-nav {
+        justify-self: center;
       }
     }
   }
