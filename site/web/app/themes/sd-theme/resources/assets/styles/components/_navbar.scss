@@ -32,6 +32,7 @@ nav.navbar {
       "top-nav top-nav"
       "search search"
       "sub-nav sub-nav";
+    align-items: center;
 
     @include media-breakpoint-up(sm) {
       grid-template-areas:
@@ -55,14 +56,6 @@ nav.navbar {
       grid-template-areas:
         "logo top-nav search"
         "logo sub-nav search";
-    }
-
-    #logo,
-    #toggler,
-    #top-nav,
-    #sub-nav,
-    #search {
-      align-self: center;
     }
 
     .navbar-nav {
