@@ -13,8 +13,83 @@ nav.navbar {
 #main-header {
   @extend .sticky-top;
 
+  width: 100%;
+
   @include media-breakpoint-down(xs) {
     position: static;
+  }
+
+  .navigation-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+
+    .logo,
+    .top-nav,
+    .sub-nav,
+    .search {
+      align-self: center;
+    }
+
+    .navbar-nav {
+      white-space: nowrap;
+    }
+
+    .logo {
+      grid-column-start: 1;
+      grid-row-start: 1;
+      justify-self: start;
+    }
+
+    .top-nav {
+      grid-column-start: 2;
+      grid-row-start: 1;
+      justify-self: center;
+    }
+
+    .sub-nav {
+      grid-column-start: 2;
+      grid-row-start: 2;
+      justify-self: center;
+
+      .navbar-nav {
+        display: block;
+        overflow: auto;
+
+        .menu-item {
+          display: inline-block;
+
+          .nav-link {
+            padding: 0 0.5rem;
+          }
+        }
+      }
+    }
+
+    .search {
+      grid-column-start: 3;
+      grid-row-start: 1;
+      justify-self: end;
+    }
+
+    .search,
+    .logo {
+      grid-row-end: span 2;
+    }
+
+    @include media-breakpoint-down(md) {
+      .logo,
+      .search {
+        grid-row-end: span 1;
+      }
+
+      .sub-nav {
+        grid-column-start: 1;
+        grid-column-end: span 3;
+        grid-row-start: 2;
+      }
+    }
   }
 
   .custom-logo-link {
@@ -25,31 +100,6 @@ nav.navbar {
       max-height: 3.5em;
       width: auto;
     }
-  }
-
-  nav.navbar .navbar-nav {
-    white-space: nowrap;
-  }
-
-  nav.navbar.sub-menu {
-    @extend .justify-content-center;
-
-    .navbar-nav {
-      display: block;
-      overflow: auto;
-
-      .menu-item {
-        display: inline-block;
-      }
-
-      .nav-link {
-        padding: 0 0.5rem;
-      }
-    }
-  }
-
-  nav.navbar.top-level .header-menu {
-    @extend .d-flex;
   }
 }
 
