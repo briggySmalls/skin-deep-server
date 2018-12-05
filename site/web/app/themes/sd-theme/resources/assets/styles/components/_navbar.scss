@@ -52,7 +52,6 @@ nav.navbar {
 
     #logo,
     #top-nav,
-    #sub-nav,
     #search {
       margin-left: $cell-margin;
     }
@@ -79,24 +78,27 @@ nav.navbar {
       justify-self: stretch;
       grid-area: sub-nav;
       overflow-x: auto;  // Ensure grid doesn't make space for overflow
-      margin-left: $cell-margin;  // Add room for scrollbar
 
-      .navbar-nav {
+      .overflow-wrapper {
         overflow-x: scroll; // Permit a scrollbar
         min-width: min-content;
-        flex-direction: row; // Fight bootstrap's navbar-nav (horizontal)
+        padding: 0 $cell-margin;
 
-        // Style menu invitingly
-        border: 1px solid $secondary;
-        border-radius: 1em;
-        height: 3em;
-        align-items: center;
+        .navbar-nav {
+          flex-direction: row; // Fight bootstrap's navbar-nav (horizontal)
 
-        .menu-item {
-          display: inline-block; // Fight bootstrap's navbar-nav (horizontal)
+          // Style menu invitingly
+          border: 1px solid $secondary;
+          border-radius: 1em;
+          height: 3em;
+          align-items: center;
 
-          .nav-link {
-            padding: 0 0.5rem;
+          .menu-item {
+            display: inline-block; // Fight bootstrap's navbar-nav (horizontal)
+
+            .nav-link {
+              padding: 0 0.5rem;
+            }
           }
         }
       }
@@ -119,10 +121,6 @@ nav.navbar {
       #search {
         justify-self: end;
         margin-left: $cell-margin;
-      }
-
-      #sub-nav {
-        margin-left: 0; // Remove padding when there is no overflow
       }
     }
 

@@ -33,14 +33,16 @@
         @endif
       </div>
       <div id="sub-nav">
-        {{-- Add sub-menu with custom walker for children --}}
-        @if (has_nav_menu('primary_navigation'))
-          {!! wp_nav_menu([
-            'theme_location' => 'primary_navigation',
-            'walker' => new SkinDeep\Theme\ChildOnlyNavWalker(),
-            'depth' => 0,
-            'menu_class' => 'header-menu']) !!}
-        @endif
+        <div class="overflow-wrapper">
+          {{-- Add sub-menu with custom walker for children --}}
+          @if (has_nav_menu('primary_navigation'))
+            {!! wp_nav_menu([
+              'theme_location' => 'primary_navigation',
+              'walker' => new SkinDeep\Theme\ChildOnlyNavWalker(),
+              'depth' => 0,
+              'menu_class' => 'header-menu']) !!}
+          @endif
+        </div>
       </div>
       <div id="search" class="collapse navbar-collapse collapsable">
         {{-- Search bar --}}
