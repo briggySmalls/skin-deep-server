@@ -39,19 +39,27 @@ nav.navbar {
     grid-gap: 0.5em 0;
     align-items: center;
 
+    $cell-margin: 1em;
+
     .navbar-nav {
       white-space: nowrap;
     }
 
     #toggler,
     #search {
-      padding-right: 1em;
+      margin-right: $cell-margin;
+    }
+
+    #logo,
+    #top-nav,
+    #sub-nav,
+    #search {
+      margin-left: $cell-margin;
     }
 
     #logo {
       grid-area: logo;
       justify-self: start;
-      padding-left: 1em;
     }
 
     #toggler {
@@ -71,11 +79,18 @@ nav.navbar {
       justify-self: stretch;
       grid-area: sub-nav;
       overflow-x: auto;  // Ensure grid doesn't make space for overflow
-      padding-left: 1em;  // Add room for scrollbar
+      margin-left: $cell-margin;  // Add room for scrollbar
 
       .navbar-nav {
-        display: block; // Fight bootstrap's navbar-nav (horizontal)
         overflow-x: scroll; // Permit a scrollbar
+        min-width: min-content;
+        flex-direction: row; // Fight bootstrap's navbar-nav (horizontal)
+
+        // Style menu invitingly
+        border: 1px solid $secondary;
+        border-radius: 1em;
+        height: 3em;
+        align-items: center;
 
         .menu-item {
           display: inline-block; // Fight bootstrap's navbar-nav (horizontal)
@@ -103,11 +118,11 @@ nav.navbar {
 
       #search {
         justify-self: end;
-        margin-left: 1rem;
+        margin-left: $cell-margin;
       }
 
       #sub-nav {
-        padding-left: 0; // Remove padding when there is no overflow
+        margin-left: 0; // Remove padding when there is no overflow
       }
     }
 
