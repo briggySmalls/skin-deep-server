@@ -18,8 +18,12 @@ nav.navbar {
     position: static;
   }
 
-  nav.navbar {
+  nav.navbar.top-level {
     @extend .navbar-expand-sm;
+
+    // Ensure no margin for scrollable menu
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .navigation-grid {
@@ -39,9 +43,15 @@ nav.navbar {
       white-space: nowrap;
     }
 
+    #toggler,
+    #search {
+      padding-right: 1em;
+    }
+
     #logo {
       grid-area: logo;
       justify-self: start;
+      padding-left: 1em;
     }
 
     #toggler {
@@ -60,14 +70,15 @@ nav.navbar {
     #sub-nav {
       justify-self: stretch;
       grid-area: sub-nav;
-      overflow-x: auto;
+      overflow-x: auto;  // Ensure grid doesn't make space for overflow
+      padding-left: 1em;  // Add room for scrollbar
 
       .navbar-nav {
-        display: block;
-        overflow-x: scroll;
+        display: block; // Fight bootstrap's navbar-nav (horizontal)
+        overflow-x: scroll; // Permit a scrollbar
 
         .menu-item {
-          display: inline-block;
+          display: inline-block; // Fight bootstrap's navbar-nav (horizontal)
 
           .nav-link {
             padding: 0 0.5rem;
@@ -76,6 +87,7 @@ nav.navbar {
       }
     }
 
+    // Styles for 'probably not' overflow
     @include media-breakpoint-up(sm) {
       grid-template-areas:
         "logo top-nav search"
@@ -93,8 +105,13 @@ nav.navbar {
         justify-self: end;
         margin-left: 1rem;
       }
+
+      #sub-nav {
+        padding-left: 0; // Remove padding when there is no overflow
+      }
     }
 
+    // Styles for when we definitely don't expect overflow
     @include media-breakpoint-up(md) {
       #sub-nav {
         justify-self: center;
