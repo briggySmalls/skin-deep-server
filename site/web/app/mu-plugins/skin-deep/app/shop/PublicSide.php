@@ -4,6 +4,8 @@ namespace SkinDeep\Shop;
 
 use \YeEasyAdminNotices\V1\AdminNotice;
 
+use SkinDeep\Widgets\Donations\DonationArgs;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -83,7 +85,7 @@ class PublicSide
         // Add a query var for donations
         $loader->addAction('init', function () {
             global $wp;
-            $wp->add_query_var(Donations\DonationArgs::DONATION_QUERY_VAR);
+            $wp->add_query_var(DonationArgs::DONATION_QUERY_VAR);
         });
 
         // Get the API key when we can

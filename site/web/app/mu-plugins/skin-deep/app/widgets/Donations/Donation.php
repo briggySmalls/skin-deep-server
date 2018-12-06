@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Shop\Donations;
+namespace SkinDeep\Widgets\Donations;
 
 use SkinDeep\Widgets\Widget;
 use SkinDeep\Utilities\ResourceManager;
@@ -8,11 +8,6 @@ use SkinDeep\Utilities\ResourceManager;
 class Donation extends Widget
 {
     protected const WIDGET_SLUG = 'donation';
-
-    /**
-     * Namespace in which blade templates are identified
-     */
-    protected const TEMPLATE_NAMESPACE = 'shop';
 
     /**
      * Specifies the classname and description, instantiates the widget,

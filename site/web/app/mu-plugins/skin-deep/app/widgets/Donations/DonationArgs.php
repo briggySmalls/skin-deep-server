@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Shop\Donations;
+namespace SkinDeep\Widgets\Donations;
 
 use SkinDeep\Widgets\WidgetArgs;
 use SkinDeep\Widgets\WidgetArgsInterface;

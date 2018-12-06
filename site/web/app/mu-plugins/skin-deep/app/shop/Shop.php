@@ -2,6 +2,8 @@
 
 namespace SkinDeep\Shop;
 
+use SkinDeep\Widgets\Donations\Donations;
+use SkinDeep\Widgets\Donations\DonationArgs;
 use SkinDeep\Articles\ResourceManager;
 use \YeEasyAdminNotices\V1\AdminNotice;
 
@@ -102,7 +104,7 @@ class Shop
     {
         // Register the widgets (donation)
         add_action('widgets_init', function () {
-            register_widget(__NAMESPACE__ . '\Donations\Donation');
+            register_widget('SkinDeep\Widgets\Donations\Donation');
         });
 
         // Check for ACF
@@ -117,14 +119,14 @@ class Shop
         // Register shortcode (donation)
         add_shortcode('donation', function ($atts) {
             // Construct arguments
-            $args = new Donations\DonationArgs(
+            $args = new DonationArgs(
                 $atts['title'],
                 $atts['default_donation'],
                 array_key_exists('description', $atts) ? $atts['description'] : null
             );
             $arg_array = get_object_vars($args);
             // Generate the 'widget' content
-            return Donations\Donation::output(
+            return Donation::output(
                 new ResourceManager(__DIR__),
                 'widget',
                 $arg_array

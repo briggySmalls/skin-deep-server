@@ -4,6 +4,8 @@ namespace SkinDeep\Shop;
 
 use SkinDeep\Widgets\BlockArgsHelper;
 use SkinDeep\Utilities\ResourceManager;
+use SkinDeep\Widgets\Donations\Donation;
+use SkinDeep\Widgets\Donations\DonationArgs;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -101,10 +103,10 @@ class AdminSide
     public static function renderDonation()
     {
         // Construct arguments
-        $args = Donations\DonationArgs::fromArgs(new BlockArgsHelper());
+        $args = DonationArgs::fromArgs(new BlockArgsHelper());
         $arg_array = get_object_vars($args);
         // Generate the 'widget' content
-        echo Donations\Donation::output(
+        echo Donation::output(
             new ResourceManager(__DIR__),
             'widget',
             $arg_array
