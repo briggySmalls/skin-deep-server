@@ -196,9 +196,10 @@ add_filter('sd/theme/skip-nav-walking', function ($skip, $element) {
 /**
  * Remove related posts from products (we manually position them in templates)
  */
-add_filter('jetpack_relatedposts_filter_options', function ($options) {
-    if (is_singular('sd-product')) {
-        $options['enabled'] = false;
+add_filter('wp', function () {
+    if (is_singular('sd-product') && class_exists('Jetpack_RelatedPosts')) {
+        $jprp = Jetpack_RelatedPosts::init();
+        $callback = array( $jprp, 'filter_add_target_to_dom' );
+        remove_filter( 'the_content', $callback, 40 );
     }
-    return $options;
-}, 20 );
+}, 20);
