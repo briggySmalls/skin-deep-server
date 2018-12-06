@@ -1,21 +1,3 @@
-#main-header {
-  @extend .sticky-top;
-
-  @include media-breakpoint-down(xl) {
-    position: static;
-  }
-
-  .custom-logo-link {
-    // Apply the important stuff from navbar-brand
-    @extend .navbar-brand;
-
-    img {
-      max-height: 3.5em;
-      width: auto;
-    }
-  }
-}
-
 nav.navbar {
   @extend .navbar-light;
   @extend .bg-light;
@@ -26,10 +8,163 @@ nav.navbar {
     padding: 0.5em 0;
     margin: 0;
   }
+}
 
-  .header-menu {
-    @extend .justify-content-center;
-    @extend .d-flex;
+#main-header {
+  @extend .sticky-top;
+
+  width: 100%;
+
+  @include media-breakpoint-down(xs) {
+    position: static;
+  }
+
+  nav.navbar.top-level {
+    @extend .navbar-expand-sm;
+
+    // Ensure no margin for scrollable menu
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navigation-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "logo toggler"
+      "top-nav top-nav"
+      "search search"
+      "sub-nav sub-nav";
+    grid-gap: 0.5em 0;
+    align-items: center;
+
+    $cell-margin: 1em;
+
+    nav.navbar.top-level {
+      // Collapse/expand the top level navbar
+      @extend .navbar-expand-sm;
+    }
+
+    .navbar-nav {
+      white-space: nowrap;
+    }
+
+    #toggler,
+    #search {
+      margin-right: $cell-margin;
+    }
+
+    #logo,
+    #top-nav,
+    #search {
+      margin-left: $cell-margin;
+    }
+
+    #logo {
+      grid-area: logo;
+      justify-self: start;
+    }
+
+    #toggler {
+      grid-area: toggler;
+      justify-self: end;
+    }
+
+    #top-nav {
+      grid-area: top-nav;
+    }
+
+    #search {
+      grid-area: search;
+    }
+
+    #sub-nav {
+      justify-self: stretch;
+      grid-area: sub-nav;
+      overflow-x: auto;  // Ensure grid doesn't make space for overflow
+
+      .overflow-wrapper {
+        overflow-x: scroll; // Permit a scrollbar
+        min-width: min-content;
+        padding: 0 $cell-margin;
+
+        nav.navbar {
+          // Always expand navbar
+          @extend .navbar-expand;
+        }
+
+        .navbar-nav {
+
+          // Style menu invitingly
+          border: 1px solid $navbar-light-color;
+          border-radius: 1em;
+          height: 3em;
+          align-items: center;
+
+          .menu-item {
+            display: inline-block; // Fight bootstrap's navbar-nav (horizontal)
+
+            .nav-link {
+              padding: 0 0.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    // Styles for 'probably not' overflow
+    @include media-breakpoint-up(sm) {
+      grid-template-areas:
+        "logo top-nav search"
+        "sub-nav sub-nav sub-nav";
+
+      #toggler {
+        display: none;
+      }
+
+      #top-nav {
+        justify-self: center;
+      }
+
+      #search {
+        justify-self: end;
+        margin-left: $cell-margin;
+      }
+    }
+
+    // Styles for when we definitely don't expect overflow
+    @include media-breakpoint-up(md) {
+      #sub-nav {
+        justify-self: center;
+
+        .overflow-wrapper {
+          padding: none;
+
+          .navbar-nav {
+            border: none;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-template-areas:
+        "logo top-nav search"
+        "logo sub-nav search";
+    }
+  }
+
+  .custom-logo-link {
+    // Apply the important stuff from navbar-brand
+    @extend .navbar-brand;
+
+    img {
+      max-height: 3.5em;
+      width: auto;
+    }
   }
 }
 
