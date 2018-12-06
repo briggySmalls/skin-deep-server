@@ -6,20 +6,15 @@ class ResourceManager
 {
     protected $path;
 
-    public function __construct($path)
-    {
-        $this->path = $path;
-    }
-
     public function rootDir($is_relative = false)
     {
-        $file_directory = $is_relative ? plugin_basename($this->path) : $this->path;
+        $file_directory = $is_relative ? plugin_basename(__DIR__) : __DIR__;
         return $file_directory . '/../../';
     }
 
     public function rootURL()
     {
-        return plugins_url('/', $this->path);
+        return plugins_url('/../', __DIR__);
     }
 
     public function viewDir()
