@@ -31,13 +31,12 @@ class DonationArgs implements WidgetArgsInterface
             self::DONATION_QUERY_VAR . '=' . $this->price * 100);
     }
 
-    public static function fromArgs($args)
+    public static function fromArgs($args_helper)
     {
-        $helper = new WidgetArgsHelper($args);
         return new DonationArgs(
-            $helper->getAcfField('sd_shop_donation_title'),
-            $helper->getAcfField('sd_shop_default_donation'),
-            $helper->getAcfField('sd_shop_donation_description')
+            $args_helper->getAcfField('sd_shop_donation_title'),
+            $args_helper->getAcfField('sd_shop_default_donation'),
+            $args_helper->getAcfField('sd_shop_donation_description')
         );
     }
 

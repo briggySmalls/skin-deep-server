@@ -2,6 +2,9 @@
 
 namespace SkinDeep\Shop;
 
+use SkinDeep\Articles\BlockArgsHelper;
+use SkinDeep\Articles\ResourceManager;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -58,6 +61,23 @@ class AdminSide
             $this->enqueueScripts();
             $this->enqueueStyles();
         });
+
+        // Register donation block
+        $loader->addAction('acf/init', function () {
+            // check function exists
+            if (function_exists('acf_register_block')) {
+                // register posts preview block
+                acf_register_block([
+                    'name'              => 'donation',
+                    'title'             => __('Donation'),
+                    'description'       => __('Form for donations.'),
+                    'render_callback'   => __NAMESPACE__ . '\\AdminSide::renderDonation',
+                    'category'          => 'widgets',
+                    'icon'              => 'grid-view',
+                    'keywords'          => ['donation', 'e-commerce'],
+                ]);
+            }
+        });
     }
 
     /**
@@ -76,5 +96,18 @@ class AdminSide
      */
     public function enqueueScripts()
     {
+    }
+
+    public static function renderDonation()
+    {
+        // Construct arguments
+        $args = Donations\DonationArgs::fromArgs(new BlockArgsHelper());
+        $arg_array = get_object_vars($args);
+        // Generate the 'widget' content
+        echo Donations\Donation::output(
+            new ResourceManager(__DIR__),
+            'widget',
+            $arg_array
+        );
     }
 }
