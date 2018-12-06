@@ -4,9 +4,7 @@
 
   <!-- Scan work under development -->
   <file>web/app/themes/sd-theme</file>
-  <file>web/app/mu-plugins/sd-articles</file>
-  <file>web/app/mu-plugins/sd-events</file>
-  <file>web/app/mu-plugins/sd-shop</file>
+  <file>web/app/mu-plugins/skin-deep</file>
 
   <!-- Exclude patterns -->
   <exclude-pattern>*/vendor</exclude-pattern>
