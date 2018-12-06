@@ -86,7 +86,7 @@ nav.navbar {
       overflow-x: auto;  // Ensure grid doesn't make space for overflow
 
       .overflow-wrapper {
-        overflow-x: scroll; // Permit a scrollbar
+        overflow-x: auto; // Permit a scrollbar
         min-width: min-content;
         padding: 0 $cell-margin;
 
