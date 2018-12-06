@@ -8,6 +8,8 @@ use SkinDeep\Widgets\PostsSlider\PostsSliderArgs;
 use SkinDeep\Widgets\PostsSlider\PostsSlider;
 use SkinDeep\Widgets\PostsPreview\PostsPreviewArgs;
 use SkinDeep\Widgets\PostsPreview\PostsPreview;
+use SkinDeep\Widgets\PostSuggestions\PostSuggestionsArgs;
+use SkinDeep\Widgets\PostSuggestions\PostSuggestions;
 use SkinDeep\Utilities\ResourceManager;
 use SkinDeep\Widgets\BlockArgsHelper;
 
@@ -67,7 +69,7 @@ function render_preview_posts()
     $arg_array = get_object_vars($args);
     // Generate the 'widget' content
     echo PostsPreview::output(
-        new ResourceManager(__DIR__),
+        new ResourceManager(),
         'widget',
         $arg_array
     );
@@ -80,7 +82,7 @@ function render_slider()
     $arg_array = get_object_vars($args);
     // Generate the 'widget' content
     echo PostsSlider::output(
-        new ResourceManager(__DIR__),
+        new ResourceManager(),
         'widget',
         $arg_array
     );
@@ -144,3 +146,19 @@ add_action('acf/input/admin_enqueue_scripts', function () {
     $resources = new ResourceManager(__DIR__);
     wp_enqueue_script('acf-js', $resources->distURL() . 'acf.js', array(), '1.0.0', true);
 });
+
+// Add suggestions after all articles
+add_filter('the_content', function ($content) {
+    if (is_singular('post')) {
+        // Add suggestions widget before jetpack's related posts
+        $args = PostSuggestionsArgs::fromArgs(null);
+        $arg_array = get_object_vars($args);
+        // Generate the 'widget' content
+        $content .= PostSuggestions::output(
+            new ResourceManager(),
+            'widget',
+            $arg_array
+        );
+    }
+    return $content;
+}, 40);
