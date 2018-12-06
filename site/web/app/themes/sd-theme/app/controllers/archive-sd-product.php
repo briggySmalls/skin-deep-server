@@ -4,7 +4,7 @@ namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
 use Sober\Controller\Module\Tree;
-use SkinDeep\Articles\PostsPreview;
+use SkinDeep\Widgets\PostsPreview\PostsPreview;
 
 const SD_PRODUCT_COLUMN_COUNT = 3;
 const SD_PRODUCT_IMAGE_FACTOR = 3; // Factor to divide card size by to get image size

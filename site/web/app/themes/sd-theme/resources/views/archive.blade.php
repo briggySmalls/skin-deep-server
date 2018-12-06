@@ -5,7 +5,7 @@
 
   @component('components.try-posts')
     {{-- Display posts in a grid --}}
-    @include('articles::partials.loop-grid')
+    @include('plugin::partials.loop-grid')
   @endcomponent
 
   {{-- Display navigation --}}

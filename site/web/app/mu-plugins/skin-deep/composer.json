@@ -1,0 +1,33 @@
+{
+  "name": "sd-articles",
+  "type": "wordpress-plugin",
+  "license": "proprietary",
+  "description": "Custom articles for the Skin Deep magazine",
+  "authors": [
+    {
+      "name": "Sam Briggs",
+      "email": "briggySmalls90@gmail.com",
+      "homepage": "https://github.com/briggySmalls"
+    }
+  ],
+  "keywords": ["wordpress"],
+  "autoload": {
+    "psr-4": {
+      "SkinDeep\\": "app/"
+    },
+    "files": [
+      "app/setup.php"
+    ]
+  },
+  "require": {
+    "php": ">=7.1",
+    "facebook/graph-sdk": "^5.6",
+    "yahnis-elsts/admin-notices": "^1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^2.8.0"
+  },
+  "scripts": {
+    "test": ["phpcs"]
+  }
+}

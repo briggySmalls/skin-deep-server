@@ -93,7 +93,7 @@
       "php -r \"copy('.env.example', '.env');\""
     ],
     "test": [
-      "vendor/bin/parallel-lint web/app/mu-plugins/sd-articles/app/ web/app/mu-plugins/sd-shop/app/ web/app/mu-plugins/sd-events/app/ web/app/themes/sd-theme/app/",
+      "vendor/bin/parallel-lint web/app/mu-plugins/skin-deep/app/ web/app/themes/sd-theme/app/",
       "phpcs"
     ]
   }
