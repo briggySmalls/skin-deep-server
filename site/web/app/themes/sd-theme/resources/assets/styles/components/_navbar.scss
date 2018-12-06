@@ -1,6 +1,7 @@
 nav.navbar {
   @extend .navbar-light;
   @extend .bg-light;
+  @extend .navbar-expand-xl;
 
   h2 {
     font-size: 1em;
@@ -40,6 +41,11 @@ nav.navbar {
     align-items: center;
 
     $cell-margin: 1em;
+
+    nav.navbar.top-level {
+      // Collapse/expand the top level navbar
+      @extend .navbar-expand-sm;
+    }
 
     .navbar-nav {
       white-space: nowrap;
@@ -84,8 +90,12 @@ nav.navbar {
         min-width: min-content;
         padding: 0 $cell-margin;
 
+        nav.navbar {
+          // Always expand navbar
+          @extend .navbar-expand;
+        }
+
         .navbar-nav {
-          flex-direction: row; // Fight bootstrap's navbar-nav (horizontal)
 
           // Style menu invitingly
           border: 1px solid $navbar-light-color;
