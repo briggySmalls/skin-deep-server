@@ -11,8 +11,6 @@ use SkinDeep\Widgets\PostsPreview\PostsPreview;
 use SkinDeep\Utilities\ResourceManager;
 use SkinDeep\Widgets\BlockArgsHelper;
 
-const TEMPLATE_NAMESPACE = 'articles';
-
 add_action('plugins_loaded', function () {
     if (!function_exists('get_field')) {
         AdminNotice::create()

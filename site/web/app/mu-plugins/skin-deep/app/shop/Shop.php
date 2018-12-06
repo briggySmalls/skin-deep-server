@@ -15,11 +15,6 @@ use \YeEasyAdminNotices\V1\AdminNotice;
 const SD_SHOP_VERSION = '1.0.0';
 
 /**
- * Namespace for templates in blade engine
- */
-const TEMPLATE_NAMESPACE = 'shop';
-
-/**
  * The file that defines the core plugin class
  *
  * A class definition that includes attributes and functions used across both the
