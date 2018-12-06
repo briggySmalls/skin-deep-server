@@ -90,12 +90,8 @@ nav.navbar {
         min-width: min-content;
         padding: 0 $cell-margin;
 
-        nav.navbar {
-          // Always expand navbar
-          @extend .navbar-expand;
-        }
-
         .navbar-nav {
+          flex-direction: row; // Fight bootstrap's navbar-nav (horizontal)
 
           // Style menu invitingly
           border: 1px solid $navbar-light-color;
