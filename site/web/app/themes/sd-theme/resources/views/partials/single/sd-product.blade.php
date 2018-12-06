@@ -23,5 +23,7 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
     </div>
   </div>
   <hr/>
+  {{-- Output related posts in a special location --}}
+  {!! do_shortcode( '[jetpack-related-posts]' ) !!}
   @php comments_template('/partials/comments.blade.php') @endphp
 </article>
