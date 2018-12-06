@@ -4,7 +4,6 @@ namespace SkinDeep\Theme;
 
 use SkinDeep\Articles\Article;
 use SkinDeep\Events\Event;
-use SkinDeep\Shop\Product;
 
 add_filter('wp_nav_menu_args', function ($args) {
     // Use custom nav walker (note: priority 9 to beat soil to it)
@@ -193,21 +192,3 @@ add_filter('sd/theme/skip-nav-walking', function ($skip, $element) {
     # Don't skip if we are on an article page
     return is_singular('post') && (strpos($element->url, '/articles') == 0) ? false : $skip;
 }, 10, 2);
-
-/**
- * Customise post content
- */
-add_filter('the_content', function ($content) {
-    if (is_singular('sd-product')) {
-        // Add a separator between content and buy button
-        $content .= '<hr/>';
-        // Add buy button to products
-        $content .= sage('blade')->make(
-            'partials.components.buy-button',
-            ['post' => new Product(get_post())]
-        )->render();
-        // Add a separator between that and related posts
-        $content .= '<hr/>';
-    }
-    return $content;
-});
