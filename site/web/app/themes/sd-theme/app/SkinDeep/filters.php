@@ -198,8 +198,8 @@ add_filter('sd/theme/skip-nav-walking', function ($skip, $element) {
  */
 add_filter('wp', function () {
     if (is_singular('sd-product') && class_exists('Jetpack_RelatedPosts')) {
-        $jprp = Jetpack_RelatedPosts::init();
-        $callback = array( $jprp, 'filter_add_target_to_dom' );
-        remove_filter( 'the_content', $callback, 40 );
+        $jprp = \Jetpack_RelatedPosts::init();
+        $callback = array($jprp, 'filter_add_target_to_dom');
+        remove_filter('the_content', $callback, 40);
     }
 }, 20);
