@@ -10,6 +10,9 @@ module.exports = {
     // Slider widget
     'slider/widget': "./resources/assets/scripts/slider/widget.js",
     'slider/admin': "./resources/assets/scripts/slider/admin.js",
+    // Donation widget
+    'donation/widget': "./resources/assets/scripts/donation/widget.js",
+    'donation/admin': "./resources/assets/scripts/donation/admin.js",
     // ACF scripts
     'acf': "./resources/assets/scripts/acf.js",
   },
