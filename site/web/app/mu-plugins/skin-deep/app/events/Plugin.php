@@ -1,4 +1,8 @@
 <?php
+// TODO: Decide whether to take these instructions seriously
+// facebook/graph-sdk suggests installing paragonie/random_compat (Provides a better CSPRNG option in PHP 5)
+// facebook/graph-sdk suggests installing guzzlehttp/guzzle (Allows for implementation of the Guzzle HTTP client)
+
 
 namespace SkinDeep\Events;
 
