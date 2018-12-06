@@ -7,7 +7,7 @@
       name="s"
       aria-label="Search" />
     <div class="input-group-append">
-      <button class="search-btn" type="submit">Search</button>
+      <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
     </div>
   </div>
 </form>
