@@ -24,11 +24,6 @@ class PostSuggestions extends Widget
      */
     protected const WIDGET_SLUG = 'suggestions';
 
-    /**
-     * Namespace in which blade templates are identified
-     */
-    protected const TEMPLATE_NAMESPACE = 'articles';
-
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/

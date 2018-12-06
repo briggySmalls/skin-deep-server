@@ -2,7 +2,7 @@
 <div class="container-fluid posts-grid">
   <div class="row justify-content-center">
     @if (!$posts)
-      @include('articles::components.warning')
+      @include('plugin::components.warning')
     @else
       @foreach ($posts as $raw_post)
         <div class="col-md-{{ 12 / $column_count }}">

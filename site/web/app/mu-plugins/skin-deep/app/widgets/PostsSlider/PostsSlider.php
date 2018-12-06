@@ -25,11 +25,6 @@ class PostsSlider extends Widget
      */
     protected const WIDGET_SLUG = 'slider';
 
-    /**
-     * Namespace in which blade templates are identified
-     */
-    protected const TEMPLATE_NAMESPACE = 'articles';
-
     /*--------------------------------------------------*/
     /* Constructor
     /*--------------------------------------------------*/

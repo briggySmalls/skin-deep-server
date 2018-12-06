@@ -26,11 +26,6 @@ class PostsPreview extends Widget
     protected const WIDGET_SLUG = 'preview';
 
     /**
-     * Namespace in which blade templates are identified
-     */
-    protected const TEMPLATE_NAMESPACE = 'articles';
-
-    /**
      * Bootstrap columns for responsive breakpoints
      */
     public const BOOTSTRAP_COLUMNS = [

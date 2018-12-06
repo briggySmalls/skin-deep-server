@@ -11,7 +11,11 @@ use function SkinDeep\Theme\sage;
 abstract class Widget extends \WP_Widget
 {
     protected $resource_manager;
-    protected const TEMPLATE_NAMESPACE = null;
+
+    /**
+     * Namespace in which blade templates are identified
+     */
+    protected const TEMPLATE_NAMESPACE = 'plugin';
 
     /*--------------------------------------------------*/
     /* Constructor

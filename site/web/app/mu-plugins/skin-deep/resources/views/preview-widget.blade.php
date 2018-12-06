@@ -7,7 +7,7 @@
     {{ $title }}
   </h2>
   {{-- Create grid of posts --}}
-  @include('articles::partials.grid')
+  @include('plugin::partials.grid')
   {{-- Display see more link --}}
   <div class="see-more"><a href="{{ $url }}">See more</a></div>
 </div>
