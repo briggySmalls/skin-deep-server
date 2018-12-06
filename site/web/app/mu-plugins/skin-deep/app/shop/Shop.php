@@ -132,15 +132,16 @@ class Shop
             if (!is_admin() && // Do not mess up admin lists
                     $query->is_main_query() && // Preserve menus etc.
                     is_post_type_archive('sd-product')) {
-                // Order products by stock status (and then date within that)
-                $query->set(
-                    'orderby',
+                // Order products by date
+                $query->set('orderby', [ 'date' => 'DESC' ]);
+                // Filter by in stock
+                $query->set('meta_query', [
                     [
-                        'meta_value' => 'DESC',
-                        'date' => 'DESC'
+                        'key' => 'sd_product_in_stock',
+                        'value' => true,
+                        'compare' => '==',
                     ]
-                );
-                $query->set('meta_key', 'sd_product_in_stock');
+                ]);
             }
         });
     }
