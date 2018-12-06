@@ -192,3 +192,14 @@ add_filter('sd/theme/skip-nav-walking', function ($skip, $element) {
     # Don't skip if we are on an article page
     return is_singular('post') && (strpos($element->url, '/articles') == 0) ? false : $skip;
 }, 10, 2);
+
+/**
+ * Remove related posts from products (we manually position them in templates)
+ */
+add_filter('wp', function () {
+    if (is_singular('sd-product') && class_exists('Jetpack_RelatedPosts')) {
+        $jprp = \Jetpack_RelatedPosts::init();
+        $callback = array($jprp, 'filter_add_target_to_dom');
+        remove_filter('the_content', $callback, 40);
+    }
+}, 20);
