@@ -33,4 +33,19 @@ class WidgetArgsHelper implements ArgsHelperInterface
             $posts
         );
     }
+
+    /**
+     * @brief      Wraps an array of posts as an array of Post objects
+     * @param      $posts  The posts
+     * @return     An array of Post objects
+     */
+    public static function toPosts($posts)
+    {
+        return array_map(
+            function ($post) {
+                return new Post($post);
+            },
+            $posts
+        );
+    }
 }

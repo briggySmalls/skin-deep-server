@@ -263,19 +263,4 @@ abstract class Widget extends \WP_Widget
         // We are getting the field on a widget
         return get_field($field, 'widget_' . $args['widget_id']);
     }
-
-    /**
-     * @brief      Wraps an array of posts as an array of Article objects
-     * @param      $posts  The posts
-     * @return     An array of Article objects
-     */
-    public static function toArticles($posts)
-    {
-        return array_map(
-            function ($post) {
-                return new Article($post);
-            },
-            $posts
-        );
-    }
 } // end class

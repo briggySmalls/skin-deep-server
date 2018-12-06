@@ -16,9 +16,11 @@
                 "id": ""
             },
             "post_type": [
-                "post"
+                "post",
+                "sd-product",
+                "sd-event"
             ],
-            "taxonomy": [],
+            "taxonomy": "",
             "allow_null": 0,
             "multiple": 1,
             "return_format": "object",
@@ -49,5 +51,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1543024139
+    "modified": 1544055532
 }
