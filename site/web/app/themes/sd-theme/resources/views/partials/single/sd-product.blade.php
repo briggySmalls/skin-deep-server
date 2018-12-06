@@ -16,10 +16,6 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
       <div class="entry-content">
         {{ the_content() }}
       </div>
-      <hr/>
-      <div class="product-details d-flex flex-row-reverse justify-content-end align-items-center">
-        @include('partials.components.buy-button')
-      </div>
     </div>
   </div>
   <hr/>
