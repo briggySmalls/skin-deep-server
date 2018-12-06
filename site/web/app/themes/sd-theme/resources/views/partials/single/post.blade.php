@@ -31,7 +31,7 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
         <div class="col-sm-4">
           {!! $magazine->image(
             false,
-            "(max-size: " . SkinDeep\Articles\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw") !!}
+            "(max-size: " . \SkinDeep\Widgets\PostsPreview\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw") !!}
         </div>
       </div>
     </div>

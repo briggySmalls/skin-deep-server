@@ -4,6 +4,13 @@ namespace SkinDeep\Articles;
 
 use \YeEasyAdminNotices\V1\AdminNotice;
 
+use SkinDeep\Widgets\PostsSlider\PostsSliderArgs;
+use SkinDeep\Widgets\PostsSlider\PostsSlider;
+use SkinDeep\Widgets\PostsPreview\PostsPreviewArgs;
+use SkinDeep\Widgets\PostsPreview\PostsPreview;
+use SkinDeep\Utilities\ResourceManager;
+use SkinDeep\Widgets\BlockArgsHelper;
+
 const TEMPLATE_NAMESPACE = 'articles';
 
 add_action('plugins_loaded', function () {
@@ -21,9 +28,9 @@ add_action('skin_deep_init', function ($blade) {
 
 // Register the widgets
 add_action('widgets_init', function () {
-    register_widget(__NAMESPACE__ . '\PostsPreview');
-    register_widget(__NAMESPACE__ . '\PostsSlider');
-    register_widget(__NAMESPACE__ . '\PostSuggestions');
+    register_widget('SkinDeep\Widgets\PostsPreview\PostsPreview');
+    register_widget('SkinDeep\Widgets\PostsSlider\PostsSlider');
+    register_widget('SkinDeep\Widgets\PostSuggestions\PostSuggestions');
 });
 
 /**

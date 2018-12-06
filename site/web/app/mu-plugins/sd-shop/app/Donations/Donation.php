@@ -2,8 +2,8 @@
 
 namespace SkinDeep\Shop\Donations;
 
-use SkinDeep\Articles\Widget;
-use SkinDeep\Articles\ResourceManager;
+use SkinDeep\Widgets\Widget;
+use SkinDeep\Utilities\ResourceManager;
 
 class Donation extends Widget
 {

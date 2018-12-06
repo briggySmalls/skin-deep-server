@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Utilities;
 
 class ResourceManager
 {
@@ -14,7 +14,7 @@ class ResourceManager
     public function rootDir($is_relative = false)
     {
         $file_directory = $is_relative ? plugin_basename($this->path) : $this->path;
-        return $file_directory . '/../';
+        return $file_directory . '/../../';
     }
 
     public function rootURL()

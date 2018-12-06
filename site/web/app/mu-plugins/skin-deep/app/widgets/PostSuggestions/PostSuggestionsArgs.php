@@ -1,6 +1,9 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets\PostSuggestions;
+
+use SkinDeep\Articles\Article;
+use SkinDeep\Widgets\WidgetArgsInterface;
 
 class PostSuggestionsArgs implements WidgetArgsInterface
 {

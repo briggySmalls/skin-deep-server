@@ -1,6 +1,9 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets\PostsSlider;
+
+use SkinDeep\Widgets\WidgetArgsInterface;
+use SkinDeep\Widgets\WidgetArgsHelper;
 
 class PostsSliderArgs implements WidgetArgsInterface
 {

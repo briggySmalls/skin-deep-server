@@ -13,7 +13,7 @@
   "keywords": ["wordpress"],
   "autoload": {
     "psr-4": {
-      "SkinDeep\\Articles\\": "app/"
+      "SkinDeep\\": "app/"
     },
     "files": [
       "app/setup.php"

@@ -2,9 +2,9 @@
 
 namespace SkinDeep\Shop\Donations;
 
-use SkinDeep\Articles\WidgetArgs;
-use SkinDeep\Articles\WidgetArgsInterface;
-use SkinDeep\Articles\WidgetArgsHelper;
+use SkinDeep\Widgets\WidgetArgs;
+use SkinDeep\Widgets\WidgetArgsInterface;
+use SkinDeep\Widgets\WidgetArgsHelper;
 
 const MONEY_FORMAT = "%!i";
 

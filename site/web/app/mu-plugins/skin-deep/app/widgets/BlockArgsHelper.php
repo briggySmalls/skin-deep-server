@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets;
 
 class BlockArgsHelper implements ArgsHelperInterface
 {

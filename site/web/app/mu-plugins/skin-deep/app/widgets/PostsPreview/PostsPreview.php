@@ -1,6 +1,9 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets\PostsPreview;
+
+use SkinDeep\Widgets\Widget;
+use SkinDeep\Utilities\ResourceManager;
 
 /**
  * Posts preview widget

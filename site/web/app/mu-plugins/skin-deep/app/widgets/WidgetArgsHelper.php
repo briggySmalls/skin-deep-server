@@ -1,6 +1,9 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets;
+
+use SkinDeep\Articles\Article;
+use SkinDeep\Articles\Post;
 
 class WidgetArgsHelper implements ArgsHelperInterface
 {

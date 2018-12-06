@@ -1,9 +1,11 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets\PostsPreview;
 
 use SkinDeep\Events\Plugin;
 use SkinDeep\Events\Event;
+
+use SkinDeep\Widgets\WidgetArgsInterface;
 
 class PostsPreviewArgs implements WidgetArgsInterface
 {

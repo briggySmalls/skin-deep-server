@@ -1,6 +1,9 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Widgets\PostSuggestions;
+
+use SkinDeep\Widgets\Widget;
+use SkinDeep\Utilities\ResourceManager;
 
 /**
  * Post suggestions widget
