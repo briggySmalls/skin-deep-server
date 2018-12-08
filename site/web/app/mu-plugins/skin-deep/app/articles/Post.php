@@ -39,15 +39,12 @@ class Post
      * @param      $size     The nominal wordpress size (default to small)
      * @return     Featured image
      */
-    public function image($classes = false, $sizes = false, $size = "post-thumbnail")
+    public function image($options)
     {
         $attrs = [];
-        if (isset($classes)) {
-            $attrs['class'] = $classes;
-        }
-        if (isset($sizes)) {
-            $attrs['sizes'] = $sizes;
-        }
+        self::copyIfSet($attrs, 'class', $options, 'classes');
+        self::copyIfSet($attrs, 'sizes', $options, 'sizes');
+        $size = $options['size'] ?? 'post-thumbnail';
         return get_the_post_thumbnail($this->post->ID, $size, $attrs);
     }
 
@@ -102,5 +99,11 @@ class Post
             sprintf("Undefined property '%s' on %s", $name, get_class($this)),
             E_USER_NOTICE
         );
+    }
+
+    private static function copyIfSet($dest, $dest_key, $source, $source_key) {
+        if (isset($source[$source_key])) {
+            $dest[$dest_key] = $source[$source_key];
+        }
     }
 }

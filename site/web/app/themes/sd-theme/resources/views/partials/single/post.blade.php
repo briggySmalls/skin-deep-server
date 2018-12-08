@@ -29,9 +29,9 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
           <a class="buy-button" href="{{ $magazine->url() }}">Buy it now</a>
         </div>
         <div class="col-sm-4">
-          {!! $magazine->image(
-            false,
-            "(max-size: " . \SkinDeep\Widgets\PostsPreview\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw") !!}
+          {!! $magazine->image([
+            'sizes' => "(max-size: " . \SkinDeep\Widgets\PostsPreview\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw"
+          ]) !!}
         </div>
       </div>
     </div>

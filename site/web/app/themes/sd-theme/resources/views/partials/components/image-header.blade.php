@@ -1,3 +1,6 @@
-{!! $post->image($image_classes ?? false, $image_sizes ?? false) !!}
+{!! $post->image([
+  'classes' => $image_classes ?? false,
+  'sizes' => $image_sizes ?? false
+]) !!}
 <figcaption>
 </figcaption>
