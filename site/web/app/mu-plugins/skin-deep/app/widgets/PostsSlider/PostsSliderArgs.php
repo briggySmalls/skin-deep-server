@@ -7,11 +7,20 @@ use SkinDeep\Widgets\WidgetArgsHelper;
 
 class PostsSliderArgs implements WidgetArgsInterface
 {
+    /**
+     * Posts to display in the slider
+     */
     public $posts;
+
+    /**
+     * A unique ID to give the slider element
+     */
+    public $id;
 
     public function __construct($posts)
     {
         $this->posts = $posts;
+        $this->id = uniqid('slider-');
     }
 
     public static function fromArgs($args_helper)
