@@ -137,7 +137,7 @@ class Post
         return $sources;
     }
 
-    private static function copyIfSet($dest, $dest_key, $source, $source_key) {
+    private static function copyIfSet(&$dest, $dest_key, $source, $source_key) {
         if (isset($source[$source_key])) {
             $dest[$dest_key] = $source[$source_key];
         }
