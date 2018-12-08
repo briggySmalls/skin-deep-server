@@ -1,6 +1,10 @@
 @if ($post->hasImage())
   <div class="featured-image postition-relative">
     {{-- Display the featured image --}}
-    {!! $post->image($image_classes ?? false, $image_sizes ?? false) !!}
+    {!! $post->image([
+      'classes' => $image_classes ?? false,
+      'sizes' => $image_sizes ?? false,
+      'extended' => $extended ?? false,
+    ]) !!}
   </div>
 @endif

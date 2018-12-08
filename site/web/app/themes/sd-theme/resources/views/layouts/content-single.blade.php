@@ -5,7 +5,7 @@
     @include('partials.components.video-header')
   @elseif ($post->hasImage())
     {{-- Otherwise display the featured image --}}
-    @include('partials.components.image-header')
+    @include('partials.components.image-header', ['extended' => true])
   @endif
 </figure>
 {{-- Now display the main article --}}

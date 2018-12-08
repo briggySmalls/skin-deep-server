@@ -9,7 +9,10 @@
         <a href="{{ $post->url() }}">
         @include(
           'partials.components.featured-media',
-          ['image_classes' => 'd-block w-100'])
+          [
+            'image_classes' => 'd-block w-100',
+            'extended' => true
+          ])
         </a>
         <div class="carousel-caption d-none d-md-block">
           <h3>{!! $post->title() !!}</h3>
