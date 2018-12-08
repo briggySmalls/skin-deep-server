@@ -47,13 +47,13 @@ class Post
         $size = $options['size'] ?? 'post-thumbnail';
 
         // Check if we want an extended srcset
-        if (isset($options['extended'])) {
+        if (isset($options['extended']) && $options['extended']) {
             add_filter('wp_calculate_image_srcset', '\SkinDeep\Articles\Post::extendSrcSet', 10, 5);
         }
 
         $image = get_the_post_thumbnail($this->post->ID, $size, $attrs);
 
-        if (isset($options['extended'])) {
+        if (isset($options['extended']) && $options['extended']) {
             remove_filter('wp_calculate_image_srcset', '\SkinDeep\Articles\Post::extendSrcSet', 10);
         }
 
