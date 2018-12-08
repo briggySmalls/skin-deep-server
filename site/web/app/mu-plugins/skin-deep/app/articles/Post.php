@@ -45,7 +45,19 @@ class Post
         self::copyIfSet($attrs, 'class', $options, 'classes');
         self::copyIfSet($attrs, 'sizes', $options, 'sizes');
         $size = $options['size'] ?? 'post-thumbnail';
-        return get_the_post_thumbnail($this->post->ID, $size, $attrs);
+
+        // Check if we want an extended srcset
+        if (isset($options['extended'])) {
+            add_filter('wp_calculate_image_srcset', '\SkinDeep\Articles\Post::extendSrcSet', 10, 5);
+        }
+
+        $image = get_the_post_thumbnail($this->post->ID, $size, $attrs);
+
+        if (isset($options['extended'])) {
+            remove_filter('wp_calculate_image_srcset', '\SkinDeep\Articles\Post::extendSrcSet', 10);
+        }
+
+        return $image;
     }
 
     /**
@@ -99,6 +111,30 @@ class Post
             sprintf("Undefined property '%s' on %s", $name, get_class($this)),
             E_USER_NOTICE
         );
+    }
+
+    /**
+     * @brief      Get extended srcset for an image, including original image
+     *
+     *             Wordpress automatically creates a srcset for an image, and
+     *             correctly only includes sizes with the same aspect ratio.
+     *             However we have a need to show the original image, even if it
+     *             has a different aspect ratio to ASPECT_RATIO, on large
+     *             devices
+     *
+     * @return     srcset that includes original image size
+     */
+    public static function extendSrcSet($sources, $size_array, $image_src, $image_meta, $attachment_id)
+    {
+        list($url, $width, $height, $is_intermediate) = wp_get_attachment_image_src($attachment_id, 'full');
+        // Add original image
+        $sources[$width] = [
+            'url' => $url,
+            'value' => $width,
+            'descriptor' => 'w'
+        ];
+
+        return $sources;
     }
 
     private static function copyIfSet($dest, $dest_key, $source, $source_key) {

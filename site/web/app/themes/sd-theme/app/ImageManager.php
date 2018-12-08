@@ -22,12 +22,12 @@ class ImageManager
         self::updateSize('large', self::WIDTHS['large']);
     }
 
-    public static function getImageSizeArgs($width)
+    private static function getImageSizeArgs($width)
     {
         return array_values(self::sizeArgs($width));
     }
 
-    public static function updateSize($name, $width)
+    private static function updateSize($name, $width)
     {
         $args = self::sizeArgs($width);
         // Update the option (just to reflect the hard-coded values)
@@ -36,12 +36,12 @@ class ImageManager
         update_option("${name}_crop", $args['crop']);
     }
 
-    public static function addSize($name, $width)
+    private static function addSize($name, $width)
     {
         add_image_size($name, ...self::getImageSizeArgs($width));
     }
 
-    protected static function sizeArgs($width)
+    private static function sizeArgs($width)
     {
         return [
             'width' => $width,
