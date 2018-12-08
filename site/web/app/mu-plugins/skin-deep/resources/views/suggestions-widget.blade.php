@@ -2,7 +2,7 @@
   Widget output template
   --}}
 @if (is_single())
-  <aside class="jumbotron">
+  <aside class="suggestions jumbotron">
     <h3>Want to read more?</h3>
     <p class="lead">
       More articles written by
