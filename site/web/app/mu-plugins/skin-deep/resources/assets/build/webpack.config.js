@@ -16,6 +16,9 @@ module.exports = {
     // ACF scripts
     'acf': "./resources/assets/scripts/acf.js",
   },
+  externals: {
+    jquery: 'jQuery'
+  },
   module: {
     rules:[
       {
