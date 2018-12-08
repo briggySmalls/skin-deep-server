@@ -169,7 +169,8 @@ abstract class Widget extends \WP_Widget
         if ($is_script) {
             wp_enqueue_script(
                 static::WIDGET_SLUG . '-' . $end . '-script',
-                $resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js'
+                $resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js',
+                ['jquery']
             );
         } else {
             wp_enqueue_style(

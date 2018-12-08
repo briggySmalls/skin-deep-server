@@ -43,7 +43,9 @@
     "lint:styles": "stylelint \"resources/assets/styles/**/*.{css,sass,scss,sss,less}\"",
     "test": "npm run -s lint"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bcswipe": "https://github.com/briggySmalls/bcSwipe"
+  },
   "devDependencies": {
     "css-loader": "^1.0.0",
     "eslint": "^5.9.0",
