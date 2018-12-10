@@ -1,5 +1,11 @@
-<header id="main-header" class="banner">
-      {{-- Don't bother with a link, it's supplied already --}}
+<div class="banner" style="background-color: {{ get_theme_mod('header_image_bg_colour') }}">
+  <img src="{{ header_image() }}"
+       height="{{ get_custom_header()->height }}"
+       width="{{ get_custom_header()->width }}"
+       alt="" />
+</div>
+<header id="main-header">
+  {{-- Don't bother with a link, it's supplied already --}}
   <nav class="navbar top-level">
     <div class="navigation-grid">
       <div id="logo">

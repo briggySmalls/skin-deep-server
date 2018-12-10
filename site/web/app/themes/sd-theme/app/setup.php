@@ -70,8 +70,22 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('post-thumbnails');
 
-    // Set theme image sizes
+    /**
+     * Set theme image sizes
+     */
     ImageManager::setSrcSizes();
+
+    /**
+     * Enable custom headers
+     * @link https://developer.wordpress.org/themes/functionality/custom-headers/
+     */
+    $args = array(
+        'width'              => 1558,
+        'height'             => 126,
+        'flex-width'         => true,
+        'flex-height'        => true,
+    );
+    add_theme_support('custom-header', $args);
 
     /**
      * Enable HTML5 markup support
