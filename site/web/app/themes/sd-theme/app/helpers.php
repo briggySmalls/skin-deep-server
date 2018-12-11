@@ -179,3 +179,39 @@ function addCustomHeaderColour($wp_customize)
     );
 }
 
+/**
+ * @brief      Adds customizer settings for a custom logo for a dark page
+ * @param      $wp_customize  The wp customizer object
+ * @return     null
+ */
+function addDarkCustomLogo($wp_customize)
+{
+    $wp_customize->add_setting('logo_dark', [
+        'type' => 'theme_mod',
+        'capability' => 'edit_theme_options',
+        'sanitize_callback' => 'absint'
+    ]);
+
+    // Add media selection control associated with setting
+    $wp_customize->add_control(new \WP_Customize_Media_Control($wp_customize, 'image_control', [
+      'label' => __( 'Logo - dark', 'sage' ),
+      'section' => 'title_tagline',
+      'settings' => 'logo_dark',
+      'mime_type' => 'image',
+    ]));
+}
+
+/**
+ * @brief      Helper function to determine if a page should be dark themed
+ * @return     True if dark page, False otherwise.
+ */
+function isDarkPage()
+{
+    // We never care about admin pages
+    if (is_admin()) {
+        return false;
+    }
+
+    // Check if the page has a dark theme
+    return has_post_format('video');
+}
