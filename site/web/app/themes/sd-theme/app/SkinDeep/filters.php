@@ -216,18 +216,14 @@ add_action('customize_register', function ($wp_customize) {
 });
 
 /**
- * Fetch dark theme logo when relevant
+ * Fetch dark theme logo image when relevant
  */
-add_filter('wp_get_attachment_image_attributes', function ($attr, $attachment, $size) {
+add_filter('wp_get_attachment_image_src', function ($image, $attachment_id, $size, $icon) {
     // Check if image is a logo on a dark page
-    if (isset($attr['class']) && ('custom-logo' === $attr['class']) && isDarkPage()) {
+    if ((get_theme_mod('custom_logo') === $attachment_id) && isDarkPage()) {
         // Get the dark theme image details
         $custom_logo_id = get_theme_mod('logo_dark');
-        list($url, $width, $height, $is_intermediate) = wp_get_attachment_image_src($custom_logo_id, $size);
-        // Swap details for dark theme logo
-        $attr['src'] = $url;
-        $attr['width'] = $width;
-        $attr['height'] = $height;
+        return wp_get_attachment_image_src($custom_logo_id, $size, $icon);
     }
-    return $attr;
-}, 10, 3);
+    return $image;
+}, 10, 4);
