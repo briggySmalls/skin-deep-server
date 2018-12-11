@@ -149,3 +149,33 @@ function is_photon_active()
 {
     return class_exists('Jetpack') && \Jetpack::is_module_active('photon');
 }
+
+/**
+ * @brief      Adds customizer settings for custom header background colour.
+ * @param      $wp_customize  The wp customizer object
+ * @return     null
+ */
+function addCustomHeaderColour($wp_customize)
+{
+    // Add a header image background colour setting (DB)
+    $wp_customize->add_setting('header_image_bg_colour', [
+        'type' => 'theme_mod',
+        'default' => '#FFFFFF',
+        'capability' => 'edit_theme_options',
+        'theme_supports' => 'custom-header',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+
+    // Add colour picker control associated with setting
+    $wp_customize->add_control(
+        new \WP_Customize_Color_Control(
+        $wp_customize,
+        'link_color',
+        [
+            'label'      => __( 'Header image background color', 'sage' ),
+            'section'    => 'header_image',
+            'settings'   => 'header_image_bg_colour',
+        ])
+    );
+}
+
