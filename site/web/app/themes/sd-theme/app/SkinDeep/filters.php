@@ -210,4 +210,24 @@ add_filter('wp', function () {
 add_action('customize_register', function ($wp_customize) {
     // Add the custom header image background colour
     addCustomHeaderColour($wp_customize);
+
+    // Add second site logo (dark)
+    addDarkCustomLogo($wp_customize);
 });
+
+/**
+ * Fetch dark theme logo when relevant
+ */
+add_filter('wp_get_attachment_image_attributes', function ($attr, $attachment, $size) {
+    // Check if image is a logo on a dark page
+    if (isset($attr['class']) && ('custom-logo' === $attr['class']) && isDarkPage()) {
+        // Get the dark theme image details
+        $custom_logo_id = get_theme_mod('logo_dark');
+        list($url, $width, $height, $is_intermediate) = wp_get_attachment_image_src($custom_logo_id, $size);
+        // Swap details for dark theme logo
+        $attr['src'] = $url;
+        $attr['width'] = $width;
+        $attr['height'] = $height;
+    }
+    return $attr;
+}, 10, 3);
