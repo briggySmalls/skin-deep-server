@@ -25,7 +25,7 @@ add_action('wp_enqueue_scripts', function () {
         # We only need fonts on the frontend
         $fonts = [
             'Acme',
-            'Amiri',
+            'Open+Sans:300,300i,400,400i,600,700,700i,800,800i',
         ];
         wp_enqueue_style(
             'custom-google-fonts',
