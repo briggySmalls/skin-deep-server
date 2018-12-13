@@ -27,7 +27,7 @@ body.term-post-format-video {
 
 // Categories/date separator
 .entry-meta {
-  span.entry-categories::after {
+  span.categories::after {
     content: " | ";
   }
 }
