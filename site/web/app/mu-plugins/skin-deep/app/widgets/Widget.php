@@ -4,6 +4,8 @@ namespace SkinDeep\Widgets;
 
 use function SkinDeep\Theme\sage;
 
+use SkinDeep\Utilities\ResourceManager;
+
 /**
  * Featured posts slider widget
  *
@@ -25,9 +27,9 @@ abstract class Widget extends \WP_Widget
      * Specifies the classname and description, instantiates the widget,
      * loads localization files, and includes necessary stylesheets and JavaScript.
      */
-    public function __construct($title, $description, $resource_manager)
+    public function __construct($title, $description)
     {
-        $this->resource_manager = $resource_manager;
+        $this->resource_manager = new ResourceManager();
 
         // load plugin text domain
         add_action('init', array( $this, 'widgetTextdomain' ));
@@ -45,9 +47,6 @@ abstract class Widget extends \WP_Widget
         add_action('save_post', [ $this, 'flushWidgetCache' ]);
         add_action('deleted_post', [ $this, 'flushWidgetCache' ]);
         add_action('switch_theme', [ $this, 'flushWidgetCache' ]);
-        // Register assets (but do not enqueue them)
-        add_action('wp_enqueue_scripts', [ $this, 'registerWidgetAssets' ]);
-        add_action('admin_enqueue_scripts', [ $this, 'registerAdminAssets' ]);
         // Hooks fired when the Widget is activated and deactivated
         register_activation_hook(__FILE__, [ __NAMESPACE__ . '\\' . get_class(), 'activate' ]);
         register_deactivation_hook(__FILE__, [ __NAMESPACE__ . '\\' . get_class(), 'deactivate' ]);
@@ -167,39 +166,23 @@ abstract class Widget extends \WP_Widget
     protected static function enqueueAsset($resource_manager, $end, $is_script)
     {
         if ($is_script) {
-            wp_enqueue_script(
-                static::WIDGET_SLUG . '-' . $end . '-script',
-                $resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js',
+            wp_enqueue_script($end . '-script',
+                $resource_manager->distURL() . $end . '.js',
                 ['jquery']
             );
         } else {
             wp_enqueue_style(
-                static::WIDGET_SLUG . '-' . $end . '-style',
-                $resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.css'
+                $end . '-style',
+                $resource_manager->distURL() . $end . '.css'
             );
         }
     }
 
     /**
-     * @brief      Pre-registers the widget assets
-     */
-    public function registerWidgetAssets()
-    {
-        $this->registerAsset('widget', $is_script = true);
-        $this->registerAsset('widget', $is_script = false);
-    }
-
-    /**
-     * @brief      Pre-registers the admin assets
-     */
-    public function registerAdminAssets()
-    {
-        $this->registerAsset('admin', $is_script = true);
-        $this->registerAsset('admin', $is_script = false);
-    }
-
-    /**
      * @brief      Returns the output of the widget
+     * @param      $resource_manager  The resource manager
+     * @param      $template          The template
+     * @param      $args              The arguments
      * @return     Widget HTML
      */
     public static function output($resource_manager, $template, $args)
@@ -224,26 +207,6 @@ abstract class Widget extends \WP_Widget
     /*--------------------------------------------------*/
     /* Private/protected Functions
     /*--------------------------------------------------*/
-
-    /**
-     * @brief      Helper function to register an asset
-     * @param      $end        Indicates front or admin end ('widget' or 'admin')
-     * @param      $is_script  Indicates if script or style
-     */
-    protected function registerAsset($end, $is_script)
-    {
-        if ($is_script) {
-            wp_register_script(
-                static::WIDGET_SLUG . '-' . $end . '-script',
-                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.js'
-            );
-        } else {
-            wp_register_style(
-                static::WIDGET_SLUG . '-' . $end . '-style',
-                $this->resource_manager->distURL() . static::WIDGET_SLUG . '/' . $end . '.css'
-            );
-        }
-    }
 
     protected static function templateName($name)
     {

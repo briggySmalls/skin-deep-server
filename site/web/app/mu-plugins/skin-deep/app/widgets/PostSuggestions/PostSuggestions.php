@@ -3,7 +3,6 @@
 namespace SkinDeep\Widgets\PostSuggestions;
 
 use SkinDeep\Widgets\Widget;
-use SkinDeep\Utilities\ResourceManager;
 
 /**
  * Post suggestions widget
@@ -36,8 +35,7 @@ class PostSuggestions extends Widget
     {
         parent::__construct(
             __('Post suggestions', self::WIDGET_SLUG),
-            __('Suggest how to navigate to relevant posts.', self::WIDGET_SLUG),
-            new ResourceManager()
+            __('Suggest how to navigate to relevant posts.', self::WIDGET_SLUG)
         );
     } // end constructor
 

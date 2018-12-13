@@ -4,16 +4,9 @@ const rootPath = process.cwd()
 
 module.exports = {
   entry: {
-    // Preview widget
-    'preview/widget': "./resources/assets/scripts/preview/widget.js",
-    'preview/admin': "./resources/assets/scripts/preview/admin.js",
-    // Slider widget
-    'slider/widget': "./resources/assets/scripts/slider/widget.js",
-    'slider/admin': "./resources/assets/scripts/slider/admin.js",
-    // Donation widget
-    'donation/widget': "./resources/assets/scripts/donation/widget.js",
-    'donation/admin': "./resources/assets/scripts/donation/admin.js",
-    // ACF scripts
+    // Load admin/public side assets
+    'admin': "./resources/assets/scripts/admin.js",
+    'widget': "./resources/assets/scripts/widget.js",
     'acf': "./resources/assets/scripts/acf.js",
   },
   externals: {

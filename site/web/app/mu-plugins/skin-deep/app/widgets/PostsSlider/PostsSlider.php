@@ -3,7 +3,6 @@
 namespace SkinDeep\Widgets\PostsSlider;
 
 use SkinDeep\Widgets\Widget;
-use SkinDeep\Utilities\ResourceManager;
 
 /**
  * Posts slider widget
@@ -37,8 +36,7 @@ class PostsSlider extends Widget
     {
         parent::__construct(
             __('Posts Slider', self::WIDGET_SLUG),
-            __('Preview of posts in a featured slider.', self::WIDGET_SLUG),
-            new ResourceManager()
+            __('Preview of posts in a featured slider.', self::WIDGET_SLUG)
         );
     }
 

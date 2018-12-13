@@ -3,7 +3,6 @@
 namespace SkinDeep\Widgets\Donations;
 
 use SkinDeep\Widgets\Widget;
-use SkinDeep\Utilities\ResourceManager;
 
 class Donation extends Widget
 {
@@ -18,8 +17,7 @@ class Donation extends Widget
         // Register the widget properties
         parent::__construct(
             __('Donation', self::WIDGET_SLUG),
-            __('Donations widget.', self::WIDGET_SLUG),
-            new ResourceManager(dirname(__DIR__))
+            __('Donations widget.', self::WIDGET_SLUG)
         );
     }
 

@@ -3,7 +3,6 @@
 namespace SkinDeep\Widgets\PostsPreview;
 
 use SkinDeep\Widgets\Widget;
-use SkinDeep\Utilities\ResourceManager;
 
 /**
  * Posts preview widget
@@ -48,8 +47,7 @@ class PostsPreview extends Widget
     {
         parent::__construct(
             __('Posts Preview', self::WIDGET_SLUG),
-            __('Preview of posts in a configured group.', self::WIDGET_SLUG),
-            new ResourceManager()
+            __('Preview of posts in a configured group.', self::WIDGET_SLUG)
         );
     }
 
