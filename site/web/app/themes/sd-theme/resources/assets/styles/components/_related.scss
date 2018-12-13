@@ -1,0 +1,12 @@
+// Restyle Jetpack's related posts
+#jp-relatedposts {
+  @extend .container;
+
+  .jp-relatedposts-grid {
+    @extend .row;
+
+    .jp-relatedposts-post {
+      @extend .col-md;
+    }
+  }
+}
