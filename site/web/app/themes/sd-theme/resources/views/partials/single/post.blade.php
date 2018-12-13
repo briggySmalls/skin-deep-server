@@ -20,18 +20,20 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
 {{-- Magazine advert --}}
 @php $magazine = $post->magazine(); @endphp
 @if ($magazine)
-  <aside class="jumbotron">
+  <aside class="jumbotron linked-magazine">
     <div class="container">
       <div class="row">
-        <div class="col-sm-8">
-          <h1 class="display-4">Get the full magazine</h1>
+        <div class="col-sm-4 order-sm-last mb-sm-0 mb-4 image">
+          <a href=" {{ $magazine->url() }}">
+            {!! $magazine->image([
+              'sizes' => "(max-size: " . \SkinDeep\Widgets\PostsPreview\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw"
+            ]) !!}
+          </a>
+        </div>
+        <div class="col-sm-8 text">
+          <h2>Get the full magazine</h2>
           <p class="lead">This piece is from our print edition: {!! $magazine->title() !!}</p>
           <a class="buy-button" href="{{ $magazine->url() }}">Buy it now</a>
-        </div>
-        <div class="col-sm-4">
-          {!! $magazine->image([
-            'sizes' => "(max-size: " . \SkinDeep\Widgets\PostsPreview\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw"
-          ]) !!}
         </div>
       </div>
     </div>
