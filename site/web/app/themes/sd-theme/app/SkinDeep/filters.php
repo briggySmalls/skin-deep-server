@@ -209,7 +209,7 @@ add_filter('wp', function () {
  */
 add_action('customize_register', function ($wp_customize) {
     // Add the custom header image background colour
-    addCustomHeaderColour($wp_customize);
+    addCustomHeaderSettings($wp_customize);
 
     // Add second site logo (dark)
     addDarkCustomLogo($wp_customize);

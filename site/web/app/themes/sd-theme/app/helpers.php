@@ -151,11 +151,11 @@ function is_photon_active()
 }
 
 /**
- * @brief      Adds customizer settings for custom header background colour.
+ * @brief      Adds additional customizer settings for custom header.
  * @param      $wp_customize  The wp customizer object
  * @return     null
  */
-function addCustomHeaderColour($wp_customize)
+function addCustomHeaderSettings($wp_customize)
 {
     // Add a header image background colour setting (DB)
     $wp_customize->add_setting('header_image_bg_colour', [
@@ -172,11 +172,30 @@ function addCustomHeaderColour($wp_customize)
         $wp_customize,
         'link_color',
         [
-            'label'      => __( 'Header image background color', 'sage' ),
+            'label'      => __('Header image background color', 'sage'),
+            'description' => __('Colour to show either side of image on wide screens.', 'sage'),
             'section'    => 'header_image',
             'settings'   => 'header_image_bg_colour',
         ])
     );
+
+    // Add URL setting
+    $wp_customize->add_setting('header_image_url', [
+        'type' => 'theme_mod',
+        'default' => '',
+        'capability' => 'edit_theme_options',
+        'theme_supports' => 'custom-header',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+
+    // Add colour picker control associated with setting
+    $wp_customize->add_control('header_image_url', [
+        'type' => 'url',
+        'label' => __('Header image  link', 'sage'),
+        'description' => __(nl2br('Make image link to a page.<br/>Note: it\'s preferable for this to be relative, e.g. \'/events\' not \'https://example.com/events\''), 'sage'),
+        'placeholder' => __('/articles'),
+        'section' => 'header_image',
+    ]);
 }
 
 /**

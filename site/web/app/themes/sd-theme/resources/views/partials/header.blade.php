@@ -1,9 +1,14 @@
-<div class="banner" style="background-color: {{ get_theme_mod('header_image_bg_colour') }}">
-  <img src="{{ header_image() }}"
-       height="{{ get_custom_header()->height }}"
-       width="{{ get_custom_header()->width }}"
-       alt="" />
-</div>
+@if (has_custom_header())
+  @component('components.link')
+  @slot('link')
+    {{ get_theme_mod('header_image_url') }}
+  @endslot
+
+  <div class="banner" style="background-color: {{ get_theme_mod('header_image_bg_colour') }}">
+    {!! get_header_image_tag() !!}
+  </div>
+  @endcomponent
+@endif
 <header id="main-header">
   {{-- Don't bother with a link, it's supplied already --}}
   <nav class="navbar top-level">
