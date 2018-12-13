@@ -32,6 +32,13 @@ body.term-post-format-video {
   }
 }
 
+// Style videos responsively
+.entry-content-asset {
+  @extend .embed-responsive;
+  // Note: we assume an aspect ratio here. We may get letterboxing
+  @extend .embed-responsive-16by9;
+}
+
 // Add more padding to all single posts
 body.single {
   &:not(.single-sd-product) main > .container, {
