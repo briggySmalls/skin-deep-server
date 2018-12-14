@@ -5,7 +5,7 @@ body {
 }
 
 // Fonts
-.nav-item,
+#top-nav .nav-item,
 .page-header h1,
 .preview-posts .title {
   font-weight: bold;
@@ -16,14 +16,6 @@ body {
 .posts-slider .carousel-caption {
   font-display: swap;
   font-family: 'Acme', sans-serif;
-}
-
-#sub-nav .nav-item,
-.card .categories,
-.event-details,
-.byline.author,
-.product-price {
-  font-weight: lighter;
 }
 
 .card {
