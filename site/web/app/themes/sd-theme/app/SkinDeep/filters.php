@@ -164,15 +164,7 @@ add_filter('wp_calculate_image_sizes', function ($sizes, $size) {
  * Configure posts preview widget
  */
 add_filter('sd/articles/preview-config', function ($post_type_config_map) {
-    return [
-        'template' => function ($post) {
-            return App::POST_TYPE_MAP[get_post_type($post)]['template'];
-        },
-        'wrapper' => function ($post) {
-            $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
-            return new $class_name($post);
-        },
-    ];
+    return getGridConfig();
 });
 
 /**

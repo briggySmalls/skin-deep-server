@@ -1,7 +1,7 @@
 {{-- Display featured image/video --}}
 @include(
   'partials.components.featured-media',
-  ['image_sizes' => \SkinDeep\Widgets\PostsPreview\PostsPreview::sizes($column_count)])
+  ['image_sizes' => \SkinDeep\Widgets\PostsPreview\PostsPreview::sizes($grid_config['column_count'])])
 <div class="card-body">
   @include('partials.components.categories')
   {{-- Display title --}}

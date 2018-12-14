@@ -73,22 +73,9 @@ class App extends Controller
         return $default_category == $category->term_id;
     }
 
-    public function columnCount()
-    {
-        return 3;
-    }
-
     public function gridConfig()
     {
-        return [
-            'template' => function ($post) {
-                return App::POST_TYPE_MAP[get_post_type($post)]['template'];
-            },
-            'wrapper' => function ($post) {
-                $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
-                return new $class_name($post);
-            },
-        ];
+        return getGridConfig();
     }
 
     protected static function category()

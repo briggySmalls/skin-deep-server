@@ -234,3 +234,21 @@ function isDarkPage()
     // Check if the page has a dark theme
     return has_post_format('video');
 }
+
+/**
+ * @brief      Gets configuration for a grid of posts.
+ * @return     The grid configuration.
+ */
+function getGridConfig()
+{
+    return [
+        'template' => function ($post) {
+            return App::POST_TYPE_MAP[get_post_type($post)]['template'];
+        },
+        'wrapper' => function ($post) {
+            $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
+            return new $class_name($post);
+        },
+        'column_count' => 3,
+    ];
+}
