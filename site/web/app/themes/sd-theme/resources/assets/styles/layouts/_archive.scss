@@ -4,6 +4,11 @@
   }
 }
 
+// Hide posts navigation if infinite scroll is active
+.infinite-scroll .navigation {
+  display: none;
+}
+
 // Style cards throughout UI consistently
 .card {
   position: relative; // Ensure we can cover in a link

@@ -1,6 +1,6 @@
 {{-- Creates grid of cards --}}
 <div class="container-fluid posts-grid">
-  <div class="row justify-content-center">
+  <div id="loop-posts" class="row justify-content-center">
     @if (!have_posts())
       @include('plugin::components.warning')
     @else

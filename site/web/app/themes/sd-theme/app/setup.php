@@ -119,8 +119,10 @@ add_action('after_setup_theme', function () {
      * Allow infinite scrolling
      */
     add_theme_support('infinite-scroll', [
-        'container' => 'content',
+        'container' => 'loop-posts',
         'footer' => 'footer',
+        'render' => __NAMESPACE__ . '\\renderExtraPosts',
+        'wrapper' => false,
     ]);
 }, 20);
 
