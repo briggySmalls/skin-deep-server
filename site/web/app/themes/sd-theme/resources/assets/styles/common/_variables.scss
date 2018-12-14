@@ -13,3 +13,6 @@ $theme-colors: (
 
 $navbar-light-active-color: theme-color(primary);
 $navbar-light-hover-color: theme-color(link-hover);
+
+// Some helpful selectors
+$dark-page-selectors: "body.single-format-video, body.term-post-format-video";

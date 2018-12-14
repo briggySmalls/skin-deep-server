@@ -4,8 +4,7 @@
 }
 
 // Video format
-body.single-format-video,
-body.term-post-format-video {
+#{$dark-page-selectors} {
   background-color: black;
   color: white;
 

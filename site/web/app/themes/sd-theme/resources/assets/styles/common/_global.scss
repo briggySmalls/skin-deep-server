@@ -1,6 +1,23 @@
 // Anchors
+$link-colour: #00e;
+$link-visited-colour: #551a8b;
+$dark-link-colour: #5bb4ee;
+$dark-link-visited-colour: #c06afa;
+
+// Style links on dark pages
+#{$dark-page-selectors} {
+  a:not(.nav-link):not(.btn) {
+    color: $dark-link-colour;
+
+    &:visited {
+      color: $dark-link-visited-colour;
+    }
+  }
+}
+
+// Links on normal pages
 a:not(.nav-link):not(.btn) {
-  color: #00e;
+  color: $link-colour;
 
   @include hover {
     text-decoration: underline;
@@ -11,7 +28,7 @@ a:not(.nav-link):not(.btn) {
   }
 
   &:visited {
-    color: #551a8b;
+    color: $link-visited-colour;
   }
 }
 
