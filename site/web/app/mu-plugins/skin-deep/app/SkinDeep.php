@@ -62,6 +62,9 @@ class SkinDeep {
         // Register widgets
         $this->loader->addAction('widgets_init', __NAMESPACE__ . '\\SkinDeep::registerWidgets');
 
+        // Do some general setting up
+        $this->loader->addAction('wp_print_styles', __NAMESPACE__ . '\\SkinDeep::dequeueDashicons', 100);
+
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
         $this->events = new EventsModule($this->loader);
@@ -105,5 +108,16 @@ class SkinDeep {
             return str_replace(' src', "{$scripts[$handle]} src", $tag);
         }
         return $tag;
+    }
+
+    /**
+     * @brief      Dequeues the Dashicons CSS from the frontend
+     * @return     None
+     */
+    public static function dequeueDashicons() {
+        if (!is_user_logged_in()) {
+            // Remove icons if user not logged in
+            wp_deregister_style('dashicons');
+        }
     }
 }
