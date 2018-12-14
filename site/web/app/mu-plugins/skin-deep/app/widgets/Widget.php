@@ -166,7 +166,8 @@ abstract class Widget extends \WP_Widget
     protected static function enqueueAsset($resource_manager, $end, $is_script)
     {
         if ($is_script) {
-            wp_enqueue_script($end . '-script',
+            wp_enqueue_script(
+                $end . '-script',
                 $resource_manager->distURL() . $end . '.js',
                 ['jquery']
             );

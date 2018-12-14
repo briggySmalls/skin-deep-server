@@ -169,14 +169,15 @@ function addCustomHeaderSettings($wp_customize)
     // Add colour picker control associated with setting
     $wp_customize->add_control(
         new \WP_Customize_Color_Control(
-        $wp_customize,
-        'link_color',
-        [
+            $wp_customize,
+            'link_color',
+            [
             'label'      => __('Header image background color', 'sage'),
             'description' => __('Colour to show either side of image on wide screens.', 'sage'),
             'section'    => 'header_image',
             'settings'   => 'header_image_bg_colour',
-        ])
+            ]
+        )
     );
 
     // Add URL setting
@@ -213,7 +214,7 @@ function addDarkCustomLogo($wp_customize)
 
     // Add media selection control associated with setting
     $wp_customize->add_control(new \WP_Customize_Media_Control($wp_customize, 'image_control', [
-      'label' => __( 'Logo - dark', 'sage' ),
+      'label' => __('Logo - dark', 'sage'),
       'section' => 'title_tagline',
       'settings' => 'logo_dark',
       'mime_type' => 'image',
@@ -257,7 +258,8 @@ function getGridConfig()
  * @brief      Render new posts supplied by infinite scroll
  * @return     None
  */
-function renderExtraPosts() {
+function renderExtraPosts()
+{
     while (have_posts()) {
         // Update the post
         the_post();
