@@ -12,15 +12,13 @@ class PostsPreviewArgs implements WidgetArgsInterface
     public $posts;
     public $url;
     public $title;
-    public $column_count;
     public $grid_config;
 
-    public function __construct($posts, $url, $title, $column_count, $grid_config)
+    public function __construct($posts, $url, $title, $grid_config)
     {
         $this->posts = $posts;
         $this->url = $url;
         $this->title = $title;
-        $this->column_count = $column_count;
         $this->grid_config = $grid_config;
     }
 
@@ -49,14 +47,15 @@ class PostsPreviewArgs implements WidgetArgsInterface
         }
 
         // Get the per-post-type configuration map
-        $config = apply_filters('sd/articles/preview-config', []);
+        $config = apply_filters('sd/articles/preview-config', [
+            'column_count' => $args_helper->getAcfField('sd_widget_preview_columns'),
+        ]);
 
         // Now create the argument
         return new PostsPreviewArgs(
             get_posts($query_args),
             $url,
             $args_helper->getAcfField('sd_widget_preview_title'),
-            $args_helper->getAcfField('sd_widget_preview_columns'),
             $config
         );
     }

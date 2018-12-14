@@ -164,7 +164,13 @@ add_filter('wp_calculate_image_sizes', function ($sizes, $size) {
  * Configure posts preview widget
  */
 add_filter('sd/articles/preview-config', function ($post_type_config_map) {
-    return getGridConfig();
+    // Create a new grid config using theme templates, etc
+    $config = getGridConfig();
+    // Keep plugin's column count
+    if ($post_type_config_map['column_count']) {
+        $config['column_count'] = $post_type_config_map['column_count'];
+    }
+    return $config;
 });
 
 /**
