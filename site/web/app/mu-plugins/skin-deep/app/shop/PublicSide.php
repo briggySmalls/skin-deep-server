@@ -125,7 +125,7 @@ class PublicSide
     public function scriptLoaderTag($tag, $handle, $src)
     {
         if (self::SNIPCART_SCRIPT['handle'] === $handle) {
-            $tag = '<script type="text/javascript" src="' . $src . '" id="snipcart" data-api-key="' . $this->api_key . '"></script>';
+            $tag = "<script type=\"text/javascript\" src=\"$src\" id=\"snipcart\" data-api-key=\"{$this->api_key}\" async></script>";
         }
         return $tag;
     }
