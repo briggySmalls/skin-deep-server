@@ -234,3 +234,40 @@ function isDarkPage()
     // Check if the page has a dark theme
     return has_post_format('video');
 }
+
+/**
+ * @brief      Gets configuration for a grid of posts.
+ * @return     The grid configuration.
+ */
+function getGridConfig()
+{
+    return [
+        'template' => function ($post) {
+            return App::POST_TYPE_MAP[get_post_type($post)]['template'];
+        },
+        'wrapper' => function ($post) {
+            $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
+            return new $class_name($post);
+        },
+        'column_count' => 3,
+    ];
+}
+
+/**
+ * @brief      Render new posts supplied by infinite scroll
+ * @return     None
+ */
+function renderExtraPosts() {
+    while (have_posts()) {
+        // Update the post
+        the_post();
+        // Prepare template variables
+        $grid_config = getGridConfig();
+        $args = [
+            'post' => $grid_config['wrapper'](get_post()),
+            'grid_config' => getGridConfig(),
+        ];
+        // Add cards
+        echo sage('blade')->make('plugin::partials.card', $args)->render();
+    }
+}
