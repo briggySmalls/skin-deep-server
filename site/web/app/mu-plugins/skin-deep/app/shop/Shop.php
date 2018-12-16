@@ -79,12 +79,12 @@ class Shop
      *
      * @since    1.0.0
      */
-    public function __construct()
+    public function __construct($loader)
     {
         // Initialise variables
         $this->version = SD_SHOP_VERSION;
         $this->sd_shop = 'sd-shop';
-        $this->loader = new Loader();
+        $this->loader = $loader;
 
         // Execute setup actions
         $this->defineSitewideHooks();
@@ -143,16 +143,6 @@ class Shop
                 $query->set('meta_key', 'sd_product_in_stock');
             }
         });
-    }
-
-    /**
-     * Run the loader to execute all of the hooks with WordPress.
-     *
-     * @since    1.0.0
-     */
-    public function run()
-    {
-        $this->loader->run();
     }
 
     /**

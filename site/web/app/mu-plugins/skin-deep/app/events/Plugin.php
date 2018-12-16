@@ -6,7 +6,6 @@
 
 namespace SkinDeep\Events;
 
-use SkinDeep\Shop\Loader;
 use SkinDeep\Events\FacebookApi;
 use \YeEasyAdminNotices\V1\AdminNotice;
 use \DateTime;
@@ -32,10 +31,10 @@ class Plugin
 
     protected $settings_page_info;
 
-    public function __construct()
+    public function __construct($loader)
     {
-        // Create a loader
-        $this->loader = new Loader();
+        // Save the loader
+        $this->loader = $loader;
 
         // Add some hooks
         $this->loader->addFilter('registered_post_type', [$this, 'addEventStatusQuery'], 10, 2);
@@ -50,11 +49,6 @@ class Plugin
                     ->show();
             }
         });
-    }
-
-    public function run()
-    {
-        $this->loader->run();
     }
 
     public function addEventStatusQuery($post_type, $args)

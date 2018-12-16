@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Shop;
+namespace SkinDeep\Utilities;
 
 /**
  * Register all actions and filters for the plugin
