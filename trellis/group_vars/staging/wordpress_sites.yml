@@ -22,3 +22,4 @@ wordpress_sites:
       enabled: false
     env:
       acf_pro_key: "{{ vault_acf_pro_key }}"
+      google_tracking_id: "{{ skindeepmag_com_google_tracking_id }}"
