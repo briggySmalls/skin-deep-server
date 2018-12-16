@@ -25,7 +25,7 @@ class Product extends Post
         return get_field('sd_product_in_stock', $this->post->ID);
     }
 
-    public function image($classes = null, $sizes = null, $size = "post-thumbnail")
+    public function image($options)
     {
         if (has_term('magazines', 'sd-product-cat', $this->post->ID) && self::isPhotonActive()) {
             // Get the image details
@@ -38,11 +38,11 @@ class Product extends Post
             $srcset = self::toSrcSet($url, self::getPortraitSizes());
 
             // Provide a new size that is portrait
-            $sizes = $sizes ?? "100vw";
+            $sizes = $options['sizes'] ?? "100vw";
             $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
             return "<img src=\"${url}\" srcset=\"${srcset}\" sizes=\"${sizes}\" alt=\"${image_alt}\">";
         }
-        return parent::image($classes, $sizes, $size);
+        return parent::image($options);
     }
 
     public function cardClasses()
