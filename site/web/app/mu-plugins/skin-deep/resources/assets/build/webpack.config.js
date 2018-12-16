@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const rootPath = process.cwd()
@@ -5,6 +6,7 @@ const rootPath = process.cwd()
 module.exports = {
   entry: {
     // Plugin scripts
+    'public': "./resources/assets/scripts/public.js",
     'acf': "./resources/assets/scripts/acf.js",
     // Widget scripts
     'widgets-admin': "./resources/assets/scripts/widgets-admin.js",
@@ -40,5 +42,6 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+    new webpack.EnvironmentPlugin({GOOGLE_TRACKING_ID: 'TRACKING_ID_PLACEHOLDER'}),
   ],
 };

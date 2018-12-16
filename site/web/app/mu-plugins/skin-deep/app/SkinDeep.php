@@ -47,6 +47,18 @@ class SkinDeep {
             }
         });
 
+        // Register public scripts & styles
+        $resources = new ResourceManager(__DIR__);
+        $this->loader->addAction('wp_enqueue_scripts', function () use ($resources) {
+            wp_enqueue_script(
+                'google-tag-manager',
+                'https://www.googletagmanager.com/gtag/js?id=' . getenv('GOOGLE_TRACKING_ID'));
+            wp_enqueue_script('skindeep-plugin-public', $resources->distURL() . 'public.js');
+        });
+
+        // Add tags to scripts
+        $this->loader->addFilter('script_loader_tag', __NAMESPACE__ . '\\SkinDeep::updateScripts', 10, 2);
+
         // Register widgets
         $this->loader->addAction('widgets_init', __NAMESPACE__ . '\\SkinDeep::registerWidgets');
 
@@ -75,5 +87,23 @@ class SkinDeep {
         register_widget('SkinDeep\Widgets\PostsSlider\PostsSlider');
         register_widget('SkinDeep\Widgets\PostSuggestions\PostSuggestions');
         register_widget('SkinDeep\Widgets\Donations\Donation');
+    }
+
+    /**
+     * @brief      Add attributes to scripts
+     * @param      $tag     The script tag HTML
+     * @param      $handle  The handle of the script
+     * @return     The filtered script tag HTML
+     */
+    public static function updateScripts($tag, $handle)
+    {
+        $scripts = [
+            'google-tag-manager' => 'async',
+        ];
+
+        if (isset($scripts[$handle])) {
+            return str_replace(' src', "{$scripts[$handle]} src", $tag);
+        }
+        return $tag;
     }
 }
