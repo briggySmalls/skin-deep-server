@@ -47,11 +47,6 @@ class ShopModule extends Module
 
     private function defineSitewideHooks()
     {
-        // Register the widgets (donation)
-        add_action('widgets_init', function () {
-            register_widget('SkinDeep\Widgets\Donations\Donation');
-        });
-
         // Register shortcode (donation)
         add_shortcode('donation', function ($atts) {
             // Construct arguments

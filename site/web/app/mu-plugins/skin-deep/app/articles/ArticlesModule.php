@@ -15,13 +15,6 @@ use SkinDeep\Widgets\BlockArgsHelper;
 class ArticlesModule extends Module
 {
     protected function init() {
-        // Register article widgets
-        $this->getLoader()->addAction('widgets_init', function () {
-            register_widget('SkinDeep\Widgets\PostsPreview\PostsPreview');
-            register_widget('SkinDeep\Widgets\PostsSlider\PostsSlider');
-            register_widget('SkinDeep\Widgets\PostSuggestions\PostSuggestions');
-        });
-
         // Remove existing 'authors' base URL
         $this->getLoader()->addFilter('author_rewrite_rules', function () {
             return [];

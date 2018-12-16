@@ -38,13 +38,16 @@ class SkinDeep {
         $this->loader = new Loader();
 
         // Ensure ACF is present
-        $this->getLoader()->addAction('plugins_loaded', function () {
+        $this->loader->addAction('plugins_loaded', function () {
             if (!function_exists('get_field')) {
                 AdminNotice::create()
                     ->error('ACF Pro not found: Skin Deep plugin will not work. Contact site admin.')
                     ->show();
             }
         });
+
+        // Register widgets
+        $this->loader->addAction('widgets_init', __NAMESPACE__ . '\\SkinDeep::registerWidgets');
 
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
@@ -59,5 +62,17 @@ class SkinDeep {
     public function run() {
         // Execute all actions/filters
         $this->loader->run();
+    }
+
+    /**
+     * @brief      Register plugin's widgets
+     * @return     false
+     */
+    public static function registerWidgets()
+    {
+        register_widget('SkinDeep\Widgets\PostsPreview\PostsPreview');
+        register_widget('SkinDeep\Widgets\PostsSlider\PostsSlider');
+        register_widget('SkinDeep\Widgets\PostSuggestions\PostSuggestions');
+        register_widget('SkinDeep\Widgets\Donations\Donation');
     }
 }
