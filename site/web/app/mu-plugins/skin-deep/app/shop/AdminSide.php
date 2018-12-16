@@ -108,7 +108,7 @@ class AdminSide
         // Generate the 'widget' content
         echo Donation::output(
             new ResourceManager(__DIR__),
-            'widget',
+            Donation::PUBLIC_TEMPLATE,
             $arg_array
         );
     }

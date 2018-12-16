@@ -12,6 +12,16 @@ use SkinDeep\Utilities\ResourceManager;
  */
 abstract class Widget extends \WP_Widget
 {
+    /**
+     * Template name passed to 'output' to output widget content
+     */
+    public const PUBLIC_TEMPLATE = 'public';
+
+    /**
+     * Template name passed to 'output' to output admin form
+     */
+    public const ADMIN_TEMPLATE = 'admin';
+
     protected $resource_manager;
 
     /**
@@ -85,7 +95,7 @@ abstract class Widget extends \WP_Widget
 
         // Generate the widget content from the Blade template
         $context = get_object_vars($this->createArgs(new WidgetArgsHelper($args)));
-        $widget_string .= self::output($this->resource_manager, 'widget', $context);
+        $widget_string .= self::output($this->resource_manager, self::PUBLIC_TEMPLATE, $context);
         $widget_string .= $after_widget;
 
         $cache[ $args['widget_id'] ] = $widget_string;
@@ -123,7 +133,7 @@ abstract class Widget extends \WP_Widget
     public function form($instance)
     {
         // Display the admin form
-        echo self::output($this->resource_manager, 'admin', null);
+        echo self::output($this->resource_manager, self::ADMIN_TEMPLATE, null);
     } // end form
 
     /*--------------------------------------------------*/
@@ -167,14 +177,14 @@ abstract class Widget extends \WP_Widget
     {
         if ($is_script) {
             wp_enqueue_script(
-                $end . '-script',
-                $resource_manager->distURL() . $end . '.js',
+                "{$end}-script",
+                $resource_manager->distURL() . "widgets-{$end}.js",
                 ['jquery']
             );
         } else {
             wp_enqueue_style(
-                $end . '-style',
-                $resource_manager->distURL() . $end . '.css'
+                "{$end}-style",
+                $resource_manager->distURL() . "widgets-{$end}.css"
             );
         }
     }

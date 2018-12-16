@@ -67,10 +67,10 @@ function render_preview_posts()
     // Construct arguments
     $args = PostsPreviewArgs::fromArgs(new BlockArgsHelper());
     $arg_array = get_object_vars($args);
-    // Generate the 'widget' content
+    // Generate the widget content
     echo PostsPreview::output(
         new ResourceManager(),
-        'widget',
+        PostsPreview::PUBLIC_TEMPLATE,
         $arg_array
     );
 }
@@ -83,7 +83,7 @@ function render_slider()
     // Generate the 'widget' content
     echo PostsSlider::output(
         new ResourceManager(),
-        'widget',
+        PostsSlider::PUBLIC_TEMPLATE,
         $arg_array
     );
 }
@@ -156,7 +156,7 @@ add_filter('the_content', function ($content) {
         // Generate the 'widget' content
         $content .= PostSuggestions::output(
             new ResourceManager(),
-            'widget',
+            PostSuggestions::PUBLIC_TEMPLATE,
             $arg_array
         );
     }

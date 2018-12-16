@@ -123,7 +123,7 @@ class Shop
             // Generate the 'widget' content
             return Donation::output(
                 new ResourceManager(__DIR__),
-                'widget',
+                Donation::PUBLIC_TEMPLATE,
                 $arg_array
             );
         });
