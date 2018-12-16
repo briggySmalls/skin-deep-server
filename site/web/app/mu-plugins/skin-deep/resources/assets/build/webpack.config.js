@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     // Plugin scripts
     'public': "./resources/assets/scripts/public.js",
-    'admin': "./resources/assets/scripts/public.js",
+    'admin': "./resources/assets/scripts/admin.js",
     // Widget scripts
     'widgets-admin': "./resources/assets/scripts/widgets-admin.js",
     'widgets-public': "./resources/assets/scripts/widgets-public.js",
