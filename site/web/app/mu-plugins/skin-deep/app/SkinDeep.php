@@ -4,6 +4,7 @@ namespace SkinDeep;
 
 use \YeEasyAdminNotices\V1\AdminNotice;
 
+use SkinDeep\Utilities\ResourceManager;
 use SkinDeep\Events\EventsModule;
 use SkinDeep\Shop\ShopModule;
 use SkinDeep\Articles\ArticlesModule;

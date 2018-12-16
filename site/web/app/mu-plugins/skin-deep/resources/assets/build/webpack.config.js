@@ -5,8 +5,6 @@ const rootPath = process.cwd()
 module.exports = {
   entry: {
     // Plugin scripts
-    'public': "./resources/assets/scripts/public.js",
-    'admin': "./resources/assets/scripts/admin.js",
     'acf': "./resources/assets/scripts/acf.js",
     // Widget scripts
     'widgets-admin': "./resources/assets/scripts/widgets-admin.js",
