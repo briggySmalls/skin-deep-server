@@ -4,10 +4,11 @@ const rootPath = process.cwd()
 
 module.exports = {
   entry: {
-    // Load admin/public side assets
-    'admin': "./resources/assets/scripts/admin.js",
-    'widget': "./resources/assets/scripts/widget.js",
+    // Plugin scripts
     'acf': "./resources/assets/scripts/acf.js",
+    // Widget scripts
+    'widgets-admin': "./resources/assets/scripts/widgets-admin.js",
+    'widgets-public': "./resources/assets/scripts/widgets-public.js",
   },
   externals: {
     jquery: 'jQuery'

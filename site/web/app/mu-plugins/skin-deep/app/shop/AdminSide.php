@@ -27,25 +27,6 @@ use SkinDeep\Widgets\Donations\DonationArgs;
  */
 class AdminSide
 {
-
-    /**
-     * The ID of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $sd_shop    The ID of this plugin.
-     */
-    private $sd_shop;
-
-    /**
-     * The version of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this plugin.
-     */
-    private $version;
-
     /**
      * Initialize the class and set its properties.
      *
@@ -53,11 +34,8 @@ class AdminSide
      * @param      string    $sd_shop       The name of this plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct($sd_shop, $version, $loader)
+    public function __construct($loader)
     {
-        $this->sd_shop = $sd_shop;
-        $this->version = $version;
-
         // Enqueue assets
         $loader->addAction('admin_enqueue_scripts', function () {
             $this->enqueueScripts();
@@ -108,7 +86,7 @@ class AdminSide
         // Generate the 'widget' content
         echo Donation::output(
             new ResourceManager(__DIR__),
-            'widget',
+            Donation::PUBLIC_TEMPLATE,
             $arg_array
         );
     }

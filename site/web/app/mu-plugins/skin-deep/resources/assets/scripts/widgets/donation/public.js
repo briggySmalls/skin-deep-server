@@ -1,4 +1,4 @@
-import './../../styles/donation/widget.scss';
+import './../../../styles/donation/public.scss';
 
 class BuyButton {
   constructor(button) {
