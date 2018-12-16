@@ -15,15 +15,6 @@ use SkinDeep\Widgets\BlockArgsHelper;
 class ArticlesModule extends Module
 {
     protected function init() {
-        // Ensure ACF is present
-        $this->getLoader()->addAction('plugins_loaded', function () {
-            if (!function_exists('get_field')) {
-                AdminNotice::create()
-                    ->error('ACF Pro not found: Skin Deep Articles plugin will not work')
-                    ->show();
-            }
-        });
-
         // Register article widgets
         $this->getLoader()->addAction('widgets_init', function () {
             register_widget('SkinDeep\Widgets\PostsPreview\PostsPreview');

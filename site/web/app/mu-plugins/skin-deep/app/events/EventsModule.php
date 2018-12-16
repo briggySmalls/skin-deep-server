@@ -43,13 +43,6 @@ class EventsModule extends Module
         $this->getLoader()->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
         $this->getLoader()->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
         $this->getLoader()->addAction('acf/init', [$this, 'checkEventSettings']);
-        $this->getLoader()->addAction('plugins_loaded', function () {
-            if (!function_exists('get_field')) {
-                AdminNotice::create()
-                    ->error('ACF Pro not found: Skin Deep Events plugin will not work')
-                    ->show();
-            }
-        });
     }
 
     public function addEventStatusQuery($post_type, $args)

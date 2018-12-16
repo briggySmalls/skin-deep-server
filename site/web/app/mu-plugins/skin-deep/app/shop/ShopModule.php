@@ -6,7 +6,6 @@ use SkinDeep\Module;
 use SkinDeep\Widgets\Donations\Donations;
 use SkinDeep\Widgets\Donations\DonationArgs;
 use SkinDeep\Articles\ResourceManager;
-use \YeEasyAdminNotices\V1\AdminNotice;
 
 /**
  * The file that defines the core plugin class
@@ -51,15 +50,6 @@ class ShopModule extends Module
         // Register the widgets (donation)
         add_action('widgets_init', function () {
             register_widget('SkinDeep\Widgets\Donations\Donation');
-        });
-
-        // Check for ACF
-        $this->getLoader()->addAction('plugins_loaded', function () {
-            if (!function_exists('get_field')) {
-                AdminNotice::create()
-                    ->error('ACF Pro not found: Skin Deep Shop plugin will not work')
-                    ->show();
-            }
         });
 
         // Register shortcode (donation)

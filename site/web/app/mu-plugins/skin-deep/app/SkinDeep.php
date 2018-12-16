@@ -2,6 +2,8 @@
 
 namespace SkinDeep;
 
+use \YeEasyAdminNotices\V1\AdminNotice;
+
 use SkinDeep\Events\EventsModule;
 use SkinDeep\Shop\ShopModule;
 use SkinDeep\Articles\ArticlesModule;
@@ -34,6 +36,15 @@ class SkinDeep {
     public function __construct() {
         // Create a new loader
         $this->loader = new Loader();
+
+        // Ensure ACF is present
+        $this->getLoader()->addAction('plugins_loaded', function () {
+            if (!function_exists('get_field')) {
+                AdminNotice::create()
+                    ->error('ACF Pro not found: Skin Deep plugin will not work. Contact site admin.')
+                    ->show();
+            }
+        });
 
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
