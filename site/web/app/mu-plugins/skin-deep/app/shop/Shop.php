@@ -8,13 +8,6 @@ use SkinDeep\Articles\ResourceManager;
 use \YeEasyAdminNotices\V1\AdminNotice;
 
 /**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-const SD_SHOP_VERSION = '1.0.0';
-
-/**
  * The file that defines the core plugin class
  *
  * A class definition that includes attributes and functions used across both the
@@ -27,7 +20,7 @@ const SD_SHOP_VERSION = '1.0.0';
  */
 
 /**
- * The core plugin class.
+ * Entrypoint for the shop module.
  *
  * This is used to define internationalization, admin-specific hooks, and
  * public-facing site hooks.
@@ -62,15 +55,6 @@ class Shop
     protected $sd_shop;
 
     /**
-     * The current version of the plugin.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      string    $version    The current version of the plugin.
-     */
-    protected $version;
-
-    /**
      * Define the core functionality of the plugin.
      *
      * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -82,7 +66,6 @@ class Shop
     public function __construct($loader)
     {
         // Initialise variables
-        $this->version = SD_SHOP_VERSION;
         $this->sd_shop = 'sd-shop';
         $this->loader = $loader;
 
@@ -91,8 +74,8 @@ class Shop
 
         // Instantiate public/admin classes
         $i18n = new I18n($this->loader);
-        $plugin_admin = new AdminSide($this->getSdShop(), $this->getVersion(), $this->loader);
-        $plugin_public = new PublicSide($this->getSdShop(), $this->getVersion(), $this->loader);
+        $plugin_admin = new AdminSide($this->loader);
+        $plugin_public = new PublicSide($this->loader);
     }
 
     private function defineSitewideHooks()
@@ -143,39 +126,5 @@ class Shop
                 $query->set('meta_key', 'sd_product_in_stock');
             }
         });
-    }
-
-    /**
-     * The name of the plugin used to uniquely identify it within the context of
-     * WordPress and to define internationalization functionality.
-     *
-     * @since     1.0.0
-     * @return    string    The name of the plugin.
-     */
-    public function getSdShop()
-    {
-        return $this->sd_shop;
-    }
-
-    /**
-     * The reference to the class that orchestrates the hooks with the plugin.
-     *
-     * @since     1.0.0
-     * @return    Loader    Orchestrates the hooks of the plugin.
-     */
-    public function getLoader()
-    {
-        return $this->loader;
-    }
-
-    /**
-     * Retrieve the version number of the plugin.
-     *
-     * @since     1.0.0
-     * @return    string    The version number of the plugin.
-     */
-    public function getVersion()
-    {
-        return $this->version;
     }
 }

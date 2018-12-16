@@ -67,12 +67,8 @@ class PublicSide
      * @param      string    $sd_shop       The name of the plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct($sd_shop, $version, $loader)
+    public function __construct($loader)
     {
-        // Initialise variables
-        $this->sd_shop = $sd_shop;
-        $this->version = $version;
-
         // Enqueue assets
         $loader->addAction('wp_enqueue_scripts', function () {
             $this->enqueueScripts();

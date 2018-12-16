@@ -10,7 +10,10 @@ use SkinDeep\Events\FacebookApi;
 use \YeEasyAdminNotices\V1\AdminNotice;
 use \DateTime;
 
-class Plugin
+/**
+ * @brief      Entrypoint for the events module
+ */
+class Events
 {
     //! Name of the environment variable that holds the google maps API key
     const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';

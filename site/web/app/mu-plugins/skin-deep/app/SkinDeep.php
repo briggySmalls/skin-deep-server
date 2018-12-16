@@ -2,7 +2,7 @@
 
 namespace SkinDeep;
 
-use SkinDeep\Events\Plugin;
+use SkinDeep\Events\Events;
 use SkinDeep\Shop\Shop;
 use SkinDeep\Utilities\Loader;
 
@@ -16,22 +16,27 @@ class SkinDeep {
     private $loader;
 
     /**
-     * Sub-plugin for managing shop functionality
+     * Module for managing shop functionality
      */
     private $shop;
 
     /**
-     * Sub-plugin for managing event functionality
+     * Module for managing event functionality
      */
     private $events;
+
+    /**
+     * Current plugin version.
+     */
+    public const VERSION = '1.0.0';
 
     public function __construct() {
         // Create a new loader
         $this->loader = new Loader();
 
-        // Create sub-plugins
+        // Create modules
         $this->shop = new Shop($this->loader);
-        $this->events = new Plugin($this->loader);
+        $this->events = new Events($this->loader);
     }
 
     /**
