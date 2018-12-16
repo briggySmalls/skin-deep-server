@@ -2,6 +2,7 @@
 
 namespace SkinDeep\Shop;
 
+use SkinDeep\Module;
 use SkinDeep\Widgets\Donations\Donations;
 use SkinDeep\Widgets\Donations\DonationArgs;
 use SkinDeep\Articles\ResourceManager;
@@ -32,50 +33,17 @@ use \YeEasyAdminNotices\V1\AdminNotice;
  * @package    SkinDeep\Shop
  * @author     Your Name <email@example.com>
  */
-class Shop
+class ShopModule extends Module
 {
-
-    /**
-     * The loader that's responsible for maintaining and registering all hooks that power
-     * the plugin.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      Loader    $loader    Maintains and registers all hooks for the plugin.
-     */
-    protected $loader;
-
-    /**
-     * The unique identifier of this plugin.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      string    $sd_shop    The string used to uniquely identify this plugin.
-     */
-    protected $sd_shop;
-
-    /**
-     * Define the core functionality of the plugin.
-     *
-     * Set the plugin name and the plugin version that can be used throughout the plugin.
-     * Load the dependencies, define the locale, and set the hooks for the admin area and
-     * the public-facing side of the site.
-     *
-     * @since    1.0.0
-     */
-    public function __construct($loader)
+    public function init()
     {
-        // Initialise variables
-        $this->sd_shop = 'sd-shop';
-        $this->loader = $loader;
-
         // Execute setup actions
         $this->defineSitewideHooks();
 
         // Instantiate public/admin classes
-        $i18n = new I18n($this->loader);
-        $plugin_admin = new AdminSide($this->loader);
-        $plugin_public = new PublicSide($this->loader);
+        $i18n = new I18n($this->getLoader());
+        $plugin_admin = new AdminSide($this->getLoader());
+        $plugin_public = new PublicSide($this->getLoader());
     }
 
     private function defineSitewideHooks()
@@ -86,7 +54,7 @@ class Shop
         });
 
         // Check for ACF
-        $this->loader->addAction('plugins_loaded', function () {
+        $this->getLoader()->addAction('plugins_loaded', function () {
             if (!function_exists('get_field')) {
                 AdminNotice::create()
                     ->error('ACF Pro not found: Skin Deep Shop plugin will not work')

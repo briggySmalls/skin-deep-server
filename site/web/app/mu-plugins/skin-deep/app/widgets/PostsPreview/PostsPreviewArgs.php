@@ -2,7 +2,7 @@
 
 namespace SkinDeep\Widgets\PostsPreview;
 
-use SkinDeep\Events\Events;
+use SkinDeep\Events\EventsModule;
 use SkinDeep\Events\Event;
 
 use SkinDeep\Widgets\WidgetArgsInterface;
@@ -37,7 +37,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
                 list($query_args, $url) = self::getArticleArgs($args_helper, $query_args);
                 break;
 
-            case Events::EVENT_POST_TYPE:
+            case EventsModule::EVENT_POST_TYPE:
                 list($query_args, $url) = self::getEventArgs($args_helper, $query_args);
                 break;
 
@@ -103,9 +103,9 @@ class PostsPreviewArgs implements WidgetArgsInterface
         switch ($filter_group['type']) {
             case 'status':
                 $status = $filter_group['status'];
-                $query_args['meta_query'][] = Events::getStatusMetaQuery($status);
-                $query_args['post_type'] = Events::EVENT_POST_TYPE;
-                $url = Events::getStatusUrl($status);
+                $query_args['meta_query'][] = EventsModule::getStatusMetaQuery($status);
+                $query_args['post_type'] = EventsModule::EVENT_POST_TYPE;
+                $url = EventsModule::getStatusUrl($status);
                 break;
 
             default:

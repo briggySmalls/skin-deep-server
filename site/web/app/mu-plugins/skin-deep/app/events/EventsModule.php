@@ -6,6 +6,7 @@
 
 namespace SkinDeep\Events;
 
+use SkinDeep\Module;
 use SkinDeep\Events\FacebookApi;
 use \YeEasyAdminNotices\V1\AdminNotice;
 use \DateTime;
@@ -13,7 +14,7 @@ use \DateTime;
 /**
  * @brief      Entrypoint for the events module
  */
-class Events
+class EventsModule extends Module
 {
     //! Name of the environment variable that holds the google maps API key
     const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
@@ -34,18 +35,15 @@ class Events
 
     protected $settings_page_info;
 
-    public function __construct($loader)
+    public function init()
     {
-        // Save the loader
-        $this->loader = $loader;
-
         // Add some hooks
-        $this->loader->addFilter('registered_post_type', [$this, 'addEventStatusQuery'], 10, 2);
-        $this->loader->addFilter('get_the_archive_title', [$this, 'addStatusToTitle'], 11);
-        $this->loader->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
-        $this->loader->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
-        $this->loader->addAction('acf/init', [$this, 'checkEventSettings']);
-        $this->loader->addAction('plugins_loaded', function () {
+        $this->getLoader()->addFilter('registered_post_type', [$this, 'addEventStatusQuery'], 10, 2);
+        $this->getLoader()->addFilter('get_the_archive_title', [$this, 'addStatusToTitle'], 11);
+        $this->getLoader()->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
+        $this->getLoader()->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
+        $this->getLoader()->addAction('acf/init', [$this, 'checkEventSettings']);
+        $this->getLoader()->addAction('plugins_loaded', function () {
             if (!function_exists('get_field')) {
                 AdminNotice::create()
                     ->error('ACF Pro not found: Skin Deep Events plugin will not work')
@@ -88,7 +86,7 @@ class Events
 
     public function addStatusToTitle($title)
     {
-        if (is_post_type_archive(Plugin::EVENT_POST_TYPE) &&
+        if (is_post_type_archive(EventsModule::EVENT_POST_TYPE) &&
                 get_query_var(self::EVENT_STATUS_QUERY_ARG)) {
             # Add status to archive
             $status = get_query_var(self::EVENT_STATUS_QUERY_ARG);

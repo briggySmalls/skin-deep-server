@@ -2,8 +2,8 @@
 
 namespace SkinDeep;
 
-use SkinDeep\Events\Events;
-use SkinDeep\Shop\Shop;
+use SkinDeep\Events\EventsModule;
+use SkinDeep\Shop\ShopModule;
 use SkinDeep\Utilities\Loader;
 
 /**
@@ -35,8 +35,8 @@ class SkinDeep {
         $this->loader = new Loader();
 
         // Create modules
-        $this->shop = new Shop($this->loader);
-        $this->events = new Events($this->loader);
+        $this->shop = new ShopModule($this->loader);
+        $this->events = new EventsModule($this->loader);
     }
 
     /**
