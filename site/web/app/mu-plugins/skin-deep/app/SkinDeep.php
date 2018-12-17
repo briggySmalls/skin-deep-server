@@ -59,6 +59,8 @@ class SkinDeep {
 
         // Add tags to scripts
         $this->loader->addFilter('script_loader_tag', __NAMESPACE__ . '\\SkinDeep::updateScripts', 10, 2);
+        // Add preconnect for external assets
+        $this->loader->addFilter('wp_resource_hints', __NAMESPACE__ . '\\SkinDeep::preconnectExternalAssets', 10, 2);
 
         // Register widgets
         $this->loader->addAction('widgets_init', __NAMESPACE__ . '\\SkinDeep::registerWidgets');
@@ -120,5 +122,14 @@ class SkinDeep {
             // Remove icons if user not logged in
             wp_deregister_style('dashicons');
         }
+    }
+
+    public static function preconnectExternalAssets($urls, $relation_type)
+    {
+        if ($relation_type === 'preconnect') {
+            // Add all external hosts
+            $urls = array_merge($urls, wp_dependencies_unique_hosts());
+        }
+        return $urls;
     }
 }
