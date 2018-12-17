@@ -82,6 +82,9 @@ class PublicSide
         // Customise Snipcart script
         $loader->addFilter('script_loader_tag', [$this, 'scriptLoaderTag'], 10, 3);
 
+        // Preconnect to Snipcart
+        $loader->addFilter('wp_resource_hints', __NAMESPACE__ . '\\PublicSide::preconnectSnipcart', 10, 2);
+
         // Add a query var for donations
         $loader->addAction('init', function () {
             global $wp;
@@ -125,7 +128,7 @@ class PublicSide
             true
         );
 
-        // Enqueue SnipCart customiser that modifies cart (automaticall enqueues snipcat itself)
+        // Enqueue SnipCart customiser that modifies cart (automatically enqueues snipcat itself)
         wp_enqueue_script(
             self::CUSTOM_SNIPCART_SCRIPT_HANDLE, $resources->distUrl() . 'snipcart.js',
             [self::SNIPCART_SCRIPT['handle']]);
@@ -147,5 +150,19 @@ class PublicSide
             return Helper::updateTag($tag, "async");
         }
         return $tag;
+    }
+
+    /**
+     * @brief      Callback to filter resources designated with priority
+     * @param      $urls           The urls
+     * @param      $relation_type  The relation type
+     * @return     The updated URLs
+     */
+    public static function preconnectSnipcart($urls, $relation_type)
+    {
+        if ($relation_type === 'preconnect') {
+          $urls[] = '//cdn.snipcart.com';
+        }
+        return $urls;
     }
 }
