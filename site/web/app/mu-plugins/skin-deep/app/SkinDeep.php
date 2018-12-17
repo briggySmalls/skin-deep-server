@@ -66,9 +66,6 @@ class SkinDeep {
         // Do some general setting up
         $this->loader->addAction('wp_print_styles', __NAMESPACE__ . '\\SkinDeep::dequeueDashicons', 100);
 
-        // Use a faster jQuery
-        $this->loader->addAction('wp_enqueue_scripts', __NAMESPACE__ . '\\SkinDeep::fasterjQuery', 101);
-
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
         $this->events = new EventsModule($this->loader);
@@ -123,19 +120,5 @@ class SkinDeep {
             // Remove icons if user not logged in
             wp_deregister_style('dashicons');
         }
-    }
-
-    /**
-     * @brief      Use fast CDN for jquery
-     * @return     false
-     */
-    public static function fasterjQuery() {
-        wp_deregister_script('jquery');
-        wp_register_script(
-            'jquery',
-            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js",
-            false,
-            '1.12.4');
-        wp_enqueue_script('jquery');
     }
 }
