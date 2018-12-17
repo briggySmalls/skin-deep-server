@@ -5,6 +5,8 @@ namespace SkinDeep\Shop;
 use \YeEasyAdminNotices\V1\AdminNotice;
 
 use SkinDeep\Widgets\Donations\DonationArgs;
+use SkinDeep\Utilities\Helper;
+use SkinDeep\Utilities\ResourceManager;
 
 /**
  * The public-facing functionality of the plugin.
@@ -60,6 +62,8 @@ class PublicSide
         'src' => 'https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css'
     ];
 
+    public const CUSTOM_SNIPCART_SCRIPT_HANDLE = 'custom-snipcart-script';
+
     /**
      * Initialize the class and set its properties.
      *
@@ -112,7 +116,19 @@ class PublicSide
      */
     public function enqueueScripts()
     {
-        wp_enqueue_script(self::SNIPCART_SCRIPT['handle'], self::SNIPCART_SCRIPT['src'], ['jquery']);
+        $resources = new ResourceManager(__DIR__);
+        wp_register_script(
+            self::SNIPCART_SCRIPT['handle'],
+            self::SNIPCART_SCRIPT['src'],
+            ['jquery'],
+            null,
+            true
+        );
+
+        // Enqueue SnipCart customiser that modifies cart (automaticall enqueues snipcat itself)
+        wp_enqueue_script(
+            self::CUSTOM_SNIPCART_SCRIPT_HANDLE, $resources->distUrl() . 'snipcart.js',
+            [self::SNIPCART_SCRIPT['handle']]);
     }
 
     /**
@@ -125,7 +141,10 @@ class PublicSide
     public function scriptLoaderTag($tag, $handle, $src)
     {
         if (self::SNIPCART_SCRIPT['handle'] === $handle) {
-            $tag = "<script type=\"text/javascript\" src=\"$src\" id=\"snipcart\" data-api-key=\"{$this->api_key}\" async></script>";
+            // Rebuild tag, providing the API key
+            return "<script type=\"text/javascript\" src=\"$src\" id=\"snipcart\" data-api-key=\"{$this->api_key}\" async></script>";
+        } elseif ($handle === self::CUSTOM_SNIPCART_SCRIPT_HANDLE) {
+            return Helper::updateTag($tag, "async");
         }
         return $tag;
     }
