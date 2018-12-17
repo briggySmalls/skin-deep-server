@@ -26,8 +26,8 @@
         <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
-                data-target=".collapsable"
-                aria-controls="navbarNavDropdown"
+                data-target="#top-nav,#search"
+                aria-controls="top-nav search"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
