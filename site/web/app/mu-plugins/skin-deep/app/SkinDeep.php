@@ -127,8 +127,13 @@ class SkinDeep {
     public static function preconnectExternalAssets($urls, $relation_type)
     {
         if ($relation_type === 'preconnect') {
-            // Add all external hosts
-            $urls = array_merge($urls, wp_dependencies_unique_hosts());
+            $new_urls = array_map(
+                function ($url) {
+                    return "//{$url}";
+                },
+                wp_dependencies_unique_hosts()
+            );
+            $urls = array_merge($urls, $new_urls);
         }
         return $urls;
     }
