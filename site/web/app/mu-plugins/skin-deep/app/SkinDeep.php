@@ -35,6 +35,13 @@ class SkinDeep {
      */
     public const VERSION = '1.0.0';
 
+    /**
+     * Sources on which to add crossorigin attribute to resource hint
+     */
+    const CROSSORIGIN_SOURCES = [
+        '//fonts.googleapis.com'
+    ];
+
     public function __construct() {
         // Create a new loader
         $this->loader = new Loader();
@@ -137,8 +144,10 @@ class SkinDeep {
             // Create preconnect URLs from unique hosts
             $new_urls = array_map(
                 function ($url) {
+                    // Make URL relative protocol (http/https depending on connection)
                     $entry = ['href' => "//{$url}"];
-                    if (strpos($entry['href'], 'fonts.googleapis.com') !== false) {
+                    // Add 'crossorigin' attribute if necessary
+                    if (in_array($entry['href'], SkinDeep::CROSSORIGIN_SOURCES)) {
                         $entry[] = 'crossorigin';
                     }
                     return $entry;
