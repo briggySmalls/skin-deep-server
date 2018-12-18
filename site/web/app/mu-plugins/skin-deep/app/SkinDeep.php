@@ -124,15 +124,28 @@ class SkinDeep {
         }
     }
 
+    /**
+     * @brief      Add preconnect browser hints
+     * @note       Wordpress already adds dns-prefetch for all external links
+     * @param      $urls           The urls
+     * @param      $relation_type  The relation type
+     * @return     urls/attributes for resource hinting
+     */
     public static function preconnectExternalAssets($urls, $relation_type)
     {
         if ($relation_type === 'preconnect') {
+            // Create preconnect URLs from unique hosts
             $new_urls = array_map(
                 function ($url) {
-                    return "//{$url}";
+                    $entry = ['href' => "//{$url}"];
+                    if (strpos($entry['href'], 'fonts.googleapis.com') !== false) {
+                        $entry[] = 'crossorigin';
+                    }
+                    return $entry;
                 },
                 wp_dependencies_unique_hosts()
             );
+            // Add the new preconnect URLs to any existing ones
             $urls = array_merge($urls, $new_urls);
         }
         return $urls;
