@@ -146,16 +146,17 @@ class SkinDeep {
                 function ($url) {
                     // Make URL relative protocol (http/https depending on connection)
                     $entry = ['href' => "//{$url}"];
-                    // Add 'crossorigin' attribute if necessary
-                    if (in_array($entry['href'], SkinDeep::CROSSORIGIN_SOURCES)) {
-                        $entry[] = 'crossorigin';
-                    }
                     return $entry;
                 },
                 wp_dependencies_unique_hosts()
             );
             // Add the new preconnect URLs to any existing ones
             $urls = array_merge($urls, $new_urls);
+            // Add special preconnect for google fonts
+            $urls[] = [
+                'href' => '//fonts.gstatic.com',
+                'crossorigin',
+            ];
         }
         return $urls;
     }
