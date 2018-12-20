@@ -10,3 +10,14 @@ body #jp-relatedposts {
     }
   }
 }
+
+// Restyle Jetpack's social sharing
+.sharedaddy.sd-sharing-enabled {
+  .sd-title {
+    display: none;
+  }
+
+  .sd-content {
+    margin: 1em 0;
+  }
+}

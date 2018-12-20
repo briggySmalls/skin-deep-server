@@ -14,6 +14,7 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
         <a href="{{ get_term_link($author) }}" rel="author">{{ $author->name }}</a>{{ !$loop->last ? ", " : "" }}
       @endforeach
     </p>
+    @include('partials.components.socials')
   @endif
 @endsection
 @section('single-content')

@@ -225,3 +225,16 @@ add_filter('wp_get_attachment_image_src', function ($image, $attachment_id, $siz
     }
     return $image;
 }, 10, 4);
+
+/**
+ * @brief      Remove social sharing buttons from default location
+ * @return     false
+ */
+add_filter('loop_start', function () {
+    // Copied from https://jetpack.com/support/sharing/
+    remove_filter('the_content', 'sharing_display', 19);
+    remove_filter('the_excerpt', 'sharing_display', 19);
+    if (class_exists('Jetpack_Likes')) {
+        remove_filter('the_content', array(Jetpack_Likes::init(), 'post_likes'), 30, 1);
+    }
+});

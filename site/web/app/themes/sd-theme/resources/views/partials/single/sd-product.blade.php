@@ -12,6 +12,7 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
     <div class="col-md">
       <header class="single-header">
         <h1 class="entry-title">{!! $post->title() !!}</h1>
+        @include('partials.components.socials')
       </header>
       <div class="entry-content">
         {{ the_content() }}
