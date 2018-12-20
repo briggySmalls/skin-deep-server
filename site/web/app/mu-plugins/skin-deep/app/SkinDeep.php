@@ -68,15 +68,15 @@ class SkinDeep
         });
 
         // Add tags to scripts
-        $this->loader->addFilter('script_loader_tag', __NAMESPACE__ . '\\SkinDeep::updateScripts', 10, 2);
+        $this->loader->addFilter('script_loader_tag', self::staticMethod('updateScripts'), 10, 2);
         // Add preconnect for external assets
-        $this->loader->addFilter('wp_resource_hints', __NAMESPACE__ . '\\SkinDeep::preconnectExternalAssets', 10, 2);
+        $this->loader->addFilter('wp_resource_hints', self::staticMethod('preconnectExternalAssets'), 10, 2);
 
         // Register widgets
-        $this->loader->addAction('widgets_init', __NAMESPACE__ . '\\SkinDeep::registerWidgets');
+        $this->loader->addAction('widgets_init', self::staticMethod('registerWidgets'));
 
         // Do some general setting up
-        $this->loader->addAction('wp_print_styles', __NAMESPACE__ . '\\SkinDeep::dequeueDashicons', 100);
+        $this->loader->addAction('wp_print_styles', self::staticMethod('dequeueDashicons'), 100);
 
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
@@ -164,5 +164,14 @@ class SkinDeep
             ];
         }
         return $urls;
+    }
+
+    /**
+     * @brief      Helper method to build static method string
+     * @param      $name  The name of the function
+     * @return     Static method string
+     */
+    private static function staticMethod($name) {
+        return __NAMESPACE__ . "\\SkinDeep::$name";
     }
 }
