@@ -10,7 +10,8 @@ abstract class Module
      */
     private $loader;
 
-    public function __construct($loader) {
+    public function __construct($loader)
+    {
         // Save the loader
         $this->loader = $loader;
 
@@ -28,7 +29,8 @@ abstract class Module
      * @brief      Get the loader
      * @return     The loader.
      */
-    protected function getLoader() {
+    protected function getLoader()
+    {
         return $this->loader;
     }
 }

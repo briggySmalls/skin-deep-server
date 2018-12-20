@@ -14,7 +14,8 @@ use SkinDeep\Articles\ArticlesModule;
 /**
  * @brief      Entrypoint for the skin deep plugin
  */
-class SkinDeep {
+class SkinDeep
+{
     /**
      * Helper class for managing actions/filters for the whole plugin
      */
@@ -42,7 +43,8 @@ class SkinDeep {
         '//fonts.googleapis.com'
     ];
 
-    public function __construct() {
+    public function __construct()
+    {
         // Create a new loader
         $this->loader = new Loader();
 
@@ -60,7 +62,8 @@ class SkinDeep {
         $this->loader->addAction('wp_enqueue_scripts', function () use ($resources) {
             wp_enqueue_script(
                 'google-tag-manager',
-                'https://www.googletagmanager.com/gtag/js?id=' . getenv('GOOGLE_TRACKING_ID'));
+                'https://www.googletagmanager.com/gtag/js?id=' . getenv('GOOGLE_TRACKING_ID')
+            );
             wp_enqueue_script('skindeep-plugin-public', $resources->distURL() . 'public.js');
         });
 
@@ -85,7 +88,8 @@ class SkinDeep {
      * @brief      Run the loader to execute all of the hooks with WordPress.
      * @return     false
      */
-    public function run() {
+    public function run()
+    {
         // Execute all actions/filters
         $this->loader->run();
     }
@@ -124,7 +128,8 @@ class SkinDeep {
      * @brief      Dequeues the Dashicons CSS from the frontend
      * @return     None
      */
-    public static function dequeueDashicons() {
+    public static function dequeueDashicons()
+    {
         if (!is_user_logged_in()) {
             // Remove icons if user not logged in
             wp_deregister_style('dashicons');

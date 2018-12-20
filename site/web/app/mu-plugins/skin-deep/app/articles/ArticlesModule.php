@@ -14,7 +14,8 @@ use SkinDeep\Widgets\BlockArgsHelper;
 
 class ArticlesModule extends Module
 {
-    protected function init() {
+    protected function init()
+    {
         // Remove existing 'authors' base URL
         $this->getLoader()->addFilter('author_rewrite_rules', function () {
             return [];
