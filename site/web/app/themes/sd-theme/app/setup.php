@@ -36,6 +36,14 @@ add_action('wp_enqueue_scripts', function () {
 }, 100);
 
 /**
+ * Admin-side theme assets
+ */
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_style('sage/admin.css', asset_path('styles/admin.css'), false, null);
+    wp_enqueue_script('sage/admin.js', asset_path('scripts/admin.js'), ['jquery'], null, true);
+});
+
+/**
  * Theme setup
  */
 add_action('after_setup_theme', function () {
