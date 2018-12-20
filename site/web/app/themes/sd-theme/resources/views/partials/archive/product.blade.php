@@ -6,7 +6,7 @@
       'partials.components.image-header',
       [
         'post' => $product,
-        'image_sizes' => ArchiveSdProduct::archiveSizes($post)
+        'image_sizes' => ArchiveSdProduct::archiveSizes($post, $grid_config['column_count'])
       ])
     @endif
   </div>

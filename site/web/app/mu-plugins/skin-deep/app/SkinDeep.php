@@ -5,10 +5,11 @@ namespace SkinDeep;
 use \YeEasyAdminNotices\V1\AdminNotice;
 
 use SkinDeep\Utilities\ResourceManager;
+use SkinDeep\Utilities\Helper;
+use SkinDeep\Utilities\Loader;
 use SkinDeep\Events\EventsModule;
 use SkinDeep\Shop\ShopModule;
 use SkinDeep\Articles\ArticlesModule;
-use SkinDeep\Utilities\Loader;
 
 /**
  * @brief      Entrypoint for the skin deep plugin
@@ -34,6 +35,13 @@ class SkinDeep {
      */
     public const VERSION = '1.0.0';
 
+    /**
+     * Sources on which to add crossorigin attribute to resource hint
+     */
+    const CROSSORIGIN_SOURCES = [
+        '//fonts.googleapis.com'
+    ];
+
     public function __construct() {
         // Create a new loader
         $this->loader = new Loader();
@@ -58,9 +66,14 @@ class SkinDeep {
 
         // Add tags to scripts
         $this->loader->addFilter('script_loader_tag', __NAMESPACE__ . '\\SkinDeep::updateScripts', 10, 2);
+        // Add preconnect for external assets
+        $this->loader->addFilter('wp_resource_hints', __NAMESPACE__ . '\\SkinDeep::preconnectExternalAssets', 10, 2);
 
         // Register widgets
         $this->loader->addAction('widgets_init', __NAMESPACE__ . '\\SkinDeep::registerWidgets');
+
+        // Do some general setting up
+        $this->loader->addAction('wp_print_styles', __NAMESPACE__ . '\\SkinDeep::dequeueDashicons', 100);
 
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
@@ -102,8 +115,49 @@ class SkinDeep {
         ];
 
         if (isset($scripts[$handle])) {
-            return str_replace(' src', "{$scripts[$handle]} src", $tag);
+            return Helper::updateTag($tag, $scripts[$handle]);
         }
         return $tag;
+    }
+
+    /**
+     * @brief      Dequeues the Dashicons CSS from the frontend
+     * @return     None
+     */
+    public static function dequeueDashicons() {
+        if (!is_user_logged_in()) {
+            // Remove icons if user not logged in
+            wp_deregister_style('dashicons');
+        }
+    }
+
+    /**
+     * @brief      Add preconnect browser hints
+     * @note       Wordpress already adds dns-prefetch for all external links
+     * @param      $urls           The urls
+     * @param      $relation_type  The relation type
+     * @return     urls/attributes for resource hinting
+     */
+    public static function preconnectExternalAssets($urls, $relation_type)
+    {
+        if ($relation_type === 'preconnect') {
+            // Create preconnect URLs from unique hosts
+            $new_urls = array_map(
+                function ($url) {
+                    // Make URL relative protocol (http/https depending on connection)
+                    $entry = ['href' => "//{$url}"];
+                    return $entry;
+                },
+                wp_dependencies_unique_hosts()
+            );
+            // Add the new preconnect URLs to any existing ones
+            $urls = array_merge($urls, $new_urls);
+            // Add special preconnect for google fonts
+            $urls[] = [
+                'href' => '//fonts.gstatic.com',
+                'crossorigin',
+            ];
+        }
+        return $urls;
     }
 }

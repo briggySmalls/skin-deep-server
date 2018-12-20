@@ -5,18 +5,18 @@
   <div class="carousel-inner">
     @foreach ($posts as $post)
       <div class="carousel-item @if ($loop->first) active @endif">
-        {{-- Display featured image/video --}}
         <a href="{{ $post->url() }}">
-        @include(
-          'partials.components.featured-media',
-          [
-            'image_classes' => 'd-block w-100',
-            'extended' => true
-          ])
+          {{-- Display featured image/video --}}
+          @include(
+            'partials.components.featured-media',
+            [
+              'image_classes' => 'd-block w-100',
+              'extended' => true
+            ])
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{!! $post->title() !!}</h3>
+          </div>
         </a>
-        <div class="carousel-caption d-none d-md-block">
-          <h3>{!! $post->title() !!}</h3>
-        </div>
       </div>
     @endforeach
   </div>

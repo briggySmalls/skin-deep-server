@@ -8,6 +8,7 @@ module.exports = {
     // Plugin scripts
     'public': "./resources/assets/scripts/public.js",
     'acf': "./resources/assets/scripts/acf.js",
+    'snipcart': "./resources/assets/scripts/snipcart.js",
     // Widget scripts
     'widgets-admin': "./resources/assets/scripts/widgets-admin.js",
     'widgets-public': "./resources/assets/scripts/widgets-public.js",

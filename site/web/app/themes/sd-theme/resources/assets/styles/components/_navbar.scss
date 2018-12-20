@@ -3,6 +3,16 @@ nav.navbar {
   @extend .bg-light;
   @extend .navbar-expand-xl;
 
+  // Set navigation link colour
+  .navbar-nav .nav-link {
+    color: rgb(50, 50, 50);
+  }
+
+  // Set navigation link highlight colour
+  .navbar-nav .active > .nav-link {
+    color: #fd991c;
+  }
+
   h2 {
     font-size: 1em;
     padding: 0.5em 0;

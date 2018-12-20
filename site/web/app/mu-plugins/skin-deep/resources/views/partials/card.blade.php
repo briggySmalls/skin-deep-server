@@ -3,6 +3,8 @@
     {{-- Insert card content --}}
     @include($grid_config['template']($post->ID))
     {{-- Supply link for card --}}
-    <a class="card-link" href={{ $post->url() }}></a>
+    <a class="card-link" href={{ $post->url() }}>
+      <span class="sr-only">{{ $post->title() }}</span>
+    </a>
   </div>
 </div>
