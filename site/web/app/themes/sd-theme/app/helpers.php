@@ -273,3 +273,23 @@ function renderExtraPosts()
         echo sage('blade')->make('plugin::partials.card', $args)->render();
     }
 }
+
+/**
+ * Helper function to determine if we are on a Gutenberg editor page
+ * @return boolean  true if gutenberg page, false otherwise.
+ */
+function isGutenbergPage()
+{
+    // Short-circuit
+    if (!is_admin()) {
+        return false;
+    }
+
+    // On Wordpress 5.0, use dedicated method
+    if (function_exists(WP_Screen::is_block_editor)) {
+        return WP_Screen::is_block_editor(bool $set = null);
+    }
+
+    // Fallback for older wordpress versions
+    return (function_exists('is_gutenberg_page') && is_gutenberg_page());
+}

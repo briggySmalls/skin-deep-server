@@ -36,8 +36,7 @@ add_action('wp_enqueue_scripts', function () {
  * Admin-side theme assets
  */
 add_action('admin_enqueue_scripts', function () {
-    $screen = get_current_screen();
-    if ($screen->base == 'post') {
+    if (isGutenbergPage()) {
         wp_enqueue_style('sage/editor.css', asset_path('styles/editor.css'), false, null);
         wp_enqueue_script('sage/editor.js', asset_path('scripts/editor.js'), ['jquery'], null, true);
     }
