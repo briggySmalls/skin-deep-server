@@ -1,25 +1,28 @@
 {
-    "key": "group_5b79f1f819bd8",
+    "key": "group_5c1ca79107e60",
     "title": "Image fields",
     "fields": [
         {
-            "key": "field_5b79f1fd54434",
-            "label": "Credit",
-            "name": "media_credit",
-            "type": "text",
+            "key": "field_5c1ca79d7d2c7",
+            "label": "Artist",
+            "name": "sd_artist",
+            "type": "taxonomy",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "taxonomy": "sd_artist",
+            "field_type": "multi_select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
         }
     ],
     "location": [
@@ -39,5 +42,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1537604328
+    "modified": 1545382006
 }

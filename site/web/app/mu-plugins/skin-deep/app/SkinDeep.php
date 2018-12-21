@@ -78,6 +78,9 @@ class SkinDeep
         // Do some general setting up
         $this->loader->addAction('wp_print_styles', self::staticMethod('dequeueDashicons'), 100);
 
+        // Remove native taxonomy field from attachments (we use ACF)
+        $this->loader->AddFilter('register_taxonomy_args', self::staticMethod('removeNativeArtist'), 10, 2);
+
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
         $this->events = new EventsModule($this->loader);
@@ -164,6 +167,13 @@ class SkinDeep
             ];
         }
         return $urls;
+    }
+
+    public static function removeNativeArtist($args, $taxonomy) {
+        if ($taxonomy === 'sd_artist') {
+            $args['meta_box_cb'] = false;
+        }
+        return $args;
     }
 
     /**
