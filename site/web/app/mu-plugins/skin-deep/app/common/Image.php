@@ -48,6 +48,15 @@ class Image
     }
 
     /**
+     * @brief      Get the artists associated with the image
+     * @return     Array of artists if any, otherwise false
+     */
+    public function artists()
+    {
+        return wp_get_post_terms($this->id, 'sd_artist');
+    }
+
+    /**
      * @brief      Helper function to merge arrays
      * @param      $dest        The destination array
      * @param      $dest_key    The destination key
