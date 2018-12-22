@@ -4,7 +4,7 @@ namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
 
-use SkinDeep\Articles\Post;
+use SkinDeep\Common\Post;
 use SkinDeep\Articles\Article;
 use SkinDeep\Events\Event;
 use SkinDeep\Shop\Product;

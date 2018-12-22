@@ -21,7 +21,7 @@ class App extends Controller
         ],
         'page' => [
             'template' => 'partials.archive.post',
-            'wrapper' => 'SkinDeep\\Articles\\Post',
+            'wrapper' => 'SkinDeep\\Common\\Post',
         ]
     ];
 

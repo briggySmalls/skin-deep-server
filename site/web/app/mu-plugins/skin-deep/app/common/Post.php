@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Articles;
+namespace SkinDeep\Common;
 
 /**
  * @brief      Wrapper class for a post (of any post type)
@@ -24,40 +24,16 @@ class Post
     }
 
     /**
-     * @brief      Determines post has featured image.
-     * @return     True if has featured image, False otherwise.
-     */
-    public function hasImage()
-    {
-        return has_post_thumbnail($this->post->ID);
-    }
-
-    /**
-     * @brief      Get featured image
-     * @param      $classes  Classes to add to the image element
-     * @param      $sizes    Responsive 'sizes' attribute for image element
-     * @param      $size     The nominal wordpress size (default to small)
+     * @brief      Get featured image object
      * @return     Featured image
      */
-    public function image($options)
+    public function image()
     {
-        $attrs = [];
-        self::copyIfSet($attrs, 'class', $options, 'classes');
-        self::copyIfSet($attrs, 'sizes', $options, 'sizes');
-        $size = $options['size'] ?? 'post-thumbnail';
-
-        // Check if we want an extended srcset
-        if (isset($options['extended']) && $options['extended']) {
-            add_filter('wp_calculate_image_srcset', '\SkinDeep\Articles\Post::extendSrcSet', 10, 5);
+        $image_id = get_post_thumbnail_id($this->post->ID);
+        if (!$image_id) {
+            return false;
         }
-
-        $image = get_the_post_thumbnail($this->post->ID, $size, $attrs);
-
-        if (isset($options['extended']) && $options['extended']) {
-            remove_filter('wp_calculate_image_srcset', '\SkinDeep\Articles\Post::extendSrcSet', 10);
-        }
-
-        return $image;
+        return new Image($image_id);
     }
 
     /**
@@ -135,12 +111,5 @@ class Post
         ];
 
         return $sources;
-    }
-
-    private static function copyIfSet(&$dest, $dest_key, $source, $source_key)
-    {
-        if (isset($source[$source_key])) {
-            $dest[$dest_key] = $source[$source_key];
-        }
     }
 }

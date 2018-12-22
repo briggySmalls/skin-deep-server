@@ -3,7 +3,7 @@
   @if ($post->hasVideo())
     {{-- Feature video takes precedence --}}
     @include('partials.components.video-header')
-  @elseif ($post->hasImage())
+  @elseif ($post->image())
     {{-- Otherwise display the featured image --}}
     @include('partials.components.image-header', ['extended' => true])
   @endif

@@ -3,7 +3,7 @@
 namespace SkinDeep\Widgets;
 
 use SkinDeep\Articles\Article;
-use SkinDeep\Articles\Post;
+use SkinDeep\Common\Post;
 
 class WidgetArgsHelper implements ArgsHelperInterface
 {
