@@ -286,8 +286,8 @@ function isGutenbergPage()
     }
 
     // On Wordpress 5.0, use dedicated method
-    if (function_exists(WP_Screen::is_block_editor)) {
-        return WP_Screen::is_block_editor(bool $set = null);
+    if (function_exists('\WP_Screen::is_block_editor')) {
+        return WP_Screen::is_block_editor();
     }
 
     // Fallback for older wordpress versions
