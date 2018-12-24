@@ -2,6 +2,7 @@
 
 namespace SkinDeep\Articles;
 
+use SkinDeep\Common\Post;
 use SkinDeep\Shop\Product;
 
 class Article extends Post

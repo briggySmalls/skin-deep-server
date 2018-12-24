@@ -26,7 +26,8 @@ assert(is_a($post, 'SkinDeep\Articles\Article'));
       <div class="row">
         <div class="col-sm-4 order-sm-last mb-sm-0 mb-4 image">
           <a href=" {{ $magazine->url() }}">
-            {!! $magazine->image([
+            @php $image = $magazine->image(); @endphp
+            {!! $image->html([
               'sizes' => "(max-size: " . \SkinDeep\Widgets\PostsPreview\PostsPreview::BOOTSTRAP_COLUMNS['sm'] . "px): 34vw, 100vw"
             ]) !!}
           </a>

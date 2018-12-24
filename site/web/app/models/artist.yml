@@ -1,0 +1,15 @@
+---
+active: true
+type: tax
+name: sd_artist
+links:
+- attachment
+labels:
+    has_one: Artist
+    has_many: Artists
+    text_domain: sage
+config:
+    public: true
+    hierarchical: false
+    rewrite:
+        slug: artists

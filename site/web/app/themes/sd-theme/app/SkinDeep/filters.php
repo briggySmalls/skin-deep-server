@@ -4,6 +4,7 @@ namespace SkinDeep\Theme;
 
 use SkinDeep\Articles\Article;
 use SkinDeep\Events\Event;
+use SkinDeep\Utilities\Helper;
 
 add_filter('wp_nav_menu_args', function ($args) {
     // Use custom nav walker (note: priority 9 to beat soil to it)
@@ -138,7 +139,7 @@ add_filter('img_caption_shortcode', function ($current_html, $attr, $content) {
  * Remove image size attributes from post thumbnails
  */
 add_filter('post_thumbnail_html', function ($html) {
-    return preg_replace('/(width|height)="\d*"/', '', $html);
+    return Helper::removeHeightWidth($html);
 }, 10, 1);
 
 /**

@@ -78,6 +78,10 @@ class SkinDeep
         // Do some general setting up
         $this->loader->addAction('wp_print_styles', self::staticMethod('dequeueDashicons'), 100);
 
+        // Remove native taxonomy field from attachments (we use ACF)
+        $this->loader->AddFilter('attachment_fields_to_edit', self::staticMethod('removeNativeArtistInPopup'));
+        $this->loader->AddFilter('register_taxonomy_args', self::staticMethod('removeNativeArtistInEditor'), 10, 2);
+
         // Create modules
         $this->articles = new ArticlesModule($this->loader);
         $this->events = new EventsModule($this->loader);
@@ -164,6 +168,30 @@ class SkinDeep
             ];
         }
         return $urls;
+    }
+
+    /**
+     * @brief      Removes a native artist from editor.
+     * @param      $args      The arguments
+     * @param      $taxonomy  The taxonomy
+     * @return     $args (with meta_box_cb modified for sd_artist taxonomies)
+     */
+    public static function removeNativeArtistInEditor($args, $taxonomy)
+    {
+        if ($taxonomy === 'sd_artist') {
+            $args['meta_box_cb'] = false;
+        }
+        return $args;
+    }
+
+    /**
+     * @brief      Remove native artist taxonomy field from attachment editor
+     * @param      $fields  The fields to show
+     * @return     $fields but missing artist taxonomy
+     */
+    public static function removeNativeArtistInPopup($fields) {
+        unset($fields['sd_artist']);
+        return $fields;
     }
 
     /**

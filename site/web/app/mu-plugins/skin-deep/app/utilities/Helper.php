@@ -14,4 +14,14 @@ class Helper
     {
         return str_replace(' src', "$attributes src", $tag);
     }
+
+    /**
+     * @brief      Simple function that removes height/width from HTML
+     * @param      $html  The HTML
+     * @return     Updated HTML
+     */
+    public static function removeHeightWidth($html)
+    {
+        return preg_replace('/(width|height)="\d*"/', '', $html);
+    }
 }

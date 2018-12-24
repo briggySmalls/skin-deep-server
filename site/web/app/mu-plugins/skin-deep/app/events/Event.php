@@ -3,7 +3,7 @@
 namespace SkinDeep\Events;
 
 use \DateTime;
-use SkinDeep\Articles\Post;
+use SkinDeep\Common\Post;
 
 const FACEBOOK_EVENTS_URL_BASE = 'https://www.facebook.com/events/';
 
