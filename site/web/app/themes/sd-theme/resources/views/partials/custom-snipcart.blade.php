@@ -1,6 +1,6 @@
 {{-- Custom HTML to be inserted into the Snipcart cart
  --}}
-<nav class="navbar navbar-light">
+<nav id="snipcart-nav" class="navbar navbar-light">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
       <a href="#" class="snipcart-checkout">
@@ -29,4 +29,4 @@
       </a>
     </li>
   </ul>
-</div>
+</nav>
