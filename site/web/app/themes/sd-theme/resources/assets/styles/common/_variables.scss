@@ -13,6 +13,8 @@ $theme-colors: (
   link-visited: #551a8b,
   dark-link: #5bb4ee,
   dark-link-visited: #c06afa,
+  active-nav-link: hsl(31, 100%, 43%),
+  dark-active-nav-link: #fd991c,
 );
 
 $navbar-light-active-color: theme-color(primary);
