@@ -1,11 +1,13 @@
 // Anchors
 // Style links on dark pages
-#content #{$dark-page-selectors} {
-  a:not(.nav-link):not(.btn) {
-    color: theme-color('dark-link');
+#{$dark-page-selectors} {
+  #content {
+    a:not(.nav-link):not(.btn) {
+      color: theme-color('dark-link');
 
-    &:visited {
-      color: theme-color('dark-link-visited');
+      &:visited {
+        color: theme-color('dark-link-visited');
+      }
     }
   }
 }
