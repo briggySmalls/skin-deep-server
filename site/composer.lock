@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "980bff9552011c21edb1112820d24183",
+    "content-hash": "74725680f9b45ea20107b81fac0416ed",
     "packages": [
         {
             "name": "automattic/jetpack",
@@ -834,6 +834,26 @@
             "time": "2018-07-29T20:33:41+00:00"
         },
         {
+            "name": "wpackagist-plugin/autodescription",
+            "version": "3.2.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/autodescription/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/autodescription.zip?timestamp=1544095852",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/autodescription/"
+        },
+        {
             "name": "wpackagist-plugin/gutenberg",
             "version": "4.5.1",
             "source": {
@@ -1013,6 +1033,11 @@
         {
             "name": "roave/security-advisories",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Roave/SecurityAdvisories.git",
+                "reference": "46efa7cf127bfe6289e05b546db0442598f47359"
+            },
             "conflict": {
                 "3f/pygmentize": "<1.2",
                 "adodb/adodb-php": "<5.20.12",
