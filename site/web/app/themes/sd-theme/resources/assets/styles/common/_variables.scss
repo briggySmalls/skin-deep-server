@@ -9,6 +9,10 @@ $navbar-light-toggler-icon-bg: url("data:image/svg+xml;charset=utf8,%3Csvg viewB
 
 $theme-colors: (
   primary: #369,
+  link: #00e,
+  link-visited: #551a8b,
+  dark-link: #5bb4ee,
+  dark-link-visited: #c06afa,
 );
 
 $navbar-light-active-color: theme-color(primary);

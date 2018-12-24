@@ -1,23 +1,18 @@
 // Anchors
-$link-colour: #00e;
-$link-visited-colour: #551a8b;
-$dark-link-colour: #5bb4ee;
-$dark-link-visited-colour: #c06afa;
-
 // Style links on dark pages
 #content #{$dark-page-selectors} {
   a:not(.nav-link):not(.btn) {
-    color: $dark-link-colour;
+    color: theme-color('dark-link');
 
     &:visited {
-      color: $dark-link-visited-colour;
+      color: theme-color('dark-link-visited');
     }
   }
 }
 
 // Links on normal pages
 #content a:not(.nav-link):not(.btn) {
-  color: $link-colour;
+  color: theme-color('link');
 
   @include hover {
     text-decoration: underline;
@@ -28,7 +23,7 @@ $dark-link-visited-colour: #c06afa;
   }
 
   &:visited {
-    color: $link-visited-colour;
+    color: theme-color('link-visited');
   }
 }
 
