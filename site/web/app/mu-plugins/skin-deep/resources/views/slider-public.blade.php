@@ -13,7 +13,7 @@
               'image_classes' => 'd-block w-100',
               'extended' => true
             ])
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption">
             <h3>{!! $post->title() !!}</h3>
           </div>
         </a>
