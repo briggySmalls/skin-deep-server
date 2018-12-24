@@ -12,11 +12,13 @@ $('#snipcart').load(() => {
   Snipcart.subscribe('cart.opened', function() {
     // Only add the content once
     Snipcart.unsubscribe('cart.opened');
-
     // Append custom HTML content to cart
     let html = $("#cart-content-text").html();
     $(html).insertAfter($("#snipcart-header"));
-
+    // Hide the logout button if necessary (Snipcart must do this on load)
+    if (!Snipcart.api.user.current()) {
+      $('#snipcart-nav .snipcart-user-logout').hide();
+    }
   });
 
   Snipcart.subscribe('cart.ready', function () {
