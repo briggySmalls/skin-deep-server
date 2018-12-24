@@ -19,9 +19,9 @@
     @php do_action('get_footer') @endphp
     @include('partials.footer')
     @php wp_footer() @endphp
-  {{-- Add custom content for the snipcart --}}
-  <script id="cart-content-text" type="text/template">
-    @include('partials.custom-snipcart')
-  </script>
+    {{-- Add custom content for the snipcart --}}
+    <script id="cart-content-text" type="text/template">
+      @include('partials.custom-snipcart')
+    </script>
   </body>
 </html>
