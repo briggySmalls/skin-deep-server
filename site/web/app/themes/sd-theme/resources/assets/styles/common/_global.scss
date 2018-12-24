@@ -5,7 +5,7 @@ $dark-link-colour: #5bb4ee;
 $dark-link-visited-colour: #c06afa;
 
 // Style links on dark pages
-#{$dark-page-selectors} {
+#content #{$dark-page-selectors} {
   a:not(.nav-link):not(.btn) {
     color: $dark-link-colour;
 
@@ -16,7 +16,7 @@ $dark-link-visited-colour: #c06afa;
 }
 
 // Links on normal pages
-a:not(.nav-link):not(.btn) {
+#content a:not(.nav-link):not(.btn) {
   color: $link-colour;
 
   @include hover {
