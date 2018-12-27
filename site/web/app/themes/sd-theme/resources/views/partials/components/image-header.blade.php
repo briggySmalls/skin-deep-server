@@ -7,12 +7,11 @@ $artists = $image->artists();
   'sizes' => $image_sizes ?? null,
   'extended' => $extended ?? null,
 ]) !!}
-@if ($artists)
+@if (isset($show_artists) && $artists)
   <figcaption>
     Image by
     @foreach ($artists as $artist)
         {{ $artist->name }}@if (!$loop->last)<span>,&#32;</span>@endif
     @endforeach
-    </span>
   </figcaption>
 @endif

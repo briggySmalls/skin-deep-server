@@ -38,8 +38,21 @@
   @extend .embed-responsive-16by9;
 }
 
-// Add more padding to all single posts
 body.single {
+  // Widen main container on small screens
+  @include media-breakpoint-down(lg) {
+    .wrap[role="document"] {
+      max-width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+
+      .featured-image > figcaption {
+        margin-left: 1em;
+      }
+    }
+  }
+
+  // Add more padding to all single posts
   &:not(.single-sd-product) main > .container, {
     @include media-breakpoint-up(xs) {
       padding: 0 5%;

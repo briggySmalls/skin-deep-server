@@ -1,11 +1,11 @@
 {{-- First display the featured media --}}
-<figure>
+<figure class="featured-image">
   @if ($post->hasVideo())
     {{-- Feature video takes precedence --}}
     @include('partials.components.video-header')
   @elseif ($post->image())
     {{-- Otherwise display the featured image --}}
-    @include('partials.components.image-header', ['extended' => true])
+    @include('partials.components.image-header', ['extended' => true, 'show_artists' => true])
   @endif
 </figure>
 {{-- Now display the main article --}}

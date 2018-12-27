@@ -4,7 +4,7 @@ assert(is_a($post, 'SkinDeep\Shop\Product'));
 <article @php post_class('container') @endphp>
   <div class="row">
     <div class="col-md">
-      <figure class="product-image">
+      <figure class="featured-image">
         {{-- Display the featured image --}}
         @include('partials.components.image-header')
       </figure>
