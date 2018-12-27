@@ -1,7 +1,7 @@
 import store from 'store';
 import expirePlugin from 'store/plugins/expire';
 
-const MAILING_LIST_DISMISSED_TAG = 'mailingListDismissed';
+const MAILING_LIST_DISMISSED_TAG = 'mailing_list_dismissed';
 
 // Add expire plugin to storage
 store.addPlugin(expirePlugin);
