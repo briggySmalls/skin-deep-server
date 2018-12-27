@@ -6,7 +6,7 @@
     <input type="hidden" name="id" value="943ad6701c">
     <div class="form-group">
       <label for="mailingEmail" class="sr-only">Email address:</label>
-      <input type="email" id="mailingEmail" placeholder="Enter email" name="MERGE0">
+      <input type="email" class="form-control" id="mailingEmail" placeholder="Enter email" name="MERGE0">
     </div>
     <button type="submit" name="submit" class="btn btn-primary">Submit</button>
   </form>
