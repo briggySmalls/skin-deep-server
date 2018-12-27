@@ -1,4 +1,10 @@
-import storage from 'local-storage-fallback'
+import store from 'store';
+import expirePlugin from 'store/plugins/expire';
+
+const MAILING_LIST_DISMISSED_TAG = 'mailingListDismissed';
+
+// Add expire plugin to storage
+store.addPlugin(expirePlugin);
 
 export default {
   init() {
@@ -11,12 +17,15 @@ export default {
 
     // Listen for close events on mailing list form
     $('#mailing-list').on('closed.bs.alert',function() {
+      // Get a date one month from now
+      var expiry = new Date();
+      expiry.setMonth(expiry.getMonth() + 1);
       // Remember that the user has dismissed the alert
-      storage.setItem('mailingListDismissed', true);
+      store.set(MAILING_LIST_DISMISSED_TAG, true, expiry.getTime());
     })
 
     // Hide/show mailing list based on storage value
-    if (!storage.getItem('mailingListDismissed')) {
+    if (!store.get(MAILING_LIST_DISMISSED_TAG)) {
       $('#mailing-list').show();
     }
   },
