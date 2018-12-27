@@ -67,6 +67,9 @@ class SkinDeep
             wp_enqueue_script('skindeep-plugin-public', $resources->distURL() . 'public.js');
         });
 
+        // Add plugin options page
+        $this->loader->addAction('acf/init', self::staticMethod('addOptionsPage'));
+
         // Add tags to scripts
         $this->loader->addFilter('script_loader_tag', self::staticMethod('updateScripts'), 10, 2);
         // Add preconnect for external assets
@@ -192,6 +195,18 @@ class SkinDeep
     public static function removeNativeArtistInPopup($fields) {
         unset($fields['sd_artist']);
         return $fields;
+    }
+
+    /**
+     * @brief      Add an options page to configure the plugin settings
+     * @return     false
+     */
+    public static function addOptionsPage() {
+        // Create event settings
+        acf_add_options_page([
+            'page_title' => 'Skin Deep Settings',
+            'capability' => 'edit_posts',
+        ]);
     }
 
     /**

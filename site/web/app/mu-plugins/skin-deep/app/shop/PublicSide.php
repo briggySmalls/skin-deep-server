@@ -62,7 +62,11 @@ class PublicSide
         'src' => 'https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css'
     ];
 
+    //! Name for Skin Deep's script that customises SnipCart
     public const CUSTOM_SNIPCART_SCRIPT_HANDLE = 'custom-snipcart-script';
+
+    //! Field name for SnipCart API key option
+    private const SNIPCART_API_KEY_FIELD = 'sd_shop_snipcart_api_key';
 
     /**
      * Initialize the class and set its properties.
@@ -90,7 +94,7 @@ class PublicSide
 
         // Get the API key when we can
         $loader->addAction('acf/init', function () {
-            $this->api_key = get_field('sd_shop_snipcart_api_key', 'option');
+            $this->api_key = get_field(self::SNIPCART_API_KEY_FIELD, 'option');
             if (!$this->api_key) {
                 AdminNotice::create()
                     ->error('Snipcart API key not set. Shop will not function until set in Products > Shop Settings')

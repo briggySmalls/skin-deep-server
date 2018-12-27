@@ -16,8 +16,11 @@ use \DateTime;
  */
 class EventsModule extends Module
 {
-    //! Name of the environment variable that holds the google maps API key
-    const GOOGLE_MAPS_FIELD_NAME = 'sd_event_google_maps_api_key';
+    //! Name of the ACF field variable that holds the google maps API key
+    const GOOGLE_MAPS_FIELD_NAME = 'sd_events_google_maps_api_key';
+
+    //! Name of the ACF field group for facebook settings
+    const FACEBOOK_OPTIONS_GROUP = 'sd_events_facebook';
 
     //! Meta key for storing facebook location
     const FACEBOOK_PLACE_META_KEY = 'sd_event_facebook_place';
@@ -153,14 +156,6 @@ class EventsModule extends Module
 
     public function checkEventSettings()
     {
-        // Create event settings
-        $this->settings_page_info = acf_add_options_page([
-            'page_title' => 'Event Settings',
-            'capability' => 'edit_posts',
-            'parent_slug' => 'edit.php?post_type=' . self::EVENT_POST_TYPE,
-            'redirect' => false
-        ]);
-
         // Get URL of settings page
         $url = admin_url($this->settings_page_info['parent_slug'] . '&page=' . $this->settings_page_info['menu_slug']);
 
@@ -178,8 +173,8 @@ class EventsModule extends Module
         }
 
         // Check we have a facebook access token
-        $facebook_details = get_field('sd_event_fb_page_group', 'option');
-        foreach (['app_id', 'app_secret', 'access_token'] as $field) {
+        $facebook_details = get_field('sd_events_facebook', 'option');
+        foreach (['app_id', 'app_secret', 'page_access_token'] as $field) {
             if (!(array_key_exists($field, $facebook_details) && $facebook_details[$field])) {
                 // Warn that facebook API isn't going to work
                 AdminNotice::create()

@@ -13,16 +13,20 @@ class FacebookApi
 {
     protected $fb;
 
+    const APP_ID_KEY = 'app_id'; //!< Option field name for facebook App ID
+    const APP_SECRET_KEY = 'app_secret'; //!< Option field name for facebook App secret
+    const ACCESS_TOKEN_KEY = 'page_access_token'; //!< Option field name for facebook page access token
+
     public function __construct()
     {
         // Get facebook settings
-        $fb_settings = get_field('sd_event_fb_page_group', 'option');
+        $fb_settings = get_field(EventsModule::FACEBOOK_OPTIONS_GROUP, 'option');
         // Create facebook API
         $this->fb = new Facebook([
-          'app_id' => $fb_settings['app_id'],
-          'app_secret' => $fb_settings['app_secret'],
+          'app_id' => $fb_settings[self::APP_ID_KEY],
+          'app_secret' => $fb_settings[self::APP_SECRET_KEY],
           'default_graph_version' => 'v3.1',
-          'default_access_token' => $fb_settings['access_token'],
+          'default_access_token' => $fb_settings[self::ACCESS_TOKEN_KEY],
         ]);
     }
 

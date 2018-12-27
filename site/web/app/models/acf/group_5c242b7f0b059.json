@@ -1,0 +1,204 @@
+{
+    "key": "group_5c242b7f0b059",
+    "title": "Plugin options",
+    "fields": [
+        {
+            "key": "field_5c242ed466936",
+            "label": "Event options",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5c242b996692d",
+            "label": "Event options",
+            "name": "sd_events",
+            "type": "group",
+            "instructions": "Settings that relate to events",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c242c4d6692f",
+                    "label": "Google maps API key",
+                    "name": "google_maps_api_key",
+                    "type": "text",
+                    "instructions": "Google API key (obtained via the google console)",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5c242c9666930",
+                    "label": "Facebook settings",
+                    "name": "facebook",
+                    "type": "group",
+                    "instructions": "Settings relating to facebook page connection",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5c242cdc66931",
+                            "label": "App ID",
+                            "name": "app_id",
+                            "type": "number",
+                            "instructions": "The application ID as found in the facebook developer console",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "min": "",
+                            "max": "",
+                            "step": ""
+                        },
+                        {
+                            "key": "field_5c242dc966932",
+                            "label": "App secret",
+                            "name": "app_secret",
+                            "type": "text",
+                            "instructions": "App secret as found in the facebook developer console",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5c242df566933",
+                            "label": "Page access token",
+                            "name": "page_access_token",
+                            "type": "text",
+                            "instructions": "Long-life page access token, as obtained using the facebook API explorer.\r\nSee https:\/\/stackoverflow.com\/questions\/26117479\/facebook-long-lived-page-access-token",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_5c242ee966937",
+            "label": "Shop options",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5c242e8666934",
+            "label": "Shop options",
+            "name": "sd_shop",
+            "type": "group",
+            "instructions": "Settings relating to the Skin Deep shop",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5c242ea566935",
+                    "label": "Snipcart API key",
+                    "name": "snipcart_api_key",
+                    "type": "text",
+                    "instructions": "SnipCart API key, as obtained from the SnipCart developer console",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-skin-deep-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Options for configuring the Skin Deep plugin",
+    "modified": 1545877400
+}
