@@ -61,4 +61,5 @@
       </div>
     </div>
   </nav>
+  @include('partials.components.mailing_list')
 </header>
