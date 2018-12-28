@@ -192,7 +192,8 @@ class SkinDeep
      * @param      $fields  The fields to show
      * @return     $fields but missing artist taxonomy
      */
-    public static function removeNativeArtistInPopup($fields) {
+    public static function removeNativeArtistInPopup($fields)
+    {
         unset($fields['sd_artist']);
         return $fields;
     }
@@ -201,7 +202,8 @@ class SkinDeep
      * @brief      Add an options page to configure the plugin settings
      * @return     false
      */
-    public static function addOptionsPage() {
+    public static function addOptionsPage()
+    {
         // Create event settings
         acf_add_options_page([
             'page_title' => 'Skin Deep Settings',
@@ -214,7 +216,8 @@ class SkinDeep
      * @param      $name  The name of the function
      * @return     Static method string
      */
-    private static function staticMethod($name) {
+    private static function staticMethod($name)
+    {
         return __NAMESPACE__ . "\\SkinDeep::$name";
     }
 }
