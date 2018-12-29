@@ -6,9 +6,9 @@ wordpress_sites:
   skindeepmag.com:
     nginx_wordpress_site_conf: "{{ skindeepmag_com_nginx_conf }}"
     site_hosts:
-      - canonical: skindeepmag.tk
+      - canonical: skindeepmag.com
         redirects:
-          - www.skindeepmag.tk
+          - www.skindeepmag.com
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:briggySmalls/skin-deep-server.git
     repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
