@@ -3,7 +3,7 @@
 namespace SkinDeep\Theme;
 
 use Sober\Controller\Controller;
-use SkinDeep\Articles\Post;
+use SkinDeep\Common\Post;
 
 class Single extends Controller implements SingleControllerInterface
 {
