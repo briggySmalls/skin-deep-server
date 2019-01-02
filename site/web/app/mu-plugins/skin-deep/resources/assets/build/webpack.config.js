@@ -1,7 +1,7 @@
-const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const rootPath = process.cwd()
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: {
@@ -43,6 +43,6 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
-    new webpack.EnvironmentPlugin({GOOGLE_TRACKING_ID: 'TRACKING_ID_PLACEHOLDER'}),
+    new Dotenv({path: __dirname + '/../../../../../../../.env'})
   ],
 };
