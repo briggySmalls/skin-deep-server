@@ -1,6 +1,6 @@
 # Documentation: https://roots.io/trellis/docs/mail/
-mail_smtp_server: smtp.example.com:587
-mail_admin: admin@example.com
-mail_hostname: example.com
-mail_user: smtp_user
+mail_smtp_server: send.one.com:587
+mail_admin: editor@skindeepmag.com
+mail_hostname: skindeepmag.com
+mail_user: wordpress@skindeepmag.com
 mail_password: "{{ vault_mail_password }}" # Define this variable in group_vars/all/vault.yml
