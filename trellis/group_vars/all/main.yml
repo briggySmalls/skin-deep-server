@@ -22,4 +22,3 @@ raw_vars:
   - vault_users.*.salt
   - vault_wordpress_sites
 skindeepmag_com_nginx_conf: nginx-includes/skindeepmag.com.conf.child.j2
-skindeepmag_com_google_tracking_id: UA-67991976-1
