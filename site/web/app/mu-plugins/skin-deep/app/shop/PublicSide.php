@@ -132,7 +132,7 @@ class PublicSide
         // Enqueue SnipCart customiser that modifies cart (automatically enqueues snipcat itself)
         wp_enqueue_script(
             self::CUSTOM_SNIPCART_SCRIPT_HANDLE,
-            $resources->distUrl() . 'snipcart.js',
+            $resources->distUrl() . 'customise-snipcart.js',
             [self::SNIPCART_SCRIPT['handle']]
         );
     }
