@@ -60,9 +60,11 @@ class SkinDeep
         // Register public scripts & styles
         $resources = new ResourceManager(__DIR__);
         $this->loader->addAction('wp_enqueue_scripts', function () use ($resources) {
+            // Get the google tracking ID
+            $id = self::getGoogleTrackingId();
             wp_enqueue_script(
                 'google-tag-manager',
-                'https://www.googletagmanager.com/gtag/js?id=' . getenv('GOOGLE_TRACKING_ID')
+                "https://www.googletagmanager.com/gtag/js?id={$id}"
             );
             wp_enqueue_script('skindeep-plugin-public', $resources->distURL() . 'public.js');
         });
@@ -121,12 +123,12 @@ class SkinDeep
      */
     public static function updateScripts($tag, $handle)
     {
-        $scripts = [
-            'google-tag-manager' => 'async',
-        ];
-
-        if (isset($scripts[$handle])) {
-            return Helper::updateTag($tag, $scripts[$handle]);
+        if ($handle == 'google-tag-manager') {
+            // Add attributest to google tag manager
+            $id = self::getGoogleTrackingId();
+            return Helper::updateTag(
+                $tag,
+                "id=\"google-tag-manager-script\" data-google-tracking-id=\"{$id}\" async");
         }
         return $tag;
     }
@@ -219,5 +221,14 @@ class SkinDeep
     private static function staticMethod($name)
     {
         return __NAMESPACE__ . "\\SkinDeep::$name";
+    }
+
+    /**
+     * @brief      Helper function to get Google Tracking ID
+     * @return     The google tracking identifier.
+     */
+    private static function getGoogleTrackingId()
+    {
+        return get_field('sd_general_google_analytics_id', 'option');
     }
 }
