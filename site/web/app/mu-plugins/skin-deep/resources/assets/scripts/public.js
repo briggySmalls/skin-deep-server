@@ -6,3 +6,6 @@ gtag('js', new Date());
 // Pass the tracking ID
 var id = jQuery('#google-tag-manager-script').attr('data-google-tracking-id');
 gtag('config', id);
+
+// Make gtag available to other scripts
+window.gtag = gtag;
