@@ -36,6 +36,10 @@
         "url": "https://github.com/solarissmoke/disable-comments-mu"
     },
     {
+        "type": "vcs",
+        "url": "https://github.com/briggySmalls/soil"
+    },
+    {
       "type": "package",
       "package": {
         "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -60,7 +64,7 @@
     "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "roots/wp-config": "1.0.0",
-    "roots/soil": "^3.7.3",
+    "roots/soil": "dev-fix/217-filter-seo-hook",
     "solarissmoke/disable-comments-mu": "^1.2",
     "soberwp/unravel": "^1.0",
     "soberwp/models": "1.0.6",

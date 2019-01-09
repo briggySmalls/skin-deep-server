@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74725680f9b45ea20107b81fac0416ed",
+    "content-hash": "ebf8f5d0bde017c5df9e5ceecc717c3e",
     "packages": [
         {
             "name": "automattic/jetpack",
@@ -295,55 +295,6 @@
             "time": "2018-08-02T21:48:32+00:00"
         },
         {
-            "name": "johnpbloch/wordpress-core-installer",
-            "version": "1.0.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnpbloch/wordpress-core-installer.git",
-                "reference": "7941acd71725710a789daabe0557429da63e7ac6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/7941acd71725710a789daabe0557429da63e7ac6",
-                "reference": "7941acd71725710a789daabe0557429da63e7ac6",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0"
-            },
-            "conflict": {
-                "composer/installers": "<1.0.6"
-            },
-            "require-dev": {
-                "composer/composer": "^1.0",
-                "phpunit/phpunit": ">=4.8.35"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "johnpbloch\\Composer\\WordPressCorePlugin"
-            },
-            "autoload": {
-                "psr-0": {
-                    "johnpbloch\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "John P. Bloch",
-                    "email": "me@johnpbloch.com"
-                }
-            ],
-            "description": "A custom installer to handle deploying WordPress with composer",
-            "keywords": [
-                "wordpress"
-            ],
-            "time": "2018-01-29T14:49:29+00:00"
-        },
-        {
             "name": "oscarotero/env",
             "version": "v1.1.0",
             "source": {
@@ -387,16 +338,16 @@
         },
         {
             "name": "roots/soil",
-            "version": "3.7.3",
+            "version": "dev-fix/217-filter-seo-hook",
             "source": {
                 "type": "git",
-                "url": "https://github.com/roots/soil.git",
-                "reference": "d0e409e70dafff4ceeaa8ef941ee319e350317dd"
+                "url": "https://github.com/briggySmalls/soil.git",
+                "reference": "4f797770c445f3093a217da56513c7c8bbd09041"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/soil/zipball/d0e409e70dafff4ceeaa8ef941ee319e350317dd",
-                "reference": "d0e409e70dafff4ceeaa8ef941ee319e350317dd",
+                "url": "https://api.github.com/repos/briggySmalls/soil/zipball/4f797770c445f3093a217da56513c7c8bbd09041",
+                "reference": "4f797770c445f3093a217da56513c7c8bbd09041",
                 "shasum": ""
             },
             "require": {
@@ -407,20 +358,24 @@
                 "squizlabs/php_codesniffer": "^2.5.1"
             },
             "type": "wordpress-plugin",
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpcs --extensions=php --ignore=vendor/ -n -s ."
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Scott Walkinshaw",
-                    "email": "scott.walkinshaw@gmail.com",
-                    "homepage": "https://github.com/swalkinshaw"
-                },
-                {
                     "name": "Ben Word",
                     "email": "ben@benword.com",
                     "homepage": "https://github.com/retlehs"
+                },
+                {
+                    "name": "Scott Walkinshaw",
+                    "email": "scott.walkinshaw@gmail.com",
+                    "homepage": "https://github.com/swalkinshaw"
                 }
             ],
             "description": "A WordPress plugin which contains a collection of modules to apply theme-agnostic front-end modifications",
@@ -428,7 +383,68 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2017-08-14T01:36:41+00:00"
+            "support": {
+                "issues": "https://github.com/roots/soil/issues",
+                "forum": "https://discourse.roots.io/",
+                "source": "https://github.com/briggySmalls/soil/tree/fix/217-filter-seo-hook"
+            },
+            "time": "2019-01-02T18:02:16+00:00"
+        },
+        {
+            "name": "roots/wordpress-core-installer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/roots/wordpress-core-installer.git",
+                "reference": "83744b1ba5bbdb5bb225f47e24da61a6cf6c5b80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/roots/wordpress-core-installer/zipball/83744b1ba5bbdb5bb225f47e24da61a6cf6c5b80",
+                "reference": "83744b1ba5bbdb5bb225f47e24da61a6cf6c5b80",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "conflict": {
+                "composer/installers": "<1.0.6"
+            },
+            "replace": {
+                "johnpbloch/wordpress-core-installer": "*"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0",
+                "phpunit/phpunit": ">=4.8.35"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Roots\\Composer\\WordPressCorePlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Roots\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "John P. Bloch",
+                    "email": "me@johnpbloch.com"
+                },
+                {
+                    "name": "Roots",
+                    "email": "team@roots.io"
+                }
+            ],
+            "description": "A custom installer to handle deploying WordPress with composer",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2018-12-10T00:22:15+00:00"
         },
         {
             "name": "roots/wp-config",
@@ -1265,6 +1281,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "roots/soil": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
