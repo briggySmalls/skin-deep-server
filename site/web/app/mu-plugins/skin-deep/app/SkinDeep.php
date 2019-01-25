@@ -128,7 +128,8 @@ class SkinDeep
             $id = self::getGoogleTrackingId();
             return Helper::updateTag(
                 $tag,
-                "id=\"google-tag-manager-script\" data-google-tracking-id=\"{$id}\" async");
+                "id=\"google-tag-manager-script\" data-google-tracking-id=\"{$id}\" async"
+            );
         }
         return $tag;
     }
