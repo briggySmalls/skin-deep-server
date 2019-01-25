@@ -20,12 +20,9 @@ cache:
   directories:
     - site/vendor
     - site/web/app/themes/sd-theme/vendor
-    - site/web/app/mu-plugins/sd-articles/vendor
-    - site/web/app/mu-plugins/sd-events/vendor
-    - site/web/app/mu-plugins/sd-shop/vendor
+    - site/web/app/mu-plugins/skin-deep/vendor
     - site/web/app/themes/sd-theme/node_modules
-    - site/web/app/mu-plugins/sd-articles/node_modules
-    - site/web/app/mu-plugins/sd-shop/node_modules
+    - site/web/app/mu-plugins/skin-deep/node_modules
 
 before_install:
   # Repo for newer Node.js versions
@@ -45,11 +42,9 @@ before_install:
 install:
   - composer install -o --prefer-dist --no-interaction
   - yarn --cwd web/app/themes/sd-theme install
-  - yarn --cwd web/app/mu-plugins/sd-articles install
-  - yarn --cwd web/app/mu-plugins/sd-shop install
+  - yarn --cwd web/app/mu-plugins/skin-deep install
 
 script:
   - composer test
   - yarn --cwd web/app/themes/sd-theme run test
-  - yarn --cwd web/app/mu-plugins/sd-articles run test
-  - yarn --cwd web/app/mu-plugins/sd-shop run test
+  - yarn --cwd web/app/mu-plugins/skin-deep run test
