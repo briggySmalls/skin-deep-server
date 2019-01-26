@@ -1,12 +1,13 @@
-sudo: true
+dist: xenial
 language: php
 php:
   - 7.2
   - 7.1
   - nightly
 env:
-  - NODE_RELEASE=9.x
-  - NODE_RELEASE=10.x
+  matrix:
+    - TRAVIS_NODE_VERSION="9"
+    - TRAVIS_NODE_VERSION="10"
 
 matrix:
   fast_finish: true
@@ -28,11 +29,8 @@ addons:
     sources:
       - sourceline: 'deb https://dl.yarnpkg.com/debian/ stable main'
         key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
-      - sourceline: 'deb https://deb.nodesource.com/node_${NODE_RELEASE} stable main'
-        key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     packages:
       - yarn
-      - nodejs
 
 before_install:
   # Ensure bedrock is ready
