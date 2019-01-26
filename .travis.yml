@@ -23,17 +23,18 @@ cache:
     - site/web/app/mu-plugins/skin-deep/vendor
     - site/web/app/themes/sd-theme/node_modules
     - site/web/app/mu-plugins/skin-deep/node_modules
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb https://dl.yarnpkg.com/debian/ stable main'
+        key_url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
+      - sourceline: 'deb https://deb.nodesource.com/node_${NODE_RELEASE} stable main'
+        key_url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+    packages:
+      - yarn
+      - nodejs
 
 before_install:
-  # Repo for newer Node.js versions
-  - sudo rm -rf ~/.nvm
-  - curl -sL https://deb.nodesource.com/setup_${NODE_RELEASE} | sudo -E bash -
-  # Repo for Yarn
-  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  # Install yarn and node
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq nodejs yarn
   # Ensure bedrock is ready
   - cd site
   - phpenv config-rm xdebug.ini || true
