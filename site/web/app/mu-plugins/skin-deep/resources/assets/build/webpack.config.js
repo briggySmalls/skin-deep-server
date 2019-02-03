@@ -13,7 +13,7 @@ module.exports = {
     'widgets-public': "./resources/assets/scripts/widgets-public.js",
   },
   externals: {
-    jquery: 'jQuery'
+    jquery: 'jQuery',
   },
   module: {
     rules:[
@@ -41,6 +41,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
-    })
+    }),
   ],
 };
