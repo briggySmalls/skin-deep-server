@@ -174,13 +174,21 @@ class EventsModule extends Module
 
         // Check we have a facebook access token
         $facebook_details = get_field('sd_events_facebook', 'option');
-        foreach (['app_id', 'app_secret', 'page_access_token'] as $field) {
-            if (!(array_key_exists($field, $facebook_details) && $facebook_details[$field])) {
-                // Warn that facebook API isn't going to work
-                AdminNotice::create()
-                    ->error()
-                    ->html("Event setting '$field' not yet set. Configure in <a href=\"$url\">Events -&gt; Event Settings</a>")
-                    ->show();
+        if (!$facebook_details) {
+            // Warn that facebook API isn't going to work
+            AdminNotice::create()
+                ->error()
+                ->html("Event facebook settings unset. Configure in <a href=\"$url\">Events -&gt; Event Settings</a>")
+                ->show();
+        } else {
+            foreach (['app_id', 'app_secret', 'page_access_token'] as $field) {
+                if (!(array_key_exists($field, $facebook_details) && $facebook_details[$field])) {
+                    // Warn that facebook API isn't going to work
+                    AdminNotice::create()
+                        ->error()
+                        ->html("Event setting '$field' not yet set. Configure in <a href=\"$url\">Events -&gt; Event Settings</a>")
+                        ->show();
+                }
             }
         }
     }

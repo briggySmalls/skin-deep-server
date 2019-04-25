@@ -3,10 +3,10 @@
 #{$dark-page-selectors} {
   #content {
     a:not(.nav-link):not(.btn) {
-      color: theme-color('dark-link');
+      color: theme-color("dark-link");
 
       &:visited {
-        color: theme-color('dark-link-visited');
+        color: theme-color("dark-link-visited");
       }
     }
   }
@@ -14,7 +14,7 @@
 
 // Links on normal pages
 #content a:not(.nav-link):not(.btn) {
-  color: theme-color('link');
+  color: theme-color("link");
 
   @include hover {
     text-decoration: underline;
@@ -25,7 +25,7 @@
   }
 
   &:visited {
-    color: theme-color('link-visited');
+    color: theme-color("link-visited");
   }
 }
 

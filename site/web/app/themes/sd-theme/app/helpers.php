@@ -52,10 +52,6 @@ function config($key = null, $default = null)
  */
 function template($file, $data = [])
 {
-    if (!is_admin() && remove_action('wp_head', 'wp_enqueue_scripts', 1)) {
-        wp_enqueue_scripts();
-    }
-
     return sage('blade')->render($file, $data);
 }
 
@@ -244,10 +240,10 @@ function getGridConfig()
 {
     return [
         'template' => function ($post) {
-            return App::POST_TYPE_MAP[get_post_type($post)]['template'];
+            return Controllers\App::POST_TYPE_MAP[get_post_type($post)]['template'];
         },
         'wrapper' => function ($post) {
-            $class_name = App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
+            $class_name = Controllers\App::POST_TYPE_MAP[get_post_type($post)]['wrapper'];
             return new $class_name($post);
         },
         'column_count' => 3,

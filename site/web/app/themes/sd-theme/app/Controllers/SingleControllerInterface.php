@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Theme;
+namespace SkinDeep\Theme\Controllers;
 
 interface SingleControllerInterface
 {

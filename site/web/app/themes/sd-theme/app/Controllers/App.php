@@ -1,6 +1,6 @@
 <?php
 
-namespace SkinDeep\Theme;
+namespace SkinDeep\Theme\Controllers;
 
 use Sober\Controller\Controller;
 
@@ -75,7 +75,7 @@ class App extends Controller
 
     public function gridConfig()
     {
-        return getGridConfig();
+        return \SkinDeep\Theme\getGridConfig();
     }
 
     protected static function category()

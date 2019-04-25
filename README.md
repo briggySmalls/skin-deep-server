@@ -45,6 +45,8 @@ git branch db-uploads-migration/master db-uploads-migration
 
 Updates to the remote can be merged in with:
 ```
-git fetch db-uploads-migration
-git pull db-uploads-migration master
+git checkout db-uploads-migration
+git pull --rebase
+git checkout master
+git merge --squash -s subtree -Xsubtree=trellis/ --no-commit db-uploads-migration --allow-unrelated-histories
 ```

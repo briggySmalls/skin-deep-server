@@ -239,3 +239,17 @@ add_filter('loop_start', function () {
         remove_filter('the_content', array(Jetpack_Likes::init(), 'post_likes'), 30, 1);
     }
 });
+
+/**
+ * Configure soberwp/controller to find sage function correctly
+ */
+add_filter('sober/controller/sage/namespace', function () {
+    return __NAMESPACE__;
+});
+
+/**
+ * Configure soberwp/controller to find controllers correctly
+ */
+add_filter('sober/controller/namespace', function () {
+    return __NAMESPACE__ . '\Controllers';
+});
