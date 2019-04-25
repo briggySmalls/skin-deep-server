@@ -1,6 +1,6 @@
 #{$dark-page-selectors} {
   nav.navbar .navbar-nav .active > .nav-link {
-    color: theme-color('dark-active-nav-link');
+    color: theme-color("dark-active-nav-link");
   }
 }
 
@@ -17,7 +17,7 @@ nav.navbar {
 
   // Set navigation link highlight colour
   .navbar-nav .active > .nav-link {
-    color: theme-color('active-nav-link');
+    color: theme-color("active-nav-link");
   }
 
   h2 {
