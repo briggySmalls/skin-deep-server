@@ -229,7 +229,7 @@ function isDarkPage()
     }
 
     // Check if the page has a dark theme
-    return has_post_format('video');
+    return is_single() && has_post_format('video');
 }
 
 /**
