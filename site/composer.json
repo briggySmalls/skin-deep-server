@@ -40,20 +40,8 @@
         "url": "https://github.com/briggySmalls/soil"
     },
     {
-      "type": "package",
-      "package": {
-        "name": "advanced-custom-fields/advanced-custom-fields-pro",
-        "version": "5.8.0-beta2",
-        "type": "wordpress-muplugin",
-        "dist": {
-          "type": "zip",
-          "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download"
-        },
-        "require": {
-          "philippbaschke/acf-pro-installer": "^1.0",
-          "composer/installers": "^1.0"
-        }
-      }
+      "type": "composer",
+      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v2/"
     }
   ],
   "require": {
@@ -71,8 +59,8 @@
     "automattic/jetpack": "^6.5",
     "wpackagist-plugin/gutenberg": "4.5.1",
     "wpackagist-plugin/ticket-tailor": "1.7",
-    "wpackagist-plugin/autodescription": "^3.2"
-
+    "wpackagist-plugin/autodescription": "^3.2",
+    "advanced-custom-fields/advanced-custom-fields-pro": "5.8.0-RC2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
