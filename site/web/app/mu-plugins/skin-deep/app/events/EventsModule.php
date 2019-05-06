@@ -121,6 +121,8 @@ class EventsModule extends Module
             $meta_query[] = self::getStatusMetaQuery($status);
             // Update the query
             $query->set('meta_query', $meta_query);
+            // Sort by date (reverse-chronological)
+            $query->set('orderby', ['meta_value' => 'DESC']);
         }
     }
 
