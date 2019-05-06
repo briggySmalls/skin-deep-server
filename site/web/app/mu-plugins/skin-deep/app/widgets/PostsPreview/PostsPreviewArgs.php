@@ -105,6 +105,7 @@ class PostsPreviewArgs implements WidgetArgsInterface
                 $status = $filter_group['status'];
                 $query_args['meta_query'][] = EventsModule::getStatusMetaQuery($status);
                 $query_args['post_type'] = EventsModule::EVENT_POST_TYPE;
+                $query_args['orderby'] = ['meta_value' => 'DESC'];
                 $url = EventsModule::getStatusUrl($status);
                 break;
 
