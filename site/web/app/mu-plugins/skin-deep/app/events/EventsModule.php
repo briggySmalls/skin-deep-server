@@ -103,27 +103,30 @@ class EventsModule extends Module
 
     public function filterEventsOnStatus($query)
     {
-        if (!is_admin() && // Do not mess up admin lists
-                $query->is_main_query() && // Preserve menus etc.
-                is_post_type_archive(self::EVENT_POST_TYPE) &&
-                get_query_var(self::EVENT_STATUS_QUERY_ARG)) {
-            // Determine if we are looking for past/upcoming
-            $status = get_query_var(self::EVENT_STATUS_QUERY_ARG);
-            if (!array_key_exists($status, self::$status_to_comparison_map)) {
-                // Return no posts for an invalid query arg
-                $query->set('post__in', [0]);
-                return;
-            }
-
-            //Get original meta query
-            $meta_query = is_array($query->get('meta_query')) ? $query->get('meta_query') : [];
-            //Add our meta query to the original meta queries
-            $meta_query[] = self::getStatusMetaQuery($status);
-            // Update the query
-            $query->set('meta_query', $meta_query);
-            // Sort by date (reverse-chronological)
-            $query->set('orderby', ['meta_value' => 'DESC']);
+        if ($query->is_admin() || // Do not mess up admin lists
+            !$query->is_main_query() || // Preserve menus
+            !is_post_type_archive(self::EVENT_POST_TYPE) || // Ignore non-event queries
+            !get_query_var(self::EVENT_STATUS_QUERY_ARG)) { // Ignore queries that do not specify event status
+            // Short-circuit
+            return;
         }
+
+        // Determine if we are looking for past/upcoming
+        $status = get_query_var(self::EVENT_STATUS_QUERY_ARG);
+        if (!array_key_exists($status, self::$status_to_comparison_map)) {
+            // Return no posts for an invalid query arg
+            $query->set('post__in', [0]);
+            return;
+        }
+
+        //Get original meta query
+        $meta_query = is_array($query->get('meta_query')) ? $query->get('meta_query') : [];
+        //Add our meta query to the original meta queries
+        $meta_query[] = self::getStatusMetaQuery($status);
+        // Update the query
+        $query->set('meta_query', $meta_query);
+        // Sort by date (reverse-chronological)
+        $query->set('orderby', ['meta_value' => 'DESC']);
     }
 
     public function updateEventWithFacebookDetails($post_id)
