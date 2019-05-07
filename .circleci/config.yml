@@ -1,0 +1,92 @@
+# State version
+version: 2.0
+jobs:
+  # Install php dependencies
+  install-php:
+    docker:
+      - image: php:7.3-alpine
+    steps:
+      # Install php deps
+      - run: apk add libpng-dev libxml2-dev libzip-dev composer git
+      # Install php deps
+      - run: docker-php-ext-install gd mysqli opcache xmlrpc zip
+      # Now checkout the code
+      - checkout:
+          path: /src
+      # Install bedrock dependencies
+      - run:
+          name: Install bedrock dependencies
+          command: composer install -o --prefer-dist --no-interaction
+          working_directory: /src/site
+      # Install plugin dependencies
+      - run:
+          name: Install plugin dependencies
+          command: composer install -o --prefer-dist --no-interaction
+          working_directory: /src/site/web/app/mu-plugins/skin-deep
+      # Install theme dependencies
+      - run:
+          name: Install theme dependencies
+          command: composer install -o --prefer-dist --no-interaction
+          working_directory: /src/site/web/app/themes/sd-theme
+      # Save the install to the workspace
+      - persist_to_workspace:
+          root: /src/site
+
+  # Test php
+  test-php:
+    working_directory: /app
+    environment:
+      DB_HOST: localhost
+      DB_USER: test
+      DB_PASSWORD: password
+      DB_NAME: ci_development
+    docker:
+      - image: php:7.3-alpine
+      - image: mariadb:10.2
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: $DB_USER
+          MYSQL_PASSWORD: $DB_PASSWORD
+          MYSQL_DATABASE: $DB_NAME
+    steps:
+      # Get the pre-built app
+      - attach_workspace:
+          at: .
+      # Install composer again
+      - run: apk add composer
+      # Run test
+      - run: composer test
+
+  # Test plugin deps
+  frontend-plugin:
+    working_directory: /app
+    docker:
+      - image: node:10-stretch
+    steps:
+      - checkout
+      - run: yarn --cwd site/web/app/mu-plugins/skin-deep install
+      - run: yarn --cwd site/web/app/mu-plugins/skin-deep test
+
+  # Test plugin deps
+  frontend-theme:
+    working_directory: /app
+    docker:
+      - image: node:10-stretch
+    steps:
+      - checkout
+      - run: yarn --cwd site/web/app/themes/sd-theme install
+      - run: yarn --cwd site/web/app/themes/sd-theme test
+
+
+workflows:
+  version: 2
+  web:
+    jobs:
+      - install-php
+      - test-php:
+          requires:
+            - install-php
+  frontend:
+    jobs:
+      - frontend-plugin
+      - frontend-theme
