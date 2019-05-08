@@ -82,9 +82,11 @@
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""
     ],
-    "test": [
+    "check": [
       "vendor/bin/parallel-lint web/app/mu-plugins/skin-deep/app/ web/app/themes/sd-theme/app/",
-      "phpcs",
+      "phpcs"
+    ],
+    "analyse": [
       "phpstan analyse"
     ]
   }

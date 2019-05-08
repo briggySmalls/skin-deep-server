@@ -6,40 +6,53 @@ jobs:
     docker:
       - image: php:7.3-alpine
     steps:
-      # Install php deps
-      - run: apk add libpng-dev libxml2-dev libzip-dev composer git
-      # Install php deps
-      - run: docker-php-ext-install gd mysqli opcache xmlrpc zip
       # Now checkout the code
       - checkout:
           path: /src
+      # Install composer
+      - run: apk add composer
       # Install bedrock dependencies
       - run:
           name: Install bedrock dependencies
-          command: composer install -o --prefer-dist --no-interaction
+          command: composer install -o --no-progress --prefer-dist --no-interaction
           working_directory: /src/site
       # Install plugin dependencies
       - run:
           name: Install plugin dependencies
-          command: composer install -o --prefer-dist --no-interaction
+          command: composer install -o --no-progress --prefer-dist --no-interaction
           working_directory: /src/site/web/app/mu-plugins/skin-deep
       # Install theme dependencies
       - run:
           name: Install theme dependencies
-          command: composer install -o --prefer-dist --no-interaction
+          command: composer install -o --no-progress --prefer-dist --no-interaction
           working_directory: /src/site/web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
           root: /src/site
           paths:
-            - web
-            - tests
+            - web/
+            - tests/
             - composer.*
             - phpcs.xml
             - phpstan.neon
+            - vendor/
+            - config/
 
   # Test php
-  test-php:
+  check-php:
+    working_directory: /app
+    docker:
+      - image: php:7.3-alpine
+    steps:
+      # Get the pre-built app
+      - attach_workspace:
+          at: .
+      # Install composer again
+      - run: apk add composer
+      # Run test
+      - run: composer check
+
+  analyse-php:
     working_directory: /app
     environment:
       DB_HOST: localhost
@@ -58,10 +71,14 @@ jobs:
       # Get the pre-built app
       - attach_workspace:
           at: .
+      # Install php deps
+      - run: apk add libpng-dev libxml2-dev libzip-dev composer git
+      # Install php deps
+      - run: docker-php-ext-install gd mysqli opcache xmlrpc zip
       # Install composer again
       - run: apk add composer
-      # Run test
-      - run: composer test
+      # Run analysis
+      - run: composer analyse
 
   # Test plugin deps
   frontend-plugin:
@@ -83,13 +100,15 @@ jobs:
       - run: yarn --cwd site/web/app/themes/sd-theme install
       - run: yarn --cwd site/web/app/themes/sd-theme test
 
-
 workflows:
   version: 2
   web:
     jobs:
       - install-php
-      - test-php:
+      - check-php:
+          requires:
+            - install-php
+      - analyse-php:
           requires:
             - install-php
   frontend:
