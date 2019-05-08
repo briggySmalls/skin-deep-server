@@ -31,6 +31,12 @@ jobs:
       # Save the install to the workspace
       - persist_to_workspace:
           root: /src/site
+          paths:
+            - /web
+            - /tests
+            - /composer.*
+            - /phpcs.xml
+            - /phpstan.neon
 
   # Test php
   test-php:

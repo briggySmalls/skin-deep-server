@@ -84,7 +84,8 @@
     ],
     "test": [
       "vendor/bin/parallel-lint web/app/mu-plugins/skin-deep/app/ web/app/themes/sd-theme/app/",
-      "phpcs"
+      "phpcs",
+      "phpstan analyse"
     ]
   }
 }
