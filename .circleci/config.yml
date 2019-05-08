@@ -32,11 +32,11 @@ jobs:
       - persist_to_workspace:
           root: /src/site
           paths:
-            - /web
-            - /tests
-            - /composer.*
-            - /phpcs.xml
-            - /phpstan.neon
+            - web
+            - tests
+            - composer.*
+            - phpcs.xml
+            - phpstan.neon
 
   # Test php
   test-php:
