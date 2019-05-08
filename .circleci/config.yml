@@ -54,19 +54,19 @@ jobs:
 
   analyse-php:
     working_directory: /app
-    environment:
-      DB_USER: test
-      DB_PASSWORD: password
-      DB_HOST: localhost
-      DB_NAME: ci_development
     docker:
       - image: php:7.3-alpine
+        environment:
+          DB_USER: test_user
+          DB_PASSWORD: my_magic_password
+          DB_HOST: localhost
+          DB_NAME: ci_development
       - image: mariadb:10.2
         environment:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_USER: $DB_USER
-          MYSQL_PASSWORD: $DB_PASSWORD
-          MYSQL_DATABASE: $DB_NAME
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: my_magic_password
+          MYSQL_DATABASE: ci_development
     steps:
       # Get the pre-built app
       - attach_workspace:
@@ -75,6 +75,15 @@ jobs:
       - run: apk add --no-progress libpng-dev libxml2-dev libzip-dev composer git
       # Install php deps
       - run: docker-php-ext-install gd mysqli opcache xmlrpc zip
+      # Install wp cli
+      - run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          mv wp-cli.phar /usr/local/bin/wp
+      # Install wp tables
+      - run:
+          command: wp --allow-root core install --url=skindeepmag.com --title=example --admin_user=admin --admin_email=admin@example.com
+          working_directory: web
       # Run analysis
       - run: composer analyse
 
@@ -88,7 +97,7 @@ jobs:
       - run: yarn --cwd site/web/app/mu-plugins/skin-deep install
       - run: yarn --cwd site/web/app/mu-plugins/skin-deep test
 
-  # Test plugin deps
+  # Test theme deps
   frontend-theme:
     working_directory: /app
     docker:
