@@ -57,15 +57,13 @@ jobs:
     docker:
       - image: php:7.3-alpine
         environment:
-          DB_USER: test_user
-          DB_PASSWORD: my_magic_password
+          DB_USER: root
+          DB_PASSWORD: root
           DB_HOST: 127.0.0.1
           DB_NAME: ci_development
       - image: mariadb:10.2
         environment:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_USER: test_user
-          MYSQL_PASSWORD: my_magic_password
           MYSQL_DATABASE: ci_development
     steps:
       # Get the pre-built app
