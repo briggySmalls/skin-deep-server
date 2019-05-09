@@ -59,7 +59,7 @@ jobs:
         environment:
           DB_USER: test_user
           DB_PASSWORD: my_magic_password
-          DB_HOST: localhost
+          DB_HOST: 127.0.0.1
           DB_NAME: ci_development
       - image: mariadb:10.2
         environment:
