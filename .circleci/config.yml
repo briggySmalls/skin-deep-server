@@ -87,7 +87,7 @@ jobs:
           command: wp --allow-root theme activate sd-theme/resources
           working_directory: web
       # Run analysis
-      - run: composer analyse -- --no-progress --no-interaction
+      - run: composer analyse -- --no-progress --no-interaction --memory-limit=4G
 
   # Test plugin deps
   frontend-plugin:
