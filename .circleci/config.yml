@@ -82,6 +82,10 @@ jobs:
       - run:
           command: wp --allow-root core install --url=skindeepmag.com --title=example --admin_user=admin --admin_email=admin@example.com
           working_directory: web
+      # Activate theme
+      - run:
+          command: wp --allow-root theme activate sd-theme/resources
+          working_directory: web
       # Run analysis
       - run: composer analyse
 
