@@ -41,7 +41,7 @@
     },
     {
       "type": "composer",
-      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v2/"
+      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v2/wordpress-muplugin/"
     }
   ],
   "require": {
@@ -60,7 +60,7 @@
     "wpackagist-plugin/gutenberg": "4.5.1",
     "wpackagist-plugin/ticket-tailor": "1.7",
     "wpackagist-plugin/autodescription": "^3.2",
-    "advanced-custom-fields/advanced-custom-fields-pro": "5.8.0-RC2"
+    "advanced-custom-fields/advanced-custom-fields-pro": "^5.8"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
