@@ -90,6 +90,19 @@ class ArticlesModule extends Module
 
         // Add suggestions after all articles
         $this->getLoader()->addFilter('the_content', __NAMESPACE__ . '\\ArticlesModule::updateContent', 40);
+
+        // Add 'format' filter to admin view (see https://wordpress.stackexchange.com/a/276017)
+        $this->getLoader()->addFilter('restrict_manage_posts', function ($post_type = "") {
+            if (in_array($post_type, ['post'])) {
+                wp_dropdown_categories([
+                    'taxonomy'          => 'post_format',
+                    'hide_empty'        => 0,
+                    'name'              => 'post_format',
+                    'show_option_all'   => 'Select Post Format',
+                    'value_field'       => 'slug',
+                ]);
+            }
+        });
     }
 
     /**
