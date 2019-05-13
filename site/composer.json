@@ -57,7 +57,6 @@
     "soberwp/unravel": "^1.0",
     "soberwp/models": "1.0.6",
     "automattic/jetpack": "^6.5",
-    "wpackagist-plugin/gutenberg": "4.5.1",
     "wpackagist-plugin/ticket-tailor": "1.7",
     "wpackagist-plugin/autodescription": "^3.2",
     "advanced-custom-fields/advanced-custom-fields-pro": "5.8.0-RC2"
