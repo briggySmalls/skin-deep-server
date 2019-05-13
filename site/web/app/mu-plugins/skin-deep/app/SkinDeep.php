@@ -22,6 +22,11 @@ class SkinDeep
     private $loader;
 
     /**
+     * Module for managing articles
+     */
+    private $articles;
+
+    /**
      * Module for managing shop functionality
      */
     private $shop;
@@ -117,11 +122,11 @@ class SkinDeep
 
     /**
      * @brief      Add attributes to scripts
-     * @param      $tag     The script tag HTML
-     * @param      $handle  The handle of the script
-     * @return     The filtered script tag HTML
+     * @param      string  $tag     The script tag HTML
+     * @param      string  $handle  The handle of the script
+     * @return     string   The filtered script tag HTML
      */
-    public static function updateScripts($tag, $handle)
+    public static function updateScripts(string $tag, string $handle): string
     {
         if ($handle == 'google-tag-manager') {
             // Add attributest to google tag manager
@@ -136,7 +141,6 @@ class SkinDeep
 
     /**
      * @brief      Dequeues the Dashicons CSS from the frontend
-     * @return     None
      */
     public static function dequeueDashicons()
     {
@@ -149,11 +153,13 @@ class SkinDeep
     /**
      * @brief      Add preconnect browser hints
      * @note       Wordpress already adds dns-prefetch for all external links
-     * @param      $urls           The urls
-     * @param      $relation_type  The relation type
-     * @return     urls/attributes for resource hinting
+     *
+     * @param      string[]  $urls           The urls
+     * @param      string    $relation_type  The relation type
+     *
+     * @return     string[] urls/attributes for resource hinting
      */
-    public static function preconnectExternalAssets($urls, $relation_type)
+    public static function preconnectExternalAssets(array $urls, string $relation_type): array
     {
         if ($relation_type === 'preconnect') {
             // Create preconnect URLs from unique hosts
@@ -177,12 +183,12 @@ class SkinDeep
     }
 
     /**
-     * @brief      Removes a native artist from editor.
-     * @param      $args      The arguments
-     * @param      $taxonomy  The taxonomy
-     * @return     $args (with meta_box_cb modified for sd_artist taxonomies)
+     * Removes a native artist from editor.
+     * @param array $args The arguments
+     * @param string $taxonomy The taxonomy
+     * @return array
      */
-    public static function removeNativeArtistInEditor($args, $taxonomy)
+    public static function removeNativeArtistInEditor(array $args, string $taxonomy): array
     {
         if ($taxonomy === 'sd_artist') {
             $args['meta_box_cb'] = false;
@@ -192,10 +198,10 @@ class SkinDeep
 
     /**
      * @brief      Remove native artist taxonomy field from attachment editor
-     * @param      $fields  The fields to show
-     * @return     $fields but missing artist taxonomy
+     * @param      string[] $fields  The fields to show
+     * @return     string[] $fields but missing artist taxonomy
      */
-    public static function removeNativeArtistInPopup($fields)
+    public static function removeNativeArtistInPopup(array $fields)
     {
         unset($fields['sd_artist']);
         return $fields;
@@ -216,10 +222,10 @@ class SkinDeep
 
     /**
      * @brief      Helper method to build static method string
-     * @param      $name  The name of the function
-     * @return     Static method string
+     * @param      string $name  The name of the function
+     * @return     string Static method string
      */
-    private static function staticMethod($name)
+    private static function staticMethod(string $name)
     {
         return __NAMESPACE__ . "\\SkinDeep::$name";
     }

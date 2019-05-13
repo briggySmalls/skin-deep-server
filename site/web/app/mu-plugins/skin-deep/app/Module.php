@@ -27,9 +27,8 @@ abstract class Module
 
     /**
      * @brief      Get the loader
-     * @return     The loader.
      */
-    protected function getLoader()
+    protected function getLoader(): Utilities\Loader
     {
         return $this->loader;
     }
