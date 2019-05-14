@@ -1,0 +1,12 @@
+{
+  "author": "Sam Briggs",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "open": "yarn cypress open",
+    "test": "yarn cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^3.2.0"
+  }
+}
