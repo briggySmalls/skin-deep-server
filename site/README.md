@@ -69,3 +69,38 @@ That which should be retained lives in the feature plugin, rather than the theme
 ## Documentation
 
 Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
+
+## Testing
+
+This project employs some light testing.
+
+Check for basic formatting errors with:
+```bash
+# Check for basic formatting errors
+composer check
+```
+
+### End-to-end testing
+
+The project employs some end-to-end testing using Cypress.
+
+To run the tests, we start up a fresh server with controlled database contents. This is managed by docker.
+
+Run the tests with:
+```bash
+# Navigate to testing directory
+cd tests
+
+# Start the mock server
+docker-compose up
+
+# Install cypress
+yarn install
+
+# Run the testing, or...
+yarn run
+# Open the Cypress test runner
+yarn open
+```
+
+
