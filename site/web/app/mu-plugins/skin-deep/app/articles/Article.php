@@ -26,7 +26,10 @@ class Article extends Post
     {
         $all_categories = get_the_category($this->post->ID);
         $default_index = self::getDefaultIndex($all_categories);
-        array_splice($all_categories, $default_index, 1);
+        if ($default_index !== false) {
+            // The default category is in the list, remove it
+            array_splice($all_categories, $default_index, 1);
+        }
         return $all_categories;
     }
 
@@ -70,6 +73,6 @@ class Article extends Post
                 return $i;
             }
         }
-        assert(false);
+        return false;
     }
 }
