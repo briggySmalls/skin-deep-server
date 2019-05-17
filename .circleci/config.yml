@@ -52,6 +52,30 @@ jobs:
       # Run test
       - run: composer check
 
+  # Run e2e tests
+  e2e:
+    working_directory: /app
+    docker:
+      - image: cypress/included:3.2.0
+    steps:
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - setup_remote_docker
+      # Get the pre-built app
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run system
+          command: docker-compose up -d
+          working_directory: /app/tests
+      - run:
+          command: yarn run
+          working_directory: /app/tests
+
   # Test plugin deps
   frontend-plugin:
     working_directory: /app
@@ -78,6 +102,9 @@ workflows:
     jobs:
       - install-php
       - check-php:
+          requires:
+            - install-php
+      - e2e:
           requires:
             - install-php
   frontend:
