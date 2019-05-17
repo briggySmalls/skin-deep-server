@@ -80,9 +80,6 @@ workflows:
       - check-php:
           requires:
             - install-php
-      - analyse-php:
-          requires:
-            - install-php
   frontend:
     jobs:
       - frontend-plugin
