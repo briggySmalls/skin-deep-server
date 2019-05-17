@@ -1,6 +1,6 @@
 # Skin Deep server
 
-[![Build Status](https://travis-ci.org/briggySmalls/skin-deep-server.svg?branch=master)](https://travis-ci.org/briggySmalls/skin-deep-server)
+[![CircleCI](https://circleci.com/gh/briggySmalls/skin-deep-server/tree/master.svg?style=svg)](https://circleci.com/gh/briggySmalls/skin-deep-server/tree/master)
 
 The entire server for the Skin Deep website.
 
