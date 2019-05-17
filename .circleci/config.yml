@@ -1,0 +1,89 @@
+# State version
+version: 2.0
+jobs:
+  # Install php dependencies
+  install-php:
+    docker:
+      - image: php:7.3-alpine
+    steps:
+      # Now checkout the code
+      - checkout:
+          path: /src
+      # Install composer
+      - run: apk add --no-progress composer
+      # Install bedrock dependencies
+      - run:
+          name: Install bedrock dependencies
+          command: composer install -o --no-progress --prefer-dist --no-interaction
+          working_directory: /src/site
+      # Install plugin dependencies
+      - run:
+          name: Install plugin dependencies
+          command: composer install -o --no-progress --prefer-dist --no-interaction
+          working_directory: /src/site/web/app/mu-plugins/skin-deep
+      # Install theme dependencies
+      - run:
+          name: Install theme dependencies
+          command: composer install -o --no-progress --prefer-dist --no-interaction
+          working_directory: /src/site/web/app/themes/sd-theme
+      # Save the install to the workspace
+      - persist_to_workspace:
+          root: /src/site
+          paths:
+            - web/
+            - tests/
+            - composer.*
+            - phpcs.xml
+            - phpstan.neon
+            - vendor/
+            - config/
+
+  # Test php
+  check-php:
+    working_directory: /app
+    docker:
+      - image: php:7.3-alpine
+    steps:
+      # Get the pre-built app
+      - attach_workspace:
+          at: .
+      # Install composer again
+      - run: apk add --no-progress composer
+      # Run test
+      - run: composer check
+
+  # Test plugin deps
+  frontend-plugin:
+    working_directory: /app
+    docker:
+      - image: node:10-stretch
+    steps:
+      - checkout
+      - run: yarn --cwd site/web/app/mu-plugins/skin-deep install
+      - run: yarn --cwd site/web/app/mu-plugins/skin-deep test
+
+  # Test theme deps
+  frontend-theme:
+    working_directory: /app
+    docker:
+      - image: node:10-stretch
+    steps:
+      - checkout
+      - run: yarn --cwd site/web/app/themes/sd-theme install
+      - run: yarn --cwd site/web/app/themes/sd-theme test
+
+workflows:
+  version: 2
+  web:
+    jobs:
+      - install-php
+      - check-php:
+          requires:
+            - install-php
+      - analyse-php:
+          requires:
+            - install-php
+  frontend:
+    jobs:
+      - frontend-plugin
+      - frontend-theme
