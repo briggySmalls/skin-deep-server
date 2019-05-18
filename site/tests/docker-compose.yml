@@ -1,7 +1,17 @@
 version: "3"
 
 services:
+  cypress:
+    image: cypress/included:3.2.0
+    environment:
+      - CYPRESS_baseUrl=http://web:8080
+    volumes:
+      - .:/src
+    working_dir: /src
+
   web:
+    logging:
+        driver: none
     build: .
     command: php -S 0.0.0.0:8080 -t /var/www/html/web
     volumes:
@@ -14,6 +24,8 @@ services:
       - .env
 
   database:
+    logging:
+        driver: none
     image: mariadb:10.2
     environment:
       - "MYSQL_ROOT_PASSWORD=root"
