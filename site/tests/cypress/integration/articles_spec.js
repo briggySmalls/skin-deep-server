@@ -1,7 +1,7 @@
 describe('Article', function() {
   it('Visits an article', function() {
     // Visit the article
-    cy.visitAndCheck('localhost:8080/articles/hello-world/')
+    cy.visitAndCheck('/articles/hello-world/')
 
     // Check background changes
     cy.get('body').should('have.css', 'background-color', 'rgb(255, 255, 255)')
@@ -24,7 +24,7 @@ describe('Article', function() {
 
   it('Visits a video article', function() {
     // Visit the article
-    cy.visitAndCheck('localhost:8080/articles/my-first-video/')
+    cy.visitAndCheck('/articles/my-first-video/')
 
     // Check the featured media is a video
     cy.get('.featured-image iframe').should('exist')
