@@ -88,7 +88,7 @@ jobs:
           command: docker-compose build
           working_directory: tests
       - run:
-          command: docker-compose up --abort-on-container-exit --exit-code-from e2e
+          command: docker-compose up --abort-on-container-exit --exit-code-from cypress
           working_directory: tests
 
   # Test plugin deps
