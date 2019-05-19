@@ -8,10 +8,12 @@ services:
     volumes:
       - .:/src
     working_dir: /src
+    depends_on:
+      - web
 
   web:
     logging:
-        driver: none
+      driver: none
     build: .
     command: php -S 0.0.0.0:8080 -t /var/www/html/web
     volumes:
@@ -25,7 +27,7 @@ services:
 
   database:
     logging:
-        driver: none
+      driver: none
     image: mariadb:10.2
     environment:
       - "MYSQL_ROOT_PASSWORD=root"
