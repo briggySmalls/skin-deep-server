@@ -90,6 +90,10 @@ jobs:
       - run:
           command: docker-compose up --abort-on-container-exit --exit-code-from cypress
           working_directory: tests
+      - store_artifacts:
+          path: ./tests/cypress/screenshots
+      - store_artifacts:
+          path: ./tests/cypress/videos
 
   # Test plugin deps
   test-plugin:
