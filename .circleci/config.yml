@@ -84,6 +84,8 @@ jobs:
       # Get the pre-built app
       - attach_workspace:
           at: .
+      - run: sudo apt-get update && sudo apt-get install tree
+      - run: tree ./web -d -L 5
       - run:
           command: docker-compose build
           working_directory: tests
