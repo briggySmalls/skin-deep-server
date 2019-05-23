@@ -4,21 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d15db3f5d7a713effde49bd9203056b3",
+    "content-hash": "697c5f593889082612c19ce0be153b79",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.8.0-RC2",
+            "version": "5.8.0",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&t=5.8.0-RC2",
-                "reference": null,
-                "shasum": null
+                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&t=5.8.0"
             },
             "require": {
                 "pivvenit/acf-pro-installer": "^2"
             },
-            "type": "wpackagist-plugin",
+            "type": "wordpress-muplugin",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -464,8 +462,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.1.1",
-                "reference": "5.1.1",
-                "shasum": null
+                "reference": "5.1.1"
             },
             "require": {
                 "php": ">=5.3.2",
@@ -962,9 +959,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/autodescription.3.2.4.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/autodescription.3.2.4.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -982,9 +977,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/ticket-tailor.1.7.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/ticket-tailor.1.7.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1392,7 +1385,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "roots/soil": 20,
-        "advanced-custom-fields/advanced-custom-fields-pro": 5,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
