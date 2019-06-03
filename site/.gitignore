@@ -25,3 +25,5 @@ wp-cli.local.yml
 # Syncing
 database_backup/*
 
+# Testing
+tests/cypress/videos

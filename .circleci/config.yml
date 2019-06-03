@@ -38,9 +38,34 @@ jobs:
             - vendor/
             - config/
 
+  # Install/build frontend deps
+  install-frontend:
+    working_directory: /src
+    docker:
+      - image: node:10-stretch
+    steps:
+      # Get the pre-built php app
+      - attach_workspace:
+          at: .
+      - run: yarn --cwd web/app/mu-plugins/skin-deep install
+      - run: yarn --cwd web/app/mu-plugins/skin-deep build
+      - run: yarn --cwd web/app/themes/sd-theme install
+      - run: yarn --cwd web/app/themes/sd-theme build
+      # Save the install to the workspace
+      - persist_to_workspace:
+          root: /src
+          paths:
+            - web/
+            - tests/
+            - composer.*
+            - phpcs.xml
+            - phpstan.neon
+            - vendor/
+            - config/
+
   # Test php
   check-php:
-    working_directory: /app
+    working_directory: /src
     docker:
       - image: php:7.3-alpine
     steps:
@@ -52,35 +77,65 @@ jobs:
       # Run test
       - run: composer check
 
+  # Run e2e tests
+  e2e:
+    machine: true
+    steps:
+      # Get the pre-built app
+      - attach_workspace:
+          at: .
+      - run: sudo apt-get update && sudo apt-get install tree
+      - run: tree ./web -d -L 5
+      - run:
+          command: docker-compose build
+          working_directory: tests
+      - run:
+          command: docker-compose up --abort-on-container-exit --exit-code-from cypress
+          working_directory: tests
+      - store_artifacts:
+          path: ./tests/cypress/screenshots
+      - store_artifacts:
+          path: ./tests/cypress/videos
+
   # Test plugin deps
-  frontend-plugin:
-    working_directory: /app
+  test-plugin:
+    working_directory: /src
     docker:
       - image: node:10-stretch
     steps:
-      - checkout
-      - run: yarn --cwd site/web/app/mu-plugins/skin-deep install
-      - run: yarn --cwd site/web/app/mu-plugins/skin-deep test
+      # Get the pre-built php app
+      - attach_workspace:
+          at: .
+      - run: yarn --cwd web/app/mu-plugins/skin-deep test
 
   # Test theme deps
-  frontend-theme:
-    working_directory: /app
+  test-theme:
+    working_directory: /src
     docker:
       - image: node:10-stretch
     steps:
-      - checkout
-      - run: yarn --cwd site/web/app/themes/sd-theme install
-      - run: yarn --cwd site/web/app/themes/sd-theme test
+      # Get the pre-built php app
+      - attach_workspace:
+          at: .
+      - run: yarn --cwd web/app/themes/sd-theme test
 
 workflows:
   version: 2
   web:
     jobs:
       - install-php
+      - install-frontend:
+          requires:
+            - install-php
       - check-php:
           requires:
             - install-php
-  frontend:
-    jobs:
-      - frontend-plugin
-      - frontend-theme
+      - e2e:
+          requires:
+            - install-frontend
+      - test-plugin:
+          requires:
+            - install-frontend
+      - test-theme:
+          requires:
+            - install-frontend

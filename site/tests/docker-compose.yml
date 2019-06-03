@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  cypress:
+    image: cypress/included:3.2.0
+    environment:
+      - CYPRESS_baseUrl=http://web:8080
+    volumes:
+      - .:/src
+    working_dir: /src
+    depends_on:
+      - web
+
+  web:
+    logging:
+      driver: none
+    build: .
+    command: php -S 0.0.0.0:8080 -t /var/www/html/web
+    volumes:
+      - ../:/var/www/html/
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+
+  database:
+    logging:
+      driver: none
+    image: mariadb:10.2
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_DATABASE=${DB_NAME}"
+      - "MYSQL_USER=${DB_USER}"
+      - "MYSQL_PASSWORD=${DB_PASSWORD}"
+    expose:
+      - "3306"
+    ports:
+      - 3306:3306
+    volumes:
+      - ../tests/test-db-seed.sql:/docker-entrypoint-initdb.d/test-db-seed.sql
