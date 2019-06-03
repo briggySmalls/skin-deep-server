@@ -12,7 +12,7 @@ describe('Header', function() {
 
     it('Events', function() {
       // Visit the home page
-      cy.visitAndCheck('/events')
+      cy.visitAndCheck('/events/')
 
       // Check that 'Articles' is highlighted and the others are not
       cy.get('#menu-main-menu > li.menu-events').should('have.class', 'active')
@@ -22,7 +22,7 @@ describe('Header', function() {
 
     it('Shop', function() {
       // Visit the home page
-      cy.visitAndCheck('/products')
+      cy.visitAndCheck('/products/')
 
       // Check that 'Articles' is highlighted and the others are not
       cy.get('#menu-main-menu > li.menu-shop').should('have.class', 'active')
@@ -32,7 +32,7 @@ describe('Header', function() {
 
     it('Back To Basics', function() {
       // Visit the home page
-      cy.visitAndCheck('/articles/category/back-to-basics')
+      cy.visitAndCheck('/articles/category/back-to-basics/')
 
       // Check that 'Articles' is highlighted and the others are not
       cy.get('#menu-main-menu > li.menu-articles').should('have.class', 'active')
