@@ -1,11 +1,3 @@
-/*
- * Fix bootstrap navbar
- * https://github.com/roots/sage/commit/e72b4906264551dc00cd0890de74ae2bce0d77c8#commitcomment-30957683
- */
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-
-/* Start file for proper */
 @import "common/variables";
 
 /** Import everything from autoload */
