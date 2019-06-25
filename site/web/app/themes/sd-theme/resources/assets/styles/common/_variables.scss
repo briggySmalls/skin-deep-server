@@ -1,5 +1,6 @@
 /** Import Bootstrap functions */
 @import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 
 // Production build fix from: https://github.com/roots/sage/issues/2017#issuecomment-361054297
 $new-navbar-dark-color: str-replace(str-replace(#{$navbar-dark-color}, "(", "%28"), ")", "%29");
