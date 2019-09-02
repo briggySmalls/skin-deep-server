@@ -212,7 +212,7 @@ abstract class Widget extends \WP_Widget
             // Pass context variables to template
             return template(self::templateName($template), $args);
         }
-        return template(self::templateName($template), $args);
+        return template(self::templateName($template));
     }
 
     /*--------------------------------------------------*/
