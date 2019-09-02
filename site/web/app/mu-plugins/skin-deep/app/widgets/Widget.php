@@ -2,7 +2,7 @@
 
 namespace SkinDeep\Widgets;
 
-use function SkinDeep\Theme\sage;
+use function SkinDeep\Theme\template;
 
 use SkinDeep\Utilities\ResourceManager;
 
@@ -102,7 +102,7 @@ abstract class Widget extends \WP_Widget
 
         wp_cache_set(static::WIDGET_SLUG, $cache, 'widget');
 
-        print $widget_string;
+        echo $widget_string;
     } // end widget
 
     public function flushWidgetCache()
@@ -199,7 +199,7 @@ abstract class Widget extends \WP_Widget
     public static function output($resource_manager, $template, $args)
     {
         // Ensure we have access to the blade template
-        if (!function_exists('SkinDeep\Theme\sage')) {
+        if (!function_exists('SkinDeep\Theme\template')) {
             return false;
         }
 
@@ -210,9 +210,9 @@ abstract class Widget extends \WP_Widget
         // Generate the output
         if ($args) {
             // Pass context variables to template
-            return sage('blade')->make(self::templateName($template), $args)->render();
+            return template(self::templateName($template), $args);
         }
-        return sage('blade')->make(self::templateName($template))->render();
+        return template(self::templateName($template));
     }
 
     /*--------------------------------------------------*/
