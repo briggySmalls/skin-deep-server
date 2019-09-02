@@ -102,7 +102,7 @@ abstract class Widget extends \WP_Widget
 
         wp_cache_set(static::WIDGET_SLUG, $cache, 'widget');
 
-        print $widget_string;
+        echo $widget_string;
     } // end widget
 
     public function flushWidgetCache()
