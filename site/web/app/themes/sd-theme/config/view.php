@@ -46,6 +46,6 @@ return [
 
     'namespaces' => [
         /* Given the below example, in your views use something like: @include('WC::some.view.or.partial.here') */
-        'plugin' => WPMU_PLUGIN_DIR.'/skin-deep/resources/views/',
+        'plugin' => WP_PLUGIN_DIR.'/skin-deep/resources/views/',
     ],
 ];
