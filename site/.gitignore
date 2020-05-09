@@ -11,6 +11,9 @@ web/app/uploads/*
 web/wp
 web/.htaccess
 
+# Logs
+*.log
+
 # Dotenv
 .env
 .env.*

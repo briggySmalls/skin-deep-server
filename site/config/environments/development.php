@@ -12,7 +12,7 @@ Config::define('WP_DISABLE_FATAL_ERROR_HANDLER', true);
 Config::define('SCRIPT_DEBUG', true);
 Config::define('JETPACK_DEV_DEBUG', true);
 
-ini_set('display_errors', 1);
+ini_set('display_errors', '1');
 
 // Enable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', false);
