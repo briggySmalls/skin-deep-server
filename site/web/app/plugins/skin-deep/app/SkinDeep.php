@@ -37,6 +37,11 @@ class SkinDeep
     public const VERSION = '1.0.0';
 
     /**
+     * Options page settings
+     */
+    private $options_page;
+
+    /**
      * Sources on which to add crossorigin attribute to resource hint
      */
     const CROSSORIGIN_SOURCES = [
@@ -70,7 +75,7 @@ class SkinDeep
         });
 
         // Add plugin options page
-        $this->loader->addAction('acf/init', self::staticMethod('addOptionsPage'));
+        $this->loader->addAction('acf/init', [$this, 'addOptionsPage']);
 
         // Add tags to scripts
         $this->loader->addFilter('script_loader_tag', self::staticMethod('updateScripts'), 10, 2);
@@ -86,11 +91,6 @@ class SkinDeep
         // Remove native taxonomy field from attachments (we use ACF)
         $this->loader->AddFilter('attachment_fields_to_edit', self::staticMethod('removeNativeArtistInPopup'));
         $this->loader->AddFilter('register_taxonomy_args', self::staticMethod('removeNativeArtistInEditor'), 10, 2);
-
-        // Create modules
-        $this->articles = new ArticlesModule($this->loader);
-        $this->events = new EventsModule($this->loader);
-        $this->shop = new ShopModule($this->loader);
     }
 
     /**
@@ -202,19 +202,6 @@ class SkinDeep
     }
 
     /**
-     * @brief      Add an options page to configure the plugin settings
-     * @return     false
-     */
-    public static function addOptionsPage()
-    {
-        // Create event settings
-        acf_add_options_page([
-            'page_title' => 'Skin Deep Settings',
-            'capability' => 'edit_posts',
-        ]);
-    }
-
-    /**
      * @brief      Helper method to build static method string
      * @param      $name  The name of the function
      * @return     Static method string
@@ -231,5 +218,30 @@ class SkinDeep
     private static function getGoogleTrackingId()
     {
         return get_field('sd_general_google_analytics_id', 'option');
+    }
+
+    /**
+     * @brief      Add an options page to configure the plugin settings
+     * @return     false
+     */
+    public function addOptionsPage()
+    {
+        // Create event settings
+        $this->options_page = acf_add_options_page([
+            'page_title' => 'Skin Deep Settings',
+            'capability' => 'edit_posts',
+        ]);
+    }
+
+    /**
+     * @brief      Create the submodules of the site
+     * @return     false
+     */
+    public function createModules()
+    {
+        // Create modules
+        $this->articles = new ArticlesModule($this->loader);
+        $this->events = new EventsModule($this->loader);
+        $this->shop = new ShopModule($this->loader);
     }
 }

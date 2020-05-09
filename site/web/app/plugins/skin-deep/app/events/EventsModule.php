@@ -36,7 +36,15 @@ class EventsModule extends Module
 
     protected $loader;
 
-    protected $settings_page_info;
+    protected $options_page;
+
+    public function __construct($loader, $options_page)
+    {
+        // Store the options page
+        $this->options_page = $options_page;
+        // Call parent constructor
+        parent::__construct($loader);
+    }
 
     public function init()
     {
@@ -162,7 +170,7 @@ class EventsModule extends Module
     public function checkEventSettings()
     {
         // Get URL of settings page
-        $url = admin_url($this->settings_page_info['parent_slug'] . '&page=' . $this->settings_page_info['menu_slug']);
+        $url = admin_url($this->options_page['parent_slug'] . '&page=' . $this->options_page['menu_slug']);
 
         // Deal with google maps registration
         $google_maps_key = get_field(self::GOOGLE_MAPS_FIELD_NAME, 'option');
