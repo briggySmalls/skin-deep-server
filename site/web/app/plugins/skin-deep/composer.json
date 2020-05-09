@@ -1,5 +1,5 @@
 {
-  "name": "sd-articles",
+  "name": "skin-deep/plugin",
   "type": "wordpress-plugin",
   "license": "proprietary",
   "description": "Custom articles for the Skin Deep magazine",
