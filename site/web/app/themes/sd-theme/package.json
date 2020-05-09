@@ -56,7 +56,6 @@
     "imagemin-mozjpeg": "~7.0.0",
     "imagemin-webpack-plugin": "~2.2.0",
     "import-glob": "~1.5",
-    "node-sass": "~4.9.4",
     "postcss-loader": "~2.1.0",
     "postcss-safe-parser": "~3.0",
     "resolve-url-loader": "~2.3.1",
@@ -82,6 +81,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "bootstrap": "4.3.1",
     "jquery": "^3.3.1",
+    "node-sass": "^4.14.1",
     "popper.js": "^1.14.7",
     "store": "^2.0.12"
   }
