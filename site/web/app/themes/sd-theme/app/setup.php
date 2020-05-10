@@ -19,17 +19,6 @@ add_action('wp_enqueue_scripts', function () {
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
-
-    # Add google fonts
-    $fonts = [
-        'Acme',
-        'Open+Sans:300,300i,400,400i,600,700,700i,800,800i',
-    ];
-    wp_enqueue_style(
-        'custom-google-fonts',
-        "https://fonts.googleapis.com/css?family=" . implode('|', $fonts),
-        false
-    );
 }, 100);
 
 /**
