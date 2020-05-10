@@ -57,7 +57,8 @@
     "automattic/jetpack": "^6.5",
     "wpackagist-plugin/ticket-tailor": "1.7",
     "wpackagist-plugin/autodescription": "^4.0",
-    "advanced-custom-fields/advanced-custom-fields-pro": "^5.8"
+    "advanced-custom-fields/advanced-custom-fields-pro": "^5.8",
+    "wpackagist-plugin/easy-google-fonts": "^1.4"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5.4",
