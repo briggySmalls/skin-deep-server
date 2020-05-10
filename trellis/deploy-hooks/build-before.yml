@@ -14,7 +14,7 @@
     chdir: "{{ project_local_path }}/{{ item }}"
   with_items:
     - web/app/themes/sd-theme
-    - web/app/mu-plugins/skin-deep
+    - web/app/plugins/skin-deep
 
 - name: Install Composer dependencies
   command: composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts --classmap-authoritative
@@ -22,7 +22,7 @@
     chdir: "{{ deploy_helper.new_release_path }}/{{ item }}"
   with_items:
     - web/app/themes/sd-theme
-    - web/app/mu-plugins/skin-deep
+    - web/app/plugins/skin-deep
 
 - name: Compile assets for production
   command: yarn build:production
@@ -31,7 +31,7 @@
     chdir: "{{ project_local_path }}/{{ item }}"
   with_items:
     - web/app/themes/sd-theme
-    - web/app/mu-plugins/skin-deep
+    - web/app/plugins/skin-deep
 
 - name: Copy production assets
   synchronize:
@@ -42,4 +42,4 @@
     rsync_opts: --chmod=Du=rwx,--chmod=Dg=rx,--chmod=Do=rx,--chmod=Fu=rw,--chmod=Fg=r,--chmod=Fo=r
   with_items:
     - web/app/themes/sd-theme
-    - web/app/mu-plugins/skin-deep
+    - web/app/plugins/skin-deep
