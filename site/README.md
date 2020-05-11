@@ -1,4 +1,4 @@
-# Server content
+
 
 This directory contains the content of the Skin Deep server, and is based on the [Bedrock](https://roots.io/bedrock/) server framework.
 

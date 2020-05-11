@@ -1,8 +1,7 @@
 # Application
 web/app/plugins/*
-!web/app/plugins/.gitkeep
+!web/app/plugins/skin-deep
 web/app/mu-plugins/*/
-!web/app/mu-plugins/skin-deep
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
@@ -10,6 +9,9 @@ web/app/uploads/*
 # WordPress
 web/wp
 web/.htaccess
+
+# Logs
+*.log
 
 # Dotenv
 .env

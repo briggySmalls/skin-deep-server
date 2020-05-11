@@ -19,7 +19,7 @@ class NavWalker extends Soil
     }
 
     // Fix https://github.com/roots/soil/issues/212
-    public function walk($elements, $max_depth)
+    public function walk($elements, $max_depth,...$args)
     {
         // Add filters
         add_filter('nav_menu_css_class', array($this, 'cssClasses'), 10, 2);

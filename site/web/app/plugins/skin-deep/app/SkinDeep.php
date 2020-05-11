@@ -70,7 +70,7 @@ class SkinDeep
         });
 
         // Add plugin options page
-        $this->loader->addAction('acf/init', self::staticMethod('addOptionsPage'));
+        $this->loader->addAction('acf/init', [$this, 'addOptionsPage']);
 
         // Add tags to scripts
         $this->loader->addFilter('script_loader_tag', self::staticMethod('updateScripts'), 10, 2);
@@ -202,19 +202,6 @@ class SkinDeep
     }
 
     /**
-     * @brief      Add an options page to configure the plugin settings
-     * @return     false
-     */
-    public static function addOptionsPage()
-    {
-        // Create event settings
-        acf_add_options_page([
-            'page_title' => 'Skin Deep Settings',
-            'capability' => 'edit_posts',
-        ]);
-    }
-
-    /**
      * @brief      Helper method to build static method string
      * @param      $name  The name of the function
      * @return     Static method string
@@ -231,5 +218,18 @@ class SkinDeep
     private static function getGoogleTrackingId()
     {
         return get_field('sd_general_google_analytics_id', 'option');
+    }
+
+    /**
+     * @brief      Add an options page to configure the plugin settings
+     * @return     false
+     */
+    public function addOptionsPage()
+    {
+        // Create event settings
+        acf_add_options_page([
+            'page_title' => 'Skin Deep Settings',
+            'capability' => 'edit_posts',
+        ]);
     }
 }

@@ -36,8 +36,6 @@ class EventsModule extends Module
 
     protected $loader;
 
-    protected $settings_page_info;
-
     public function init()
     {
         // Add some hooks
@@ -45,7 +43,7 @@ class EventsModule extends Module
         $this->getLoader()->addFilter('get_the_archive_title', [$this, 'addStatusToTitle'], 11);
         $this->getLoader()->addAction('pre_get_posts', [$this, 'filterEventsOnStatus']);
         $this->getLoader()->addAction('save_post', [$this, 'updateEventWithFacebookDetails'], 1);
-        $this->getLoader()->addAction('acf/init', [$this, 'checkEventSettings']);
+        $this->getLoader()->addAction('acf/init', [$this, 'checkEventSettings'], 20);
     }
 
     public function addEventStatusQuery($post_type, $args)
@@ -161,9 +159,6 @@ class EventsModule extends Module
 
     public function checkEventSettings()
     {
-        // Get URL of settings page
-        $url = admin_url($this->settings_page_info['parent_slug'] . '&page=' . $this->settings_page_info['menu_slug']);
-
         // Deal with google maps registration
         $google_maps_key = get_field(self::GOOGLE_MAPS_FIELD_NAME, 'option');
         if ($google_maps_key) {
@@ -173,7 +168,7 @@ class EventsModule extends Module
             // Warn that google API isn't going to work
             AdminNotice::create()
                 ->error()
-                ->html("Google maps API key not set. Congfigure in <a href=\"$url\">Events -&gt; Event Settings</a>")
+                ->html("Google maps API key not set. Congfigure in Event Settings")
                 ->show();
         }
 
@@ -183,7 +178,7 @@ class EventsModule extends Module
             // Warn that facebook API isn't going to work
             AdminNotice::create()
                 ->error()
-                ->html("Event facebook settings unset. Configure in <a href=\"$url\">Events -&gt; Event Settings</a>")
+                ->html("Event facebook settings unset. Configure in Event Settings")
                 ->show();
         } else {
             foreach (['app_id', 'app_secret', 'page_access_token'] as $field) {
@@ -191,7 +186,7 @@ class EventsModule extends Module
                     // Warn that facebook API isn't going to work
                     AdminNotice::create()
                         ->error()
-                        ->html("Event setting '$field' not yet set. Configure in <a href=\"$url\">Events -&gt; Event Settings</a>")
+                        ->html("Event setting '$field' not yet set. Configure in Event Settings")
                         ->show();
                 }
             }

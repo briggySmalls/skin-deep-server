@@ -11,6 +11,7 @@
  * License URI: http://opensource.org/licenses/MIT
  */
 
-// Include custom plugin
-require WPMU_PLUGIN_DIR . '/skin-deep/app/skin-deep.php';
+namespace SkinDeep;
 
+// Include autoloader
+require __DIR__ . '/vendor/autoload.php';
