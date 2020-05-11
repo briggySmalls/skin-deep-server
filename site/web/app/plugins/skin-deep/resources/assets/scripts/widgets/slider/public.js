@@ -1,5 +1,5 @@
 import './../../../styles/slider/public.scss';
-import 'bcswipe/jquery.bcSwipe.js'; // jQuery plugin
+import 'bcswipe'; // jQuery plugin
 
 // Add swipe to carousels
 jQuery(document).ready(function() {

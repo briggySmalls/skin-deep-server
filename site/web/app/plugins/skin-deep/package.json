@@ -44,7 +44,7 @@
     "test": "npm run -s lint"
   },
   "dependencies": {
-    "bcswipe": "briggySmalls/bcswipe"
+    "bcswipe": "^2.0.3"
   },
   "devDependencies": {
     "css-loader": "^1.0.0",

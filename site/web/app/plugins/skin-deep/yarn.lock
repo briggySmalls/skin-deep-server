@@ -675,9 +675,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bcswipe@briggySmalls/bcswipe:
-  version "2.0.2"
-  resolved "https://codeload.github.com/briggySmalls/bcswipe/tar.gz/7d5f526e8d929d7221d51916614d800551b3ab22"
+bcswipe@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/bcswipe/-/bcswipe-2.0.3.tgz#2a1de7aecf29ec6040bf0957f7b8bac2c8d47603"
+  integrity sha512-6UuVjOBuEh1lnp3TsyGmZwVGy6LlEwo4kqTB+WOHUBPVssP0KoSKb+M+s85+rhYnzD/iJEblT71AbPApP9D71A==
   dependencies:
     detect-passive-events "^1.0.4"
 
