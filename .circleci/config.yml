@@ -5,17 +5,19 @@ commands:
     description: "Install composer dependencies"
     parameters:
       path:
+        description: directory containing composer.json
         type: string
     steps:
-      - run: composer install -o --no-progress --prefer-dist --no-interaction
+      - run: composer install --working-dir=<< parameters.path >> -o --no-progress --prefer-dist --no-interaction
   yarn-build:
     description: "Yarn: install and build"
     parameters:
       path:
+        description: directory containing yarn.lock
         type: string
     steps:
-      - yarn --cwd << path >> install
-      - yarn --cwd << path >> build
+      - yarn --cwd << parameters.path >> install
+      - yarn --cwd << parameters.path >> build
 jobs:
   # Install php dependencies
   install-php:
@@ -30,15 +32,15 @@ jobs:
       # Install bedrock dependencies
       - composer:
           name: Install bedrock dependencies
-          working_directory: /src/site
+          path: /src/site
       # Install plugin dependencies
       - run:
           name: Install plugin dependencies
-          working_directory: /src/site/web/app/plugins/skin-deep
+          path: /src/site/web/app/plugins/skin-deep
       # Install theme dependencies
       - run:
           name: Install theme dependencies
-          working_directory: /src/site/web/app/themes/sd-theme
+          path: /src/site/web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
           root: /src/site
