@@ -31,15 +31,12 @@ jobs:
       - run: apk add --no-progress composer
       # Install bedrock dependencies
       - composer:
-          name: Install bedrock dependencies
           path: /src/site
       # Install plugin dependencies
-      - run:
-          name: Install plugin dependencies
+      - composer:
           path: /src/site/web/app/plugins/skin-deep
       # Install theme dependencies
-      - run:
-          name: Install theme dependencies
+      - composer:
           path: /src/site/web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
