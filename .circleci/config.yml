@@ -118,7 +118,7 @@ jobs:
       # Get the pre-built php app
       - attach_workspace:
           at: .
-      - run: yarn --cwd web/app/mu-plugins/skin-deep test
+      - run: yarn --cwd web/app/plugins/skin-deep test
 
   # Test theme deps
   test-theme:
