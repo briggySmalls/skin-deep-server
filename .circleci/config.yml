@@ -1,5 +1,21 @@
 # State version
-version: 2.0
+version: 2.1
+commands:
+  composer:
+    description: "Install composer dependencies"
+    parameters:
+      path:
+        type: string
+    steps:
+      - run: composer install -o --no-progress --prefer-dist --no-interaction
+  yarn-build:
+    description: "Yarn: install and build"
+    parameters:
+      path:
+        type: string
+    steps:
+      - yarn --cwd << path >> install
+      - yarn --cwd << path >> build
 jobs:
   # Install php dependencies
   install-php:
@@ -12,19 +28,16 @@ jobs:
       # Install composer
       - run: apk add --no-progress composer
       # Install bedrock dependencies
-      - run:
+      - composer:
           name: Install bedrock dependencies
-          command: composer install -o --no-progress --prefer-dist --no-interaction
           working_directory: /src/site
       # Install plugin dependencies
       - run:
           name: Install plugin dependencies
-          command: composer install -o --no-progress --prefer-dist --no-interaction
-          working_directory: /src/site/web/app/mu-plugins/skin-deep
+          working_directory: /src/site/web/app/plugins/skin-deep
       # Install theme dependencies
       - run:
           name: Install theme dependencies
-          command: composer install -o --no-progress --prefer-dist --no-interaction
           working_directory: /src/site/web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
@@ -47,10 +60,10 @@ jobs:
       # Get the pre-built php app
       - attach_workspace:
           at: .
-      - run: yarn --cwd web/app/mu-plugins/skin-deep install
-      - run: yarn --cwd web/app/mu-plugins/skin-deep build
-      - run: yarn --cwd web/app/themes/sd-theme install
-      - run: yarn --cwd web/app/themes/sd-theme build
+      - yarn-build:
+          path: web/app/plugins/skin-deep
+      - yarnd-build:
+          path: web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
           root: /src
