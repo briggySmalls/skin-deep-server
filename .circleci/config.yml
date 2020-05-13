@@ -61,7 +61,7 @@ jobs:
           at: .
       - yarn-build:
           path: web/app/plugins/skin-deep
-      - yarnd-build:
+      - yarn-build:
           path: web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
