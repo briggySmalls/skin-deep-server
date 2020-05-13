@@ -1,6 +1,6 @@
 @extends('layouts.content-single')
 @php
-assert(is_a($post, 'SkinDeep\Articles\Post'));
+assert(is_a($post, 'SkinDeep\Common\Post'));
 @endphp
 
 @section('single-header')
