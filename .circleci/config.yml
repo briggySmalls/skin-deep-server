@@ -1,5 +1,23 @@
 # State version
-version: 2.0
+version: 2.1
+commands:
+  composer:
+    description: "Install composer dependencies"
+    parameters:
+      path:
+        description: directory containing composer.json
+        type: string
+    steps:
+      - run: composer install --working-dir=<< parameters.path >> -o --no-progress --prefer-dist --no-interaction
+  yarn-build:
+    description: "Yarn: install and build"
+    parameters:
+      path:
+        description: directory containing yarn.lock
+        type: string
+    steps:
+      - run: yarn --cwd << parameters.path >> install
+      - run: yarn --cwd << parameters.path >> build
 jobs:
   # Install php dependencies
   install-php:
@@ -12,20 +30,14 @@ jobs:
       # Install composer
       - run: apk add --no-progress composer
       # Install bedrock dependencies
-      - run:
-          name: Install bedrock dependencies
-          command: composer install -o --no-progress --prefer-dist --no-interaction
-          working_directory: /src/site
+      - composer:
+          path: /src/site
       # Install plugin dependencies
-      - run:
-          name: Install plugin dependencies
-          command: composer install -o --no-progress --prefer-dist --no-interaction
-          working_directory: /src/site/web/app/mu-plugins/skin-deep
+      - composer:
+          path: /src/site/web/app/plugins/skin-deep
       # Install theme dependencies
-      - run:
-          name: Install theme dependencies
-          command: composer install -o --no-progress --prefer-dist --no-interaction
-          working_directory: /src/site/web/app/themes/sd-theme
+      - composer:
+          path: /src/site/web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
           root: /src/site
@@ -47,10 +59,10 @@ jobs:
       # Get the pre-built php app
       - attach_workspace:
           at: .
-      - run: yarn --cwd web/app/mu-plugins/skin-deep install
-      - run: yarn --cwd web/app/mu-plugins/skin-deep build
-      - run: yarn --cwd web/app/themes/sd-theme install
-      - run: yarn --cwd web/app/themes/sd-theme build
+      - yarn-build:
+          path: web/app/plugins/skin-deep
+      - yarn-build:
+          path: web/app/themes/sd-theme
       # Save the install to the workspace
       - persist_to_workspace:
           root: /src
@@ -106,7 +118,7 @@ jobs:
       # Get the pre-built php app
       - attach_workspace:
           at: .
-      - run: yarn --cwd web/app/mu-plugins/skin-deep test
+      - run: yarn --cwd web/app/plugins/skin-deep test
 
   # Test theme deps
   test-theme:
