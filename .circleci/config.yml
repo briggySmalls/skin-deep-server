@@ -16,8 +16,8 @@ commands:
         description: directory containing yarn.lock
         type: string
     steps:
-      - yarn --cwd << parameters.path >> install
-      - yarn --cwd << parameters.path >> build
+      - run: yarn --cwd << parameters.path >> install
+      - run: yarn --cwd << parameters.path >> build
 jobs:
   # Install php dependencies
   install-php:
