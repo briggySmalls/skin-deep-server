@@ -3,6 +3,7 @@
 namespace SkinDeep\Common;
 
 use SkinDeep\Utilities\Helper;
+use SkinDeep\Theme\ImageManager;
 
 /**
  * @brief      Wrapper class for an image
@@ -84,14 +85,21 @@ class Image
      */
     public static function extendSrcSet($sources, $size_array, $image_src, $image_meta, $attachment_id)
     {
-            list($url, $width, $height, $is_intermediate) = wp_get_attachment_image_src($attachment_id, 'full');
-            // Add original image
-            $sources[$width] = [
-                'url' => $url,
-                'value' => $width,
-                'descriptor' => 'w'
-            ];
-
+        // Check if we don't have a 'large' image available
+        list(, $large_width, $large_height, ) = wp_get_attachment_image_src($attachment_id, 'large');
+        $expected_size = ImageManager::getSizeDimensions('large');
+        if ($large_width == $expected_size[0] && $large_height == $expected_size[1]) {
+            // We have a large image of the right aspect, no need to add original
+            return $sources;
+        }
+        // Get the full image size
+        list($url, $width,,) = wp_get_attachment_image_src($attachment_id, 'full');
+        // Add original image
+        $sources[$width] = [
+            'url' => $url,
+            'value' => $width,
+            'descriptor' => 'w'
+        ];
         return $sources;
     }
 }
