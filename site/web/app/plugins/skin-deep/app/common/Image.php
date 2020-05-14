@@ -32,7 +32,7 @@ class Image
         // Check if we want an extended srcset
         $is_extended = isset($options['extended']) && $options['extended'];
         if ($is_extended) {
-            add_filter('wp_calculate_image_srcset', '\SkinDeep\Common\Post::extendSrcSet', 10, 5);
+            add_filter('wp_calculate_image_srcset', '\SkinDeep\Common\Image::extendSrcSet', 10, 5);
         }
 
         // Get the image source
@@ -41,7 +41,7 @@ class Image
         $image = Helper::removeHeightWidth($image);
 
         if ($is_extended) {
-            remove_filter('wp_calculate_image_srcset', '\SkinDeep\Common\Post::extendSrcSet', 10);
+            remove_filter('wp_calculate_image_srcset', '\SkinDeep\Common\Image::extendSrcSet', 10);
         }
 
         return $image;
@@ -69,5 +69,29 @@ class Image
         if (isset($source[$source_key])) {
             $dest[$dest_key] = $source[$source_key];
         }
+    }
+
+    /**
+     * @brief      Get extended srcset for an image, including original image
+     *
+     *             Wordpress automatically creates a srcset for an image, and
+     *             correctly only includes sizes with the same aspect ratio.
+     *             However we have a need to show the original image, even if it
+     *             has a different aspect ratio to ASPECT_RATIO, on large
+     *             devices
+     *
+     * @return     srcset that includes original image size
+     */
+    public static function extendSrcSet($sources, $size_array, $image_src, $image_meta, $attachment_id)
+    {
+            list($url, $width, $height, $is_intermediate) = wp_get_attachment_image_src($attachment_id, 'full');
+            // Add original image
+            $sources[$width] = [
+                'url' => $url,
+                'value' => $width,
+                'descriptor' => 'w'
+            ];
+
+        return $sources;
     }
 }
