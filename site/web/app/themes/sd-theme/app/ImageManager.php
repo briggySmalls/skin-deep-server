@@ -22,6 +22,17 @@ class ImageManager
         self::updateSize('large', self::WIDTHS['large']);
     }
 
+    public static function getSizeDimensions($size)
+    {
+        // Ensure the image size exists
+        if (!array_key_exists($size, self::WIDTHS))
+        {
+            return false;
+        }
+        $width = self::WIDTHS[$size];
+        return [$width, round($width / self::ASPECT_RATIO)];
+    }
+
     private static function getImageSizeArgs($width)
     {
         return array_values(self::sizeArgs($width));
