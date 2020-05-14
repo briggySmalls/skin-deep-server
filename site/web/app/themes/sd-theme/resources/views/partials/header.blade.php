@@ -11,7 +11,7 @@
 @endif
 <header id="main-header">
   {{-- Don't bother with a link, it's supplied already --}}
-  <nav class="navbar top-level">
+  <nav class="navbar top-level navbar-expand-lg">
     <div class="navigation-grid">
       <div id="logo">
         @if (has_custom_logo())
@@ -26,14 +26,14 @@
         <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
-                data-target="#top-nav,#search"
+                data-target=".collapsable-menu"
                 aria-controls="top-nav search"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-      <div id="top-nav" class="collapse navbar-collapse collapsable">
+      <div id="top-nav" class="collapse navbar-collapse collapsable-menu">
         {{-- Main menu navigation --}}
         @if (has_nav_menu('primary_navigation'))
           {{-- Standard 'top-level' menu items --}}
@@ -55,7 +55,7 @@
           @endif
         </div>
       </div>
-      <div id="search" class="collapse navbar-collapse collapsable">
+      <div id="search" class="collapse navbar-collapse collapsable-menu">
         {{-- Search bar --}}
         {!! get_search_form() !!}
       </div>
